@@ -19,6 +19,7 @@
 			<div style="position: fixed; width: 100%; height: 100%;">
 				<Graphly :graph="graph" :selected="selectedNodes" />
 			</div>
+
 		</div>
 	</div>
 </template>
@@ -30,6 +31,7 @@ import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
+
 
 import {
 	LMap,
@@ -67,7 +69,6 @@ let graph = ref({ nodes: [
 		taxonomy: null,//JSON.parse(JSON.stringify(taxonomyTemplate["affected-person"] ?? {})),
 	},
 ], links: [], hasUpdate: false });
-
 export default {
 	name: "SituationMap",
 	components: {
