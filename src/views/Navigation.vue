@@ -85,11 +85,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// .v-app-bar {
-// 	background: #4db6ac !important;
-// }
-// .v-navigation-drawer {
-// 	background: #4db6ac !important;
-// }
-</style>
+<style lang="scss"></style>
