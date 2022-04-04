@@ -4,9 +4,7 @@
 			<v-list color="#00000000">
 				<v-list-item :prepend-avatar="icon" :title="title"></v-list-item>
 			</v-list>
-
 			<v-divider></v-divider>
-
 			<v-list density="compact" nav color="#00000000">
 				<v-list-item
 					v-for="item in sidebarItems"
@@ -18,6 +16,8 @@
 					@click="nav(item)"
 				></v-list-item>
 			</v-list>
+			<v-divider></v-divider>
+			<slot></slot>
 		</v-navigation-drawer>
 	</div>
 </template>
