@@ -6,20 +6,17 @@
 				<l-map
 					:zoom="zoom"
 					:center="center"
-					:min-zoom="minZoom"
-					:max-zoom="maxZoom"
+					:zoom-animation="true"
+					:ease-linearity="true"
+					:no-blocking-animations="true"
 					style="width: 100vw; height: 100vh"
-					@move="log('move')"
-					@zoom="log($event)"
 				>
-					<l-tile-layer :url="url" :attribution="attribution" />
-					<l-geo-json :geojson="geojson"></l-geo-json>
+					<l-tile-layer :url="url" />
 				</l-map>
 			</div>
-			<div style="position: fixed; width: 100%; height: 100%;">
-				<Graphly :graph="graph" :selected="selectedNodes" />
+			<div style="position: fixed; width: 100%; height: 100%; background-color: #00000048">
+				<Graphly :graph="graph" :selected="selectedNodes" :zoom-boundaries="[0.05, 1.5]" @move="onMove" />
 			</div>
-
 		</div>
 	</div>
 </template>
@@ -32,43 +29,20 @@ import { taxonomy2payload } from "../data/operator/converter/index";
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 
-
 import {
 	LMap,
-	LIcon,
 	LTileLayer,
-	LMarker,
-	LControlLayers,
-	LTooltip,
-	LPopup,
-	LPolyline,
-	LPolygon,
-	LRectangle,
-    LGeoJson,
 } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
 
-let graph = ref({ nodes: [
-	{
-		id: "node-" + Math.random(),
-		shape: {
-			type: "affected-person",
-			scale: 1,
-		},
-		payload: {
-			status: "",
-			name: {
-				first: "",
-				last: "",
-			},
-			sex: "",
-			age: "",
-			accessibility: "",
-			tag: [],
-		},
-		taxonomy: null,//JSON.parse(JSON.stringify(taxonomyTemplate["affected-person"] ?? {})),
-	},
-], links: [], hasUpdate: false });
+let graph = ref({ nodes: [], links: [], hasUpdate: false });
+
+let zoom = ref(14);
+function onMove(transform) {
+	zoom.value = 14 + (transform.k * 3)
+
+}
+
 export default {
 	name: "SituationMap",
 	components: {
@@ -76,27 +50,7 @@ export default {
 		Graphly,
 		LMap,
 		LTileLayer,
-		LGeoJson,
-		LTileLayer,
 	},
-	data() {
-		return {
-		zoom: 14,
-		maxZoom: 18,
-		minZoom: 14,
-		center: [49.481761, 8.450044],
-		url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-		attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-		geojson: null,
-		showParagraph: false,
-
-		showMap: true,
-			log(str) {
-			console.log(str);
-		},
-		graph: graph,
-    }
-  },
 	setup(props, context) {
 		onMounted(() => {
 			// load graph data from demo
@@ -112,6 +66,15 @@ export default {
 					graph.value.hasUpdate = true;
 				});
 		});
+	},
+	data: () => ({
+		zoom,
+		center: [49.481761, 8.450044],
+		url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		graph: graph,
+    }),
+	methods: {
+		onMove,
 	},
 };
 </script>
