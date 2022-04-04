@@ -1,0 +1,53 @@
+{
+	"graph": {
+		"nodes": [
+			{
+				"id": "n0",
+				"shape": {
+					"type": "operation",
+					"scale": 1
+				},
+				"anchor": {
+					"type": "soft",
+					"x": "0",
+					"y": "0"
+				},
+				"payload": {
+					"status": "",
+					"label": "",
+					"location": "",
+					"affected_persons": "0",
+					"affected_objects": "0",
+					"tags": []
+				}
+			},
+			{
+				"id": "n1",
+				"shape": {
+					"type": "emergency-reporter",
+					"scale": 1
+				},
+				"payload": {
+					"name": {
+						"first": "",
+						"last": ""
+					},
+					"pending": false,
+					"location": "",
+					"category": "",
+					"label": "",
+					"callback_number": ""
+				}
+			}
+		],
+		"links": [
+			{
+				"source": "n1",
+				"target": "n0",
+				"type": "solid",
+				"directed": true,
+				"strength": "weak"
+			}
+		]
+	}
+}

@@ -1,0 +1,231 @@
+{
+	"graph": {
+		"nodes": [
+			{
+				"id": "n0",
+				"shape": {
+					"type": "affected-person",
+					"scale": 1
+				},
+				"anchor": {
+					"type": "hard",
+					"x": 0,
+					"y": 0
+				},
+				"payload": {
+					"status": "minor",
+					"name": {
+						"first": "Maximilian",
+						"last": "Mustermann"
+					},
+					"sex": "male",
+					"age": "42",
+					"accessibility": "Exponierte Lage",
+					"tags": ["bewusstlos", "Verletzung: Kopf", "Puls: schwach", "Diabetes", "atmend"]
+				}
+			},
+			{
+				"id": "n1",
+				"shape": {
+					"type": "affected-person",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n0",
+					"angle": 55,
+					"distance": 200
+				},
+				"payload": {
+					"status": "delayed",
+					"name": {
+						"first": "Jessica",
+						"last": "Johnsen"
+					},
+					"sex": "F",
+					"age": "40",
+					"accessibility": "Exponierte Lage",
+					"tags": ["Knochenbruch: Arm", "atmend", "Schnittwunde: Fuß"]
+				}
+			},
+			{
+				"id": "n2",
+				"shape": {
+					"type": "affected-person",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n0",
+					"angle": 75,
+					"distance": 200
+				},
+				"payload": {
+					"status": "immediate",
+					"name": {
+						"first": "Joe",
+						"last": "Doe"
+					},
+					"sex": "D",
+					"age": "27",
+					"accessibility": "Exponierte Lage",
+					"tags": ["bewusstlos", "Diabetes", "atmend", "Puls schwach", "Verletzung: Kopf"]
+				}
+			},
+			{
+				"id": "n3",
+				"shape": {
+					"type": "emergency-action",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n0",
+					"angle": 270,
+					"distance": 200
+				},
+				"payload": {
+					"category": "ambulance",
+					"status": "in-progress",
+					"label": "Transport",
+					"priority": "mit O2",
+					"tags": ["liegend", "Sonderrechte Ziel", "Winterberg KH", "Monitor", "mit Bearmung"]
+				}
+			},
+			{
+				"id": "n4",
+				"shape": {
+					"type": "operation",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n0",
+					"angle": 0,
+					"distance": 200
+				},
+				"payload": {
+					"status": "immediate",
+					"label": "VU Schwer",
+					"location": "Kaiserwörthdamm 1\n67065 Ludwigshafen am Rhein",
+					"affected_persons": 2,
+					"affected_objects": 3,
+					"tags": ["Autobahn", "Brücke"]
+				}
+			},
+			{
+				"id": "n5",
+				"shape": {
+					"type": "emergency-reporter",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n4",
+					"angle": 30,
+					"distance": 200
+				},
+				"payload": {
+					"name": {
+						"first": "Adrian",
+						"last": "Stevenson"
+					},
+					"pending": true,
+					"location": "Kaiserwörthdamm 1\n67065 Ludwigshafen am Rhein",
+					"category": "automatic-system",
+					"label": "eCall",
+					"callback_number": "123"
+				}
+			},
+			{
+				"id": "n6",
+				"shape": {
+					"type": "affected-object",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n0",
+					"angle": 120,
+					"distance": 200
+				},
+				"payload": {
+					"status": "minor",
+					"label": "Rathaus Ludwigshafen",
+					"accessibility": "Versperrtes Gelände",
+					"tags": ["Öffentliches Gebäude"]
+				}
+			},
+			{
+				"id": "n7",
+				"shape": {
+					"type": "emergency-ressource",
+					"scale": 1
+				},
+				"spawn": {
+					"source": "n3",
+					"angle": 0,
+					"distance": 200
+				},
+				"payload": {
+					"status": "2",
+					"label": "11/83-02",
+					"time_label": "bräuchte ca. 9 Minuten",
+					"alerted": true
+				}
+			}
+		],
+		"links": [
+			{
+				"source": "n0",
+				"target": "n1",
+				"type": "solid",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			},
+			{
+				"source": "n1",
+				"target": "n2",
+				"type": "dashed",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			},
+			{
+				"source": "n0",
+				"target": "n3",
+				"type": "solid",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			},
+			{
+				"source": "n0",
+				"target": "n4",
+				"type": "solid",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			},
+			{
+				"source": "n5",
+				"target": "n4",
+				"type": "solid",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			},
+			{
+				"source": "n0",
+				"target": "n6",
+				"type": "solid",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			},
+			{
+				"source": "n3",
+				"target": "n7",
+				"type": "solid",
+				"directed": true,
+				"label": "",
+				"strength": "weak"
+			}
+		]
+	}
+}
