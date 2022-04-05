@@ -8,6 +8,7 @@ const Type = {
 // prettier-ignore
 const residentialtype = {
 	label: "Wohngebäude",
+	prefix: "aor_",
 	runcard: { label: "Laufkarte", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	single: { label: "Einfamilienhaus", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	several: { label: "Mehrfamilienhaus", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -17,6 +18,7 @@ const residentialtype = {
 // prettier-ignore
 const medicaltype = {
 	label: "Med. Einrichtung",
+	prefix: "aom_",
 	hospital: { label: "Krankenhaus", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	senior: { label: "Altenheim", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	practice: { label: "Praxis", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -25,6 +27,7 @@ const medicaltype = {
 // prettier-ignore
 const supply = {
 	label: "Versorgung",
+	prefix: "aos_",
 	overground: { label: "Oberirdisch", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	underground: { label: "Unterirdisch", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	care: { label: "Versorgung", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -38,6 +41,7 @@ const supply = {
 // prettier-ignore
 const infrastructure = {
 	label: "Infrastruktur",
+	prefix: "aoi_",
 	street: { label: "Straße", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	bridge: { label: "Brücke", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	railway: { label: "Bahn", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -47,6 +51,7 @@ const infrastructure = {
 // prettier-ignore
 const specialtype = {
 	label: "Sonderobjekt",
+	prefix: "aoso_",
 	store: { label: "Kaufhaus", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	event: { label: "Veranstaltung", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	publicbuilding: { label: "Öffentl. Gebäude", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -60,7 +65,8 @@ const specialtype = {
 
 // prettier-ignore
 const mobile = {
-	label: "Fahrzeu",
+	label: "Fahrzeug",
+	prefix: "aom_",
 	rescuecard: { label: "Rettungskarte", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	car: { label: "PKW", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	truck: { label: "LKW", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -81,6 +87,7 @@ const objecttype = {
 // prettier-ignore
 const affectedObject = {
 	label: "Betroffenes Objekt",
+	prefix: "ao_",
 	name: { label: "Name", type: Type.Text, size: 50, value: null },
 	status: { label: "Status", type: Type.Selection, options: ["Grün", "Gelb", "Rot"], size: 50, value: null },
 	mobile: mobile,
