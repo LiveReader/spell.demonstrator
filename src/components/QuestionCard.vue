@@ -45,9 +45,43 @@
 				@click:clear="$emit('input', item)"
 			></v-text-field>
 
+			<!-- Yes/No Inputs  -->
+			<div width="100%" style="display: flex; justify-content: center">
+				<v-btn-toggle
+					v-if="
+						item.question_type == 'selection' &&
+						item.options.length == 2 &&
+						item.options[0] == 'Ja' &&
+						item.options[1] == 'Nein'
+					"
+					v-model="item.value"
+					style="border: 1px solid rgb(166, 166, 166)"
+					width="100%"
+					divided
+				>
+					<v-btn
+						style="display: flex; justify-content: center"
+						width="50%"
+						value="Ja"
+						@click="$emit('input', item)"
+						>Ja</v-btn
+					>
+					<v-btn
+						style="display: flex; justify-content: center"
+						width="50%"
+						value="Nein"
+						@click="$emit('input', item)"
+						>Nein</v-btn
+					>
+				</v-btn-toggle>
+			</div>
+
 			<!-- Selection Inputs  -->
 			<v-autocomplete
-				v-if="item.question_type == 'selection'"
+				v-if="
+					item.question_type == 'selection' &&
+					(item.options.length != 2 || item.options[0] != 'Ja' || item.options[1] != 'Nein')
+				"
 				v-model="item.value"
 				:label="item.label"
 				:items="item.options"
@@ -62,30 +96,30 @@
 	</v-card>
 </template>
 
-<script>
-export default {
-	props: {
-		item: {
-			type: Object,
-			default: () => ({
-				id: "",
-				refers_to: null,
-				node_type: "",
-				priority: 0,
-				value: null,
-				headline: "",
-				question_type: "",
-				question: "",
-				description: "",
-				label: "",
-				options: [],
-				condition: (d) => {},
-				action: (v, d, g) => {},
-			}),
-		},
+<script setup>
+import { defineProps, defineEmits } from "vue";
+
+const props = defineProps({
+	item: {
+		type: Object,
+		default: () => ({
+			id: "",
+			refers_to: null,
+			node_type: "",
+			priority: 0,
+			value: null,
+			headline: "",
+			question_type: "",
+			question: "",
+			description: "",
+			label: "",
+			options: [],
+			condition: (d) => {},
+			action: (v, d, g) => {},
+		}),
 	},
-	emits: ["input"],
-};
+});
+const emits = defineEmits(["input"]);
 </script>
 
 <style lang="scss">
