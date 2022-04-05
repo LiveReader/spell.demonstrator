@@ -2,12 +2,16 @@ import affectedPerson from "./affectedPerson";
 import affectedObject from "./affectedObject";
 import emergencyReporter from "./emergencyReporter";
 import operation from "./operation";
+import emergencyAction from "./emergencyAction";
+import emergencyRessource from "./emergencyRessource";
 
 const taxonomy2payload = {
 	"affected-person": affectedPerson,
 	"affected-object": affectedObject,
 	"emergency-reporter": emergencyReporter,
 	operation: operation,
+	"emergency-action": emergencyAction,
+	"emergency-ressource": emergencyRessource,
 };
 
 function getTags(tax) {

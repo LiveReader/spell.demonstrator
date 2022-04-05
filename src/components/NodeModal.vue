@@ -39,14 +39,14 @@ function taxonomyData(taxonomy) {
 		Object.assign(data, { size: taxonomy.size });
 		for (let i = 0; i < keys.length; i++) {
 			const key = keys[i];
-			if (key == "size" || key == "label") continue;
+			if (key == "size" || key == "label" || key == "prefix") continue;
 			data[key] = taxonomy[key];
 		}
 	} else {
 		const children = [];
 		for (let i = 0; i < keys.length; i++) {
 			const key = keys[i];
-			if (key == "size" || key == "label" || key == "id") continue;
+			if (key == "size" || key == "label" || key == "id" || key == "prefix") continue;
 			children.push(taxonomyData(taxonomy[key]));
 		}
 		Object.assign(data, { children: children });

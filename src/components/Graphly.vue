@@ -21,12 +21,26 @@ export default {
 				return value.nodes && value.links;
 			},
 		},
+		zoomBoundaries: {
+			type: Array,
+			default: () => [0.1, 3],
+		},
 		selected: {
 			type: Array,
 			default: () => [],
 		},
 	},
-	emits: ["new-edge", "background", "click", "double-click", "context-click", "drag-start", "dragged", "drag-end"],
+	emits: [
+		"new-edge",
+		"background",
+		"click",
+		"double-click",
+		"context-click",
+		"drag-start",
+		"dragged",
+		"drag-end",
+		"move",
+	],
 	setup: (props, context) => {
 		onMounted(() => {
 			const svg = d3.select("#graphly");
@@ -58,6 +72,9 @@ export default {
 			simulation.onDragEnd((e, d, pos) => {
 				context.emit("drag-end", e, d, pos);
 			});
+			simulation.onMove((transform) => {
+				context.emit("move", transform);
+			});
 		});
 		watch(
 			() => props.graph,
@@ -84,6 +101,12 @@ export default {
 			},
 			{
 				deep: true,
+			}
+		);
+		watch(
+			() => props.zoomBoundaries,
+			() => {
+				simulation.setZoomBoundaries(props.zoomBoundaries[0], props.zoomBoundaries[1]);
 			}
 		);
 	},

@@ -7,6 +7,7 @@ const Type = {
 
 const emergencyType = {
 	label: "Art des Notfalls",
+	prefix: "emtyp_",
 	medical: { label: "Medizinisch", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null },
 	psychological: { label: "Psychosozial", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	accident: { label: "Unfall", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
@@ -14,7 +15,8 @@ const emergencyType = {
 		label: "Schadensereignis",
 		type: Type.Selection,
 		options: [
-			"Explusion",
+			"Brand",
+			"Explosion",
 			"Gefahrgut",
 			"Emmisionen",
 			"Stromausfall",
@@ -110,6 +112,13 @@ const emergencyType = {
 		size: 60,
 		value: null,
 	},
+	technicalsupport: {
+		label: "Technische Hilfeleistung",
+		type: Type.Selection,
+		options: ["Verkehrsunfall", "Gefahrstoffaustritt", "Unwetter", "Gebäude"],
+		size: 60,
+		value: null,
+	},
 };
 
 // prettier-ignore
@@ -131,6 +140,7 @@ const affected = {
 // prettier-ignore
 const operation = {
 	label: "Lage",
+	prefix: "op_",
 	emergencyType: emergencyType,
 	location: location,
 	affected: affected,

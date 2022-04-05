@@ -1,6 +1,28 @@
 <template>
 	<div id="operator-screen">
-		<Navigation :color="'#4db6ac'" :icon="'./operator-logo.svg'" :title="'Notitia Operator'"></Navigation>
+		<Navigation :color="'#4db6ac'" :icon="'./operator-logo.svg'" :title="'Notitia Operator'">
+			<v-list density="compact" nav color="#00000000">
+				<v-list-group>
+					<template #activator="{ props }">
+						<v-list-item
+							v-bind="props"
+							prepend-icon="mdi-code-json"
+							title="Save Files"
+							value="safefileCollapsed"
+						></v-list-item>
+					</template>
+					<v-list-item
+						v-for="(item, index) in saveFiles"
+						:key="item"
+						prepend-icon="mdi-file"
+						:title="item.name ?? index"
+						rounded="xl"
+						@click="openSaveFile(item)"
+					></v-list-item>
+				</v-list-group>
+				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
+			</v-list>
+		</Navigation>
 		<Graphly
 			:graph="graph"
 			:selected="selectedNodes"
@@ -24,11 +46,14 @@ import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
+import { saveFiles } from "../data/operator/saveFiles/index";
 
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 import SideBar from "../components/SideBar.vue";
 import NodeModal from "../components/NodeModal.vue";
+
+let safefileCollapsed = ref(false);
 
 let ws = null;
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
@@ -283,6 +308,34 @@ function questionInput(question) {
 	}, 300);
 }
 
+function saveFile() {
+	const copy = Object.assign({}, graph.value);
+	delete copy.hasUpdate;
+	copy.links.forEach((l) => {
+		delete l.i;
+		delete l.index;
+		l.source = l.source.id;
+		l.target = l.target.id;
+	});
+	copy.nodes.forEach((n) => {
+		delete n.forceSimulation;
+		delete n.shape.template;
+	});
+	const d = JSON.stringify(graph.value);
+	const blob = new Blob([d], { type: "application/json" });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "graph.json";
+	a.click();
+}
+function openSaveFile(item) {
+	item.file().then((f) => {
+		graph.value = f;
+		graph.value.hasUpdate = true;
+	});
+}
+
 export default {
 	name: "OperatorScreen",
 	components: {
@@ -319,6 +372,8 @@ export default {
 		});
 	},
 	data: () => ({
+		safefileCollapsed,
+		saveFiles,
 		ws,
 		modal,
 		graph,
@@ -333,6 +388,8 @@ export default {
 		onClick,
 		onDoubleClick,
 		questionInput,
+		saveFile,
+		openSaveFile,
 	},
 };
 </script>
