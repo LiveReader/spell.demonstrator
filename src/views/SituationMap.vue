@@ -66,13 +66,7 @@ export default {
 	components: {
 		Navigation,
 		Graphly,
-		LMap,
-		LTileLayer,
 	},
-	data: () => ({
-		graph,
-		svgElementRef,
-    }),
 	setup(props, context) {
 		onMounted(() => {
 			// init leaflet
@@ -128,6 +122,10 @@ export default {
 				});
 			});
 	},
+	data: () => ({
+		graph,
+		svgElementRef,
+    }),
 
 	mounted() {
 		map.on('click', this.innerClick);

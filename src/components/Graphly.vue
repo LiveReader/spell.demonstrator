@@ -21,6 +21,14 @@ export default {
 				return value.nodes && value.links;
 			},
 		},
+		gravity: {
+			type: Number,
+			default: -5000,
+		},
+		linkDistance: {
+			type: Number,
+			default: 250,
+		},
 		zoomBoundaries: {
 			type: Array,
 			default: () => [0.1, 3],
@@ -32,7 +40,7 @@ export default {
 		svg: {
 			type: Object,
 			default: () => null,
-		}
+		},
 	},
 	emits: [
 		"new-edge",
@@ -50,8 +58,8 @@ export default {
 			const svg = props.svg ? d3.select(props.svg) : d3.select("#graphly");
 			simulation = new ForceSimulation(svg);
 			simulation.setTemplateOrigin("http://" + window.location.host + "/templates/");
-			simulation.setLinkDistance(250);
-			simulation.setGravity(-5000);
+			simulation.setLinkDistance(props.linkDistance);
+			simulation.setGravity(props.gravity);
 			simulation.onNewEdge((source, target) => {
 				context.emit("new-edge", source, target);
 			});
@@ -105,6 +113,18 @@ export default {
 			},
 			{
 				deep: true,
+			}
+		);
+		watch(
+			() => props.gravity,
+			() => {
+				simulation.setGravity(props.gravity);
+			}
+		);
+		watch(
+			() => props.linkDistance,
+			() => {
+				simulation.setLinkDistance(props.linkDistance);
 			}
 		);
 		watch(
