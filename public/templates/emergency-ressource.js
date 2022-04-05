@@ -144,8 +144,8 @@ function emergencyRessource(data, initialShape, changes, Template) {
 	}
 
 	function addTimeLabel() {
-		if (!changes.payload?.label) return shape.select("g.time-label");
-		if (!data.payload?.label) return shape.select("g.time-label");
+		if (!changes.payload?.time_label) return shape.select("g.time-label");
+		if (!data.payload?.time_label) return shape.select("g.time-label");
 		const bbox = Shape.getBBox(shape);
 		shape.select("g.time-label").remove();
 		const timeLabelShape = TagShape(
