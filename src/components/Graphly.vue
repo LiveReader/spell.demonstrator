@@ -29,6 +29,10 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+		svg: {
+			type: Object,
+			default: () => null,
+		}
 	},
 	emits: [
 		"new-edge",
@@ -43,7 +47,7 @@ export default {
 	],
 	setup: (props, context) => {
 		onMounted(() => {
-			const svg = d3.select("#graphly");
+			const svg = props.svg ? d3.select(props.svg) : d3.select("#graphly");
 			simulation = new ForceSimulation(svg);
 			simulation.setTemplateOrigin("http://" + window.location.host + "/templates/");
 			simulation.setLinkDistance(250);
