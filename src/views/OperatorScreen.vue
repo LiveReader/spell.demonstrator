@@ -61,6 +61,7 @@ let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let modal = ref({ show: false, node: null, title: "" });
 let selectedNodes = ref([]);
 let openQuestions = ref([]);
+let previouslyClosed = ref(null);
 let questionFilter = ref(() => true);
 let closedQuestions = ref([]);
 let filteredOpenQuestions = ref([]);
@@ -293,6 +294,10 @@ function generateOpenQuestions() {
 		if (a.priority > b.priority) return -1;
 		return 0;
 	});
+	if (previouslyClosed.value) {
+		openQuestions.value.unshift(previouslyClosed.value);
+	}
+
 	filterQuestions();
 }
 
@@ -302,12 +307,20 @@ function filterQuestions() {
 }
 
 function closeQuestion(question) {
+	if (!Array.isArray(question.value)) {
+		if (question.value == null) return;
+	} else {
+		for (let i = 0; i < question.value.length; i++) {
+			if (question.value[i] == null) return;
+		}
+	}
 	if (!question.closed_at) {
 		const index = closedQuestions.value.findIndex((q) => q.id == question.id);
 		if (index > -1) closedQuestions.value.splice(index, 1);
 		closedQuestions.value.push(question);
 	}
 	question.closed_at = Date.now();
+	previouslyClosed.value = question;
 }
 
 function questionInput(question) {

@@ -7,17 +7,17 @@ import MobileScreen from "../views/MobileScreen.vue";
 const routes = [
 	{
 		path: "/situation-map",
-		name: "Notfall Lage",
+		name: "Lagemanagement",
 		component: SituationMap,
 	},
 	{
 		path: "/notitia-operator",
-		name: "Operator Screen",
+		name: "Leitstelle",
 		component: OperatorScreen,
 	},
 	{
 		path: "/mobile-screen",
-		name: "Mobile App",
+		name: "Einsatzkräfte",
 		component: MobileScreen,
 	},
 	{
