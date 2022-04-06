@@ -29,6 +29,7 @@ import "leaflet/dist/leaflet.css";
 let restrictPanning = false;
 let restrictZoom = true;
 let showDebugRect = false;
+let logClicks = false;
 
 // sample points;
 let ludwigshafen = [49.4704113, 8.4381568];
@@ -58,6 +59,7 @@ let maxZoom;
 let svgDimensions;
 let svgElementBounds;
 
+// actual settings
 if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
 svgElementBounds = ludwigshafenBounds;
 svgDimensions = {
@@ -73,6 +75,7 @@ let rectElementRef;
 let worldElementRef;
 let graphlyElementRef;
 let mapElementRef;
+let nodeElementRefs;
 
 function latLngToGraphlyCoordinates(latLng) {
 	let containerPoint = map.latLngToContainerPoint(latLng);
@@ -106,15 +109,51 @@ function latLngToSvgCoordinates(latLng) {
 	return svgCoordinate;
 }
 
+function addNodeListener(node, eventName, callback) {
+	let nodeId = node.id;
+	node.addEventListener(eventName, e => {
+		e.stopPropagation();
+		e.preventDefault();
+		if (callback) {
+			callback(event)
+		} else {
+			console.log(eventName, nodeId);
+		}
+	}, true);
+}
+
+function addNodeListeners() {
+	worldElementRef = document.querySelector('#world');
+	let observer = new MutationObserver(mutations => {
+		nodeElementRefs = mutations.filter(mutation => mutation.target.classList[0] === 'nodeWorld')
+			.map(mutation => mutation.addedNodes[0]);
+		nodeElementRefs
+			.forEach(node => {
+				addNodeListener(node, 'click');
+				addNodeListener(node, 'dragstart');
+				addNodeListener(node, 'drag');
+				addNodeListener(node, 'pointerdown');
+			});
+	});
+	observer.observe(worldElementRef, {
+		childList: true,
+		subtree: true,
+	});
+}
+
 function postInitGraph() {
+	addNodeListeners();
+
+	// position sample nodes
+	let nodes = graph.value.nodes;
 	let posA = latLngToGraphlyCoordinates(bridge);
 	let posB = latLngToGraphlyCoordinates(ruchheim);
-	graph.value.nodes[0].anchor = {
+	nodes[0].anchor = {
 		type: 'hard',
 		x: posA.x,
 		y: posA.y,
 	};
-	graph.value.nodes[1].anchor = {
+	nodes[1].anchor = {
 		type: 'hard',
 		x: posB.x,
 		y: posB.y,
@@ -156,14 +195,14 @@ export default {
 				color: 'red',
 				fillColor: '#f03',
 				fillOpacity: 0.5,
-				radius: 50
+				radius: 50,
+				interactive: false,
 			}).addTo(map);
 
 			// ludwigshafen border as geojson
 			fetch("/ludwigshafen.geojson")
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
 					data.geometries[0].coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 					geojsonLayer = L.geoJSON(data, {
 						style:  (feature) => {
@@ -179,9 +218,10 @@ export default {
 							return color;
 						},
 						invert: true,
+						interactive: false,
 					}).addTo(map);
 					// obtain boundaries of ludwigshafen:
-					console.log(geojsonLayer.getBounds());
+					// console.log(geojsonLayer.getBounds());
 				});
 
 			// add root svg (overlay) element to inject Graphly
@@ -189,9 +229,10 @@ export default {
 			svgElementRef.setAttribute('xmlns', "http://www.w3.org/2000/svg");
 			svgElementRef.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
 			svgElementRef.innerHTML = `<rect width="${svgDimensions.x}" height="${svgDimensions.y}" fill-opacity="${showDebugRect ? '0.4' : '0'}"/>`;
+			svgElementRef.style.pointerEvents='none';
 			rectElementRef = svgElementRef.children[0];
 			svgLayer = L.svgOverlay(svgElementRef, svgElementBounds, {
-				interactive: false,
+				interactive: true,
 				bubblingMouseEvents: false,
 			}).addTo(map);
 
@@ -205,7 +246,6 @@ export default {
 						if (node.taxonomy) continue;
 						node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
 					}
-					worldElementRef = document.querySelector('#world');
 					postInitGraph();
 				});
 		});
@@ -216,7 +256,7 @@ export default {
     }),
 
 	mounted() {
-		map.on('click', this.innerClick);
+		if (logClicks) map.on('click', this.innerClick);
 		map.on('zoomanim', this.onZoomAnim);
 		graphlyElementRef = document.querySelector('#graphly');
 		mapElementRef = document.querySelector('#map');
