@@ -35,14 +35,8 @@ let lindenhof = [49.472413664609626, 8.468794078498757];
 let ruchheim = [49.4723270557513, 8.328341303731001];
 
 let ludwigshafenBounds = [
-	[
-		49.4266985,
-		8.2982215,
-	],
-	[
-		49.5480579,
-        8.4769401
-	],
+	[49.4266985, 8.2982215],
+	[49.5480579, 8.4769401],
 ];
 
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
@@ -102,13 +96,14 @@ function latLngToSvgCoordinates(latLng) {
 	return svgCoordinate;
 }
 
-// TODO: init node positions properly
 function postInitGraph() {
-	let bridgePos = latLngToGraphly(bridge);
-	let stationPos = latLngToGraphly(station);
-	graph.value.nodes[0].anchor.type = 'hard';
-	graph.value.nodes[0].anchor.x = bridgePos.x;
-	graph.value.nodes[0].anchor.y = bridgePos.y;
+	let bridgePos = latLngToGraphlyCoordinates(bridge);
+	let stationPos = latLngToGraphlyCoordinates(station);
+	graph.value.nodes[0].anchor = {
+		type: 'hard',
+		x: bridgePos.x,
+		y: bridgePos.y,
+	};
 	graph.value.nodes[1].anchor = {
 		type: 'hard',
 		x: stationPos.x,
@@ -161,6 +156,7 @@ export default {
 							return {color: feature.properties.color};
 						}
 					}).addTo(map);
+					// obtain boundaries of ludwigshafen:
 					console.log(geojsonLayer.getBounds());
 				});
 
@@ -168,7 +164,6 @@ export default {
 			svgElementRef = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			svgElementRef.setAttribute('xmlns', "http://www.w3.org/2000/svg");
 			svgElementRef.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
-			// Debug rect:
 			svgElementRef.innerHTML = `<rect width="${svgDimensions.x}" height="${svgDimensions.y}" fill-opacity="0.4"/>`;
 			rectElementRef = svgElementRef.children[0];
 			svgLayer = L.svgOverlay(svgElementRef, svgElementBounds, {
@@ -186,9 +181,8 @@ export default {
 						if (node.taxonomy) continue;
 						node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
 					}
-					// postInitGraph();
-					graph.value.hasUpdate = true;
 					worldElementRef = document.querySelector('#world');
+					postInitGraph();
 				});
 		});
 	},
