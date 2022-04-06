@@ -25,6 +25,11 @@ import * as L from "leaflet" ;
 
 import "leaflet/dist/leaflet.css";
 
+// debug flags
+let restrictPanning = false;
+let restrictZoom = true;
+let showDebugRect = false;
+
 // sample points;
 let ludwigshafen = [49.4704113, 8.4381568];
 let bridge = [49.48189951214223, 8.458592891693117];
@@ -39,6 +44,7 @@ let ludwigshafenBounds = [
 	[49.5480579, 8.4769401],
 ];
 
+// leaflet refs / options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let map;
 let tileLayer;
@@ -46,16 +52,20 @@ let geojsonLayer;
 let svgLayer;
 let bounds;
 let maxBounds;
+let minZoom;
+let maxZoom;
 
 let svgDimensions;
 let svgElementBounds;
 
-// maxBounds = L.latLngBounds([kaefertal, rheingoenheim]);
+if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
 svgElementBounds = ludwigshafenBounds;
 svgDimensions = {
 	x: 2000,
 	y: 2000,
 }
+minZoom = 12;
+maxZoom = 18;
 
 // DOM refs
 let svgElementRef;
@@ -97,17 +107,17 @@ function latLngToSvgCoordinates(latLng) {
 }
 
 function postInitGraph() {
-	let bridgePos = latLngToGraphlyCoordinates(bridge);
-	let stationPos = latLngToGraphlyCoordinates(station);
+	let posA = latLngToGraphlyCoordinates(bridge);
+	let posB = latLngToGraphlyCoordinates(ruchheim);
 	graph.value.nodes[0].anchor = {
 		type: 'hard',
-		x: bridgePos.x,
-		y: bridgePos.y,
+		x: posA.x,
+		y: posA.y,
 	};
 	graph.value.nodes[1].anchor = {
 		type: 'hard',
-		x: stationPos.x,
-		y: stationPos.y,
+		x: posB.x,
+		y: posB.y,
 	};
 	graph.value.hasUpdate = true;
 }
@@ -122,7 +132,6 @@ export default {
 		onMounted(() => {
 			// init leaflet
 			map = L.map('map').setView(ludwigshafen, 14);
-			if (maxBounds) { map.setMaxBounds(maxBounds) };
 			bounds = map.getBounds();
 
 			// load OSM data and setup map
@@ -134,10 +143,13 @@ export default {
 				zoomSnap: 0,
 				zoomAnimation: false,
 				zoomDelta: 0,
-				// minZoom: 12,
-				maxZoom: 18,
 				duration: 0,
 			}).addTo(map);
+			if (maxBounds) { map.setMaxBounds(maxBounds) };
+			if (restrictZoom) {
+				map.setMinZoom(minZoom);
+				map.setMaxZoom(maxZoom);
+			}
 
 			// debug circle
 			let circle = L.circle(bridge, {
@@ -151,10 +163,22 @@ export default {
 			fetch("/ludwigshafen.geojson")
 				.then((response) => response.json())
 				.then((data) => {
+					console.log(data);
+					data.geometries[0].coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 					geojsonLayer = L.geoJSON(data, {
-						style: function (feature) {
-							return {color: feature.properties.color};
-						}
+						style:  (feature) => {
+							let color = feature.properties.color ? feature.properties.color : {
+								fillColor: '#444',
+								weight: 1.5,
+								opacity: 0,
+								color: '#ddd',
+								dashArray: '3',
+								fillOpacity: 0.2,
+							};
+							console.log(color);
+							return color;
+						},
+						invert: true,
 					}).addTo(map);
 					// obtain boundaries of ludwigshafen:
 					console.log(geojsonLayer.getBounds());
@@ -164,7 +188,7 @@ export default {
 			svgElementRef = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			svgElementRef.setAttribute('xmlns', "http://www.w3.org/2000/svg");
 			svgElementRef.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
-			svgElementRef.innerHTML = `<rect width="${svgDimensions.x}" height="${svgDimensions.y}" fill-opacity="0.4"/>`;
+			svgElementRef.innerHTML = `<rect width="${svgDimensions.x}" height="${svgDimensions.y}" fill-opacity="${showDebugRect ? '0.4' : '0'}"/>`;
 			rectElementRef = svgElementRef.children[0];
 			svgLayer = L.svgOverlay(svgElementRef, svgElementBounds, {
 				interactive: false,
