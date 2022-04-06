@@ -26,7 +26,7 @@
 		<Graphly
 			:graph="graph"
 			:selected="selectedNodes"
-			link-distance="300"
+			:link-distance="300"
 			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
@@ -43,7 +43,7 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
@@ -57,7 +57,6 @@ import NodeModal from "../components/NodeModal.vue";
 
 let safefileCollapsed = ref(false);
 
-let ws = null;
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let modal = ref({ show: false, node: null, title: "" });
 let selectedNodes = ref([]);
@@ -350,63 +349,20 @@ function openSaveFile(item) {
 	});
 }
 
-export default {
-	name: "OperatorScreen",
-	components: {
-		Navigation,
-		Graphly,
-		SideBar,
-		NodeModal,
-	},
-	setup(props, context) {
-		onMounted(() => {
-			ws = new WebSocket("ws://" + window.location.hostname + ":8888");
-			ws.onopen = (e) => {
-				ws.send("");
-			};
-			ws.onmessage = (e) => {
-				graph.value = JSON.parse(e.data).graph;
-				graph.value.hasUpdate = true;
-			};
-			ws.onerror = (e) => {
-				// load graph data from demo
-				fetch("/graphData.json")
-					.then((response) => response.json())
-					.then((data) => {
-						graph.value = data.graph;
-						for (let i = 0; i < graph.value.nodes.length; i++) {
-							const node = graph.value.nodes[i];
-							if (node.taxonomy) continue;
-							node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
-						}
-						graph.value.hasUpdate = true;
-						generateOpenQuestions();
-					});
-			};
+onMounted(() => {
+	fetch("/graphData.json")
+		.then((response) => response.json())
+		.then((data) => {
+			graph.value = data.graph;
+			for (let i = 0; i < graph.value.nodes.length; i++) {
+				const node = graph.value.nodes[i];
+				if (node.taxonomy) continue;
+				node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
+			}
+			graph.value.hasUpdate = true;
+			generateOpenQuestions();
 		});
-	},
-	data: () => ({
-		safefileCollapsed,
-		saveFiles,
-		ws,
-		modal,
-		graph,
-		selectedNodes,
-		filteredOpenQuestions,
-		filteredClosedQuestions,
-		controlItems,
-	}),
-	methods: {
-		onCloseModal,
-		addEdge,
-		onBackground,
-		onClick,
-		onDoubleClick,
-		questionInput,
-		saveFile,
-		openSaveFile,
-	},
-};
+});
 </script>
 
 <style lang="scss">

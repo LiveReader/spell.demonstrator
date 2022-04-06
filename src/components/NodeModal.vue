@@ -262,4 +262,8 @@ export default {
 	border-radius: 0.5rem;
 	background-color: #f4f4f4;
 }
+.accent-color-filled {
+	color: #ffffff !important;
+	background-color: #4db6ac !important;
+}
 </style>
