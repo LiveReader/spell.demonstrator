@@ -26,6 +26,8 @@
 		<Graphly
 			:graph="graph"
 			:selected="selectedNodes"
+			link-distance="300"
+			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
 			@double-click="onDoubleClick"
@@ -194,6 +196,18 @@ function onCloseModal(d) {
 	filterQuestions();
 }
 
+function addEdge(source, target) {
+	let link = {
+		source: source,
+		target: target,
+		type: "solid",
+		directed: true,
+		label: "",
+		strength: "weak",
+	};
+	graph.value.links.push(link);
+	graph.value.hasUpdate = true;
+}
 function onBackground(e, pos) {
 	selectedNodes.value = [];
 	controlItems.value[4].enabled = false;
@@ -384,6 +398,7 @@ export default {
 	}),
 	methods: {
 		onCloseModal,
+		addEdge,
 		onBackground,
 		onClick,
 		onDoubleClick,

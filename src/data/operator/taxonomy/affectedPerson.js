@@ -7,6 +7,7 @@ const Type = {
 // prettier-ignore
 const name = {
 	label: "Name",
+	prefix: "apn_",
 	first: {
 		label: "Vorname",
 		type: Type.Text,
@@ -24,6 +25,7 @@ const name = {
 // prettier-ignore
 const symptoms = {
 	label: "Symptome",
+	prefix: "aps_",
 	pain: { label: "Schmerzen", type: Type.Selection, options: ["Stark", "Mittel", "Schwach", "Nein"], size: 80, value: null },
 	painlocation: { label: "Schmerzbereich", type: Type.Selection,options: ["Brust","Kopf","Nacken","Schulter",
 		"Rücken","Arm","Hand","Becken","Wehen","Oberbauch",
@@ -38,8 +40,17 @@ const symptoms = {
 };
 
 // prettier-ignore
+const diagnosis = {
+	label: "Diagnose",
+	prefix: "apd_",
+	diag1: { label: "Diag1", type: Type.Selection, options: ["Stark", "Mittel", "Schwach", "Nein"], size: 80, value: null },
+	
+};
+
+// prettier-ignore
 const physicalcondition = {
 	label: "Physisch",
+	prefix: "apcpc_",
 	diabetes: { label: "Diabetes", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null },
 	bloodstream: { label: "Kreislaufprobleme", type: Type.Selection, options: ["Stark", "Leicht", "Nein", "Unbekannt"], size: 60, value: null },
 	dizziness: { label: "Schwindel", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -57,6 +68,7 @@ const physicalcondition = {
 // prettier-ignore
 const mentalcondition = {
 	label: "Mental",
+	prefix: "apcmc_",
 	fear: { label: "Angst", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	threaten: { label: "Bedrohung", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
 	weakness: { label: "Schwächegefühl", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null },
@@ -66,6 +78,7 @@ const mentalcondition = {
 // prettier-ignore
 const vitalcondition = {
 	label: "Vitalwerte",
+	prefix: "apcvc_",
 	breath: { label: "Atmung", type: Type.Selection, options: ["Ja", "Nein", "unbekannt", "Bolus"], size: 100, value: null },
 	breathmovement: { label: "Atembewegung", type: Type.Selection, options: ["Ja", "Nein!", "unbekannt"], size: 40, value: null },
 	breathproblem: { label: "Atemstörung", type: Type.Selection, options: ["Ja", "Nein", "unbekannt", "Bolus"], size: 40, value: null },
@@ -76,6 +89,7 @@ const vitalcondition = {
 // prettier-ignore
 const condition = {
 	label: "Zustand",
+	prefix: "apc_",
 	vitalcondition: vitalcondition,
 	physicalcondition: physicalcondition,
 	mentalcondition: mentalcondition,	
@@ -84,6 +98,7 @@ const condition = {
 // prettier-ignore
 const accessibility = {
 	label: "Zugänglichkeit",
+	prefix: "apa_",
 	free: { label: "Frei Zugänglich", type: Type.Selection, options: ["Ja", "Nein"], size: 100, value: null },
 	confined: { label: "Eingeschlossen", type: Type.Selection, options: ["Nein", "in Wohnung", "in PKW"], size: 40, value: null },
 	clamped: { label: "Eingeklemmt", type: Type.Selection, options: ["Nein", "in PKW", "in Maschine"], size: 40, value: null },
@@ -97,11 +112,12 @@ const accessibility = {
 // prettier-ignore
 const guesseddiagnosis = {
 	label: "Verdachtsdiagnose",
-	a: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
-	b: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
-	c: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
-	d: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
-	e: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
+	prefix: "apgd_",
+	injury: { label: "Verletzung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
+	presickness: { label: "Vorerkrankung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
+	medication: { label: "Medikation", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
+	allergy: { label: "Allergien", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
+	age: { label: "Alter", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	f: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	g: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	h: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
@@ -115,11 +131,13 @@ const guesseddiagnosis = {
 // prettier-ignore
 const affectedPerson = {
 	label: "Betroffene Person",
+	prefix: "ap_",
 	name: name,
 	age: { label: "Alter", type: Type.Number, size: 50, value: null },
 	sex: { label: "Geschlecht", type: Type.Selection, options: ["Männlich", "Weiblich", "Divers"], size: 50, value: null },
 	status: { label: "Status", type: Type.Selection, options: ["Grün", "Gelb", "Rot"], size: 50, value: null },
 	symptoms: symptoms,
+	diagnosis: diagnosis,
 	condition: condition,
 	accessibility: accessibility,
 	guesseddiagnosis: guesseddiagnosis,
