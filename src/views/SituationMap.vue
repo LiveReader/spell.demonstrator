@@ -3,7 +3,13 @@
 		<Navigation :color="'#9575cd'" :icon="''" :title="'Notfall Lage'"></Navigation>
 		<div style="height: 100vh; width: 100vw; position: absolute">
 			<div id="map" style="height: 100vh; width: 100vw; position: fixed"></div>
-			<Graphly v-if="svgElementRef" :graph="graph" :zoom-boundaries="[1, 1]" :svg="svgElementRef" />
+			<Graphly
+				v-if="svgElementRef"
+				:graph="graph"
+				:zoom-boundaries="[1, 1]"
+				:svg="svgElementRef"
+				:selected="selectedNodes"
+			/>
 		</div>
 	</div>
 </template>
@@ -45,8 +51,9 @@ let ludwigshafenBounds = [
 	[49.5480579, 8.4769401],
 ];
 
-// leaflet refs / options
+// leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
+let selectedNodes = ref([]);
 let map;
 let tileLayer;
 let geojsonLayer;
@@ -77,6 +84,7 @@ let graphlyElementRef;
 let mapElementRef;
 let nodeElementRefs;
 
+// mapping functions
 function latLngToGraphlyCoordinates(latLng) {
 	let containerPoint = map.latLngToContainerPoint(latLng);
 	let worldBoundingRect = worldElementRef.getBoundingClientRect();
@@ -109,19 +117,21 @@ function latLngToSvgCoordinates(latLng) {
 	return svgCoordinate;
 }
 
+// utility functions
 function addNodeListener(node, eventName, callback) {
 	let nodeId = node.id;
 	node.addEventListener(eventName, e => {
 		e.stopPropagation();
 		e.preventDefault();
 		if (callback) {
-			callback(event)
+			callback(nodeId)
 		} else {
 			console.log(eventName, nodeId);
 		}
 	}, true);
 }
 
+// graph functions
 function addNodeListeners() {
 	worldElementRef = document.querySelector('#world');
 	let observer = new MutationObserver(mutations => {
@@ -129,7 +139,10 @@ function addNodeListeners() {
 			.map(mutation => mutation.addedNodes[0]);
 		nodeElementRefs
 			.forEach(node => {
-				addNodeListener(node, 'click');
+				addNodeListener(node, 'click',  e=>{
+					console.log(node.id);
+					selectedNodes.value = [node.id];
+				});
 				addNodeListener(node, 'dragstart');
 				addNodeListener(node, 'drag');
 				addNodeListener(node, 'pointerdown');
@@ -141,10 +154,7 @@ function addNodeListeners() {
 	});
 }
 
-function postInitGraph() {
-	addNodeListeners();
-
-	// position sample nodes
+function positionNodes() {
 	let nodes = graph.value.nodes;
 	let posA = latLngToGraphlyCoordinates(bridge);
 	let posB = latLngToGraphlyCoordinates(ruchheim);
@@ -161,6 +171,11 @@ function postInitGraph() {
 	graph.value.hasUpdate = true;
 }
 
+function postInitGraph() {
+	addNodeListeners();
+	positionNodes();
+}
+
 export default {
 	name: "SituationMap",
 	components: {
@@ -169,11 +184,11 @@ export default {
 	},
 	setup(props, context) {
 		onMounted(() => {
-			// init leaflet
+			/* Init leaflet */
 			map = L.map('map').setView(ludwigshafen, 14);
 			bounds = map.getBounds();
 
-			// load OSM data and setup map
+			/* Load OSM data and setup map */
 			tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				maxZoom: 18,
@@ -190,7 +205,7 @@ export default {
 				map.setMaxZoom(maxZoom);
 			}
 
-			// debug circle
+			/* Add a debug circle */
 			let circle = L.circle(bridge, {
 				color: 'red',
 				fillColor: '#f03',
@@ -199,7 +214,7 @@ export default {
 				interactive: false,
 			}).addTo(map);
 
-			// ludwigshafen border as geojson
+			/* Add Ludwigshafen border as geojson */
 			fetch("/ludwigshafen.geojson")
 				.then((response) => response.json())
 				.then((data) => {
@@ -220,11 +235,11 @@ export default {
 						invert: true,
 						interactive: false,
 					}).addTo(map);
-					// obtain boundaries of ludwigshafen:
+					/* obtain boundaries of ludwigshafen: */
 					// console.log(geojsonLayer.getBounds());
 				});
 
-			// add root svg (overlay) element to inject Graphly
+			/* Add root svg (overlay) element to inject Graphly */
 			svgElementRef = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			svgElementRef.setAttribute('xmlns', "http://www.w3.org/2000/svg");
 			svgElementRef.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
@@ -236,7 +251,7 @@ export default {
 				bubblingMouseEvents: false,
 			}).addTo(map);
 
-			// load graph data from demo
+			/* Load graph data from demo */
 			fetch("/graphData.json")
 				.then((response) => response.json())
 				.then((data) => {
@@ -253,10 +268,11 @@ export default {
 	data: () => ({
 		graph,
 		svgElementRef,
+		selectedNodes,
     }),
 
 	mounted() {
-		if (logClicks) map.on('click', this.innerClick);
+		map.on('click', this.innerClick);
 		map.on('zoomanim', this.onZoomAnim);
 		graphlyElementRef = document.querySelector('#graphly');
 		mapElementRef = document.querySelector('#map');
@@ -276,12 +292,15 @@ export default {
 			let layerPoint = map.latLngToLayerPoint(e.latlng);
 			let containerPoint = map.latLngToContainerPoint(e.latlng);
 			let graphlyCoordinates = latLngToGraphlyCoordinates(e.latlng);
+			selectedNodes.value = [];
 
-			console.log("latlng: ", e.latlng);
-			console.log("container point: ", containerPoint);
-			console.log("layer point: ", layerPoint);
-			console.log("svg coordinate: ", svgCoordinates);
-			console.log("graphly coordinate: ", graphlyCoordinates);
+			if (logClicks) {
+				console.log("latlng: ", e.latlng);
+				console.log("container point: ", containerPoint);
+				console.log("layer point: ", layerPoint);
+				console.log("svg coordinate: ", svgCoordinates);
+				console.log("graphly coordinate: ", graphlyCoordinates);
+			}
 		},
 	},
 };
