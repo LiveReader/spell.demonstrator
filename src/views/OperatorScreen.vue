@@ -1,6 +1,6 @@
 <template>
 	<div id="operator-screen">
-		<Navigation :color="'#4db6ac'" :icon="'./operator-logo.svg'" :title="'Notitia Operator'">
+		<Navigation :color="'#4db6ac'" :icon="'./spell.demonstrator.operator.svg'" :title="'Notitia Operator'">
 			<v-list density="compact" nav color="#00000000">
 				<v-list-group>
 					<template #activator="{ props }">
@@ -46,7 +46,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
-import { taxonomyTemplate } from "../data/operator/taxonomy/index";
+import { taxonomyTemplate, generatePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 
@@ -215,7 +215,11 @@ function onBackground(e, pos) {
 	filterQuestions();
 }
 function onClick(e, d) {
-	selectedNodes.value = [d.id];
+	if (e.shiftKey) {
+		selectedNodes.value.push(d.id);
+	} else {
+		selectedNodes.value = [d.id];
+	}
 	controlItems.value[4].enabled = true;
 	questionFilter.value = (q) => q.refers_to.id === d.id;
 	filterQuestions();
@@ -346,6 +350,7 @@ function saveFile() {
 	copy.nodes.forEach((n) => {
 		delete n.forceSimulation;
 		delete n.shape.template;
+		// n.taxonomy = generatePrefixedTaxonomy(n.taxonomy);
 	});
 	const d = JSON.stringify(graph.value);
 	const blob = new Blob([d], { type: "application/json" });
