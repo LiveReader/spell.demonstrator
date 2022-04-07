@@ -14,17 +14,17 @@ const saveFiles = [
 	},
 	{
 		name: "Transport",
-		file: () => fetch("./saveFiles/transport_neu.json").then((response) => response.json()),
+		file: () => fetch("./saveFiles/transport.json").then((response) => response.json()),
 	}
 	,
 	{
 		name: "Sturz",
-		file: () => fetch("./saveFiles/sturz_neu.json").then((response) => response.json()),
+		file: () => fetch("./saveFiles/sturz.json").then((response) => response.json()),
 	}
 	,
 	{
 		name: "Unfall",
-		file: () => fetch("./saveFiles/unfall_neu.json").then((response) => response.json()),
+		file: () => fetch("./saveFiles/unfall.json").then((response) => response.json()),
 	}
 	,
 	{

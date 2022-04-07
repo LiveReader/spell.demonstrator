@@ -13,6 +13,7 @@ const taxonomyTemplate = {
 	"emergency-action": emergencyAction,
 	"emergency-ressource": emergencyRessource,
 };
+const prefixedTaxonomyTemplate = generatePrefixedTaxonomy(taxonomyTemplate);
 
 function generateID(obj) {
 	const keys = Object.keys(obj);
@@ -40,8 +41,8 @@ function findID(obj, id) {
 	return null;
 }
 
-function generatePrefixedTaxonomy() {
-	const taxonomyCopy = JSON.parse(JSON.stringify(taxonomyTemplate));
+function generatePrefixedTaxonomy(taxonomy) {
+	const taxonomyCopy = JSON.parse(JSON.stringify(taxonomy));
 	return generatePrefixes(taxonomyCopy);
 }
 function generatePrefixes(tax) {
@@ -86,4 +87,11 @@ function removePrefixes(tax) {
 
 generateID(taxonomyTemplate);
 
-export { taxonomyTemplate, generateID, findID, generatePrefixedTaxonomy, parsePrefixedTaxonomy };
+export {
+	taxonomyTemplate,
+	prefixedTaxonomyTemplate,
+	generateID,
+	findID,
+	generatePrefixedTaxonomy,
+	parsePrefixedTaxonomy,
+};

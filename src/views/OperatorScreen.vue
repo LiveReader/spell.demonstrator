@@ -46,7 +46,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
-import { taxonomyTemplate, generatePrefixedTaxonomy } from "../data/operator/taxonomy/index";
+import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 
@@ -70,9 +70,11 @@ let controlItems = ref([
 	{
 		icon: "mdi-account",
 		enabled: true,
+		checkEnabled: () => true,
 		onClick: () => {
+			const id = "node-" + Math.random();
 			const node = {
-				id: "node-" + Math.random(),
+				id: id,
 				shape: {
 					type: "affected-person",
 					scale: 1,
@@ -92,6 +94,14 @@ let controlItems = ref([
 			};
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
+			graph.value.links.push({
+				source: "n0",
+				target: id,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 		},
@@ -99,9 +109,11 @@ let controlItems = ref([
 	{
 		icon: "mdi-home",
 		enabled: true,
+		checkEnabled: () => true,
 		onClick: () => {
+			const id = "node-" + Math.random();
 			const node = {
-				id: "node-" + Math.random(),
+				id: id,
 				shape: {
 					type: "affected-object",
 					scale: 1,
@@ -116,13 +128,24 @@ let controlItems = ref([
 			};
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
+			graph.value.links.push({
+				source: "n0",
+				target: id,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 		},
 	},
 	{
 		icon: "mdi-flash",
-		enabled: true,
+		enabled: false,
+		checkEnabled: () =>
+			selectedNodes.value[0].shape.type == "affected-person" ||
+			selectedNodes.value[0].shape.type == "affected-object",
 		onClick: () => {
 			const node = {
 				id: "node-" + Math.random(),
@@ -148,6 +171,7 @@ let controlItems = ref([
 	{
 		icon: "mdi-ambulance",
 		enabled: true,
+		checkEnabled: () => true,
 		onClick: () => {
 			const node = {
 				id: "node-" + Math.random(),
@@ -172,6 +196,7 @@ let controlItems = ref([
 	{
 		icon: "mdi-delete",
 		enabled: false,
+		checkEnabled: () => true,
 		isDelete: true,
 		onClick: () => {
 			for (let i = 0; i < selectedNodes.value.length; i++) {
@@ -221,6 +246,11 @@ function onClick(e, d) {
 		selectedNodes.value = [d.id];
 	}
 	controlItems.value[4].enabled = true;
+	controlItems.value.forEach((item) => {
+		console.log(item);
+		console.log(item.checkEnabled());
+		item.enabled = item.checkEnabled();
+	});
 	questionFilter.value = (q) => q.refers_to.id === d.id;
 	filterQuestions();
 }
