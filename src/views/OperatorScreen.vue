@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, watch, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
@@ -81,6 +81,11 @@ let controlItems = ref([
 					type: "affected-person",
 					scale: 1,
 				},
+				spawn: {
+					source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
+					angle: 0,
+					distance: 500,
+				},
 				payload: {
 					status: "",
 					name: {
@@ -97,7 +102,7 @@ let controlItems = ref([
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
 			graph.value.links.push({
-				source: "n0",
+				source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
 				target: id,
 				type: "solid",
 				directed: false,
@@ -106,6 +111,12 @@ let controlItems = ref([
 			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
+			setTimeout(() => {
+				selectedNodes.value = [id];
+				controlItems.value.forEach((item) => {
+					item.enabled = item.checkEnabled();
+				});
+			}, 100);
 		},
 	},
 	{
@@ -120,6 +131,11 @@ let controlItems = ref([
 					type: "affected-object",
 					scale: 1,
 				},
+				spawn: {
+					source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
+					angle: 180,
+					distance: 500,
+				},
 				payload: {
 					status: "minor",
 					label: "",
@@ -131,7 +147,7 @@ let controlItems = ref([
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
 			graph.value.links.push({
-				source: "n0",
+				source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
 				target: id,
 				type: "solid",
 				directed: false,
@@ -140,20 +156,32 @@ let controlItems = ref([
 			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
+			setTimeout(() => {
+				selectedNodes.value = [id];
+				controlItems.value.forEach((item) => {
+					item.enabled = item.checkEnabled();
+				});
+			}, 100);
 		},
 	},
 	{
 		icon: "mdi-flash",
 		enabled: false,
 		checkEnabled: () =>
-			selectedNodes.value[0].shape.type == "affected-person" ||
-			selectedNodes.value[0].shape.type == "affected-object",
+			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "affected-person" ||
+			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "affected-object",
 		onClick: () => {
+			const id = "node-" + Math.random();
 			const node = {
-				id: "node-" + Math.random(),
+				id: id,
 				shape: {
 					type: "emergency-action",
 					scale: 1,
+				},
+				spawn: {
+					source: selectedNodes.value[0],
+					angle: 90,
+					distance: 500,
 				},
 				payload: {
 					category: "",
@@ -166,20 +194,41 @@ let controlItems = ref([
 			};
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
+			graph.value.links.push({
+				source: selectedNodes.value[0],
+				target: id,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
+			setTimeout(() => {
+				selectedNodes.value = [id];
+				controlItems.value.forEach((item) => {
+					item.enabled = item.checkEnabled();
+				});
+			}, 100);
 		},
 	},
 	{
 		icon: "mdi-ambulance",
-		enabled: true,
-		checkEnabled: () => true,
+		enabled: false,
+		checkEnabled: () =>
+			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
 		onClick: () => {
+			const id = "node-" + Math.random();
 			const node = {
-				id: "node-" + Math.random(),
+				id: id,
 				shape: {
 					type: "emergency-ressource",
 					scale: 1,
+				},
+				spawn: {
+					source: selectedNodes.value[0],
+					angle: 90,
+					distance: 500,
 				},
 				payload: {
 					status: "6",
@@ -191,14 +240,28 @@ let controlItems = ref([
 			};
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
+			graph.value.links.push({
+				source: selectedNodes.value[0],
+				target: id,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
+			setTimeout(() => {
+				selectedNodes.value = [id];
+				controlItems.value.forEach((item) => {
+					item.enabled = item.checkEnabled();
+				});
+			}, 100);
 		},
 	},
 	{
 		icon: "mdi-delete",
 		enabled: false,
-		checkEnabled: () => true,
+		checkEnabled: () => selectedNodes.value.length > 0,
 		isDelete: true,
 		onClick: () => {
 			for (let i = 0; i < selectedNodes.value.length; i++) {
@@ -208,13 +271,58 @@ let controlItems = ref([
 				);
 			}
 			selectedNodes.value = [];
-			controlItems.value[4].enabled = false;
+			controlItems.value.forEach((item) => {
+				item.enabled = item.checkEnabled();
+			});
 			graph.value.hasUpdate = true;
 			questionFilter.value = (q) => true;
 			generateOpenQuestions();
 		},
 	},
 ]);
+
+function nodesPointAt(target, sourceType) {
+	for (let i = 0; i < graph.value.links.length; i++) {
+		const link = graph.value.links[i];
+		if (link?.target?.id == target.id && link?.source?.shape?.type == sourceType) {
+			return link.target.id;
+		}
+	}
+	return false;
+}
+
+function randomRessourceSuggestion(source) {
+	const id = "node-" + Math.random();
+	const randomTime = Math.floor(Math.random() * (12 - 3 + 1)) + 3;
+	const node = {
+		id: id,
+		suggestion: true,
+		shape: {
+			type: "emergency-ressource",
+			scale: 0.5,
+		},
+		spawn: {
+			source: selectedNodes.value[0],
+			angle: 90,
+			distance: 500,
+		},
+		taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-ressource"] ?? {})),
+	};
+	node.taxonomy.status.value = Math.random() > 0.5 ? "1" : "2";
+	node.taxonomy.identifier.value = "11/83-02";
+	node.taxonomy.time.value = `bräuchte ca.${randomTime} min`;
+	node.taxonomy.alerted.value = "Nein";
+	graph.value.nodes.push(node);
+	taxonomy2payload[node.shape.type](node, graph);
+	graph.value.links.push({
+		source: id,
+		target: source,
+		type: "solid",
+		directed: true,
+		label: `ca. ${randomTime} min`,
+		strength: "weak",
+	});
+}
 
 function onCloseModal(d) {
 	taxonomy2payload[d.shape.type](d, graph.value);
@@ -237,20 +345,46 @@ function addEdge(source, target) {
 }
 function onBackground(e, pos) {
 	selectedNodes.value = [];
-	controlItems.value[4].enabled = false;
+	controlItems.value.forEach((item) => {
+		item.enabled = item.checkEnabled();
+	});
 	questionFilter.value = (q) => true;
 	filterQuestions();
 }
 function onClick(e, d) {
+	// accept suggestions
+	if (d.suggestion) {
+		delete d.suggestion;
+		d.taxonomy.alerted.value = "Ja";
+		d.taxonomy.status.value = "3";
+		d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
+		taxonomy2payload[d.shape.type](d, graph.value);
+		d.shape.scale = 1;
+		// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
+		graph.value.nodes = graph.value.nodes.filter((node) => {
+			if (node.suggestion && node.spawn.target == d.spawn.target) {
+				return false;
+			}
+			return true;
+		});
+		graph.value.links = graph.value.links.filter((link) => {
+			if (link.source.suggestion && link.source.spawn.target == d.spawn.target) {
+				return false;
+			}
+			if (link.target.suggestion && link.target.spawn.target == d.spawn.target) {
+				return false;
+			}
+			return true;
+		});
+		graph.value.hasUpdate = true;
+	}
+
 	if (e.shiftKey) {
 		selectedNodes.value.push(d.id);
 	} else {
 		selectedNodes.value = [d.id];
 	}
-	controlItems.value[4].enabled = true;
 	controlItems.value.forEach((item) => {
-		console.log(item);
-		console.log(item.checkEnabled());
 		item.enabled = item.checkEnabled();
 	});
 	questionFilter.value = (q) => q.refers_to.id === d.id;
@@ -413,6 +547,21 @@ onMounted(() => {
 			generateOpenQuestions();
 		});
 });
+
+watch(
+	() => selectedNodes.value,
+	() => {
+		const node = graph.value.nodes.filter((n) => n.id == selectedNodes.value[0])[0];
+		if (node?.shape?.type == "emergency-action") {
+			if (!nodesPointAt(node, "emergency-ressource")) {
+				for (let i = 0; i < 3; i++) {
+					randomRessourceSuggestion(node);
+				}
+				graph.value.hasUpdate = true;
+			}
+		}
+	}
+);
 </script>
 
 <style lang="scss">
