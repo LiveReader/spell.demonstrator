@@ -33,6 +33,10 @@ export default {
 			type: Array,
 			default: () => [0.1, 3],
 		},
+		draggableNodes: {
+			type: Boolean,
+			default: true,
+		},
 		selected: {
 			type: Array,
 			default: () => [],
@@ -131,6 +135,12 @@ export default {
 			() => props.zoomBoundaries,
 			() => {
 				simulation.setZoomBoundaries(props.zoomBoundaries[0], props.zoomBoundaries[1]);
+			}
+		);
+		watch(
+			() => props.draggableNodes,
+			() => {
+				simulation.draggableNodes(props.draggableNodes);
 			}
 		);
 	},

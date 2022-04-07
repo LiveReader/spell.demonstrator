@@ -1,6 +1,6 @@
 <template>
 	<div id="operator-screen">
-		<Navigation :color="'#4db6ac'" :icon="'./operator-logo.svg'" :title="'Notitia Operator'">
+		<Navigation :color="'#4db6ac'" :icon="'./spell.demonstrator.operator.svg'" :title="'Notitia Operator'">
 			<v-list density="compact" nav color="#00000000">
 				<v-list-group>
 					<template #activator="{ props }">
@@ -26,7 +26,7 @@
 		<Graphly
 			:graph="graph"
 			:selected="selectedNodes"
-			link-distance="300"
+			:link-distance="300"
 			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
@@ -43,7 +43,7 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
@@ -57,11 +57,11 @@ import NodeModal from "../components/NodeModal.vue";
 
 let safefileCollapsed = ref(false);
 
-let ws = null;
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let modal = ref({ show: false, node: null, title: "" });
 let selectedNodes = ref([]);
 let openQuestions = ref([]);
+let previouslyClosed = ref(null);
 let questionFilter = ref(() => true);
 let closedQuestions = ref([]);
 let filteredOpenQuestions = ref([]);
@@ -70,9 +70,11 @@ let controlItems = ref([
 	{
 		icon: "mdi-account",
 		enabled: true,
+		checkEnabled: () => true,
 		onClick: () => {
+			const id = "node-" + Math.random();
 			const node = {
-				id: "node-" + Math.random(),
+				id: id,
 				shape: {
 					type: "affected-person",
 					scale: 1,
@@ -92,6 +94,14 @@ let controlItems = ref([
 			};
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
+			graph.value.links.push({
+				source: "n0",
+				target: id,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 		},
@@ -99,9 +109,11 @@ let controlItems = ref([
 	{
 		icon: "mdi-home",
 		enabled: true,
+		checkEnabled: () => true,
 		onClick: () => {
+			const id = "node-" + Math.random();
 			const node = {
-				id: "node-" + Math.random(),
+				id: id,
 				shape: {
 					type: "affected-object",
 					scale: 1,
@@ -116,13 +128,24 @@ let controlItems = ref([
 			};
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
+			graph.value.links.push({
+				source: "n0",
+				target: id,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 		},
 	},
 	{
 		icon: "mdi-flash",
-		enabled: true,
+		enabled: false,
+		checkEnabled: () =>
+			selectedNodes.value[0].shape.type == "affected-person" ||
+			selectedNodes.value[0].shape.type == "affected-object",
 		onClick: () => {
 			const node = {
 				id: "node-" + Math.random(),
@@ -148,6 +171,7 @@ let controlItems = ref([
 	{
 		icon: "mdi-ambulance",
 		enabled: true,
+		checkEnabled: () => true,
 		onClick: () => {
 			const node = {
 				id: "node-" + Math.random(),
@@ -172,6 +196,7 @@ let controlItems = ref([
 	{
 		icon: "mdi-delete",
 		enabled: false,
+		checkEnabled: () => true,
 		isDelete: true,
 		onClick: () => {
 			for (let i = 0; i < selectedNodes.value.length; i++) {
@@ -215,8 +240,17 @@ function onBackground(e, pos) {
 	filterQuestions();
 }
 function onClick(e, d) {
-	selectedNodes.value = [d.id];
+	if (e.shiftKey) {
+		selectedNodes.value.push(d.id);
+	} else {
+		selectedNodes.value = [d.id];
+	}
 	controlItems.value[4].enabled = true;
+	controlItems.value.forEach((item) => {
+		console.log(item);
+		console.log(item.checkEnabled());
+		item.enabled = item.checkEnabled();
+	});
 	questionFilter.value = (q) => q.refers_to.id === d.id;
 	filterQuestions();
 }
@@ -294,6 +328,10 @@ function generateOpenQuestions() {
 		if (a.priority > b.priority) return -1;
 		return 0;
 	});
+	if (previouslyClosed.value) {
+		openQuestions.value.unshift(previouslyClosed.value);
+	}
+
 	filterQuestions();
 }
 
@@ -303,12 +341,20 @@ function filterQuestions() {
 }
 
 function closeQuestion(question) {
+	if (!Array.isArray(question.value)) {
+		if (question.value == null) return;
+	} else {
+		for (let i = 0; i < question.value.length; i++) {
+			if (question.value[i] == null) return;
+		}
+	}
 	if (!question.closed_at) {
 		const index = closedQuestions.value.findIndex((q) => q.id == question.id);
 		if (index > -1) closedQuestions.value.splice(index, 1);
 		closedQuestions.value.push(question);
 	}
 	question.closed_at = Date.now();
+	previouslyClosed.value = question;
 }
 
 function questionInput(question) {
@@ -334,6 +380,7 @@ function saveFile() {
 	copy.nodes.forEach((n) => {
 		delete n.forceSimulation;
 		delete n.shape.template;
+		// n.taxonomy = generatePrefixedTaxonomy(n.taxonomy);
 	});
 	const d = JSON.stringify(graph.value);
 	const blob = new Blob([d], { type: "application/json" });
@@ -350,63 +397,20 @@ function openSaveFile(item) {
 	});
 }
 
-export default {
-	name: "OperatorScreen",
-	components: {
-		Navigation,
-		Graphly,
-		SideBar,
-		NodeModal,
-	},
-	setup(props, context) {
-		onMounted(() => {
-			ws = new WebSocket("ws://" + window.location.hostname + ":8888");
-			ws.onopen = (e) => {
-				ws.send("");
-			};
-			ws.onmessage = (e) => {
-				graph.value = JSON.parse(e.data).graph;
-				graph.value.hasUpdate = true;
-			};
-			ws.onerror = (e) => {
-				// load graph data from demo
-				fetch("/graphData.json")
-					.then((response) => response.json())
-					.then((data) => {
-						graph.value = data.graph;
-						for (let i = 0; i < graph.value.nodes.length; i++) {
-							const node = graph.value.nodes[i];
-							if (node.taxonomy) continue;
-							node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
-						}
-						graph.value.hasUpdate = true;
-						generateOpenQuestions();
-					});
-			};
+onMounted(() => {
+	fetch("/graphData.json")
+		.then((response) => response.json())
+		.then((data) => {
+			graph.value = data.graph;
+			for (let i = 0; i < graph.value.nodes.length; i++) {
+				const node = graph.value.nodes[i];
+				if (node.taxonomy) continue;
+				node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
+			}
+			graph.value.hasUpdate = true;
+			generateOpenQuestions();
 		});
-	},
-	data: () => ({
-		safefileCollapsed,
-		saveFiles,
-		ws,
-		modal,
-		graph,
-		selectedNodes,
-		filteredOpenQuestions,
-		filteredClosedQuestions,
-		controlItems,
-	}),
-	methods: {
-		onCloseModal,
-		addEdge,
-		onBackground,
-		onClick,
-		onDoubleClick,
-		questionInput,
-		saveFile,
-		openSaveFile,
-	},
-};
+});
 </script>
 
 <style lang="scss">
