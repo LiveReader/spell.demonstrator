@@ -173,7 +173,7 @@ function emergencyRessource(data, initialShape, changes, Template) {
 		const alertedTag = initialShape
 			? shape.select("g.alerted")
 			: TagShape(
-					"alamiert",
+					"alarmiert",
 					TagStyle(
 						[120, 40],
 						[
