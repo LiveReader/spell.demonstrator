@@ -6,7 +6,7 @@ import MobileScreen from "../views/MobileScreen.vue";
 
 const routes = [
 	{
-		path: "/situation-map",
+		path: "/situation-management",
 		name: "Lagemanagement",
 		component: SituationMap,
 	},
@@ -16,7 +16,7 @@ const routes = [
 		component: OperatorScreen,
 	},
 	{
-		path: "/mobile-screen",
+		path: "/task-forces",
 		name: "Einsatzkräfte",
 		component: MobileScreen,
 	},
