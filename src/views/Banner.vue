@@ -1,8 +1,8 @@
 <template>
 	<v-app-bar app :border="true" position="bottom" :height="height" color="#000000" :image="image">
 		<div class="banner">
-			<h1>{{ router.currentRoute.value.name }}</h1>
-			<div style="text-align: center">{{ windowSize }} – {{ aspectRatio }} ({{ 16 / 9 }})</div>
+			<span>{{ router.currentRoute.value.name }}</span>
+			<!-- <div style="text-align: center">{{ windowSize }} – {{ aspectRatio }} ({{ 16 / 9 }})</div> -->
 		</div>
 	</v-app-bar>
 </template>
@@ -45,12 +45,14 @@ window.onresize = () => {
 	width: 100%;
 	color: #fafaff;
 }
-.banner h1 {
-	text-align: center;
+.banner span {
+	display: table;
+	margin: 0 auto;
 	font-size: 10vw;
 	font-weight: bold;
-	margin: 0;
 	text-shadow: 0 0 6px #fafaff;
-	/* text-shadow: 0 0 6px #fff, 0 0 12px #fff; */
+	background: #1a1a1a;
+	padding: 1vw 8vw;
+	border-radius: 10vw;
 }
 </style>
