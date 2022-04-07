@@ -22,6 +22,7 @@
 				</v-list-group>
 				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
 			</v-list>
+			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
 		</Navigation>
 		<Graphly
 			:graph="graph"
@@ -49,6 +50,7 @@ import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
+import converter from "../../converter.js";
 
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";

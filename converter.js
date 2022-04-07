@@ -29,7 +29,7 @@ function updateTaxonomy(oldTax, newTax) {
 }
 
 function download(obj, name) {
-	return;
+	// return;
 	// eslint-disable-next-line no-unreachable
 	const d = JSON.stringify(obj);
 	const blob = new Blob([d], { type: "application/json" });
@@ -41,7 +41,14 @@ function download(obj, name) {
 }
 
 function converter() {
-	const merge = [];
+	const startSzenario = {
+		nodes: [],
+		links: [],
+	};
+	const breathSzenario = {
+		nodes: [],
+		links: [],
+	};
 	saveFiles.forEach((item) => {
 		item.file().then((graph, index) => {
 			graph.nodes.forEach((node) => {
@@ -49,21 +56,57 @@ function converter() {
 				replaceID(graph, "n1", "node-" + Math.random());
 				const taxCopy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape.type]));
 				node.taxonomy = updateTaxonomy(node.taxonomy, taxCopy);
+				node.taxonomy = generatePrefixedTaxonomy(node.taxonomy);
+				if (
+					item.name == "Unfall" ||
+					item.name == "Sturz" ||
+					item.name == "Transport" ||
+					item.name == "Zugentgleisung" ||
+					item.name == "Brand L523"
+				) {
+					startSzenario.nodes.push(JSON.parse(JSON.stringify(node)));
+				}
+				if (
+					item.name == "Atemwegsreizung 1" ||
+					item.name == "Atemwegsreizung 2" ||
+					item.name == "Atemwegsreizung 3" ||
+					item.name == "Atemwegsreizung 4" ||
+					item.name == "Atemwegsreizung 5"
+				) {
+					breathSzenario.nodes.push(JSON.parse(JSON.stringify(node)));
+				}
 			});
-			merge.push(JSON.parse(JSON.stringify(graph)));
-			setTimeout(() => {
-				download(graph, item.name);
-			}, 500 * index);
+			graph.links.forEach((link) => {
+				if (
+					item.name == "Unfall" ||
+					item.name == "Sturz" ||
+					item.name == "Transport" ||
+					item.name == "Zugentgleisung" ||
+					item.name == "Brand L523"
+				) {
+					startSzenario.links.push(JSON.parse(JSON.stringify(link)));
+				}
+				if (
+					item.name == "Atemwegsreizung 1" ||
+					item.name == "Atemwegsreizung 2" ||
+					item.name == "Atemwegsreizung 3" ||
+					item.name == "Atemwegsreizung 4" ||
+					item.name == "Atemwegsreizung 5"
+				) {
+					breathSzenario.links.push(JSON.parse(JSON.stringify(link)));
+				}
+			});
+			if (item.name == "Brand Gartenanlage" || item.name == "Verletzte Gartenanlage") {
+				setTimeout(() => {
+					download(graph, item.name);
+				}, 500 * index);
+			}
 		});
 	});
 	setTimeout(() => {
-		merge.forEach((graph) => {
-			graph.nodes.forEach((node) => {
-				node.taxonomy = generatePrefixedTaxonomy(node.taxonomy);
-			});
-		});
-		download(merge, "merge");
-	}, 10000);
+		download(startSzenario, "Start Szenario");
+		download(breathSzenario, "Augen- Atemwegsreizungen");
+	}, 5000);
 }
 
 export default converter;
