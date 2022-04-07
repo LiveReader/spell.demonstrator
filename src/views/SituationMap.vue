@@ -47,12 +47,13 @@ let lindenhof = [49.472413664609626, 8.468794078498757];
 let ruchheim = [49.4723270557513, 8.328341303731001];
 
 let ludwigshafenBounds = [
-	[49.4266985, 8.2982215],
-	[49.5480579, 8.4769401],
+	[49.406059, 8.347909],
+	[49.540137, 8.565615],
 ];
 
 // leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
+let graphFiles;
 let selectedNodes = ref([]);
 let map;
 let tileLayer;
@@ -62,6 +63,7 @@ let bounds;
 let maxBounds;
 let minZoom;
 let maxZoom;
+let initialZoom;
 
 let svgDimensions;
 let svgElementBounds;
@@ -75,6 +77,26 @@ svgDimensions = {
 }
 minZoom = 12;
 maxZoom = 18;
+initialZoom = 14;
+graphFiles = [
+	"atemwegsreizung.json",
+	"atemwegsreizung1.json",
+	"atemwegsreizung2.json",
+	"atemwegsreizung3.json",
+	"atemwegsreizung4.json",
+	"atemwegsreizung5.json",
+	"brandGarten.json",
+	"brandL523.json",
+	// "saveFile1.json",
+	// "sturz.json",
+	"sturz_neu.json",
+	// "transport.json",
+	"transport_neu.json",
+	// "unfall.json",
+	"unfall_neu.json",
+	"verletzteGarten.json",
+	"zugentgleisung.json",
+];
 
 // DOM refs
 let svgElementRef;
@@ -134,10 +156,18 @@ function addNodeListener(node, eventName, callback) {
 // graph functions
 function addNodeListeners() {
 	worldElementRef = document.querySelector('#world');
+	let nodes = graph.value.nodes;
 	let observer = new MutationObserver(mutations => {
 		nodeElementRefs = mutations.filter(mutation => mutation.target.classList[0] === 'nodeWorld')
-			.map(mutation => mutation.addedNodes[0]);
+			.map(mutation => {
+				let elem = mutation.addedNodes[0];
+				return {
+					elem: elem,
+					node: nodes.find(n => n.id == elem.id),
+				}
+			});
 		nodeElementRefs
+			.map(ref => ref.elem)
 			.forEach(node => {
 				addNodeListener(node, 'click',  e=>{
 					console.log(node.id);
@@ -156,24 +186,32 @@ function addNodeListeners() {
 
 function positionNodes() {
 	let nodes = graph.value.nodes;
-	let posA = latLngToGraphlyCoordinates(bridge);
-	let posB = latLngToGraphlyCoordinates(ruchheim);
-	nodes[0].anchor = {
-		type: 'hard',
-		x: posA.x,
-		y: posA.y,
-	};
-	nodes[1].anchor = {
-		type: 'hard',
-		x: posB.x,
-		y: posB.y,
-	};
+	nodes.forEach(node => {
+		let { location } = node.payload;
+		if (location) {
+			let coordinates = latLngToGraphlyCoordinates(location.split(', ').map(n => parseFloat(n)));
+			node.anchor = {
+				type: 'hard',
+				x: coordinates.x,
+				y: coordinates.y,
+			};
+		}
+	});
+	graph.value.hasUpdate = true;
+}
+
+function scaleNodes(scale) {
+	graph.value.nodes.forEach(node => {
+		node.shape.scale = scale;
+	});
 	graph.value.hasUpdate = true;
 }
 
 function postInitGraph() {
 	addNodeListeners();
 	positionNodes();
+	let initalScale = Math.pow(2, 13) / Math.pow(2, zoom);
+	scaleNodes(initalScale);
 }
 
 export default {
@@ -185,7 +223,7 @@ export default {
 	setup(props, context) {
 		onMounted(() => {
 			/* Init leaflet */
-			map = L.map('map').setView(ludwigshafen, 14);
+			map = L.map('map').setView(ludwigshafen, initialZoom);
 			bounds = map.getBounds();
 
 			/* Load OSM data and setup map */
@@ -222,12 +260,12 @@ export default {
 					geojsonLayer = L.geoJSON(data, {
 						style:  (feature) => {
 							let color = feature.properties.color ? feature.properties.color : {
-								fillColor: '#444',
+								fillColor: '#000',
 								weight: 1.5,
 								opacity: 0,
 								color: '#ddd',
 								dashArray: '3',
-								fillOpacity: 0.2,
+								fillOpacity: 0.25,
 							};
 							console.log(color);
 							return color;
@@ -252,17 +290,23 @@ export default {
 			}).addTo(map);
 
 			/* Load graph data from demo */
-			fetch("/graphData.json")
-				.then((response) => response.json())
-				.then((data) => {
-					graph.value = data.graph;
-					for (let i = 0; i < graph.value.nodes.length; i++) {
-						const node = graph.value.nodes[i];
-						if (node.taxonomy) continue;
-						node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
-					}
-					postInitGraph();
+			let jsonPromises = graphFiles.map(file => fetch(`/saveFiles/${file}`).then(res => res.json()));
+			Promise.all(jsonPromises).then(arr => {
+				let nodes = []
+					.concat(...arr.map(graph => graph.nodes))
+					.filter(node => node.shape.type == 'operation' && node.payload.location)
+				nodes.forEach((node, idx) => {
+					node.id = `n${idx}`;
+					node.ignoreLODs = true;
 				});
+				console.log(nodes.map(node => node.payload.location));
+				graph.value = {
+					nodes: nodes,
+					links: [],
+					hasUpdate: true,
+				};
+				postInitGraph();
+			});
 		});
 	},
 	data: () => ({
@@ -282,8 +326,9 @@ export default {
 	methods: {
 		onZoomAnim   ({ target, center, zoom })  {
 			const oldZoom = map.getZoom()
+			const scale =  Math.pow(2, 13) / Math.pow(2, zoom);
 			if (zoom !== oldZoom) {
-				console.log(oldZoom, zoom);
+				scaleNodes(scale);
 			}
 			this.mousePos = null
  		},
