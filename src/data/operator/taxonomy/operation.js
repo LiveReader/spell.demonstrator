@@ -138,6 +138,7 @@ const location = {
 
 const affected = {
 	label: "Betroffene ...",
+	prefix: "opaff_",
 	persons: { label: "Personen", type: Type.Number, size: 60, value: null },
 	objects: { label: "Objekte", type: Type.Number, size: 40, value: null },
 };
