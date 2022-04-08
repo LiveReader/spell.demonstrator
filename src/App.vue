@@ -1,5 +1,6 @@
 <template>
 	<v-app>
+		<Banner app />
 		<v-main>
 			<router-view></router-view>
 		</v-main>
@@ -7,8 +8,12 @@
 </template>
 
 <script>
+import Banner from "./views/Banner.vue";
 export default {
 	name: "App",
+	components: {
+		Banner,
+	},
 	data: () => ({}),
 	methods: {},
 };

@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg width="100%" height="100%" viewBox="0 0 800 800" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g id="background.roundedrect" transform="matrix(2.309,0,0,3.19422,-16.1926,0)">
-        <path d="M353.484,78.266C353.484,35.041 305.008,0 245.211,0L115.285,0C55.488,0 7.013,35.041 7.013,78.266L7.013,172.186C7.013,215.412 55.488,250.453 115.285,250.453L245.211,250.453C305.008,250.453 353.484,215.412 353.484,172.186L353.484,78.266Z" style="fill:rgb(244,244,244);"/>
+        <path d="M353.484,78.266C353.484,35.041 305.008,0 245.211,0L115.285,0C55.488,0 7.013,35.041 7.013,78.266L7.013,172.186C7.013,215.412 55.488,250.453 115.285,250.453L245.211,250.453C305.008,250.453 353.484,215.412 353.484,172.186L353.484,78.266Z" style="fill:rgb(229,229,229);"/>
     </g>
     <g id="notitia.cube.operator">
         <use id="notitia.engineer" xlink:href="#_Image1" x="410.317" y="252.261" width="280.783px" height="463.77px" transform="matrix(0.999228,0,0,0.999505,0,0)"/>

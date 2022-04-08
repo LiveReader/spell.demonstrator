@@ -33,6 +33,10 @@ export default {
 			type: Array,
 			default: () => [0.1, 3],
 		},
+		draggableNodes: {
+			type: Boolean,
+			default: true,
+		},
 		selected: {
 			type: Array,
 			default: () => [],
@@ -44,6 +48,7 @@ export default {
 	},
 	emits: [
 		"new-edge",
+		"edge-click",
 		"background",
 		"click",
 		"double-click",
@@ -62,6 +67,9 @@ export default {
 			simulation.setGravity(props.gravity);
 			simulation.onNewEdge((source, target) => {
 				context.emit("new-edge", source, target);
+			});
+			simulation.onEdgeClick((e, d) => {
+				context.emit("edge-click", e, d);
 			});
 			simulation.onBackground((e, pos) => {
 				context.emit("background", e, pos);
@@ -131,6 +139,12 @@ export default {
 			() => props.zoomBoundaries,
 			() => {
 				simulation.setZoomBoundaries(props.zoomBoundaries[0], props.zoomBoundaries[1]);
+			}
+		);
+		watch(
+			() => props.draggableNodes,
+			() => {
+				simulation.draggableNodes(props.draggableNodes);
 			}
 		);
 	},

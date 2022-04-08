@@ -1,6 +1,10 @@
 <template>
 	<div>
-		<Navigation :color="'#9575cd'" :icon="''" :title="'Notfall Lage'"></Navigation>
+		<Navigation
+			:color="'#9575cd'"
+			:icon="'./spell.demonstrator.situationmanagement.svg'"
+			:title="'Lagemanagement'"
+		></Navigation>
 		<div style="height: 100vh; width: 100vw; position: absolute">
 			<div id="map" style="height: 100vh; width: 100vw; position: fixed"></div>
 			<Graphly
