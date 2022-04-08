@@ -23,6 +23,7 @@
 				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
 			</v-list>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
+			<!-- <v-btn @click="downloadPrefixedTaxonomy()">Generate Prefixed Taxonomy</v-btn> -->
 		</Navigation>
 		<Graphly
 			:graph="graph"
@@ -48,7 +49,7 @@
 <script setup>
 import { onMounted, watch, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
-import { taxonomyTemplate } from "../data/operator/taxonomy/index";
+import { taxonomyTemplate, generatePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
@@ -286,6 +287,16 @@ let controlItems = ref([
 	},
 ]);
 
+function downloadPrefixedTaxonomy() {
+	const d = JSON.stringify(generatePrefixedTaxonomy(taxonomyTemplate));
+	const blob = new Blob([d], { type: "application/json" });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "taxonomy.json";
+	a.click();
+}
+
 function nodesPointAt(target, sourceType) {
 	for (let i = 0; i < graph.value.links.length; i++) {
 		const link = graph.value.links[i];
@@ -322,7 +333,7 @@ function randomRessourceSuggestion(source) {
 	graph.value.links.push({
 		source: id,
 		target: source,
-		type: "solid",
+		type: "dotted",
 		directed: true,
 		label: `ca. ${randomTime} min`,
 		strength: "weak",
