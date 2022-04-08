@@ -32,6 +32,7 @@
 			@background="onBackground"
 			@click="onClick"
 			@double-click="onDoubleClick"
+			@edge-click="onEdgeClick"
 		/>
 		<SideBar
 			width="330"
@@ -215,11 +216,12 @@ let controlItems = ref([
 	},
 	{
 		icon: "mdi-ambulance",
-		enabled: false,
-		checkEnabled: () =>
-			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
+		enabled: true,
+		// checkEnabled: () =>
+		// 	graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
 		onClick: () => {
 			const id = "node-" + Math.random();
+			const source = selectedNodes?.value[0] ?? graph.value.nodes.find((n) => n.shape.type == "operation").id;
 			const node = {
 				id: id,
 				shape: {
@@ -227,7 +229,7 @@ let controlItems = ref([
 					scale: 1,
 				},
 				spawn: {
-					source: selectedNodes.value[0],
+					source: source,
 					angle: 90,
 					distance: 500,
 				},
@@ -242,7 +244,7 @@ let controlItems = ref([
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
 			graph.value.links.push({
-				source: selectedNodes.value[0],
+				source: source,
 				target: id,
 				type: "solid",
 				directed: false,
@@ -252,10 +254,12 @@ let controlItems = ref([
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 			setTimeout(() => {
-				selectedNodes.value = [id];
-				controlItems.value.forEach((item) => {
-					item.enabled = item.checkEnabled();
-				});
+				if (selectedNodes?.value[0]) {
+					selectedNodes.value = [id];
+					controlItems.value.forEach((item) => {
+						item.enabled = item.checkEnabled();
+					});
+				}
 			}, 100);
 		},
 	},
@@ -344,6 +348,10 @@ function addEdge(source, target) {
 	graph.value.links.push(link);
 	graph.value.hasUpdate = true;
 }
+function onEdgeClick(e, d) {
+	graph.value.links = graph.value.links.filter((l) => l !== d);
+	graph.value.hasUpdate = true;
+}
 function onBackground(e, pos) {
 	selectedNodes.value = [];
 	controlItems.value.forEach((item) => {
@@ -372,13 +380,18 @@ function onClick(e, d) {
 			return true;
 		});
 		graph.value.links = graph.value.links.filter((link) => {
-			if (link.source.suggestion && link.source.spawn.target == d.spawn.target) {
-				return false;
-			}
-			if (link.target.suggestion && link.target.spawn.target == d.spawn.target) {
+			if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
 				return false;
 			}
 			return true;
+		});
+		graph.value.links.push({
+			source: sourceNode,
+			target: d,
+			type: "solid",
+			directed: false,
+			label: "",
+			strength: "weak",
 		});
 		graph.value.hasUpdate = true;
 	}
