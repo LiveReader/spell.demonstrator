@@ -80,7 +80,7 @@ svgDimensions = {
 	x: 2000,
 	y: 2000,
 }
-minZoom = 12;
+minZoom = 10;
 maxZoom = 18;
 initialZoom = 14;
 
@@ -105,16 +105,7 @@ graphFiles = [
 	"zugentgleisung.json",
 ];
 operationalAreas = [
-	"bad_duerkheim.geojson",
-	"frankenthal.geojson",
-	"gruenstadt.geojson",
-	"hassloch.geojson",
-	"lambrecht.geojson",
-	"ludwigshafen.geojson",
-	"mutterstadt.geojson",
-	"neustadt.geojson",
-	"schiffstadt.geojson",
-	"speyer.geojson",
+	"vermka_rlp.6.geojson",
 ];
 closureFiles = [
 	"closure1.json",
@@ -338,16 +329,26 @@ export default {
 			}).addTo(map);
 
 			/* Add Ludwigshafen border as geojson */
-			fetch("/mapData/ludwigshafen.geojson")
-				.then((response) => response.json())
+			fetchAll(operationalAreas.map(file => `mapData/${file}`))
 				.then((data) => {
-					data.geometries[0].coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
+					// let coordinates = [].concat(...data.map(d=>d.geometries[0].coordinates));
+					// coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
+					// let geojson = {
+					// 	type: "GeometryCollection",
+					// 	geometries: [
+					// 		{
+					// 			type: "MultiPolygon",
+					// 			coordinates: coordinates,
+					// 		}
+					// 	]
+					// }
+					// console.log(geojson);
+					console.log(data);
+					data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 					geojsonLayer = L.geoJSON(data, {
 						style:  (feature) => invertedMapStyle,
 						interactive: false,
 					}).addTo(map);
-					/* obtain boundaries of ludwigshafen: */
-					// console.log(geojsonLayer.getBounds());
 				});
 
 			fetchAll(closureFiles.map(file => `mapData/${file}`))
