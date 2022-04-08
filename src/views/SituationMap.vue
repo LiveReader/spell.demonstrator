@@ -90,13 +90,14 @@ let svgDimensions;
 let svgElementBounds;
 
 // actual settings
+let nodeScale = 1;
 if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
 svgElementBounds = ludwigshafenBounds;
 svgDimensions = {
 	x: 2000,
 	y: 2000,
 }
-minZoom = 10;
+minZoom = 12;
 maxZoom = 18;
 initialZoom = 14;
 
@@ -222,7 +223,7 @@ function latLngToSvgCoordinates(latLng) {
 }
 
 function scaleFromZoom(zooom) {
-	return Math.pow(2, 13) / Math.pow(2, zooom);
+	return Math.pow(2, 13) / Math.pow(2, zooom) * nodeScale;
 }
 
 // utility functions
