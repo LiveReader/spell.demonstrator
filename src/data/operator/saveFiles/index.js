@@ -55,6 +55,11 @@ const saveFiles = [
 		name: "Atemwegsreizung 5",
 		file: () => fetch("./saveFiles/atemwegsreizung5.json").then((response) => response.json()),
 	}
+	,
+	{
+		name: "E-Call",
+		file: () => fetch("./saveFiles/ecall.json").then((response) => response.json()),
+	}
 ];
 
 export { saveFiles };

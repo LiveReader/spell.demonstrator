@@ -3,3 +3,7 @@ node_modules
 dist
 dist-ssr
 *.local
+public/saveFiles/brandL523_old.json
+public/saveFiles/sturz_old.json
+public/saveFiles/transport_old.json
+public/saveFiles/zugentgleisung_old.json
