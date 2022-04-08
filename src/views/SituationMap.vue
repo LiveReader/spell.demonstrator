@@ -28,6 +28,7 @@ import {
 } from "@vue-leaflet/vue-leaflet";
 import { latLngBounds, latLng } from "leaflet";
 import * as L from "leaflet" ;
+import * as geo from "@mapbox/geojson-merge";
 
 import "leaflet/dist/leaflet.css";
 
