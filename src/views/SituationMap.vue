@@ -153,6 +153,10 @@ function addNodeListener(node, eventName, callback) {
 	}, true);
 }
 
+function parseLocation(location) {
+	return location.split(', ').map(n => parseFloat(n));
+}
+
 // graph functions
 function addNodeListeners() {
 	worldElementRef = document.querySelector('#world');
@@ -176,6 +180,13 @@ function addNodeListeners() {
 				addNodeListener(node, 'dragstart');
 				addNodeListener(node, 'drag');
 				addNodeListener(node, 'pointerdown');
+				addNodeListener(node, 'dblclick', e => {
+					let graphlyNode = graph.value.nodes.find(n => n.id === node.id);
+					let { location } = graphlyNode.payload;
+					let coordinates = parseLocation(location);
+					console.log(location, coordinates);
+					map.flyTo(coordinates, maxZoom);
+				});
 			});
 	});
 	observer.observe(worldElementRef, {
@@ -189,7 +200,7 @@ function positionNodes() {
 	nodes.forEach(node => {
 		let { location } = node.payload;
 		if (location) {
-			let coordinates = latLngToGraphlyCoordinates(location.split(', ').map(n => parseFloat(n)));
+			let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
 			node.anchor = {
 				type: 'hard',
 				x: coordinates.x,
@@ -210,8 +221,8 @@ function scaleNodes(scale) {
 function postInitGraph() {
 	addNodeListeners();
 	positionNodes();
-	let initalScale = Math.pow(2, 13) / Math.pow(2, zoom);
-	scaleNodes(initalScale);
+	let initialScale = Math.pow(2, 13) / Math.pow(2, initialZoom);
+	scaleNodes(initialScale);
 }
 
 export default {
@@ -234,6 +245,7 @@ export default {
 				// tileSize: 512,
 				zoomSnap: 0,
 				zoomAnimation: false,
+				updateWhenZooming: false,
 				zoomDelta: 0,
 				duration: 0,
 			}).addTo(map);
@@ -299,7 +311,6 @@ export default {
 					node.id = `n${idx}`;
 					node.ignoreLODs = true;
 				});
-				console.log(nodes.map(node => node.payload.location));
 				graph.value = {
 					nodes: nodes,
 					links: [],
