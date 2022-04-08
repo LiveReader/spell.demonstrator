@@ -24,6 +24,7 @@
 			</v-list>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
 			<!-- <v-btn @click="downloadPrefixedTaxonomy()">Generate Prefixed Taxonomy</v-btn> -->
+			<!-- <v-btn @click="generateRessources()">Generate Ressources</v-btn> -->
 		</Navigation>
 		<Graphly
 			:graph="graph"
@@ -53,6 +54,7 @@ import { taxonomyTemplate, generatePrefixedTaxonomy } from "../data/operator/tax
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
+import { generateRessources } from "../../generator";
 
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
@@ -567,7 +569,12 @@ function saveFile() {
 function openSaveFile(item) {
 	item.file().then((f) => {
 		graph.value = f;
+		for (let i = 0; i < graph.value.nodes.length; i++) {
+			const node = graph.value.nodes[i];
+			taxonomy2payload[node.shape.type](node, graph.value);
+		}
 		graph.value.hasUpdate = true;
+		generateOpenQuestions();
 	});
 }
 

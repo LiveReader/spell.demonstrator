@@ -4,6 +4,10 @@ const saveFiles = [
 		file: () => fetch("./saveFiles/Save File 1.json").then((response) => response.json()),
 	},
 	{
+		name: "DRK Rettungsmittel LSLU",
+		file: () => fetch("./saveFiles/DRK_Rettungsmittel_LSLU.json").then((response) => response.json()),
+	},
+	{
 		name: "Zugentgleisung",
 		file: () => fetch("./saveFiles/Zugentgleisung.json").then((response) => response.json()),
 	}
