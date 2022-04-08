@@ -217,7 +217,7 @@ let controlItems = ref([
 	{
 		icon: "mdi-ambulance",
 		enabled: true,
-		// checkEnabled: () =>
+		checkEnabled: () => true,
 		// 	graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
 		onClick: () => {
 			const id = "node-" + Math.random();
@@ -570,7 +570,12 @@ watch(
 	() => {
 		const node = graph.value.nodes.filter((n) => n.id == selectedNodes.value[0])[0];
 		if (node?.shape?.type == "emergency-action") {
-			if (!nodesPointAt(node, "emergency-ressource")) {
+			if (
+				!graph.value.links.find(
+					(l) => l.source.id == node.id && l.target.shape.type == "emergency-ressource"
+				) &&
+				!nodesPointAt(node, "emergency-ressource")
+			) {
 				for (let i = 0; i < 3; i++) {
 					randomRessourceSuggestion(node);
 				}
