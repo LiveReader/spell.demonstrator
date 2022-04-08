@@ -33,8 +33,6 @@ function emergencyAction(node) {
 		}
 	}
 
-	console.log(category);
-
 	let priority = "";
 	const threatmentKeys = Object.keys(node.taxonomy.medical.threatment);
 	for (let i = 0; i < threatmentKeys.length; i++) {

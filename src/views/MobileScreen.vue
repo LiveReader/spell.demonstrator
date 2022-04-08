@@ -1,6 +1,10 @@
 <template>
 	<div>
-		<Navigation :color="'#ffb74d'" :icon="''" :title="'Mobile App'"></Navigation>
+		<Navigation
+			:color="'#ffb74d'"
+			:icon="'./spell.demonstrator.einsatzkräfte.svg'"
+			:title="'Einsatzkräfte'"
+		></Navigation>
 		Mobile Screen
 	</div>
 </template>

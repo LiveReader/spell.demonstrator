@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<v-navigation-drawer :expand-on-hover="true" rail permanent :style="{ background: color }">
-			<v-list color="#00000000">
+		<v-navigation-drawer v-model="extendedDrawer" temporary :style="{ background: color }">
+			<v-list color="#00000000" @click="extendedDrawer = false">
 				<v-list-item :prepend-avatar="icon" :title="title"></v-list-item>
 			</v-list>
 			<v-divider></v-divider>
@@ -9,7 +9,8 @@
 				<v-list-item
 					v-for="item in sidebarItems"
 					:key="item"
-					:prepend-icon="item.icon"
+					:prepend-avatar="item.icon"
+					density="compact"
 					:title="item.title"
 					:active="item.active"
 					rounded="xl"
@@ -19,70 +20,90 @@
 			<v-divider></v-divider>
 			<slot></slot>
 		</v-navigation-drawer>
+		<v-navigation-drawer
+			id="menu"
+			:permanent="!extendedDrawer"
+			rail
+			:style="{ background: color }"
+			@click="extendedDrawer = true"
+		>
+			<v-list id="icon" color="#00000000" @click="extendedDrawer = false">
+				<v-list-item
+					:prepend-avatar="icon"
+					title=""
+					:style="{ backgroundColor: color }"
+					class="rounded-r-xl"
+				></v-list-item>
+			</v-list>
+		</v-navigation-drawer>
 	</div>
 </template>
 
-<script>
-import { onMounted } from "vue";
+<script setup>
+import { ref, onMounted, defineProps } from "vue";
+import router from "../routers/index";
+
+let extendedDrawer = ref(false);
 
 const sidebarItems = [
 	{
-		title: "Notfall Lage",
-		icon: "mdi-hospital-building",
+		title: "Lagemanagement",
+		icon: "./spell.demonstrator.situationmanagement.svg",
 		active: false,
-		to: "/situation-map",
+		to: "/situation-management",
 	},
 	{
-		title: "Operator Screen",
-		icon: "mdi-account-circle",
+		title: "Leitstelle",
+		icon: "./spell.demonstrator.operator.svg",
 		active: false,
-		to: "/operator-operator",
+		to: "/notitia-operator",
 	},
 	{
-		title: "Mobile App",
-		icon: "mdi-cellphone-android",
+		title: "Einsatzkräfte",
+		icon: "./spell.demonstrator.einsatzkräfte.svg",
 		active: false,
-		to: "/mobile-screen",
+		to: "/task-forces",
 	},
 ];
 
 function nav(item) {
-	this.$router.push(item.to);
+	router.push(item.to);
 	sidebarItems.forEach((i) => {
 		i.active = item.to === i.to;
 	});
 }
 
-export default {
-	name: "OperatorNavigation",
-	props: {
-		color: {
-			type: String,
-			default: "#ffffff",
-		},
-		icon: {
-			type: String,
-			default: "mdi-account-circle",
-		},
-		title: {
-			type: String,
-			default: "SPELL Demonstrator",
-		},
+const props = defineProps({
+	color: {
+		type: String,
+		default: "#ffffff",
 	},
-	setup(props) {
-		onMounted(() => {
-			sidebarItems.forEach((i) => {
-				i.active = window.location.pathname.slice(1) === i.to;
-			});
-		});
+	icon: {
+		type: String,
+		default: "mdi-account-circle",
 	},
-	data: () => ({
-		sidebarItems,
-	}),
-	methods: {
-		nav,
+	title: {
+		type: String,
+		default: "SPELL Demonstrator",
 	},
-};
+});
+
+onMounted(() => {
+	sidebarItems.forEach((i) => {
+		i.active = router.currentRoute.value.path === i.to;
+	});
+});
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#menu {
+	background-color: #00000000 !important;
+	border: none;
+	pointer-events: none;
+}
+#icon {
+	background-color: #00000000 !important;
+	border: none;
+	pointer-events: all;
+}
+</style>

@@ -21,17 +21,34 @@ export default {
 				return value.nodes && value.links;
 			},
 		},
+		gravity: {
+			type: Number,
+			default: -5000,
+		},
+		linkDistance: {
+			type: Number,
+			default: 250,
+		},
 		zoomBoundaries: {
 			type: Array,
 			default: () => [0.1, 3],
+		},
+		draggableNodes: {
+			type: Boolean,
+			default: true,
 		},
 		selected: {
 			type: Array,
 			default: () => [],
 		},
+		svg: {
+			type: Object,
+			default: () => null,
+		},
 	},
 	emits: [
 		"new-edge",
+		"edge-click",
 		"background",
 		"click",
 		"double-click",
@@ -43,13 +60,16 @@ export default {
 	],
 	setup: (props, context) => {
 		onMounted(() => {
-			const svg = d3.select("#graphly");
+			const svg = props.svg ? d3.select(props.svg) : d3.select("#graphly");
 			simulation = new ForceSimulation(svg);
 			simulation.setTemplateOrigin("http://" + window.location.host + "/templates/");
-			simulation.setLinkDistance(250);
-			simulation.setGravity(-5000);
+			simulation.setLinkDistance(props.linkDistance);
+			simulation.setGravity(props.gravity);
 			simulation.onNewEdge((source, target) => {
 				context.emit("new-edge", source, target);
+			});
+			simulation.onEdgeClick((e, d) => {
+				context.emit("edge-click", e, d);
 			});
 			simulation.onBackground((e, pos) => {
 				context.emit("background", e, pos);
@@ -104,9 +124,27 @@ export default {
 			}
 		);
 		watch(
+			() => props.gravity,
+			() => {
+				simulation.setGravity(props.gravity);
+			}
+		);
+		watch(
+			() => props.linkDistance,
+			() => {
+				simulation.setLinkDistance(props.linkDistance);
+			}
+		);
+		watch(
 			() => props.zoomBoundaries,
 			() => {
 				simulation.setZoomBoundaries(props.zoomBoundaries[0], props.zoomBoundaries[1]);
+			}
+		);
+		watch(
+			() => props.draggableNodes,
+			() => {
+				simulation.draggableNodes(props.draggableNodes);
 			}
 		);
 	},

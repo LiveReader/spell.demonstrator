@@ -27,15 +27,17 @@ function operation(data, initialShape, changes, Template) {
 	const personsCount = addPersonsCount();
 	const objectsCount = addObjectsCount();
 
-	OnZoom(data, 0.35, [LODStyle(label.select("text"), "class", "hidden", (k) => k < 0.35)]);
-	OnZoom(data, 0.7, [
-		LODStyle(tagCollection, "class", "hidden", (k) => k < 0.7),
-		LODStyle(location, "class", "hidden", (k) => k < 0.7),
-		LODStyle(persons, "class", "hidden", (k) => k < 0.7),
-		LODStyle(personsCount, "class", "hidden", (k) => k < 0.7),
-		LODStyle(objects, "class", "hidden", (k) => k < 0.7),
-		LODStyle(objectsCount, "class", "hidden", (k) => k < 0.7),
-	]);
+	if(!data.ignoreLODs) {
+		OnZoom(data, 0.35, [LODStyle(label.select("text"), "class", "hidden", (k) => k < 0.35)]);
+		OnZoom(data, 0.7, [
+			LODStyle(tagCollection, "class", "hidden", (k) => k < 0.7),
+			LODStyle(location, "class", "hidden", (k) => k < 0.7),
+			LODStyle(persons, "class", "hidden", (k) => k < 0.7),
+			LODStyle(personsCount, "class", "hidden", (k) => k < 0.7),
+			LODStyle(objects, "class", "hidden", (k) => k < 0.7),
+			LODStyle(objectsCount, "class", "hidden", (k) => k < 0.7),
+		]);
+	}
 
 	Shape.transform(shape, true, data.shape.scale * operation.shapeSize);
 	return shape;

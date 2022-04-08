@@ -7,6 +7,7 @@ const Type = {
 // prettier-ignore
 const name = {
 	label: "Name",
+	prefix: "erepn_",
 	first: { label: "Vorname", type: Type.Text, size: 40, value: null,},
 	last: { label: "Nachname", type: Type.Text, size: 40, value: null,},
 };
@@ -61,6 +62,7 @@ const competence = {
 // prettier-ignore
 const organisation = {
 	label: "Organisation",
+	prefix: "ereporg_",
 	hospital: { label: "Krankenhaus", type: Type.Selection, options: ["Ja", "Nein"], size: 30, value: null },
 	practice: { label: "Arztpraxis", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	firedepartment: { label: "Feuerwehr", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
