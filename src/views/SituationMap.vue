@@ -51,12 +51,18 @@ let lindenhof = [49.472413664609626, 8.468794078498757];
 let ruchheim = [49.4723270557513, 8.328341303731001];
 
 let ludwigshafenBounds = [
-	[49.4266985, 8.2982215],
-	[49.5480579, 8.4769401],
+	[49.406059, 8.347909],
+	[49.540137, 8.565615],
 ];
 
 // leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
+let graphFiles;
+let operationalAreas;
+let closureFiles;
+let cloudFiles;
+let meetingPointFiles;
+let trafficJamFiles;
 let selectedNodes = ref([]);
 let map;
 let tileLayer;
@@ -66,6 +72,7 @@ let bounds;
 let maxBounds;
 let minZoom;
 let maxZoom;
+let initialZoom;
 
 let svgDimensions;
 let svgElementBounds;
@@ -77,8 +84,77 @@ svgDimensions = {
 	x: 2000,
 	y: 2000,
 }
-minZoom = 12;
+minZoom = 10;
 maxZoom = 18;
+initialZoom = 14;
+
+// file paths
+graphFiles = [
+	"atemwegsreizung.json",
+	"atemwegsreizung1.json",
+	"atemwegsreizung2.json",
+	"atemwegsreizung3.json",
+	"atemwegsreizung4.json",
+	"atemwegsreizung5.json",
+	"brandGarten.json",
+	"brandL523.json",
+	// "saveFile1.json",
+	// "sturz.json",
+	"sturz_neu.json",
+	// "transport.json",
+	"transport_neu.json",
+	// "unfall.json",
+	"unfall_neu.json",
+	"verletzteGarten.json",
+	"zugentgleisung.json",
+];
+operationalAreas = [
+	"vermka_rlp.6.geojson",
+];
+closureFiles = [
+	"closure1.json",
+	"closure2.json",
+	"closure3.json",
+];
+cloudFiles = [
+	"cloud.json",
+	"cloud2.json",
+	"cloud3.json",
+];
+meetingPointFiles = [
+	"meeting_point.json",
+];
+trafficJamFiles = [
+	"traffic_jam1.json",
+];
+
+// geojson styles
+let defaultGJStyle = {
+	fillColor: '#000',
+	weight: 2,
+	opacity: 1,
+	color: '#fff',
+	fillOpacity: 0.25,
+};
+let invertedMapStyle = {
+	...defaultGJStyle,
+	opacity: 0,
+};
+let closureGJStyle = {
+	...defaultGJStyle,
+	color: '#f00',
+	dashArray: '1 4',
+};
+let trafficJamGJStyle = {
+	...defaultGJStyle,
+	color: '#f0f',
+};
+let cloudGJStyle = {
+	...defaultGJStyle,
+	fillColor: '#ff9f00',
+	color: '#ff7a00',
+	weight: 1,
+}
 
 // DOM refs
 let svgElementRef;
@@ -121,6 +197,10 @@ function latLngToSvgCoordinates(latLng) {
 	return svgCoordinate;
 }
 
+function scaleFromZoom(zooom) {
+	return Math.pow(2, 13) / Math.pow(2, zooom);
+}
+
 // utility functions
 function addNodeListener(node, eventName, callback) {
 	let nodeId = node.id;
@@ -135,13 +215,31 @@ function addNodeListener(node, eventName, callback) {
 	}, true);
 }
 
+function parseLocation(location) {
+	return location.split(', ').map(n => parseFloat(n));
+}
+
+function fetchAll(urls) {
+	let jsonPromises = urls
+		.map(url => fetch(url).then(res => res.json()));
+	return Promise.all(jsonPromises);
+}
+
 // graph functions
 function addNodeListeners() {
 	worldElementRef = document.querySelector('#world');
+	let nodes = graph.value.nodes;
 	let observer = new MutationObserver(mutations => {
 		nodeElementRefs = mutations.filter(mutation => mutation.target.classList[0] === 'nodeWorld')
-			.map(mutation => mutation.addedNodes[0]);
+			.map(mutation => {
+				let elem = mutation.addedNodes[0];
+				return {
+					elem: elem,
+					node: nodes.find(n => n.id == elem.id),
+				}
+			});
 		nodeElementRefs
+			.map(ref => ref.elem)
 			.forEach(node => {
 				addNodeListener(node, 'click',  e=>{
 					console.log(node.id);
@@ -150,6 +248,13 @@ function addNodeListeners() {
 				addNodeListener(node, 'dragstart');
 				addNodeListener(node, 'drag');
 				addNodeListener(node, 'pointerdown');
+				addNodeListener(node, 'dblclick', e => {
+					let graphlyNode = graph.value.nodes.find(n => n.id === node.id);
+					let { location } = graphlyNode.payload;
+					let coordinates = parseLocation(location);
+					console.log(location, coordinates);
+					map.flyTo(coordinates, maxZoom);
+				});
 			});
 	});
 	observer.observe(worldElementRef, {
@@ -160,24 +265,32 @@ function addNodeListeners() {
 
 function positionNodes() {
 	let nodes = graph.value.nodes;
-	let posA = latLngToGraphlyCoordinates(bridge);
-	let posB = latLngToGraphlyCoordinates(ruchheim);
-	nodes[0].anchor = {
-		type: 'hard',
-		x: posA.x,
-		y: posA.y,
-	};
-	nodes[1].anchor = {
-		type: 'hard',
-		x: posB.x,
-		y: posB.y,
-	};
+	nodes.forEach(node => {
+		let { location } = node.payload;
+		if (location) {
+			let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
+			node.anchor = {
+				type: 'hard',
+				x: coordinates.x,
+				y: coordinates.y,
+			};
+		}
+	});
+	graph.value.hasUpdate = true;
+}
+
+function scaleNodes(scale) {
+	graph.value.nodes.forEach(node => {
+		node.shape.scale = scale;
+	});
 	graph.value.hasUpdate = true;
 }
 
 function postInitGraph() {
 	addNodeListeners();
 	positionNodes();
+	let initialScale = scaleFromZoom(initialZoom);
+	scaleNodes(initialScale);
 }
 
 export default {
@@ -189,7 +302,7 @@ export default {
 	setup(props, context) {
 		onMounted(() => {
 			/* Init leaflet */
-			map = L.map('map').setView(ludwigshafen, 14);
+			map = L.map('map').setView(ludwigshafen, initialZoom);
 			bounds = map.getBounds();
 
 			/* Load OSM data and setup map */
@@ -200,6 +313,7 @@ export default {
 				// tileSize: 512,
 				zoomSnap: 0,
 				zoomAnimation: false,
+				updateWhenZooming: false,
 				zoomDelta: 0,
 				duration: 0,
 			}).addTo(map);
@@ -215,32 +329,69 @@ export default {
 				fillColor: '#f03',
 				fillOpacity: 0.5,
 				radius: 50,
-				interactive: false,
+				interactive: true,
 			}).addTo(map);
 
 			/* Add Ludwigshafen border as geojson */
-			fetch("/ludwigshafen.geojson")
-				.then((response) => response.json())
+			fetchAll(operationalAreas.map(file => `mapData/${file}`))
 				.then((data) => {
-					data.geometries[0].coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
+					// let coordinates = [].concat(...data.map(d=>d.geometries[0].coordinates));
+					// coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
+					// let geojson = {
+					// 	type: "GeometryCollection",
+					// 	geometries: [
+					// 		{
+					// 			type: "MultiPolygon",
+					// 			coordinates: coordinates,
+					// 		}
+					// 	]
+					// }
+					// console.log(geojson);
+					console.log(data);
+					data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 					geojsonLayer = L.geoJSON(data, {
-						style:  (feature) => {
-							let color = feature.properties.color ? feature.properties.color : {
-								fillColor: '#444',
-								weight: 1.5,
-								opacity: 0,
-								color: '#ddd',
-								dashArray: '3',
-								fillOpacity: 0.2,
-							};
-							console.log(color);
-							return color;
-						},
-						invert: true,
+						style:  (feature) => invertedMapStyle,
 						interactive: false,
 					}).addTo(map);
-					/* obtain boundaries of ludwigshafen: */
-					// console.log(geojsonLayer.getBounds());
+				});
+
+			fetchAll(closureFiles.map(file => `mapData/${file}`))
+				.then((closures) => {
+					for (const closure of closures) {
+						L.geoJSON(closure, {
+							style:  (feature) => closureGJStyle,
+							interactive: true,
+						}).addTo(map);
+					}
+				});
+
+			fetchAll(trafficJamFiles.map(file => `mapData/${file}`))
+				.then((trafficJams) => {
+					for (const trafficJam of trafficJams) {
+						geojsonLayer = L.geoJSON(trafficJam, {
+							style:  (feature) => trafficJamGJStyle,
+							interactive: true,
+						}).addTo(map);
+					}
+				});
+
+			fetchAll(cloudFiles.map(file => `mapData/${file}`))
+				.then((clouds) => {
+					for (const cloud of clouds) {
+						geojsonLayer = L.geoJSON(cloud, {
+							style: (feature) => cloudGJStyle,
+							interactive: true,
+						}).addTo(map);
+					}
+				});
+
+			fetchAll(meetingPointFiles.map(file => `mapData/${file}`))
+				.then((meetingPoints) => {
+					for (const meetingPoint of meetingPoints) {
+						geojsonLayer = L.geoJSON(meetingPoint, {
+							interactive: true,
+						}).addTo(map);
+					}
 				});
 
 			/* Add root svg (overlay) element to inject Graphly */
@@ -256,17 +407,22 @@ export default {
 			}).addTo(map);
 
 			/* Load graph data from demo */
-			fetch("/graphData.json")
-				.then((response) => response.json())
-				.then((data) => {
-					graph.value = data.graph;
-					for (let i = 0; i < graph.value.nodes.length; i++) {
-						const node = graph.value.nodes[i];
-						if (node.taxonomy) continue;
-						node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
-					}
-					postInitGraph();
+			let urls = graphFiles.map(file => `/saveFiles/${file}`);
+			fetchAll(urls).then(arr => {
+				let nodes = []
+					.concat(...arr.map(graph => graph.nodes))
+					.filter(node => node.shape.type == 'operation' && node.payload.location)
+				nodes.forEach((node, idx) => {
+					node.id = `n${idx}`;
+					node.ignoreLODs = true;
 				});
+				graph.value = {
+					nodes: nodes,
+					links: [],
+					hasUpdate: true,
+				};
+				postInitGraph();
+			});
 		});
 	},
 	data: () => ({
@@ -286,8 +442,9 @@ export default {
 	methods: {
 		onZoomAnim   ({ target, center, zoom })  {
 			const oldZoom = map.getZoom()
+			const scale =  Math.pow(2, 13) / Math.pow(2, zoom);
 			if (zoom !== oldZoom) {
-				console.log(oldZoom, zoom);
+				scaleNodes(scale);
 			}
 			this.mousePos = null
  		},
