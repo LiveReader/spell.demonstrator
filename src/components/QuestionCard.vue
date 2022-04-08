@@ -13,7 +13,7 @@
 					(item.question_type == 'text' || item.question_type == 'number' || item.question_type == 'date')
 				"
 			>
-				<div v-if="!item.question_type == 'text'">
+				<!-- <div v-if="!item.question_type == 'text'"> -->
 					<v-text-field
 						v-for="(subItem, index) in item.value"
 						:key="item.id + '_' + index.toString()"
@@ -27,10 +27,10 @@
 						@focusout="$emit('input', item)"
 						@click:clear="$emit('input', item)"
 					></v-text-field>
-				</div>
+				<!-- </div> -->
 
 				<!-- Selection instead of Input for demonstrator -->
-				<div v-if="item.question_type == 'text'">
+				<!-- <div v-if="item.question_type == 'text'">
 					<v-autocomplete
 						v-for="(subItem, index) in item.value"
 						:key="item.id + '_' + index.toString()"
@@ -44,12 +44,12 @@
 						@focusout="$emit('input', item)"
 						@click:clear="$emit('input', item)"
 					></v-autocomplete>
-				</div>
+				</div> -->
 			</div>
 
 			<!-- Single Text Inputs  -->
 			<v-text-field
-				v-if="!Array.isArray(item.value) && (item.question_type == 'number' || item.question_type == 'date')"
+				v-if="!Array.isArray(item.value) && (item.question_type == 'number' || item.question_type == 'date' || item.question_type == 'text')"
 				v-model="item.value"
 				:label="item.label"
 				:type="item.question_type"
@@ -62,7 +62,7 @@
 			></v-text-field>
 
 			<!-- Selection instead of Input for demonstrator -->
-			<v-autocomplete
+			<!-- <v-autocomplete
 				v-if="!Array.isArray(item.value) && item.question_type == 'text'"
 				v-model="item.value"
 				:label="item.label"
@@ -73,7 +73,7 @@
 				clearable
 				@focusout="$emit('input', item)"
 				@click:clear="$emit('input', item)"
-			></v-autocomplete>
+			></v-autocomplete> -->
 
 			<!-- Yes/No Inputs  -->
 			<div width="100%" style="display: flex; justify-content: center">
