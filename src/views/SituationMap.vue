@@ -7,11 +7,11 @@
 		></Navigation>
 
 		<div id="map" style="height: 100vh; width: inherit;">
-			<div id="overlay" style=" width: 100%; position: absolute; z-index: 401; top: 0; ">
+			<!-- <div id="overlay" style=" width: 100%; position: absolute; z-index: 401; top: 0; ">
 				<div id="timeline" style="background: #fff; height: 32px; width: 80%; margin: 10px auto auto;">
 
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<Graphly
 			v-if="svgElementRef"
