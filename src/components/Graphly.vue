@@ -48,6 +48,7 @@ export default {
 	},
 	emits: [
 		"new-edge",
+		"edge-click",
 		"background",
 		"click",
 		"double-click",
@@ -66,6 +67,9 @@ export default {
 			simulation.setGravity(props.gravity);
 			simulation.onNewEdge((source, target) => {
 				context.emit("new-edge", source, target);
+			});
+			simulation.onEdgeClick((e, d) => {
+				context.emit("edge-click", e, d);
 			});
 			simulation.onBackground((e, pos) => {
 				context.emit("background", e, pos);
