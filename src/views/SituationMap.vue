@@ -5,16 +5,28 @@
 			:icon="'./spell.demonstrator.situationmanagement.svg'"
 			:title="'Lagemanagement'"
 		></Navigation>
-		<div style="height: 100vh; width: 100vw; position: absolute">
-			<div id="map" style="height: 100vh; width: 100vw; position: fixed"></div>
-			<Graphly
-				v-if="svgElementRef"
-				:graph="graph"
-				:zoom-boundaries="[1, 1]"
-				:svg="svgElementRef"
-				:selected="selectedNodes"
-			/>
+
+		<div id="map" style="height: 100vh; width: inherit;">
+			<div id="overlay" style=" width: 100%; position: absolute; z-index: 401; top: 0; ">
+				<div id="timeline" style="background: #fff; height: 32px; width: 80%; margin: 10px auto auto;">
+
+				</div>
+			</div>
 		</div>
+		<Graphly
+			v-if="svgElementRef"
+			:graph="graph"
+			:zoom-boundaries="[1, 1]"
+			:svg="svgElementRef"
+			:selected="selectedNodes"
+		/>
+
+		<v-bottom-navigation color="primary">
+			<v-btn v-for="item in buttons" :key="item">
+				<span>{{item}}</span>
+				<v-icon>mdi-history</v-icon>
+			</v-btn>
+		</v-bottom-navigation>
 	</div>
 </template>
 
@@ -90,22 +102,22 @@ initialZoom = 14;
 
 // file paths
 graphFiles = [
-	"atemwegsreizung.json",
-	"atemwegsreizung1.json",
-	"atemwegsreizung2.json",
-	"atemwegsreizung3.json",
-	"atemwegsreizung4.json",
-	"atemwegsreizung5.json",
-	"brandGarten.json",
-	"brandL523.json",
-	// "saveFile1.json",
-	// "sturz.json",
-	"sturz_neu.json",
-	// "transport.json",
-	"transport_neu.json",
-	// "unfall.json",
-	"unfall_neu.json",
-	"verletzteGarten.json",
+	"Apple Watch.json",
+	"Atemwegsreizung 1.json",
+	"Atemwegsreizung 2.json",
+	"Atemwegsreizung 3.json",
+	"Atemwegsreizung 4.json",
+	"Atemwegsreizung 5.json",
+	"Brand Gartenanlage.json",
+	"Brand L523.json",
+	"Dialyse.json",
+	"E-Call.json",
+	"HNR.json",
+	"Save File 1.json",
+	"sturz.json",
+	"transport.json",
+	"unfall.json",
+	"Verletzte Gartenanlage.json",
 	"zugentgleisung.json",
 ];
 operationalAreas = [
@@ -127,6 +139,18 @@ meetingPointFiles = [
 trafficJamFiles = [
 	"traffic_jam1.json",
 ];
+
+// Timeline
+let buttons = ref([
+	// "Verkehrsunfall",
+	// "Sturz",
+	// "Krankentransport",
+	// "Zugentgleisung",
+	// "Brand L523",
+	"Brand Gartenanlage",
+	"Verletzte Gartenanlage",
+	"Augen-/Atemwegsreizungen",
+]);
 
 // geojson styles
 let defaultGJStyle = {
@@ -335,19 +359,6 @@ export default {
 			/* Add Ludwigshafen border as geojson */
 			fetchAll(operationalAreas.map(file => `mapData/${file}`))
 				.then((data) => {
-					// let coordinates = [].concat(...data.map(d=>d.geometries[0].coordinates));
-					// coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
-					// let geojson = {
-					// 	type: "GeometryCollection",
-					// 	geometries: [
-					// 		{
-					// 			type: "MultiPolygon",
-					// 			coordinates: coordinates,
-					// 		}
-					// 	]
-					// }
-					// console.log(geojson);
-					console.log(data);
 					data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 					geojsonLayer = L.geoJSON(data, {
 						style:  (feature) => invertedMapStyle,
@@ -429,6 +440,7 @@ export default {
 		graph,
 		svgElementRef,
 		selectedNodes,
+		buttons,
     }),
 
 	mounted() {
