@@ -192,6 +192,7 @@ let controlItems = ref([
 				},
 				taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-action"] ?? {})),
 			};
+			node.taxonomy.status.value = "Geplant";
 			graph.value.nodes.push(node);
 			taxonomy2payload[node.shape.type](node, graph);
 			graph.value.links.push({
@@ -354,10 +355,13 @@ function onBackground(e, pos) {
 function onClick(e, d) {
 	// accept suggestions
 	if (d.suggestion) {
+		const sourceNode = graph.value.nodes.find((n) => n.id == d.spawn.source);
 		delete d.suggestion;
 		d.taxonomy.alerted.value = "Ja";
 		d.taxonomy.status.value = "3";
 		d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
+		sourceNode.taxonomy.status.value = "Laufend";
+		taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
 		taxonomy2payload[d.shape.type](d, graph.value);
 		d.shape.scale = 1;
 		// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
