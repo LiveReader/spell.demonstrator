@@ -28,7 +28,12 @@
 			@click="extendedDrawer = true"
 		>
 			<v-list id="icon" color="#00000000" @click="extendedDrawer = false">
-				<v-list-item :prepend-avatar="icon" title=""></v-list-item>
+				<v-list-item
+					:prepend-avatar="icon"
+					title=""
+					:style="{ backgroundColor: color }"
+					class="rounded-r-xl"
+				></v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 	</div>
