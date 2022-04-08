@@ -217,7 +217,7 @@ let controlItems = ref([
 	{
 		icon: "mdi-ambulance",
 		enabled: true,
-		// checkEnabled: () =>
+		checkEnabled: () => true,
 		// 	graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
 		onClick: () => {
 			const id = "node-" + Math.random();
