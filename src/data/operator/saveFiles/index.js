@@ -64,6 +64,16 @@ const saveFiles = [
 		name: "Hausnotruf",
 		file: () => fetch("./saveFiles/HNR.json").then((response) => response.json()),
 	}
+	,
+	{
+		name: "Apple Watch",
+		file: () => fetch("./saveFiles/Apple Watch.json").then((response) => response.json()),
+	}
+	,
+	{
+		name: "Dialyse",
+		file: () => fetch("./saveFiles/Dialyse.json").then((response) => response.json()),
+	}
 ];
 
 export { saveFiles };
