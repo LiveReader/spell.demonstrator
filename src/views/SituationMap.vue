@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="situation-map-screen">
 		<Navigation
 			:color="'#9575cd'"
 			:icon="'./spell.demonstrator.situationmanagement.svg'"
@@ -467,4 +467,14 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#situation-map-screen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	background-color: #fafafc;
+}
+</style>
