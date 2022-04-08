@@ -85,8 +85,13 @@ let controlItems = ref([
 				},
 				spawn: {
 					source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
-					angle: 0,
-					distance: 500,
+					angle: 180,
+					distance:
+						400 *
+						(1 +
+							graph.value.nodes.filter(
+								(n) => n.shape.type == "affected-person" || n.shape.type == "affected-object"
+							).length),
 				},
 				payload: {
 					status: "",
@@ -109,7 +114,7 @@ let controlItems = ref([
 				type: "solid",
 				directed: false,
 				label: "",
-				strength: "weak",
+				strength: "loose",
 			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
@@ -136,7 +141,12 @@ let controlItems = ref([
 				spawn: {
 					source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
 					angle: 180,
-					distance: 500,
+					distance:
+						400 *
+						(1 +
+							graph.value.nodes.filter(
+								(n) => n.shape.type == "affected-person" || n.shape.type == "affected-object"
+							).length),
 				},
 				payload: {
 					status: "minor",
@@ -154,7 +164,7 @@ let controlItems = ref([
 				type: "solid",
 				directed: false,
 				label: "",
-				strength: "weak",
+				strength: "loose",
 			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
@@ -385,7 +395,7 @@ function onClick(e, d) {
 		d.shape.scale = 1;
 		// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
 		graph.value.nodes = graph.value.nodes.filter((node) => {
-			if (node.suggestion && node.spawn.target == d.spawn.target) {
+			if (node.suggestion && node.spawn?.source == sourceNode.id) {
 				return false;
 			}
 			return true;
