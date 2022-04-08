@@ -54,6 +54,10 @@ let ludwigshafenBounds = [
 // leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let graphFiles;
+let closureFiles;
+let cloudFiles;
+let meetingPointFiles;
+let trafficJamFiles;
 let selectedNodes = ref([]);
 let map;
 let tileLayer;
@@ -97,6 +101,22 @@ graphFiles = [
 	"verletzteGarten.json",
 	"zugentgleisung.json",
 ];
+closureFiles = [
+	"closure1.json",
+	"closure2.json",
+	"closure3.json",
+];
+cloudFiles = [
+	"cloud.json",
+	"cloud2.json",
+	"cloud3.json",
+];
+meetingPointFiles = [
+	"meeting_point.json",
+];
+trafficJamFiles = [
+	"traffic_jam1.json",
+];
 
 // DOM refs
 let svgElementRef;
@@ -139,6 +159,10 @@ function latLngToSvgCoordinates(latLng) {
 	return svgCoordinate;
 }
 
+function scaleFromZoom(zooom) {
+	return Math.pow(2, 13) / Math.pow(2, zooom);
+}
+
 // utility functions
 function addNodeListener(node, eventName, callback) {
 	let nodeId = node.id;
@@ -155,6 +179,12 @@ function addNodeListener(node, eventName, callback) {
 
 function parseLocation(location) {
 	return location.split(', ').map(n => parseFloat(n));
+}
+
+function fetchAll(urls) {
+	let jsonPromises = urls
+		.map(url => fetch(url).then(res => res.json()));
+	return Promise.all(jsonPromises);
 }
 
 // graph functions
@@ -221,7 +251,7 @@ function scaleNodes(scale) {
 function postInitGraph() {
 	addNodeListeners();
 	positionNodes();
-	let initialScale = Math.pow(2, 13) / Math.pow(2, initialZoom);
+	let initialScale = scaleFromZoom(initialZoom);
 	scaleNodes(initialScale);
 }
 
@@ -261,7 +291,7 @@ export default {
 				fillColor: '#f03',
 				fillOpacity: 0.5,
 				radius: 50,
-				interactive: false,
+				interactive: true,
 			}).addTo(map);
 
 			/* Add Ludwigshafen border as geojson */
@@ -279,14 +309,89 @@ export default {
 								dashArray: '3',
 								fillOpacity: 0.25,
 							};
-							console.log(color);
 							return color;
 						},
-						invert: true,
 						interactive: false,
 					}).addTo(map);
 					/* obtain boundaries of ludwigshafen: */
 					// console.log(geojsonLayer.getBounds());
+				});
+
+			fetchAll(closureFiles.map(file => `mapData/${file}`))
+				.then((closures) => {
+					for (const closure of closures) {
+						geojsonLayer = L.geoJSON(closure, {
+							style:  (feature) => {
+								let color = feature.properties.color ? feature.properties.color : {
+									fillColor: '#000',
+									weight: 2,
+									opacity: 1,
+									color: '#f00',
+									dashArray: '1 4',
+									fillOpacity: 0.25,
+								};
+								return color;
+							},
+							interactive: true,
+						}).addTo(map);
+					}
+				});
+
+			fetchAll(trafficJamFiles.map(file => `mapData/${file}`))
+				.then((trafficJams) => {
+					for (const trafficJam of trafficJams) {
+						geojsonLayer = L.geoJSON(trafficJam, {
+							style:  (feature) => {
+								let color = feature.properties.color ? feature.properties.color : {
+									fillColor: '#000',
+									weight: 2,
+									opacity: 1,
+									color: '#f0f',
+									fillOpacity: 0.25,
+								};
+								return color;
+							},
+							interactive: true,
+						}).addTo(map);
+					}
+				});
+			
+			fetchAll(cloudFiles.map(file => `mapData/${file}`))
+				.then((clouds) => {
+					for (const cloud of clouds) {
+						geojsonLayer = L.geoJSON(cloud, {
+							style:  (feature) => {
+								let color = feature.properties.color ? feature.properties.color : {
+									fillColor: '#ff9f00',
+									weight: 1,
+									opacity: 1,
+									color: '#ff7a00',
+									fillOpacity: 0.25,
+								};
+								return color;
+							},
+							interactive: true,
+						}).addTo(map);
+					}
+				});
+
+			fetchAll(meetingPointFiles.map(file => `mapData/${file}`))
+				.then((meetingPoints) => {
+					for (const meetingPoint of meetingPoints) {
+						geojsonLayer = L.geoJSON(meetingPoint, {
+							style:  (feature) => {
+								let color = feature.properties.color ? feature.properties.color : {
+									fillColor: '#000',
+									weight: 2,
+									opacity: 1,
+									color: '#f0f',
+									fillOpacity: 0.25,
+								};
+								return color;
+							},
+							interactive: true,
+						}).addTo(map);
+					}
 				});
 
 			/* Add root svg (overlay) element to inject Graphly */
@@ -302,8 +407,8 @@ export default {
 			}).addTo(map);
 
 			/* Load graph data from demo */
-			let jsonPromises = graphFiles.map(file => fetch(`/saveFiles/${file}`).then(res => res.json()));
-			Promise.all(jsonPromises).then(arr => {
+			let urls = graphFiles.map(file => `/saveFiles/${file}`);
+			fetchAll(urls).then(arr => {
 				let nodes = []
 					.concat(...arr.map(graph => graph.nodes))
 					.filter(node => node.shape.type == 'operation' && node.payload.location)
