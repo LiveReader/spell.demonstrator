@@ -23,6 +23,7 @@
 				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
 			</v-list>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
+			<!-- <v-btn @click="downloadPrefixedTaxonomy()">Generate Prefixed Taxonomy</v-btn> -->
 		</Navigation>
 		<Graphly
 			:graph="graph"
@@ -48,7 +49,7 @@
 <script setup>
 import { onMounted, watch, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
-import { taxonomyTemplate } from "../data/operator/taxonomy/index";
+import { taxonomyTemplate, generatePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
@@ -84,8 +85,13 @@ let controlItems = ref([
 				},
 				spawn: {
 					source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
-					angle: 0,
-					distance: 500,
+					angle: 180,
+					distance:
+						400 *
+						(1 +
+							graph.value.nodes.filter(
+								(n) => n.shape.type == "affected-person" || n.shape.type == "affected-object"
+							).length),
 				},
 				payload: {
 					status: "",
@@ -108,7 +114,7 @@ let controlItems = ref([
 				type: "solid",
 				directed: false,
 				label: "",
-				strength: "weak",
+				strength: "loose",
 			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
@@ -135,7 +141,12 @@ let controlItems = ref([
 				spawn: {
 					source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
 					angle: 180,
-					distance: 500,
+					distance:
+						400 *
+						(1 +
+							graph.value.nodes.filter(
+								(n) => n.shape.type == "affected-person" || n.shape.type == "affected-object"
+							).length),
 				},
 				payload: {
 					status: "minor",
@@ -153,7 +164,7 @@ let controlItems = ref([
 				type: "solid",
 				directed: false,
 				label: "",
-				strength: "weak",
+				strength: "loose",
 			});
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
@@ -286,6 +297,16 @@ let controlItems = ref([
 	},
 ]);
 
+function downloadPrefixedTaxonomy() {
+	const d = JSON.stringify(generatePrefixedTaxonomy(taxonomyTemplate));
+	const blob = new Blob([d], { type: "application/json" });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "taxonomy.json";
+	a.click();
+}
+
 function nodesPointAt(target, sourceType) {
 	for (let i = 0; i < graph.value.links.length; i++) {
 		const link = graph.value.links[i];
@@ -322,7 +343,7 @@ function randomRessourceSuggestion(source) {
 	graph.value.links.push({
 		source: id,
 		target: source,
-		type: "solid",
+		type: "dotted",
 		directed: true,
 		label: `ca. ${randomTime} min`,
 		strength: "weak",
@@ -374,7 +395,7 @@ function onClick(e, d) {
 		d.shape.scale = 1;
 		// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
 		graph.value.nodes = graph.value.nodes.filter((node) => {
-			if (node.suggestion && node.spawn.target == d.spawn.target) {
+			if (node.suggestion && node.spawn?.source == sourceNode.id) {
 				return false;
 			}
 			return true;
