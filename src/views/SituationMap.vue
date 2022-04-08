@@ -28,7 +28,6 @@ import {
 } from "@vue-leaflet/vue-leaflet";
 import { latLngBounds, latLng } from "leaflet";
 import * as L from "leaflet" ;
-import * as geo from "@mapbox/geojson-merge";
 
 import "leaflet/dist/leaflet.css";
 
@@ -55,6 +54,7 @@ let ludwigshafenBounds = [
 // leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let graphFiles;
+let operationalAreas;
 let closureFiles;
 let cloudFiles;
 let meetingPointFiles;
@@ -83,6 +83,8 @@ svgDimensions = {
 minZoom = 12;
 maxZoom = 18;
 initialZoom = 14;
+
+// file paths
 graphFiles = [
 	"atemwegsreizung.json",
 	"atemwegsreizung1.json",
@@ -102,6 +104,18 @@ graphFiles = [
 	"verletzteGarten.json",
 	"zugentgleisung.json",
 ];
+operationalAreas = [
+	"bad_duerkheim.geojson",
+	"frankenthal.geojson",
+	"gruenstadt.geojson",
+	"hassloch.geojson",
+	"lambrecht.geojson",
+	"ludwigshafen.geojson",
+	"mutterstadt.geojson",
+	"neustadt.geojson",
+	"schiffstadt.geojson",
+	"speyer.geojson",
+];
 closureFiles = [
 	"closure1.json",
 	"closure2.json",
@@ -118,6 +132,34 @@ meetingPointFiles = [
 trafficJamFiles = [
 	"traffic_jam1.json",
 ];
+
+// geojson styles
+let defaultGJStyle = {
+	fillColor: '#000',
+	weight: 2,
+	opacity: 1,
+	color: '#fff',
+	fillOpacity: 0.25,
+};
+let invertedMapStyle = {
+	...defaultGJStyle,
+	opacity: 0,
+};
+let closureGJStyle = {
+	...defaultGJStyle,
+	color: '#f00',
+	dashArray: '1 4',
+};
+let trafficJamGJStyle = {
+	...defaultGJStyle,
+	color: '#f0f',
+};
+let cloudGJStyle = {
+	...defaultGJStyle,
+	fillColor: '#ff9f00',
+	color: '#ff7a00',
+	weight: 1,
+}
 
 // DOM refs
 let svgElementRef;
@@ -296,22 +338,12 @@ export default {
 			}).addTo(map);
 
 			/* Add Ludwigshafen border as geojson */
-			fetch("/ludwigshafen.geojson")
+			fetch("/mapData/ludwigshafen.geojson")
 				.then((response) => response.json())
 				.then((data) => {
 					data.geometries[0].coordinates[0].unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 					geojsonLayer = L.geoJSON(data, {
-						style:  (feature) => {
-							let color = feature.properties.color ? feature.properties.color : {
-								fillColor: '#000',
-								weight: 1.5,
-								opacity: 0,
-								color: '#ddd',
-								dashArray: '3',
-								fillOpacity: 0.25,
-							};
-							return color;
-						},
+						style:  (feature) => invertedMapStyle,
 						interactive: false,
 					}).addTo(map);
 					/* obtain boundaries of ludwigshafen: */
@@ -321,18 +353,8 @@ export default {
 			fetchAll(closureFiles.map(file => `mapData/${file}`))
 				.then((closures) => {
 					for (const closure of closures) {
-						geojsonLayer = L.geoJSON(closure, {
-							style:  (feature) => {
-								let color = feature.properties.color ? feature.properties.color : {
-									fillColor: '#000',
-									weight: 2,
-									opacity: 1,
-									color: '#f00',
-									dashArray: '1 4',
-									fillOpacity: 0.25,
-								};
-								return color;
-							},
+						L.geoJSON(closure, {
+							style:  (feature) => closureGJStyle,
 							interactive: true,
 						}).addTo(map);
 					}
@@ -342,35 +364,17 @@ export default {
 				.then((trafficJams) => {
 					for (const trafficJam of trafficJams) {
 						geojsonLayer = L.geoJSON(trafficJam, {
-							style:  (feature) => {
-								let color = feature.properties.color ? feature.properties.color : {
-									fillColor: '#000',
-									weight: 2,
-									opacity: 1,
-									color: '#f0f',
-									fillOpacity: 0.25,
-								};
-								return color;
-							},
+							style:  (feature) => trafficJamGJStyle,
 							interactive: true,
 						}).addTo(map);
 					}
 				});
-			
+
 			fetchAll(cloudFiles.map(file => `mapData/${file}`))
 				.then((clouds) => {
 					for (const cloud of clouds) {
 						geojsonLayer = L.geoJSON(cloud, {
-							style:  (feature) => {
-								let color = feature.properties.color ? feature.properties.color : {
-									fillColor: '#ff9f00',
-									weight: 1,
-									opacity: 1,
-									color: '#ff7a00',
-									fillOpacity: 0.25,
-								};
-								return color;
-							},
+							style: (feature) => cloudGJStyle,
 							interactive: true,
 						}).addTo(map);
 					}
@@ -380,16 +384,6 @@ export default {
 				.then((meetingPoints) => {
 					for (const meetingPoint of meetingPoints) {
 						geojsonLayer = L.geoJSON(meetingPoint, {
-							style:  (feature) => {
-								let color = feature.properties.color ? feature.properties.color : {
-									fillColor: '#000',
-									weight: 2,
-									opacity: 1,
-									color: '#f0f',
-									fillOpacity: 0.25,
-								};
-								return color;
-							},
 							interactive: true,
 						}).addTo(map);
 					}
