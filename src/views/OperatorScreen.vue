@@ -34,6 +34,7 @@
 			@background="onBackground"
 			@click="onClick"
 			@double-click="onDoubleClick"
+			@drag-end="onDragEnd"
 			@edge-click="onEdgeClick"
 		/>
 		<SideBar
@@ -121,6 +122,11 @@ let controlItems = ref([
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 			setTimeout(() => {
+				node.anchor = {
+					type: "soft",
+					x: node.x,
+					y: node.y,
+				};
 				selectedNodes.value = [id];
 				controlItems.value.forEach((item) => {
 					item.enabled = item.checkEnabled();
@@ -171,6 +177,11 @@ let controlItems = ref([
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 			setTimeout(() => {
+				node.anchor = {
+					type: "soft",
+					x: node.x,
+					y: node.y,
+				};
 				selectedNodes.value = [id];
 				controlItems.value.forEach((item) => {
 					item.enabled = item.checkEnabled();
@@ -220,6 +231,11 @@ let controlItems = ref([
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 			setTimeout(() => {
+				node.anchor = {
+					type: "soft",
+					x: node.x,
+					y: node.y,
+				};
 				selectedNodes.value = [id];
 				controlItems.value.forEach((item) => {
 					item.enabled = item.checkEnabled();
@@ -230,8 +246,8 @@ let controlItems = ref([
 	{
 		icon: "mdi-ambulance",
 		enabled: true,
-		checkEnabled: () => true,
-		// 	graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
+		checkEnabled: () =>
+			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
 		onClick: () => {
 			const id = "node-" + Math.random();
 			const source = selectedNodes?.value[0] ?? graph.value.nodes.find((n) => n.shape.type == "operation").id;
@@ -267,6 +283,11 @@ let controlItems = ref([
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 			setTimeout(() => {
+				node.anchor = {
+					type: "soft",
+					x: node.x,
+					y: node.y,
+				};
 				if (selectedNodes?.value[0]) {
 					selectedNodes.value = [id];
 					controlItems.value.forEach((item) => {
@@ -354,7 +375,8 @@ function randomRessourceSuggestion(source) {
 
 function onCloseModal(d) {
 	taxonomy2payload[d.shape.type](d, graph.value);
-	graph.value.hasUpdate = true;
+	selectedNodes.value = [d.id];
+	// graph.value.hasUpdate = true;
 	generateOpenQuestions();
 	filterQuestions();
 }
@@ -445,6 +467,15 @@ function onDoubleClick(e, d) {
 			break;
 	}
 	modal.value.title = title;
+}
+
+function onDragEnd(e, d, pos) {
+	d.anchor = {
+		type: "soft",
+		x: pos.x,
+		y: pos.y,
+	};
+	graph.value.hasUpdate = true;
 }
 
 function updateClosedQuestions() {
@@ -600,6 +631,15 @@ watch(
 	() => {
 		const node = graph.value.nodes.filter((n) => n.id == selectedNodes.value[0])[0];
 		if (node?.shape?.type == "emergency-action") {
+			if (
+				!(
+					node.taxonomy.technical.firefighting.value == "Ja" ||
+					node.taxonomy.technical.rescue.value == "Ja" ||
+					node.taxonomy.technical.extrication.value == "Ja" ||
+					node.taxonomy.technical.protection.value == "Ja"
+				)
+			)
+				return;
 			if (
 				!graph.value.links.find(
 					(l) => l.source.id == node.id && l.target.shape.type == "emergency-ressource"

@@ -42,8 +42,18 @@ function operation(node, graph) {
 				type: "affected-person",
 				scale: 1,
 			},
+			spawn: {
+				source: node.id,
+				angle: 180,
+				distance:
+					400 *
+					(1 +
+						graph.nodes.filter(
+							(n) => n.shape.type == "affected-person" || n.shape.type == "affected-object"
+						).length),
+			},
 			payload: {
-				status: "",
+				status: "delayed",
 				name: {
 					first: "",
 					last: "",
@@ -73,6 +83,16 @@ function operation(node, graph) {
 			shape: {
 				type: "affected-object",
 				scale: 1,
+			},
+			spawn: {
+				source: node.id,
+				angle: 180,
+				distance:
+					400 *
+					(1 +
+						graph.nodes.filter(
+							(n) => n.shape.type == "affected-person" || n.shape.type == "affected-object"
+						).length),
 			},
 			payload: {
 				status: "delayed",
