@@ -25,6 +25,14 @@ function affectedPerson(node, graph) {
 	let mentalcondition_tags = getTags(tax.condition.mentalcondition);
 	let tags = diagnosis_tags.concat(symptom_tags, vitalcondition_tags, physicalcondition_tags, mentalcondition_tags);
 
+	if (node?.taxonomy?.diagnosis?.heartattack?.value == "Ausgeschlossen") {
+		node.taxonomy.status.value = "Grün";
+	} else if (node?.taxonomy?.diagnosis?.heartattack?.value == "Unwahrscheinlich") {
+		node.taxonomy.status.value = "Gelb";
+	} else if (node?.taxonomy?.diagnosis?.heartattack?.value) {
+		node.taxonomy.status.value = "Rot";
+	}
+
 	node.payload = {
 		status: status[tax.status.value] ?? "delayed",
 		name: {
