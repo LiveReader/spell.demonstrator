@@ -43,7 +43,7 @@ const symptoms = {
 const diagnosis = {
 	label: "Diagnose",
 	prefix: "apd_",
-	diag1: { label: "Diag1", type: Type.Selection, options: ["Stark", "Mittel", "Schwach", "Nein"], size: 80, value: null },
+	heartattack: { label: "Herzinfakt", type: Type.Selection, options: ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"], size: 80, value: null },
 	
 };
 

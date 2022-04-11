@@ -323,8 +323,104 @@ const questionTemplates = [
 			d.taxonomy.condition.physicalcondition.infectionsince.value = v;
 		},
 	},
-	//
+
+	/// HeartAttack Questions
+	// Bluthochdruck
+	// d.taxonomy.condition.physicalcondition.oftenhypertension
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 881,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Bluthochdruck",
+		description: "Hat die Person oft Bluthochdruck?",
+		label: (d) => d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.label,
+		options: (d) => d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.options,
+		value: (d) => d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.value,
+		condition: (d) =>
+			heartAttackActivator(d) && !d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.value,
+		action: (v, d, g) => {
+			d.taxonomy.condition.physicalcondition.oftenhypertension.value = v;
+		},
+	},
+	// kalte fahle Haut
+	// d.taxonomy.symptoms.coldfadeskin
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 880,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "kalte fahle Haut",
+		description: "Hat die Person kalte fahle Haut?",
+		label: (d) => d?.taxonomy?.symptoms?.coldfadeskin?.label,
+		options: (d) => d?.taxonomy?.symptoms?.coldfadeskin?.options,
+		value: (d) => d?.taxonomy?.symptoms?.coldfadeskin?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.symptoms?.coldfadeskin?.value,
+		action: (v, d, g) => {
+			d.taxonomy.symptoms.coldfadeskin.value = v;
+		},
+	},
+	// kalter Schweiß
+	// d.taxonomy.symptoms.coldsweat
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 879,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "kalter Schweiß",
+		description: "Hat die Person kalter Schweiß?",
+		label: (d) => d?.taxonomy?.symptoms?.coldsweat?.label,
+		options: (d) => d?.taxonomy?.symptoms?.coldsweat?.options,
+		value: (d) => d?.taxonomy?.symptoms?.coldsweat?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.symptoms?.coldsweat?.value,
+		action: (v, d, g) => {
+			d.taxonomy.symptoms.coldsweat.value = v;
+		},
+	},
+	// Bewegungsabhängig
+	// d.taxonomy.symptoms.painmovementrelated
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 878,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Bewegungsabhängig",
+		description: "Sind die Schmerzen bewegungsabhängig?",
+		label: (d) => d?.taxonomy?.symptoms?.painmovementrelated?.label,
+		options: (d) => d?.taxonomy?.symptoms?.painmovementrelated?.options,
+		value: (d) => d?.taxonomy?.symptoms?.painmovementrelated?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.symptoms?.painmovementrelated?.value,
+		action: (v, d, g) => {
+			d.taxonomy.symptoms.painmovementrelated.value = v;
+		},
+	},
+	// confirmation question
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 877,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Herzinfakt Einschätzung",
+		description: "Einschätzung des Herzinfakt-Risikos.",
+		label: (d) => d?.taxonomy?.diagnosis?.heartattack?.label,
+		options: (d) => d?.taxonomy?.diagnosis?.heartattack?.options,
+		value: (d) => d?.taxonomy?.diagnosis?.heartattack?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.diagnosis?.heartattack?.value,
+		action: (v, d, g) => {
+			d.taxonomy.diagnosis.heartattack.value = v;
+		},
+	},
 ];
+
+function heartAttackActivator(d) {
+	return (
+		!d?.taxonomy?.diagnosis?.heartattack?.value &&
+		d?.taxonomy?.symptoms?.pain?.value &&
+		d?.taxonomy?.symptoms?.pain?.value != "Nein" &&
+		d?.taxonomy?.symptoms?.painlocation &&
+		d?.taxonomy?.symptoms?.painlocation?.value == "Brust"
+	);
+}
 
 for (let i = 0; i < questionTemplates.length; i++) {
 	questionTemplates[i].templateIndex = i.toString();

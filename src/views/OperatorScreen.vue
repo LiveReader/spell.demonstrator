@@ -109,7 +109,7 @@ let controlItems = ref([
 				taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["affected-person"] ?? {})),
 			};
 			graph.value.nodes.push(node);
-			taxonomy2payload[node.shape.type](node, graph);
+			taxonomy2payload[node.shape.type](node, graph.value);
 			graph.value.links.push({
 				source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
 				target: id,
@@ -159,7 +159,7 @@ let controlItems = ref([
 				taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["affected-object"] ?? {})),
 			};
 			graph.value.nodes.push(node);
-			taxonomy2payload[node.shape.type](node, graph);
+			taxonomy2payload[node.shape.type](node, graph.value);
 			graph.value.links.push({
 				source: graph.value.nodes.filter((n) => n.shape.type == "operation")[0].id,
 				target: id,
@@ -208,7 +208,7 @@ let controlItems = ref([
 			};
 			node.taxonomy.status.value = "Geplant";
 			graph.value.nodes.push(node);
-			taxonomy2payload[node.shape.type](node, graph);
+			taxonomy2payload[node.shape.type](node, graph.value);
 			graph.value.links.push({
 				source: selectedNodes.value[0],
 				target: id,
@@ -255,7 +255,7 @@ let controlItems = ref([
 				taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-ressource"] ?? {})),
 			};
 			graph.value.nodes.push(node);
-			taxonomy2payload[node.shape.type](node, graph);
+			taxonomy2payload[node.shape.type](node, graph.value);
 			graph.value.links.push({
 				source: source,
 				target: id,
@@ -341,7 +341,7 @@ function randomRessourceSuggestion(source) {
 	node.taxonomy.time.value = `bräuchte ca.${randomTime} min`;
 	node.taxonomy.alerted.value = "Nein";
 	graph.value.nodes.push(node);
-	taxonomy2payload[node.shape.type](node, graph);
+	taxonomy2payload[node.shape.type](node, graph.value);
 	graph.value.links.push({
 		source: id,
 		target: source,
@@ -384,6 +384,7 @@ function onBackground(e, pos) {
 	filterQuestions();
 }
 function onClick(e, d) {
+	if (d.shape.type == "assessment") return;
 	// accept suggestions
 	if (d.suggestion) {
 		const sourceNode = graph.value.nodes.find((n) => n.id == d.spawn.source);
@@ -431,6 +432,7 @@ function onClick(e, d) {
 	filterQuestions();
 }
 function onDoubleClick(e, d) {
+	if (d.shape.type == "assessment") return;
 	modal.value.show = true;
 	modal.value.node = d;
 	let title = (d?.taxonomy?.label ?? "") + ": ";
