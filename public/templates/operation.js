@@ -27,7 +27,7 @@ function operation(data, initialShape, changes, Template) {
 	const personsCount = addPersonsCount();
 	const objectsCount = addObjectsCount();
 
-	if(!data.ignoreLODs) {
+	if (!data.ignoreLODs) {
 		OnZoom(data, 0.35, [LODStyle(label.select("text"), "class", "hidden", (k) => k < 0.35)]);
 		OnZoom(data, 0.7, [
 			LODStyle(tagCollection, "class", "hidden", (k) => k < 0.7),

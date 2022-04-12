@@ -23,6 +23,7 @@
 				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
 			</v-list>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
+			<!-- <v-btn @click="converter(true)">Convert SaveFiles</v-btn> -->
 			<!-- <v-btn @click="downloadPrefixedTaxonomy()">Generate Prefixed Taxonomy</v-btn> -->
 			<!-- <v-btn @click="generateRessources()">Generate Ressources</v-btn> -->
 		</Navigation>
@@ -30,6 +31,7 @@
 			:graph="graph"
 			:selected="selectedNodes"
 			:link-distance="300"
+			:gravity="0"
 			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
@@ -51,7 +53,7 @@
 <script setup>
 import { onMounted, watch, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
-import { taxonomyTemplate, generatePrefixedTaxonomy } from "../data/operator/taxonomy/index";
+import { taxonomyTemplate, generatePrefixedTaxonomy, parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
@@ -247,7 +249,8 @@ let controlItems = ref([
 		icon: "mdi-ambulance",
 		enabled: true,
 		checkEnabled: () =>
-			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action",
+			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "emergency-action" ||
+			graph.value.nodes.find((n) => n.id == selectedNodes.value[0])?.shape?.type == "operation",
 		onClick: () => {
 			const id = "node-" + Math.random();
 			const source = selectedNodes?.value[0] ?? graph.value.nodes.find((n) => n.shape.type == "operation").id;
@@ -376,7 +379,7 @@ function randomRessourceSuggestion(source) {
 function onCloseModal(d) {
 	taxonomy2payload[d.shape.type](d, graph.value);
 	selectedNodes.value = [d.id];
-	// graph.value.hasUpdate = true;
+	graph.value.hasUpdate = true;
 	generateOpenQuestions();
 	filterQuestions();
 }
@@ -386,7 +389,7 @@ function addEdge(source, target) {
 		source: source,
 		target: target,
 		type: "solid",
-		directed: true,
+		directed: false,
 		label: "",
 		strength: "weak",
 	};
@@ -410,35 +413,53 @@ function onClick(e, d) {
 	// accept suggestions
 	if (d.suggestion) {
 		const sourceNode = graph.value.nodes.find((n) => n.id == d.spawn.source);
-		delete d.suggestion;
-		d.taxonomy.alerted.value = "Ja";
-		d.taxonomy.status.value = "3";
-		d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
-		sourceNode.taxonomy.status.value = "Laufend";
-		taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
-		taxonomy2payload[d.shape.type](d, graph.value);
-		d.shape.scale = 1;
-		// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
-		graph.value.nodes = graph.value.nodes.filter((node) => {
-			if (node.suggestion && node.spawn?.source == sourceNode.id) {
-				return false;
-			}
-			return true;
-		});
-		graph.value.links = graph.value.links.filter((link) => {
-			if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
-				return false;
-			}
-			return true;
-		});
-		graph.value.links.push({
-			source: sourceNode,
-			target: d,
-			type: "solid",
-			directed: false,
-			label: "",
-			strength: "weak",
-		});
+		if (d.shape.type == "emergency-ressource") {
+			delete d.suggestion;
+			d.taxonomy.alerted.value = "Ja";
+			d.taxonomy.status.value = "3";
+			d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
+			sourceNode.taxonomy.status.value = "Laufend";
+			taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
+			taxonomy2payload[d.shape.type](d, graph.value);
+			d.shape.scale = 1;
+			// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
+			graph.value.nodes = graph.value.nodes.filter((node) => {
+				if (node.suggestion && node.spawn?.source == sourceNode.id) {
+					return false;
+				}
+				return true;
+			});
+			graph.value.links = graph.value.links.filter((link) => {
+				if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
+					return false;
+				}
+				return true;
+			});
+			graph.value.links.push({
+				source: sourceNode,
+				target: d,
+				type: "solid",
+				directed: false,
+				label: "",
+				strength: "weak",
+			});
+		} else if (d.shape.type == "emergency-reporter") {
+			sourceNode.taxonomy = d.taxonomy;
+			taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
+			// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
+			graph.value.nodes = graph.value.nodes.filter((node) => {
+				if (node.suggestion && node.spawn?.source == sourceNode.id) {
+					return false;
+				}
+				return true;
+			});
+			graph.value.links = graph.value.links.filter((link) => {
+				if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
+					return false;
+				}
+				return true;
+			});
+		}
 		graph.value.hasUpdate = true;
 	}
 
@@ -537,9 +558,9 @@ function generateOpenQuestions() {
 		if (a.priority > b.priority) return -1;
 		return 0;
 	});
-	if (previouslyClosed.value) {
-		openQuestions.value.unshift(previouslyClosed.value);
-	}
+	// if (previouslyClosed.value) {
+	// 	openQuestions.value.unshift(previouslyClosed.value);
+	// }
 
 	filterQuestions();
 }
@@ -563,7 +584,7 @@ function closeQuestion(question) {
 		closedQuestions.value.push(question);
 	}
 	question.closed_at = Date.now();
-	previouslyClosed.value = question;
+	// previouslyClosed.value = question;
 }
 
 function questionInput(question) {
@@ -591,6 +612,10 @@ function saveFile() {
 		delete n.shape.template;
 		// n.taxonomy = generatePrefixedTaxonomy(n.taxonomy);
 	});
+	for (let i = 0; i < copy.nodes.length; i++) {
+		const node = copy.nodes[i];
+		node.taxonomy = generatePrefixedTaxonomy(node.taxonomy);
+	}
 	const d = JSON.stringify(graph.value);
 	const blob = new Blob([d], { type: "application/json" });
 	const url = URL.createObjectURL(blob);
@@ -604,6 +629,7 @@ function openSaveFile(item) {
 		graph.value = f;
 		for (let i = 0; i < graph.value.nodes.length; i++) {
 			const node = graph.value.nodes[i];
+			node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
 			taxonomy2payload[node.shape.type](node, graph.value);
 		}
 		graph.value.hasUpdate = true;
@@ -624,6 +650,16 @@ onMounted(() => {
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 		});
+	document.addEventListener("keydown", (e) => {
+		if (e.ctrlKey && e.key == "+") {
+			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale += 0.25));
+		} else if (e.ctrlKey && e.key == "-") {
+			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale -= 0.25));
+		} else if (e.ctrlKey && e.key == "0") {
+			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale = 1));
+		}
+		graph.value.hasUpdate = true;
+	});
 });
 
 watch(
@@ -634,6 +670,7 @@ watch(
 			if (
 				!(
 					node.taxonomy.technical.firefighting.value == "Ja" ||
+					node.taxonomy.technical.transport.value == "Ja" ||
 					node.taxonomy.technical.rescue.value == "Ja" ||
 					node.taxonomy.technical.extrication.value == "Ja" ||
 					node.taxonomy.technical.protection.value == "Ja"

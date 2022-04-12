@@ -36,6 +36,7 @@ function emergencyReporter(node) {
 
 	getCategory(tax.organisation.externemergencycallcenter, "control-center");
 
+	getCategory(tax.reportertype.wearable, "automatic-system");
 	getCategory(tax.organisation.homeemergencycall, "automatic-system");
 	getCategory(tax.reportertype.bma, "automatic-system");
 	getCategory(tax.reportertype.eCall.eCall, "automatic-system");

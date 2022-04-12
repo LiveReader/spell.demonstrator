@@ -15,17 +15,6 @@ const taxonomyTemplate = {
 };
 const prefixedTaxonomyTemplate = generatePrefixedTaxonomy(taxonomyTemplate);
 
-function generateID(obj) {
-	const keys = Object.keys(obj);
-	if (keys.includes("value")) {
-		obj.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-	} else {
-		obj.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-		for (let i = 0; i < keys.length; i++) {
-			if (keys[i] !== "label" && keys[i] !== "id" && keys[i] !== "prefix") generateID(obj[keys[i]]);
-		}
-	}
-}
 function findID(obj, id) {
 	const keys = Object.keys(obj);
 	if (keys.includes("value")) {
@@ -85,13 +74,4 @@ function removePrefixes(tax) {
 	return tax;
 }
 
-generateID(taxonomyTemplate);
-
-export {
-	taxonomyTemplate,
-	prefixedTaxonomyTemplate,
-	generateID,
-	findID,
-	generatePrefixedTaxonomy,
-	parsePrefixedTaxonomy,
-};
+export { taxonomyTemplate, prefixedTaxonomyTemplate, findID, generatePrefixedTaxonomy, parsePrefixedTaxonomy };

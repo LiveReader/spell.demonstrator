@@ -14,19 +14,19 @@
 				"
 			>
 				<!-- <div v-if="!item.question_type == 'text'"> -->
-					<v-text-field
-						v-for="(subItem, index) in item.value"
-						:key="item.id + '_' + index.toString()"
-						v-model="item.value[index]"
-						:label="item.label[index]"
-						:type="item.question_type"
-						class="inputField mt-3"
-						density="comfortable"
-						variant="outlined"
-						clearable
-						@focusout="$emit('input', item)"
-						@click:clear="$emit('input', item)"
-					></v-text-field>
+				<v-text-field
+					v-for="(subItem, index) in item.value"
+					:key="item.id + '_' + index.toString()"
+					v-model="item.value[index]"
+					:label="item.label[index]"
+					:type="item.question_type"
+					class="inputField mt-3"
+					density="comfortable"
+					variant="outlined"
+					clearable
+					@focusout="$emit('input', item)"
+					@click:clear="$emit('input', item)"
+				></v-text-field>
 				<!-- </div> -->
 
 				<!-- Selection instead of Input for demonstrator -->
@@ -49,7 +49,10 @@
 
 			<!-- Single Text Inputs  -->
 			<v-text-field
-				v-if="!Array.isArray(item.value) && (item.question_type == 'number' || item.question_type == 'date' || item.question_type == 'text')"
+				v-if="
+					!Array.isArray(item.value) &&
+					(item.question_type == 'number' || item.question_type == 'date' || item.question_type == 'text')
+				"
 				v-model="item.value"
 				:label="item.label"
 				:type="item.question_type"

@@ -19,6 +19,7 @@ function emergencyAction(node) {
 				case "Brandbekämpfung":
 					category = "fire-department";
 					break;
+				case "Transport":
 				case "Rettung":
 					category = "ambulance";
 					break;
