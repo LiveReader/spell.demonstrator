@@ -23,6 +23,8 @@ const eCall = {
 	energytype: { label: "Antriebsart", type: Type.Selection, options: ["Benzin", "Diesel", "Gas", "Elektro"], size: 20, value: null },
 	releasedby: { label: "Ausgelöst durch", type: Type.Selection, options: ["Manuell", "Automatisch"], size: 20, value: null },
 	fin: { label: "FIN", type: Type.Text, options: [], size: 20, value: null },
+	airbagsreleased: { label: "AirBags ausgelöst", type: Type.Selection, options: ["Ja", "Nein"], size: 30, value: null },
+	rescuecard: { label: "Rettungskarte", type: Type.Selection, options: ["Ja", "Nein"], size: 30, value: null },
 }
 
 // prettier-ignore
@@ -30,6 +32,7 @@ const reportertype = {
 	label: "Art",
 	prefix: "ereprt_",
 	eCall: eCall,
+	wearable: { label: "Wearable", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null },
 	person: { label: "Person", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null },
 	bma: { label: "BMA", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 }

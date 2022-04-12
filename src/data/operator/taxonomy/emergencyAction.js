@@ -45,6 +45,7 @@ const technical = {
 	label: "Technisch",
 	prefix: "procmedtec_",
 	firefighting: { label: "Brandbekämpfung", type: Type.Selection, options: ["Ja", "Nein"], size: 50, value: null },
+	transport: { label: "Transport", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	rescue: { label: "Rettung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	extrication: { label: "Befreiung, Bergen", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },
 	protection: { label: "Schützen", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null },

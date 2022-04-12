@@ -79,6 +79,7 @@ const mentalcondition = {
 const vitalcondition = {
 	label: "Vitalwerte",
 	prefix: "apcvc_",
+	pulse: { label: "Puls", type: Type.Selection, options: ["Ja", "Nein", "unbekannt"], size: 100, value: null },
 	breath: { label: "Atmung", type: Type.Selection, options: ["Ja", "Nein", "unbekannt", "Bolus"], size: 100, value: null },
 	breathmovement: { label: "Atembewegung", type: Type.Selection, options: ["Ja", "Nein!", "unbekannt"], size: 40, value: null },
 	breathproblem: { label: "Atemstörung", type: Type.Selection, options: ["Ja", "Nein", "unbekannt", "Bolus"], size: 40, value: null },
