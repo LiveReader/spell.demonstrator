@@ -20,6 +20,46 @@ const questionTemplates = [
 	// =============== Kernfragen
 	// Notfallort
 	{
+		node_type: NodeType.EmergencyAction,
+		priority: 999,
+		question_type: QuestionType.Selection,
+		question: "Art der Aktion",
+		description: "Brandbekämpfung, Transport, Rettung, Befreiung / Bergung, Schützen",
+		options: ["Brandbekämpfung", "Transport", "Rettung", "Befreiung, Bergung", "Schützen"],
+		value: (d) =>
+			d?.taxonomy?.technical?.firefighting?.value ??
+			d?.taxonomy?.technical?.transport?.value ??
+			d?.taxonomy?.technical?.rescue?.value ??
+			d?.taxonomy?.technical?.extrication?.value ??
+			d?.taxonomy?.technical?.protection?.value ??
+			null,
+		condition: (d) =>
+			!d?.taxonomy?.technical?.firefighting.value &&
+			!d?.taxonomy?.technical?.transport.value &&
+			!d?.taxonomy?.technical?.rescue.value &&
+			!d?.taxonomy?.technical?.extrication.value &&
+			!d?.taxonomy?.technical?.protection.value,
+		action: (v, d, g) => {
+			switch (v) {
+				case "Brandbekämpfung":
+					d.taxonomy.technical.firefighting.value = "Ja";
+					break;
+				case "Transport":
+					d.taxonomy.technical.transport.value = "Ja";
+					break;
+				case "Rettung":
+					d.taxonomy.technical.rescue.value = "Ja";
+					break;
+				case "Befreiung, Bergung":
+					d.taxonomy.technical.extrication.value = "Ja";
+					break;
+				case "Schützen":
+					d.taxonomy.technical.protection.value = "Ja";
+					break;
+			}
+		},
+	},
+	{
 		node_type: NodeType.EmergencyReporter,
 		priority: 999,
 		question_type: QuestionType.Text,
