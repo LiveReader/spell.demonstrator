@@ -650,6 +650,16 @@ onMounted(() => {
 			graph.value.hasUpdate = true;
 			generateOpenQuestions();
 		});
+	document.addEventListener("keydown", (e) => {
+		if (e.ctrlKey && e.key == "+") {
+			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale += 0.25));
+		} else if (e.ctrlKey && e.key == "-") {
+			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale -= 0.25));
+		} else if (e.ctrlKey && e.key == "0") {
+			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale = 1));
+		}
+		graph.value.hasUpdate = true;
+	});
 });
 
 watch(
