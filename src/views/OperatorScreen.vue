@@ -31,6 +31,7 @@
 			:graph="graph"
 			:selected="selectedNodes"
 			:link-distance="300"
+			:gravity="0"
 			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
@@ -557,9 +558,9 @@ function generateOpenQuestions() {
 		if (a.priority > b.priority) return -1;
 		return 0;
 	});
-	if (previouslyClosed.value) {
-		openQuestions.value.unshift(previouslyClosed.value);
-	}
+	// if (previouslyClosed.value) {
+	// 	openQuestions.value.unshift(previouslyClosed.value);
+	// }
 
 	filterQuestions();
 }
@@ -583,7 +584,7 @@ function closeQuestion(question) {
 		closedQuestions.value.push(question);
 	}
 	question.closed_at = Date.now();
-	previouslyClosed.value = question;
+	// previouslyClosed.value = question;
 }
 
 function questionInput(question) {

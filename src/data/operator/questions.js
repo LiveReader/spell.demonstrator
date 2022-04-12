@@ -187,10 +187,10 @@ const questionTemplates = [
 		question_type: (d) => d?.taxonomy?.age?.type,
 		question: "Alter",
 		description: "Wie alt ist die betroffene Person?",
-		label: "Alter in Jahren",
+		label: "Alter in Jahren (min 1)",
 		value: (d) => d?.taxonomy?.age?.value,
 		condition: (d) => !d?.taxonomy?.age?.value,
-		action: (v, d, g) => (d.taxonomy.age.value = (v ?? 0).toString()),
+		action: (v, d, g) => (d.taxonomy.age.value = v > 0 ? v.toString() : null),
 	},
 	// Geschlecht
 	{
