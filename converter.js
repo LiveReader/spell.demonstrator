@@ -1,5 +1,5 @@
 import { saveFiles } from "./src/data/operator/saveFiles/index";
-import { taxonomyTemplate, generatePrefixedTaxonomy } from "./src/data/operator/taxonomy/index";
+import { taxonomyTemplate, generatePrefixedTaxonomy, parsePrefixedTaxonomy } from "./src/data/operator/taxonomy/index";
 
 function replaceID(graph, id, newID) {
 	graph.nodes.forEach((node) => {
@@ -62,7 +62,7 @@ function download(obj, name) {
 	a.click();
 }
 
-function converter() {
+function converter(allFiles = false) {
 	const startSzenario = {
 		nodes: [],
 		links: [],
@@ -71,9 +71,10 @@ function converter() {
 		nodes: [],
 		links: [],
 	};
-	saveFiles.forEach((item) => {
-		item.file().then((graph, index) => {
+	saveFiles.forEach((item, index) => {
+		item.file().then((graph) => {
 			graph.nodes.forEach((node) => {
+				node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
 				replaceID(graph, node.id, generateUUID());
 				const taxCopy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape.type]));
 				node.taxonomy = updateTaxonomy(node.taxonomy, taxCopy);
@@ -117,17 +118,21 @@ function converter() {
 					breathSzenario.links.push(JSON.parse(JSON.stringify(link)));
 				}
 			});
-			if (item.name == "Brand Gartenanlage" || item.name == "Verletzte Gartenanlage") {
+			if (allFiles) {
 				setTimeout(() => {
 					download(graph, item.name);
-				}, 800 * index);
+				}, 500 * index);
+			} else if (item.name == "Brand Gartenanlage" || item.name == "Verletzte Gartenanlage") {
+				setTimeout(() => {
+					download(graph, item.name);
+				}, 500 * index);
 			}
 		});
 	});
 	setTimeout(() => {
 		download(startSzenario, "Start Szenario");
 		download(breathSzenario, "Augen- Atemwegsreizungen");
-	}, 5000);
+	}, saveFiles.length * 500 + 1000);
 }
 
 export default converter;
