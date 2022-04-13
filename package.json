@@ -1,12 +1,10 @@
 {
 	"name": "spell.demonstrator",
-	"version": "0.0.0",
-	"private": true,
+	"version": "0.1.0",
 	"scripts": {
-		"serve": "vite preview",
-		"build": "vite build",
 		"dev": "vite",
-		"preview": "vite preview",
+		"build": "vite build",
+		"serve": "vite serve --port 80 --host",
 		"lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
 		"format": "prettier .  --write"
 	},
