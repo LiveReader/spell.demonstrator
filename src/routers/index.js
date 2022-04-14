@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import SituationMap from "../views/SituationMap.vue";
 import OperatorScreen from "../views/OperatorScreen.vue";
 import MobileScreen from "../views/MobileScreen.vue";
+import APIPlayground from "../views/APIPlayground.vue";
 
 const routes = [
 	{
@@ -19,6 +20,11 @@ const routes = [
 		path: "/task-forces",
 		name: "Einsatzkräfte",
 		component: MobileScreen,
+	},
+	{
+		path: "/api-playground",
+		name: "API Playground",
+		component: APIPlayground,
 	},
 	{
 		path: "/:catchAll(.*)",
