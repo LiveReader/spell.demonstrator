@@ -343,39 +343,6 @@ function nodesPointAt(target, sourceType) {
 	return false;
 }
 
-function randomRessourceSuggestion(source) {
-	const id = "node-" + Math.random();
-	const randomTime = Math.floor(Math.random() * (12 - 3 + 1)) + 3;
-	const node = {
-		id: id,
-		suggestion: true,
-		shape: {
-			type: "emergency-ressource",
-			scale: 0.5,
-		},
-		spawn: {
-			source: selectedNodes.value[0],
-			angle: 90,
-			distance: 500,
-		},
-		taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-ressource"] ?? {})),
-	};
-	node.taxonomy.status.value = Math.random() > 0.5 ? "1" : "2";
-	node.taxonomy.identifier.value = "11/83-02";
-	node.taxonomy.time.value = `bräuchte ca.${randomTime} min`;
-	node.taxonomy.alerted.value = "Nein";
-	graph.value.nodes.push(node);
-	taxonomy2payload[node.shape.type](node, graph.value);
-	graph.value.links.push({
-		source: id,
-		target: source,
-		type: "dotted",
-		directed: true,
-		label: `ca. ${randomTime} min`,
-		strength: "weak",
-	});
-}
-
 function onCloseModal(d) {
 	taxonomy2payload[d.shape.type](d, graph.value);
 	selectedNodes.value = [d.id];
@@ -410,6 +377,8 @@ function onBackground(e, pos) {
 }
 function onClick(e, d) {
 	if (d.shape.type == "assessment") return;
+	if (d.shape.type == "close-button") return onSuggestionCloseClick(d);
+	if (d.suggestion) return acceptSuggestion(d);
 	// accept suggestions
 	if (d.suggestion) {
 		const sourceNode = graph.value.nodes.find((n) => n.id == d.spawn.source);
@@ -476,6 +445,7 @@ function onClick(e, d) {
 }
 function onDoubleClick(e, d) {
 	if (d.shape.type == "assessment") return;
+	if (d.shape.type == "close-button") return;
 	modal.value.show = true;
 	modal.value.node = d;
 	let title = (d?.taxonomy?.label ?? "") + ": ";
@@ -637,6 +607,218 @@ function openSaveFile(item) {
 	});
 }
 
+function addSuggestion(
+	source,
+	shapeType,
+	taxonomy,
+	suggestionType,
+	edgeLabel = "",
+	angle = 90,
+	distance = 400,
+	suggestionNonExclusive = false,
+	callback = () => {}
+) {
+	const node = graph.value.nodes.find((n) => n.id == source.id);
+	if (!node) return;
+	const suggestionNode = {
+		id: "suggestion_" + shapeType + "_" + node.id + "_" + Math.random() * 1000000,
+		suggestion: {
+			type: suggestionType,
+			nonExclusive: suggestionNonExclusive,
+		},
+		shape: {
+			type: shapeType,
+			scale: 0.5,
+		},
+		satellite: {
+			source: node.id,
+			angle: angle,
+			distance: distance,
+		},
+		taxonomy: taxonomy,
+		callback: callback,
+	};
+	graph.value.nodes.push(suggestionNode);
+	graph.value.nodes.push(addSuggestionCloseButton(suggestionNode));
+	graph.value.links.push({
+		source: suggestionNode.id,
+		target: node.id,
+		type: "dotted",
+		directed: suggestionType == "substituting",
+		label: edgeLabel,
+		strength: "loose",
+	});
+	taxonomy2payload[suggestionNode.shape.type](suggestionNode, graph.value);
+	graph.value.hasUpdate = true;
+}
+
+function addSuggestionCloseButton(suggestion) {
+	const node = {
+		id: "suggestion_close_" + suggestion.id,
+		shape: {
+			type: "close-button",
+			scale: 1,
+		},
+		satellite: {
+			source: suggestion.id,
+			angle: 45,
+			distance: 80,
+		},
+	};
+	return node;
+}
+
+function onSuggestionCloseClick(d) {
+	const suggestion = d.satellite.source;
+	const index = graph.value.nodes.findIndex((n) => n.id == d.id);
+	if (index > -1) graph.value.nodes.splice(index, 1);
+	removeSuggestion(suggestion);
+}
+
+function getSuggestions(source) {
+	const node = graph.value.nodes.find((n) => n.id == source.id);
+	if (!node) return;
+	const suggestions = [];
+	for (let i = 0; i < graph.value.nodes.length; i++) {
+		const node = graph.value.nodes[i];
+		if (node.suggestion && node.satellite?.source?.id == source.id) {
+			suggestions.push(node);
+		}
+	}
+	return suggestions;
+}
+
+function removeSuggestion(suggestion) {
+	const node = graph.value.nodes.find((n) => n.id == suggestion.id);
+	if (!node) return;
+	removeCloseButton(node);
+	graph.value.nodes = graph.value.nodes.filter((n) => n.id != node.id);
+	const links = graph.value.links.filter((l) => l.source.id == suggestion.id || l.target.id == suggestion.id);
+	graph.value.links = graph.value.links.filter((l) => !links.includes(l));
+	graph.value.hasUpdate = true;
+}
+
+function removeCloseButton(suggestion) {
+	const node = graph.value.nodes.find((n) => n.id == suggestion.id);
+	if (!node) return;
+	const closeButtons = graph.value.nodes.filter(
+		(n) => n.shape.type == "close-button" && n.satellite?.source?.id == suggestion.id
+	);
+	if (!closeButtons) return;
+	graph.value.nodes = graph.value.nodes.filter((n) => !closeButtons.includes(n));
+}
+
+function acceptSuggestion(suggestion) {
+	const source = suggestion.satellite.source;
+	const node = graph.value.nodes.find((n) => n.id == suggestion.id);
+	if (!node) return;
+
+	if (suggestion.suggestion.type == "attaching") {
+		// attaching suggestion
+		node.shape.scale = 1;
+		delete node.satellite;
+		delete node.suggestion;
+		node.anchor = {
+			type: "soft",
+			x: node.x,
+			y: node.y,
+		};
+		const links = graph.value.links.filter((l) => l.source.id == suggestion.id || l.target.id == suggestion.id);
+		graph.value.links = graph.value.links.filter((l) => !links.includes(l));
+		graph.value.links.push({
+			source: source.id,
+			target: node.id,
+			type: "solid",
+			directed: false,
+			label: "",
+			strength: "loose",
+		});
+	} else {
+		// substituting suggestion
+		source.taxonomy = suggestion.taxonomy;
+		taxonomy2payload[source.shape.type](source, graph.value);
+	}
+	removeCloseButton(suggestion);
+	if (!suggestion.suggestion.nonExclusive) {
+		getSuggestions(source).forEach((s) => removeSuggestion(s));
+	}
+	suggestion.callback(suggestion, source);
+	delete suggestion.callback;
+	graph.value.hasUpdate = true;
+}
+
+function heartAttackSuggestion(source) {
+	const d1 = {
+		taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-action"] ?? {})),
+	};
+	const d2 = {
+		taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-action"] ?? {})),
+	};
+	let both = false;
+	// ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"]
+	d1.taxonomy.status.value = "Geplant";
+	console.log(source.taxonomy.diagnosis.heartattack.value);
+	switch (source.taxonomy.diagnosis.heartattack.value) {
+		case "Ausgeschlossen":
+			break;
+		case "Unwahrscheinlich":
+			d1.taxonomy.technical.transport.value = "Ja";
+			d1.taxonomy.medical.threatment.threatment.value = "Ja";
+			d1.taxonomy.medical.transport.laying.value = "Ja";
+			break;
+		case "Möglich":
+		case "Wahrscheinlich":
+		case "Sicher":
+			d1.taxonomy.technical.transport.value = "Ja";
+			d1.taxonomy.medical.threatment.threatment.value = "Ja";
+			d1.taxonomy.medical.transport.laying.value = "Ja";
+			d1.taxonomy.medical.transport.monitorreq.value = "Ja";
+			d1.taxonomy.medical.transport.specialrights.value = "Ja";
+			both = true;
+			d2.taxonomy.technical.rescue.value = "Ja";
+			d2.taxonomy.medical.threatment.threatment.value = "Ja";
+			d2.taxonomy.medical.transport.laying.value = "Ja";
+			d2.taxonomy.medical.transport.monitorreq.value = "Ja";
+			d2.taxonomy.medical.transport.specialrights.value = "Ja";
+			break;
+		default:
+			break;
+	}
+	addSuggestion(source, "emergency-action", d1.taxonomy, "attaching", "", 90, 400, true, (d, source) => {});
+	if (both) {
+		addSuggestion(source, "emergency-action", d2.taxonomy, "attaching", "", 120, 400, true, (d, source) => {});
+	}
+}
+
+function randomRessourceSuggestion(source, i = 0) {
+	const randomTime = Math.floor(Math.random() * (12 - 3 + 1)) + 3;
+	const d = {
+		taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-ressource"] ?? {})),
+	};
+	d.taxonomy.status.value = Math.random() > 0.5 ? "1" : "2";
+	d.taxonomy.identifier.value = "11/83-02";
+	d.taxonomy.time.value = `bräuchte ca.${randomTime} min`;
+	d.taxonomy.alerted.value = "Nein";
+	addSuggestion(
+		source,
+		"emergency-ressource",
+		d.taxonomy,
+		"attaching",
+		`ca. ${randomTime} min`,
+		60 + 30 * i,
+		400,
+		false,
+		(d, source) => {
+			d.taxonomy.alerted.value = "Ja";
+			d.taxonomy.status.value = "3";
+			d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
+			source.taxonomy.status.value = "Laufend";
+			taxonomy2payload[source.shape.type](source, graph.value);
+			taxonomy2payload[d.shape.type](d, graph.value);
+		}
+	);
+}
+
 onMounted(() => {
 	fetch("/graphData.json")
 		.then((response) => response.json())
@@ -684,9 +866,19 @@ watch(
 				!nodesPointAt(node, "emergency-ressource")
 			) {
 				for (let i = 0; i < 3; i++) {
-					randomRessourceSuggestion(node);
+					randomRessourceSuggestion(node, i);
 				}
-				graph.value.hasUpdate = true;
+			}
+		} else if (node?.shape?.type == "affected-person") {
+			if (!node.taxonomy.diagnosis.heartattack.value) return;
+			if (!graph.value.links.find((l) => l.source.id == node.id && l.target.shape.type == "emergency-action")) {
+				for (let i = 0; i < graph.value.links.length; i++) {
+					const link = graph.value.links[i];
+					if (link?.target?.id == node.id && link?.source?.shape?.type == "emergency-action") {
+						graph.value.nodes = graph.value.nodes.filter((n) => n.id != node.id);
+					}
+				}
+				heartAttackSuggestion(node);
 			}
 		}
 	}
