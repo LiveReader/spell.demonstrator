@@ -1,1 +1,2508 @@
-{"nodes":[{"id":"53804b4f-22b8-43df-bbda-63eeeb2b8da5","shape":{"type":"operation","scale":1},"anchor":{"type":"soft","x":-6.368217854278612,"y":-6.675405708236283},"payload":{"status":"minor","label":"Operation","location":"49.490029, 8.423525","affected_persons":1,"affected_objects":0,"tags":["Transport: Krankentransport"]},"taxonomy":{"label":"Lage","prefix":"op_","id":"1e9c8a28-0392-4987-8276-4d7a6538875c","op_emergencyType":{"label":"Art des Notfalls","prefix":"emtyp_","id":"b79fba81-8b0c-410f-b05e-bd18e996be10","emtyp_medical":{"label":"Medizinisch","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"e9e6e249-6ed1-463a-a91a-889ffb9bc813"},"emtyp_psychological":{"label":"Psychosozial","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"d1c228e4-6ba9-40a8-abae-a00fe645c64b"},"emtyp_accident":{"label":"Unfall","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"2b93cebe-0561-4dd9-803a-88c946350455"},"emtyp_damageevent":{"label":"Schadensereignis","type":"selection","options":["Brand","Explosion","Gefahrgut","Emmisionen","Stromausfall","Technische Störung","Nuklearer Unfall","Ausfall: IT"],"size":20,"value":null,"id":"d4bdbe01-58a7-4ee1-9a1b-c7ce7e1f4c82"},"emtyp_searchandrescue":{"label":"Suche und Rettung","type":"selection","options":["Höhlenunfall","Bergunfall","Flugunfall","vermisste Person","Gewässer","Wasserstraße","Forst","Gelände"],"size":20,"value":null,"id":"a6e08d3e-452f-41f0-870b-d2d538b6d310"},"emtyp_environmentevent":{"label":"Umwelt-/Klima-Ereignis","type":"selection","options":["Sturm","Hagel","Starkregen","Flut / Hochwasser","Schnee / Eisglätte","Smock","Erdrutsch","Erdbeben","Tsunami","Vulkanausbruch"],"size":20,"value":null,"id":"75b2f3d0-7bde-4a34-a40c-7528ecda278c"},"emtyp_violence":{"label":"Gewalttat","type":"selection","options":["Häusliche Gewalt","Kindermisshandlung","Stumpfe Waffen","Stichwaffen","Schusswaffen","Massenauseinandersetzung"],"size":20,"value":null,"id":"c457cf3f-b6ec-4310-9e5f-fbd5ce251bc6"},"emtyp_threat":{"label":"Bedrohung, Gefährdung","type":"selection","options":["Terrorismus","Amokläufer","LebEL","Bombenentschärfung","Person in Zwangslage","Drohender Suizid","Polizeizugriff","Krieg"],"size":20,"value":null,"id":"7a95de90-bdea-41a6-bcf4-e8306fd9812a"},"emtyp_other":{"label":"Sonstiges","type":"selection","options":["Tierrettung","Tierseuche","Großveranstaltung","Notfallseelsorge","Fachanforderung"],"size":20,"value":null,"id":"8bc9457d-50f1-492a-9ffb-74dc8e092137"},"emtyp_info":{"label":"Auskunftsersuche","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"64815365-31cd-44b9-9700-6d630e31cdc0"},"emtyp_transport":{"label":"Transport","type":"selection","options":["Krankenfahrt","Krankentransport","Evakuierung","Intensivtransport"],"size":60,"value":"Krankentransport","id":"f458389a-f2dd-405b-903d-88a85d4da28c"},"emtyp_technicalsupport":{"label":"Technische Hilfeleistung","type":"selection","options":["Verkehrsunfall","Gefahrstoffaustritt","Unwetter","Gebäude"],"size":60,"value":null,"id":"d70f1c77-ac21-49bf-8c50-f0b4a46db18f"}},"op_location":{"label":"Standort","prefix":"loc_","id":"5c5ac238-d79d-49fa-b12c-274be31a23b6","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":"Bremserstraße","id":"7e559349-6751-4a5a-a4bb-de7f1e118786"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"5c9c194f-67b0-4df6-8fa1-b7f75e8ed099"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":"67063","id":"e5c816c8-24f5-47c5-beb2-141dab73cff9"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":"67063 Ludwigshafen","id":"b2eecfa2-9400-4b3d-bb78-a58816f8d8fa"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":"Deutschland","id":"0598ac0d-09f8-411e-b7c6-871f207a93c3"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"8e633cc9-ef12-4bd4-8154-97e9f23f2ed6"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.490029, 8.423525","id":"85b8f05d-4b62-4d89-9578-077f8856f2d7"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"1186ca14-39f9-4e0c-ba72-037ac8d08695"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"2d1d8d88-a4e2-4285-81d9-965e186cffca"}},"op_affected":{"label":"Betroffene ...","prefix":"opaff_","id":"942a3e28-95d7-4e32-96eb-29d9c3d7d38d","opaff_persons":{"label":"Personen","type":"number","size":60,"value":1,"id":"2b3b0835-8e3b-4324-847b-bf5a3c1826ee"},"opaff_objects":{"label":"Objekte","type":"number","size":40,"value":null,"id":"e4dd3ff7-61d0-4a60-90ab-0160e77fdfd4"}},"op_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":"Grün","id":"63f67fcc-7302-4f34-91be-7f89171c3a61"}},"index":0,"x":-5.068523562148311,"y":-16.242053352774633,"vy":0.0011099771493426431,"vx":0.0013943347165804175,"fx":null,"fy":null,"isDragged":false},{"id":"8b76f075-9f2c-4d42-952e-2234531e7ff6","shape":{"type":"emergency-reporter","scale":1},"payload":{"name":{"first":"","last":""},"pending":false,"intervalID":"","location":"49.490029, 8.423525","category":"ambulance","label":"","callback_number":"6(92)471-76-23"},"taxonomy":{"label":"Meldend","prefix":"erep_","id":"e15bd668-a345-41ad-962e-5ad98a07e1ae","erep_name":{"label":"Name","prefix":"erepn_","id":"2f30197f-215c-4086-99eb-1ab8ad67aec9","erepn_first":{"label":"Vorname","type":"text","size":40,"value":"","id":"9a6dc600-deef-450c-834f-57bc45ffb16c"},"erepn_last":{"label":"Nachname","type":"text","size":40,"value":null,"id":"d8f13f5c-45a7-4868-8f33-894657258ce7"}},"erep_phonenumber":{"label":"Telefonnummer","type":"text","options":[],"size":60,"value":"6(92)471-76-23","id":"3eea36a7-d3c7-4e4d-ae01-3fb1b84171d7"},"erep_separatedrecallnumber":{"label":"gesonderte Rückrufnummer","type":"text","options":[],"size":20,"value":null,"id":"e2eff2e4-84b0-4033-ba28-a8226d788446"},"erep_emergencyrelation":{"label":"Notfallbezug","type":"selection","options":["selbst betroffen","ist dabei","sieht es","kein Kontakt"],"size":40,"value":"selbst betroffen","id":"3ce0addf-dd17-400f-8274-c10e1a5ce59f"},"erep_location":{"label":"Standort","prefix":"loc_","id":"7add275f-ce10-4f53-b1c7-dc4f61ce4a29","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":"Bremserstraße","id":"c6dbe3b6-8b5e-4592-8ce4-9f4c2a82a154"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"347ed6e2-1327-45dd-a1d3-fdd4e7509e9e"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":"67063","id":"26df7a09-b90c-4809-bcd6-71d20e01b2ac"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":"67063 Ludwigshafen","id":"f8afc006-bf13-4bf4-81f2-3980125efb20"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":"Deutschland","id":"c93514a9-1c42-476e-8d15-e28fcfbc7051"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"7d5f5f6e-a197-436a-a266-c896ec1a3c05"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.490029, 8.423525","id":"4d314efc-a566-42e0-a8a2-305aeee8dac8"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"e2ee463f-8538-4141-82d1-efb1272b8099"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"5cb7787d-be8f-43b1-80a2-4022286242b7"}},"erep_reportertype":{"label":"Art","prefix":"ereprt_","id":"12361b40-6ddb-4c13-bb1d-21c105e7f887","ereprt_eCall":{"label":"eCall","prefix":"eCall_","id":"901fa2b5-eb3d-4853-94c7-7c4a7a00a3c1","eCall_eCall":{"label":"eCall","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"ca371cc8-d04a-41e5-9232-2524585c0056"},"eCall_persons":{"label":"Anzahl Personen","type":"selection","options":["1","2","3","4","5","6","viele"],"size":20,"value":null,"id":"b7f3bebe-a283-468c-b6b2-839e0f9a499b"},"eCall_direction":{"label":"Richtung","type":"text","options":[],"size":20,"value":null,"id":"cddb2b0d-b853-45a3-8084-07fcfe224d1f"},"eCall_position":{"label":"GPS-Position","type":"text","options":[],"size":20,"value":null,"id":"62d2f520-2d02-42fc-ad3d-f927b1b0440b"},"eCall_energytype":{"label":"Antriebsart","type":"selection","options":["Benzin","Diesel","Gas","Elektro"],"size":20,"value":null,"id":"b0537e66-fa3d-435f-b7eb-5e1fd967efc1"},"eCall_releasedby":{"label":"Ausgelöst durch","type":"selection","options":["Manuell","Automatisch"],"size":20,"value":null,"id":"77609f78-5231-4be9-a1f1-1b0fad79ecf7"},"eCall_fin":{"label":"FIN","type":"text","options":[],"size":20,"value":null,"id":"f330d684-77bf-4d02-a028-7b01fd633c64"},"eCall_airbagsreleased":{"label":"AirBags ausgelöst","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"7ee2858d-916b-4c91-8b35-bf9e54e8ebe8"},"eCall_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"e2e14028-ae96-4564-b976-e0b20be8cf78"}},"ereprt_wearable":{"label":"Wearable","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"baee08da-4b40-49af-a81d-b7b255eb1ba2"},"ereprt_person":{"label":"Person","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"132c7144-4bb8-45b7-a7d8-df763b7276b8"},"ereprt_bma":{"label":"BMA","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"165153d1-0183-46b0-ae15-378eb0e1c0a0"}},"erep_organisation":{"label":"Organisation","prefix":"ereporg_","id":"cb2096ea-9b52-49b2-82fd-d8c68d8a6e6e","ereporg_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":30,"value":"Ja","id":"34f9519a-e0ce-46ee-810a-19538a5261b3"},"ereporg_practice":{"label":"Arztpraxis","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"4c817dc6-182e-4a43-ae1a-b8727783ff51"},"ereporg_firedepartment":{"label":"Feuerwehr","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"84e40c07-a389-46c2-99fb-16f3482ba3eb"},"ereporg_externemergencycallcenter":{"label":"Externe Leitstelle","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"c8c94d7b-50a6-4bc9-997f-9ecfad1b42e1"},"ereporg_homeemergencycall":{"label":"Hausnotruf","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"ea330379-7533-4bd1-a7d0-8a6d78f02223"}},"erep_competence":{"label":"Kompetenz","prefix":"comp_","id":"2869de94-ca8c-472a-b194-593165722198","comp_medcompetence":{"label":"Med. Kompetenz","prefix":"medcomp_","id":"5fc127b7-c580-4007-9b27-52ea35666da3","medcomp_doctor":{"label":"Arzt","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6f03d257-83b5-450b-8a96-12540d4eb05e"},"medcomp_supporter":{"label":"Hilfspersonal","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"6bf6b401-1d47-490f-883a-2cdcd8ec568d"}},"comp_firecompetence":{"label":"Feuerw. Kompetenz","prefix":"firecomp_","id":"6a0fe9d8-4fff-4abb-85b4-699edd091e1d","firecomp_professional":{"label":"Professional","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"de18145a-9e88-4229-9578-0408ad58e4a2"},"firecomp_firstresponder":{"label":"Ersthelfer","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cf4bc23c-1bb5-4024-bc5d-83f23f220e5a"}},"comp_police":{"label":"Polizei","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"c0717fd9-38ec-47bd-a578-0ef8f880eb8f"}}},"x":-406.51420814481105,"y":12.525407370294229,"index":1,"vy":0.0005976068201833735,"vx":0.0011287928942499098,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":-411.356001125859,"y":17.30599331970228}},{"id":"73e81618-fcf4-4490-a462-53f4f8c9e2eb","shape":{"type":"emergency-reporter","scale":0.5},"suggestion":true,"spawn":{"source":"8b76f075-9f2c-4d42-952e-2234531e7ff6","angle":"270","distance":"300"},"payload":{"name":{"first":"Michael","last":"Barnett"},"pending":false,"intervalID":"","location":"49.490029, 8.423525","category":"ambulance","label":"Hilfspersonal","callback_number":"6(92)471-76-23"},"taxonomy":{"label":"Meldend","prefix":"erep_","id":"0aef529d-172a-4dc7-b0de-cab8cb85a6d8","erep_name":{"label":"Name","prefix":"erepn_","id":"c83f025d-8127-4b7f-9dac-dbd453eeb807","erepn_first":{"label":"Vorname","type":"text","size":40,"value":"Michael","id":"fcbc6a67-4975-4203-ae94-8a06c12bc0fd"},"erepn_last":{"label":"Nachname","type":"text","size":40,"value":"Barnett","id":"32350931-a399-4ecb-8b1b-5a28bab91a4d"}},"erep_phonenumber":{"label":"Telefonnummer","type":"text","options":[],"size":60,"value":"6(92)471-76-23","id":"2820e13a-2de9-487e-8ead-551135945b43"},"erep_separatedrecallnumber":{"label":"gesonderte Rückrufnummer","type":"text","options":[],"size":20,"value":null,"id":"89d63fa8-0f90-49c0-a276-d1fc3fa61289"},"erep_emergencyrelation":{"label":"Notfallbezug","type":"selection","options":["selbst betroffen","ist dabei","sieht es","kein Kontakt"],"size":40,"value":"selbst betroffen","id":"83eb434e-890a-41b0-8aca-e2c6b326f610"},"erep_location":{"label":"Standort","prefix":"loc_","id":"bb598d7e-8e85-4cc1-b089-2608471d3f80","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":"Bremserstraße","id":"21a4d852-b437-4d64-9116-c5fc81103d76"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"af76b1af-7be4-40be-abb4-9ef6692bee12"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":"67063","id":"0993888f-b808-46a1-b18d-f54ce2789e10"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":"67063 Ludwigshafen","id":"362d4fd9-2eff-49b7-8cad-2196d1098018"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":"Deutschland","id":"6bf4b8d8-88eb-4d40-b0a2-c56a204651de"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"052fbb8f-f666-4ae9-994c-5bd520c3a736"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.490029, 8.423525","id":"c5504be6-9c9a-4e6e-b20f-520df84fef99"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"2d8b276a-32f5-4d7f-a59c-4c1324ee4389"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"f2f1d0d5-63e0-4b32-a18e-41682bd5583c"}},"erep_reportertype":{"label":"Art","prefix":"ereprt_","id":"deecd7de-b92e-49d9-af7d-4b8ef062661b","ereprt_eCall":{"label":"eCall","prefix":"eCall_","id":"37092c4a-ec0a-427c-a6e0-487a9630396d","eCall_eCall":{"label":"eCall","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"5fe3bf10-7417-4e94-b420-9182f95eb75f"},"eCall_persons":{"label":"Anzahl Personen","type":"selection","options":["1","2","3","4","5","6","viele"],"size":20,"value":null,"id":"84a77dd6-5496-48b5-a7ad-2911bb79d53f"},"eCall_direction":{"label":"Richtung","type":"text","options":[],"size":20,"value":null,"id":"a0edef7c-5776-41c6-83de-e5a29a1976fa"},"eCall_position":{"label":"GPS-Position","type":"text","options":[],"size":20,"value":null,"id":"3dc84ed1-79bf-4a8c-a707-a789f708fc77"},"eCall_energytype":{"label":"Antriebsart","type":"selection","options":["Benzin","Diesel","Gas","Elektro"],"size":20,"value":null,"id":"a1016b01-90b3-4a37-8f63-58578ac2835a"},"eCall_releasedby":{"label":"Ausgelöst durch","type":"selection","options":["Manuell","Automatisch"],"size":20,"value":null,"id":"72c4ec6f-9a3a-4e7c-9a4d-44ca92372262"},"eCall_fin":{"label":"FIN","type":"text","options":[],"size":20,"value":null,"id":"e87f2420-25d5-48b4-a615-7da516a67f71"},"eCall_airbagsreleased":{"label":"AirBags ausgelöst","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"27b02981-8be4-49e8-ad6e-d234f8c9bd12"},"eCall_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"d8009309-100d-4bad-96a1-20fe094d8a85"}},"ereprt_wearable":{"label":"Wearable","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"0a857233-2d5e-455a-bf05-010839d02af7"},"ereprt_person":{"label":"Person","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"e437eeac-6cbc-4977-9a29-9f8ac45ad58c"},"ereprt_bma":{"label":"BMA","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"1fe69785-62bc-4af3-b24e-40842270b135"}},"erep_organisation":{"label":"Organisation","prefix":"ereporg_","id":"f5610210-8197-4cff-8fd0-00ae767dc2b4","ereporg_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":30,"value":"Ja","id":"4a98cf22-2bb3-4405-9acd-ab4ba6c4336a"},"ereporg_practice":{"label":"Arztpraxis","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"c53b3115-2d96-49dc-b883-5a5f8e29e362"},"ereporg_firedepartment":{"label":"Feuerwehr","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cfdee0c5-9d4f-4202-bf24-1a2abb4622c4"},"ereporg_externemergencycallcenter":{"label":"Externe Leitstelle","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"1a5c3bab-658a-4747-a3b4-302273e9e434"},"ereporg_homeemergencycall":{"label":"Hausnotruf","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"f8312590-1dc1-4b16-bc54-75e1ff8ae60f"}},"erep_competence":{"label":"Kompetenz","prefix":"comp_","id":"d81d1f16-f3af-4bc1-bc01-45b214987bf0","comp_medcompetence":{"label":"Med. Kompetenz","prefix":"medcomp_","id":"533cc9c9-616a-4973-ac73-7cf2b0cac147","medcomp_doctor":{"label":"Arzt","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"65be80e2-aae8-4765-a8cb-7574132c0e3f"},"medcomp_supporter":{"label":"Hilfspersonal","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"86cad529-091a-47dd-9d50-f3b5e26b4892"}},"comp_firecompetence":{"label":"Feuerw. Kompetenz","prefix":"firecomp_","id":"6fd4b719-3502-4bf1-8d55-82e7a9e5de2f","firecomp_professional":{"label":"Professional","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"ac3dfda0-59ad-4391-86e2-62093ac732ec"},"firecomp_firstresponder":{"label":"Ersthelfer","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"92b80880-17fa-44a9-896f-40c112b23e47"}},"comp_police":{"label":"Polizei","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f01a42df-01cd-4eda-a74d-41260a8d0831"}}},"x":-794.648922015928,"y":51.982609204588414,"index":2,"vy":0.00041324801567549797,"vx":0.0009881203932333722,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":-783.6086317685127,"y":52.479588049768765}},{"id":"8ffc4d0e-1658-448d-b7fc-5079d0bbef65","shape":{"type":"emergency-reporter","scale":0.5},"suggestion":true,"spawn":{"source":"8b76f075-9f2c-4d42-952e-2234531e7ff6","angle":"270","distance":"300"},"payload":{"name":{"first":"Teresa","last":"Cortez"},"pending":false,"intervalID":"","location":"49.490029, 8.423525","category":"ambulance","label":"Arzt","callback_number":"6(92)471-76-23"},"taxonomy":{"label":"Meldend","prefix":"erep_","id":"cced21f8-784b-4715-a518-35b7338ab08f","erep_name":{"label":"Name","prefix":"erepn_","id":"b0dd68fe-8ba4-403c-a078-6d6af906971d","erepn_first":{"label":"Vorname","type":"text","size":40,"value":"Teresa","id":"8e60bd09-b223-4bdd-b7a6-7d2125d42f26"},"erepn_last":{"label":"Nachname","type":"text","size":40,"value":"Cortez","id":"45a20455-b829-4e1e-91a9-6eee630ae14b"}},"erep_phonenumber":{"label":"Telefonnummer","type":"text","options":[],"size":60,"value":"6(92)471-76-23","id":"ad6355c0-2064-4a8c-b678-9b64aa45b478"},"erep_separatedrecallnumber":{"label":"gesonderte Rückrufnummer","type":"text","options":[],"size":20,"value":null,"id":"864ae878-675d-4936-b0af-22ebb8e837aa"},"erep_emergencyrelation":{"label":"Notfallbezug","type":"selection","options":["selbst betroffen","ist dabei","sieht es","kein Kontakt"],"size":40,"value":"selbst betroffen","id":"fa9b5e18-5007-40af-aa65-686af7dc6f7a"},"erep_location":{"label":"Standort","prefix":"loc_","id":"ca3fdf19-860e-432e-bfd6-aeb262cc1942","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":"Bremserstraße","id":"356d47bd-9413-436a-b3c3-f8388566ab59"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"b181d084-5421-4b03-b96d-6a7b2333b140"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":"67063","id":"b0a092be-c1bb-4e33-8ecc-37d125a2e8ce"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":"67063 Ludwigshafen","id":"fbd3c699-a99d-4543-92a0-4b3dd50a7d52"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":"Deutschland","id":"ca85b981-f58b-4c09-81b5-e49953bec372"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"b536080b-91ee-4a05-901a-2385881f8eac"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.490029, 8.423525","id":"0b94db58-cae0-4440-a986-6536999a29ca"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"91230ae7-f799-4f22-bd16-9ed2b8c6e69f"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"ddb57d90-6330-432b-a548-d60fd0c937ab"}},"erep_reportertype":{"label":"Art","prefix":"ereprt_","id":"12902cb6-b101-47ce-bc9d-33d34d781d56","ereprt_eCall":{"label":"eCall","prefix":"eCall_","id":"0b039369-71e7-4097-b64f-a1e7280d8736","eCall_eCall":{"label":"eCall","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"61f32828-06f2-43e4-b385-fb977c488577"},"eCall_persons":{"label":"Anzahl Personen","type":"selection","options":["1","2","3","4","5","6","viele"],"size":20,"value":null,"id":"0634802f-de84-4199-829d-404c9b064173"},"eCall_direction":{"label":"Richtung","type":"text","options":[],"size":20,"value":null,"id":"381e6666-c106-4555-b39e-52fc3cbd553d"},"eCall_position":{"label":"GPS-Position","type":"text","options":[],"size":20,"value":null,"id":"de1636d8-0a04-47a4-82f9-ad2344ca2be9"},"eCall_energytype":{"label":"Antriebsart","type":"selection","options":["Benzin","Diesel","Gas","Elektro"],"size":20,"value":null,"id":"b7abb70f-03b7-4698-92d4-4d50c0ab849e"},"eCall_releasedby":{"label":"Ausgelöst durch","type":"selection","options":["Manuell","Automatisch"],"size":20,"value":null,"id":"0c891fc2-3462-405a-9a37-e88d697b16a4"},"eCall_fin":{"label":"FIN","type":"text","options":[],"size":20,"value":null,"id":"4e814acb-d2fc-4824-b27f-bbe202d90c64"},"eCall_airbagsreleased":{"label":"AirBags ausgelöst","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"9b61dc59-45ea-48d5-a6a2-e629a0d3796c"},"eCall_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"45f741d5-d061-48ef-a74f-b68ef81966f6"}},"ereprt_wearable":{"label":"Wearable","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"d6d8cab9-09e6-4414-8100-8a09bef363b0"},"ereprt_person":{"label":"Person","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"14178954-b448-4ab8-9a8e-bfbb59b31db3"},"ereprt_bma":{"label":"BMA","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"6bf32672-6555-4029-8abe-d270343cd4de"}},"erep_organisation":{"label":"Organisation","prefix":"ereporg_","id":"43ec71c5-b469-4f13-ba19-77d28c15e608","ereporg_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":30,"value":"Ja","id":"3dc0924f-020a-460e-8f23-73e80ec44e69"},"ereporg_practice":{"label":"Arztpraxis","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"6c506bf1-14b7-47bb-9afa-680f6cae529c"},"ereporg_firedepartment":{"label":"Feuerwehr","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"6130661a-1fab-4844-b93c-3d9a15cca4e4"},"ereporg_externemergencycallcenter":{"label":"Externe Leitstelle","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"4c8cf09c-e8e1-4f45-940d-39291ba62a33"},"ereporg_homeemergencycall":{"label":"Hausnotruf","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"422887a8-3558-4b16-8ce5-5c8004f215fd"}},"erep_competence":{"label":"Kompetenz","prefix":"comp_","id":"1b0d24ec-194d-49df-8086-9f3c58db47c9","comp_medcompetence":{"label":"Med. Kompetenz","prefix":"medcomp_","id":"be96bcb7-43a9-4508-a6a4-529e890bee8a","medcomp_doctor":{"label":"Arzt","type":"selection","options":["Ja","Nein"],"size":40,"value":"Ja","id":"b08093ee-cb76-4012-b970-955b77d2f50a"},"medcomp_supporter":{"label":"Hilfspersonal","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"4d916bc2-9f33-4e94-b426-6046ae9e7e4e"}},"comp_firecompetence":{"label":"Feuerw. Kompetenz","prefix":"firecomp_","id":"174130a7-4786-476b-ae61-aff6de0fc283","firecomp_professional":{"label":"Professional","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9c80f61d-90f9-4417-94f6-dab22cd79a4a"},"firecomp_firstresponder":{"label":"Ersthelfer","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cb2603e9-1c49-4bd6-913f-4386ebe26031"}},"comp_police":{"label":"Polizei","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"eb903cc9-c63f-4987-b7b4-6de12bc7e7f7"}}},"x":-739.5060423197796,"y":-137.9654150929763,"index":3,"vy":0.0004894251834669346,"vx":0.0009632721959367496,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":-736.0905060733195,"y":-116.86336680593796}},{"id":"e0afcba2-541d-4090-b6be-7f32d2882de5","shape":{"type":"emergency-reporter","scale":0.5},"suggestion":true,"spawn":{"source":"8b76f075-9f2c-4d42-952e-2234531e7ff6","angle":"270","distance":"300"},"payload":{"name":{"first":"Sarah","last":"Sims"},"pending":false,"intervalID":"","location":"49.490029, 8.423525","category":"ambulance","label":"Hilfspersonal","callback_number":"6(92)471-76-23"},"taxonomy":{"label":"Meldend","prefix":"erep_","id":"b9b457a4-f05d-4370-becf-6243028e747d","erep_name":{"label":"Name","prefix":"erepn_","id":"b7f427f6-add6-4dcd-849e-5fc830f6e719","erepn_first":{"label":"Vorname","type":"text","size":40,"value":"Sarah","id":"09cb52fa-e5e2-4ee4-a1a7-63d0ba75bf45"},"erepn_last":{"label":"Nachname","type":"text","size":40,"value":"Sims","id":"3de3a9b9-5af0-4089-9c43-71660f192611"}},"erep_phonenumber":{"label":"Telefonnummer","type":"text","options":[],"size":60,"value":"6(92)471-76-23","id":"100aa56e-c5c9-4b1f-8ef5-d05e56d27cba"},"erep_separatedrecallnumber":{"label":"gesonderte Rückrufnummer","type":"text","options":[],"size":20,"value":null,"id":"98ea7376-63bd-4486-a65e-44010c989c03"},"erep_emergencyrelation":{"label":"Notfallbezug","type":"selection","options":["selbst betroffen","ist dabei","sieht es","kein Kontakt"],"size":40,"value":"selbst betroffen","id":"daedb8da-d053-4870-9ee3-5e7015f1ad73"},"erep_location":{"label":"Standort","prefix":"loc_","id":"1f3e8c00-9ffe-4ca6-a1c3-9d021f81a660","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":"Bremserstraße","id":"7159278f-9da1-442b-9fd6-459e64a892cc"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"b44f6069-63db-42b7-bd0d-7a15f77bc812"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":"67063","id":"7dd79146-4c0e-4c51-bfc3-2c507e7e8d72"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":"67063 Ludwigshafen","id":"65468af0-ce43-40eb-892b-5bc2a5736f9e"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":"Deutschland","id":"f9c300b4-00a2-41b3-8207-ddf01613cbdf"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"53a4cadd-ddd7-4a0f-91a6-20f1e0df6061"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.490029, 8.423525","id":"656807b7-e746-45da-9aae-2b771e158e93"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"70402cdb-73b8-4678-a009-53db9e0c2c17"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"f9c4f5c3-34b8-45f5-b07d-be12c794004c"}},"erep_reportertype":{"label":"Art","prefix":"ereprt_","id":"7476067d-29e3-41ca-815d-68f3fd8423f0","ereprt_eCall":{"label":"eCall","prefix":"eCall_","id":"9fccdf6a-e1f2-4ebd-9ac4-02d97e7e42d6","eCall_eCall":{"label":"eCall","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"8503421a-5376-4af0-b49d-a8eaafe9e067"},"eCall_persons":{"label":"Anzahl Personen","type":"selection","options":["1","2","3","4","5","6","viele"],"size":20,"value":null,"id":"8a98eeeb-adb0-42b1-9db5-9ceeb5e67319"},"eCall_direction":{"label":"Richtung","type":"text","options":[],"size":20,"value":null,"id":"a8a826e8-4d49-4478-8340-0191294e27f0"},"eCall_position":{"label":"GPS-Position","type":"text","options":[],"size":20,"value":null,"id":"fa04aceb-f1e9-4dcf-a4a1-42cbd635057f"},"eCall_energytype":{"label":"Antriebsart","type":"selection","options":["Benzin","Diesel","Gas","Elektro"],"size":20,"value":null,"id":"2cfe4fa9-81eb-4aa3-b7f6-97a21e87d02e"},"eCall_releasedby":{"label":"Ausgelöst durch","type":"selection","options":["Manuell","Automatisch"],"size":20,"value":null,"id":"6f6b63de-b32d-469c-a68a-1b31062fffe8"},"eCall_fin":{"label":"FIN","type":"text","options":[],"size":20,"value":null,"id":"7cc42959-b17e-404e-8fb4-ccf2d455bdc6"},"eCall_airbagsreleased":{"label":"AirBags ausgelöst","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"cd177566-cb61-4a87-bff7-566e37003043"},"eCall_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"1d674444-44f1-4602-8426-17f9769be15a"}},"ereprt_wearable":{"label":"Wearable","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"9cba3299-1a7a-41d9-ae29-66f5df1b47e0"},"ereprt_person":{"label":"Person","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"8bf29a91-7ca7-45b4-b7f0-a28157225170"},"ereprt_bma":{"label":"BMA","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"3deef54e-b869-44c4-baf0-1763db1555b8"}},"erep_organisation":{"label":"Organisation","prefix":"ereporg_","id":"87c97325-7642-47e8-98bd-3c9c47c88d7f","ereporg_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":30,"value":"Ja","id":"e93d4af2-6497-4b8c-a66f-38a11db985be"},"ereporg_practice":{"label":"Arztpraxis","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"0cffc754-b34c-41be-b580-bd213331e95b"},"ereporg_firedepartment":{"label":"Feuerwehr","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"be15a8a6-39fa-433a-b6ad-8d5ad4a369f0"},"ereporg_externemergencycallcenter":{"label":"Externe Leitstelle","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cb6080dd-97fd-4a45-bc51-9880eea6b640"},"ereporg_homeemergencycall":{"label":"Hausnotruf","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"32540385-ea6e-41a1-8bc1-984b533eeb70"}},"erep_competence":{"label":"Kompetenz","prefix":"comp_","id":"2743bf3f-ae0f-4238-aa71-07de73fdcd66","comp_medcompetence":{"label":"Med. Kompetenz","prefix":"medcomp_","id":"f2c93edf-3c01-4f40-a65d-5a7869c0fd22","medcomp_doctor":{"label":"Arzt","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f137ad64-b155-4bad-8c0c-f9891cc3cab1"},"medcomp_supporter":{"label":"Hilfspersonal","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"2abbf192-f797-4c1f-8fd1-1b66ef2c2b31"}},"comp_firecompetence":{"label":"Feuerw. Kompetenz","prefix":"firecomp_","id":"d3fcc157-b532-41f4-9435-6e6752655ea0","firecomp_professional":{"label":"Professional","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"ac339a5b-61d6-4e4f-b87d-57898c0351ab"},"firecomp_firstresponder":{"label":"Ersthelfer","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"62406b73-61da-4f98-807e-6e6738e63691"}},"comp_police":{"label":"Polizei","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e2885036-4df4-4291-a185-0def76585947"}}},"x":-716.961633764293,"y":257.2585929610119,"index":4,"vy":0.0003682932727808594,"vx":0.001095713799173972,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":-714.9202433930202,"y":244.12963047662993}},{"id":"5447ab16-96e1-4b85-a700-ffaf676e8c90","shape":{"type":"affected-person","scale":1},"spawn":{"source":"n0","angle":180,"distance":400},"payload":{"status":"minor","name":{"first":"","last":""},"sex":"","age":"","accessibility":"","tags":[]},"taxonomy":{"label":"Betroffene Person","prefix":"ap_","id":"a56e6f4a-a001-42af-9989-c4688edc28b6","ap_name":{"label":"Name","prefix":"apn_","id":"87653e2c-5d99-4e3b-b8df-8d3c4b20be66","apn_first":{"label":"Vorname","type":"text","size":40,"value":null,"id":"baee7ba2-ab0e-4761-b194-a3d8e98e89b5"},"apn_last":{"label":"Nachname","type":"text","size":40,"value":null,"id":"7e8b0aaa-db78-450d-9eeb-785322f4170a"}},"ap_age":{"label":"Alter","type":"number","size":50,"value":null,"id":"ed9c2f6c-2157-445d-a436-a570327e01dd"},"ap_sex":{"label":"Geschlecht","type":"selection","options":["Männlich","Weiblich","Divers"],"size":50,"value":null,"id":"93aed792-c39c-4030-9679-43820bd3414e"},"ap_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":"Grün","id":"8c640b03-c9a6-4412-9e68-016b160670e3"},"ap_symptoms":{"label":"Symptome","prefix":"aps_","id":"d00af178-bb94-4cea-b3b6-d6ea085ca603","aps_pain":{"label":"Schmerzen","type":"selection","options":["Stark","Mittel","Schwach","Nein"],"size":80,"value":null,"id":"0b95e7d2-3249-471d-a9fa-f14cd8f8385e"},"aps_painlocation":{"label":"Schmerzbereich","type":"selection","options":["Brust","Kopf","Nacken","Schulter","Rücken","Arm","Hand","Becken","Wehen","Oberbauch","Hüfte","Nieren","Genital","Oberschenke","Knie","Unterschenkel","Fuß"],"size":40,"value":null,"id":"d8119bc3-c6e0-40ef-abdb-de0ed62dac1f"},"aps_painmovementrelated":{"label":"Schmerzen bewegungsabhängig","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"5e891c90-c5f1-4327-9c62-f3c6ef94ea1a"},"aps_fiever":{"label":"Fieber","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"349dcd57-ab2e-491d-a940-497a6212a3ec"},"aps_heatfeeling":{"label":"Hitzeempfinden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d303e4dd-da56-4a73-b41a-d2b6c78ccd67"},"aps_coldfadeskin":{"label":"kalte fahle Haut","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"23592614-8b1a-4d9b-9252-13dbdcad813c"},"aps_coldsweat":{"label":"kalter Schweiß","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e05c1b47-a899-46ff-b86a-66c37c68d8ea"},"aps_shivers":{"label":"Schüttelfrost","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"2e278534-77cb-4dde-93a4-51287a6bbfb1"},"aps_bluelips":{"label":"blaue Lippen","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d3ecd6d1-6f74-4c2b-9c92-89a9d71f48d6"}},"ap_diagnosis":{"label":"Diagnose","prefix":"apd_","id":"375ff7c8-c585-44a8-bc63-4d8d69e28250","apd_heartattack":{"label":"Herzinfakt","type":"selection","options":["Ausgeschlossen","Unwahrscheinlich","Möglich","Wahrscheinlich","Sicher"],"size":80,"value":null,"id":"d55d8d24-b6d8-4a4d-8537-336e3170fcdd"}},"ap_condition":{"label":"Zustand","prefix":"apc_","id":"bd948bc4-6a9f-4e19-9857-84928c118eff","apc_vitalcondition":{"label":"Vitalwerte","prefix":"apcvc_","id":"f3f03ac9-8f0b-4296-afe0-68194974148d","apcvc_breath":{"label":"Atmung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":100,"value":null,"id":"fb7b6208-a645-4ecc-b452-09a50b5812d8"},"apcvc_breathmovement":{"label":"Atembewegung","type":"selection","options":["Ja","Nein!","unbekannt"],"size":40,"value":null,"id":"277b9db6-9a05-43cf-9de2-ab869f9ab55c"},"apcvc_breathproblem":{"label":"Atemstörung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":40,"value":null,"id":"8e63195c-a8d2-492b-88f7-94aa468bc28c"},"apcvc_consciousness":{"label":"bei Bewusstsein","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"dd5fc3a4-da01-4def-b7c3-eb556b07020b"},"apcvc_unconscioussince":{"label":"bewusstlos seit","type":"selection","options":["gerade","Stunden","unbekannt"],"size":40,"value":null,"id":"792755e3-4c08-4928-b254-b9f060d0732e"},"apcvc_pulse":{"label":"Puls","type":"selection","options":["Ja","Nein","unbekannt"],"size":100,"value":null,"id":"1bc6f217-2c80-4d45-bd02-9ca76edb8f68"}},"apc_physicalcondition":{"label":"Physisch","prefix":"apcpc_","id":"a679bcc4-3792-44f5-95b4-7ef7b7173336","apcpc_diabetes":{"label":"Diabetes","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"e5753807-4616-4b71-ab5e-acf351030a3d"},"apcpc_bloodstream":{"label":"Kreislaufprobleme","type":"selection","options":["Stark","Leicht","Nein","Unbekannt"],"size":60,"value":null,"id":"cf671daa-97d2-4a81-800d-5ffe21002932"},"apcpc_dizziness":{"label":"Schwindel","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"106c2e40-92ed-41c2-8771-bd87616d7e18"},"apcpc_pregnant":{"label":"Schwanger","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a78a809e-ff89-4b1f-9b8d-ecacf8e36484"},"apcpc_wheelchair":{"label":"Rollstuhl","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"c7f6ba58-92d1-469c-bb15-2267015b1cdb"},"apcpc_visuallyimpared":{"label":"Blind/Sehbehindert","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"c86634a5-aa88-4d16-ac4d-c006fed1cbea"},"apcpc_oftenhypertension":{"label":"oft Bluthochdruck","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f1cdfcc2-3aa4-44d2-b22a-0d7b218fc2be"},"apcpc_oftencholesterol":{"label":"oft hohe Cholesterinwerte","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"50f55c94-16bd-4932-b5e0-ad98401c52be"},"apcpc_hearthsuffering":{"label":"Herzleiden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"10e60067-a18f-4f56-834a-696753c950d4"},"apcpc_infection":{"label":"Infektion","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"14be6e19-a788-4876-92c5-8dd0a9028345"},"apcpc_infectionsince":{"label":"Infektion seid","type":"selection","options":["Stunden","Tage","unbekannt"],"size":40,"value":null,"id":"78758b10-3069-4566-84b4-64ddc6d8ce75"},"apcpc_infectioncovid":{"label":"Covid","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"b5cd5834-496a-437b-93d0-5d31cd7faa73"}},"apc_mentalcondition":{"label":"Mental","prefix":"apcmc_","id":"cea9f273-52f1-488a-86d1-27e1cde5c987","apcmc_fear":{"label":"Angst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"8994d7b9-ada9-439a-962d-6bc0fc624f13"},"apcmc_threaten":{"label":"Bedrohung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f645fed3-53aa-43ec-bb36-205ea0d0bdb1"},"apcmc_weakness":{"label":"Schwächegefühl","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"94112fba-c955-40ca-a87d-4e946051b743"},"apcmc_stress":{"label":"Stress","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"202f2f93-0a35-4af9-a3d5-638a08b7bac8"}}},"ap_accessibility":{"label":"Zugänglichkeit","prefix":"apa_","id":"be666878-2860-45e8-9184-d74443a4cc38","apa_free":{"label":"Frei Zugänglich","type":"selection","options":["Ja","Nein"],"size":100,"value":null,"id":"dec519d4-cb88-4506-a543-3c65703bc58f"},"apa_confined":{"label":"Eingeschlossen","type":"selection","options":["Nein","in Wohnung","in PKW"],"size":40,"value":null,"id":"728abdfe-53be-4336-86ab-9780fe7b4cf7"},"apa_clamped":{"label":"Eingeklemmt","type":"selection","options":["Nein","in PKW","in Maschine"],"size":40,"value":null,"id":"414023ad-9f00-4801-8468-758695e50552"},"apa_exposed":{"label":"Exponierte Lage","type":"selection","options":["Nein","Höhe","Tiefe"],"size":40,"value":null,"id":"a0eafa52-ca78-41f2-b684-89173a401d02"},"apa_water":{"label":"im Wasser","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e364c5bf-a418-47c5-b5c0-5e19af47d83e"},"apa_offroad":{"label":"im Gelände","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"ccce86cd-d375-43d6-82c3-a9814e3c9749"},"apa_missed":{"label":"Vermisst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9837e82e-6951-4e02-a955-649e7c01e308"},"apa_danger":{"label":"Gefahrenbereich","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"85d33276-b9ad-4785-9886-d1d2a268bc0e"}},"ap_guesseddiagnosis":{"label":"Verdachtsdiagnose","prefix":"apgd_","id":"392fb67d-6547-4634-ab2b-fea023078fe7","apgd_injury":{"label":"Verletzung","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"2ee7b71b-4a34-4afa-a992-3905c7d9fd91"},"apgd_presickness":{"label":"Vorerkrankung","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"5b839614-81cd-4f9d-aaec-8ec3dfd6a85d"},"apgd_medication":{"label":"Medikation","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"1e6db13b-038d-4056-b3e8-252d863bdacf"},"apgd_allergy":{"label":"Allergien","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"9745fb3c-dad6-4a30-b795-962e884a2254"},"apgd_age":{"label":"Alter","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"39f639c3-c9b0-4077-9812-504b4ecc281c"},"apgd_f":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"deaae06e-c454-4299-bc77-7507930bd108"},"apgd_g":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"75acd587-eb56-4ac8-9c0f-d747cfe923cb"},"apgd_h":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"8fd375b7-bb54-4553-bb07-109cb52eb426"},"apgd_i":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"d3cbbd30-de88-4df6-a70a-58f947e3c71c"},"apgd_j":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"de46830e-fd5f-45c9-8228-d979d3955884"},"apgd_k":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"4c5d46c7-a59c-454f-9702-ea25e302aeab"},"apgd_l":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"c1c431b8-d27e-4bc3-b19c-fec9c3226699"}}},"x":12.894616226288345,"y":405.937941401847,"index":5,"vy":0.0006065830919377113,"vx":-0.0011984434104997158,"fx":null,"fy":null,"anchor":{"type":"soft","x":-1.7800714373518822,"y":393.98741785643244},"isDragged":false},{"id":"623bc7c9-d01b-4d6e-83c8-1dcb8939dd20","shape":{"type":"emergency-action","scale":1},"spawn":{"source":"node-0.7003966166797269","angle":90,"distance":500},"payload":{"category":"","status":"scheduled","label":"","priority":"","tags":[]},"taxonomy":{"label":"Maßnahme","prefix":"proc_","id":"77a51e06-371c-4236-899f-112fdcd12581","proc_medical":{"label":"Medizinisch","prefix":"procmed_","id":"e62dd980-3a80-478a-a81f-3904b3a8659d","procmed_threatment":{"label":"Behandlung","prefix":"procmedthreat_","id":"81c71509-80a7-471c-8e5a-4f6b5cfdb5ee","procmedthreat_threatment":{"label":"Behandlung erforderlich","type":"selection","options":["Ja","Nein"],"size":50,"value":null,"id":"294d87c9-9bb6-4b70-86ee-933ad7fa3f21"},"procmedthreat_oxigenreq":{"label":"O2 erforderlich","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"9cc4b57f-ca82-4e9a-b933-c726f1e7e674"},"procmedthreat_painkiller":{"label":"Schmerzmittel erforderlich","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"d7049885-7fab-4f3b-8c4d-d94f9ee3946a"}},"procmed_food":{"label":"Verpflegung","type":"number","size":10,"value":null,"id":"605dc49d-72f2-4684-a7ab-d267075e0384"},"procmed_care":{"label":"Betreuung","type":"number","size":20,"value":null,"id":"3db3906b-85c0-4f46-b706-11a2596a6e85"},"procmed_transport":{"label":"Transport","prefix":"procmedtransp_","id":"f76950ed-731a-4d17-9bf5-bc281e5ad3f8","procmedtransp_threatment":{"label":"Transport erforderlich","type":"selection","options":["Ja","Nein"],"size":50,"value":null,"id":"fedda4fe-0599-46b3-9163-5b3db0c00dae"},"procmedtransp_laying":{"label":"liegend","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"026c17cf-b5cf-4488-a634-785d1b07b61a"},"procmedtransp_sitting":{"label":"sitzend","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"f50a917f-020f-49e0-9fa9-a8e862f0623e"},"procmedtransp_specialrights":{"label":"Sonderrechte","type":"selection","options":["Ja","Nein"],"size":20,"id":"01775442-23e9-46a0-a932-47a1d127c50b","value":null},"procmedtransp_transporttarget":{"label":"Transportziel","type":"text","size":40,"value":null,"id":"abe26fad-1b14-452d-bb2c-f86437efeac3"},"procmedtransp_oxigenreq":{"label":"mit O2","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"8bd39b16-b815-4978-9a35-99480f8bf1b8"},"procmedtransp_breathsupportreq":{"label":"mit Beatmung ","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"b86c310b-0358-4014-a097-781253b3a9b9"},"procmedtransp_perfusorreq":{"label":"mit Perfusor","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"8a3ce3dc-fd57-4b1b-9c4b-2c57d6b62a4d"},"procmedtransp_monitorreq":{"label":"mit Monitor","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"2e1a87ea-6898-4818-bec3-8859826480da"},"procmedtransp_vakuummatreq":{"label":"mit Vakuummatratze","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"eb6789e4-4538-49f2-843b-70a51dd65dd3"}}},"proc_technical":{"label":"Technisch","prefix":"procmedtec_","id":"1311a653-5125-4aa0-9865-e44f435b20ad","procmedtec_firefighting":{"label":"Brandbekämpfung","type":"selection","options":["Ja","Nein"],"size":50,"value":null,"id":"4009d888-57eb-4fa7-adb3-68455f74622e"},"procmedtec_rescue":{"label":"Rettung","type":"selection","options":["Ja","Nein"],"size":20,"id":"6e457f2f-beae-4cf4-a9a3-89a3e9e5d200","value":null},"procmedtec_extrication":{"label":"Befreiung, Bergen","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"0468a2c2-cb3d-44de-b9bf-67f7dafb0ba7"},"procmedtec_protection":{"label":"Schützen","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"e30a7a89-8b30-437e-a1d3-a4d8a2435d15"},"procmedtec_transport":{"label":"Transport","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"912df29d-e524-41e3-a9e5-949cb80c3ca8"}},"proc_status":{"label":"Status","type":"selection","options":["Geplant","Laufend","Abgeschlossen"],"size":50,"value":"Geplant","id":"2d20d429-3462-47e0-a19d-c21d3fba5a86"}},"x":471.8248835154055,"y":426.92334488672583,"index":6,"vy":-0.0002891569765099165,"vx":-0.003110663576395003,"fx":null,"fy":null,"anchor":{"type":"soft","x":470.590906659529,"y":422.04349731262306},"isDragged":false}],"links":[{"source":"8b76f075-9f2c-4d42-952e-2234531e7ff6","target":"53804b4f-22b8-43df-bbda-63eeeb2b8da5","type":"solid","directed":true,"strength":"weak"},{"source":"73e81618-fcf4-4490-a462-53f4f8c9e2eb","target":"8b76f075-9f2c-4d42-952e-2234531e7ff6","type":"dotted","directed":true,"strength":"weak"},{"source":"8ffc4d0e-1658-448d-b7fc-5079d0bbef65","target":"8b76f075-9f2c-4d42-952e-2234531e7ff6","type":"dotted","directed":true,"strength":"weak"},{"source":"e0afcba2-541d-4090-b6be-7f32d2882de5","target":"8b76f075-9f2c-4d42-952e-2234531e7ff6","type":"dotted","directed":true,"strength":"weak"},{"source":"53804b4f-22b8-43df-bbda-63eeeb2b8da5","target":"5447ab16-96e1-4b85-a700-ffaf676e8c90","type":"solid","directed":false,"label":"","strength":"loose"},{"source":"5447ab16-96e1-4b85-a700-ffaf676e8c90","target":"623bc7c9-d01b-4d6e-83c8-1dcb8939dd20","type":"solid","directed":false,"label":"","strength":"weak"}],"hasUpdate":false}
+{
+	"nodes": [
+		{
+			"id": "53804b4f-22b8-43df-bbda-63eeeb2b8da5",
+			"shape": { "type": "operation", "scale": 1 },
+			"anchor": { "type": "soft", "x": -6.368217854278612, "y": -6.675405708236283 },
+			"payload": {
+				"status": "minor",
+				"label": "Operation",
+				"location": "49.490029, 8.423525",
+				"affected_persons": 1,
+				"affected_objects": 0,
+				"tags": ["Transport: Krankentransport"]
+			},
+			"taxonomy": {
+				"label": "Lage",
+				"prefix": "op_",
+				"id": "1e9c8a28-0392-4987-8276-4d7a6538875c",
+				"op_emergencyType": {
+					"label": "Art des Notfalls",
+					"prefix": "emtyp_",
+					"id": "b79fba81-8b0c-410f-b05e-bd18e996be10",
+					"emtyp_medical": {
+						"label": "Medizinisch",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "e9e6e249-6ed1-463a-a91a-889ffb9bc813"
+					},
+					"emtyp_psychological": {
+						"label": "Psychosozial",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "d1c228e4-6ba9-40a8-abae-a00fe645c64b"
+					},
+					"emtyp_accident": {
+						"label": "Unfall",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "2b93cebe-0561-4dd9-803a-88c946350455"
+					},
+					"emtyp_damageevent": {
+						"label": "Schadensereignis",
+						"type": "selection",
+						"options": [
+							"Brand",
+							"Explosion",
+							"Gefahrgut",
+							"Emmisionen",
+							"Stromausfall",
+							"Technische Störung",
+							"Nuklearer Unfall",
+							"Ausfall: IT"
+						],
+						"size": 20,
+						"value": null,
+						"id": "d4bdbe01-58a7-4ee1-9a1b-c7ce7e1f4c82"
+					},
+					"emtyp_searchandrescue": {
+						"label": "Suche und Rettung",
+						"type": "selection",
+						"options": [
+							"Höhlenunfall",
+							"Bergunfall",
+							"Flugunfall",
+							"vermisste Person",
+							"Gewässer",
+							"Wasserstraße",
+							"Forst",
+							"Gelände"
+						],
+						"size": 20,
+						"value": null,
+						"id": "a6e08d3e-452f-41f0-870b-d2d538b6d310"
+					},
+					"emtyp_environmentevent": {
+						"label": "Umwelt-/Klima-Ereignis",
+						"type": "selection",
+						"options": [
+							"Sturm",
+							"Hagel",
+							"Starkregen",
+							"Flut / Hochwasser",
+							"Schnee / Eisglätte",
+							"Smock",
+							"Erdrutsch",
+							"Erdbeben",
+							"Tsunami",
+							"Vulkanausbruch"
+						],
+						"size": 20,
+						"value": null,
+						"id": "75b2f3d0-7bde-4a34-a40c-7528ecda278c"
+					},
+					"emtyp_violence": {
+						"label": "Gewalttat",
+						"type": "selection",
+						"options": [
+							"Häusliche Gewalt",
+							"Kindermisshandlung",
+							"Stumpfe Waffen",
+							"Stichwaffen",
+							"Schusswaffen",
+							"Massenauseinandersetzung"
+						],
+						"size": 20,
+						"value": null,
+						"id": "c457cf3f-b6ec-4310-9e5f-fbd5ce251bc6"
+					},
+					"emtyp_threat": {
+						"label": "Bedrohung, Gefährdung",
+						"type": "selection",
+						"options": [
+							"Terrorismus",
+							"Amokläufer",
+							"LebEL",
+							"Bombenentschärfung",
+							"Person in Zwangslage",
+							"Drohender Suizid",
+							"Polizeizugriff",
+							"Krieg"
+						],
+						"size": 20,
+						"value": null,
+						"id": "7a95de90-bdea-41a6-bcf4-e8306fd9812a"
+					},
+					"emtyp_other": {
+						"label": "Sonstiges",
+						"type": "selection",
+						"options": [
+							"Tierrettung",
+							"Tierseuche",
+							"Großveranstaltung",
+							"Notfallseelsorge",
+							"Fachanforderung"
+						],
+						"size": 20,
+						"value": null,
+						"id": "8bc9457d-50f1-492a-9ffb-74dc8e092137"
+					},
+					"emtyp_info": {
+						"label": "Auskunftsersuche",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "64815365-31cd-44b9-9700-6d630e31cdc0"
+					},
+					"emtyp_transport": {
+						"label": "Transport",
+						"type": "selection",
+						"options": ["Krankenfahrt", "Krankentransport", "Evakuierung", "Intensivtransport"],
+						"size": 60,
+						"value": "Krankentransport",
+						"id": "f458389a-f2dd-405b-903d-88a85d4da28c"
+					},
+					"emtyp_technicalsupport": {
+						"label": "Technische Hilfeleistung",
+						"type": "selection",
+						"options": ["Verkehrsunfall", "Gefahrstoffaustritt", "Unwetter", "Gebäude"],
+						"size": 60,
+						"value": null,
+						"id": "d70f1c77-ac21-49bf-8c50-f0b4a46db18f"
+					}
+				},
+				"op_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "5c5ac238-d79d-49fa-b12c-274be31a23b6",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": "Bremserstraße",
+						"id": "7e559349-6751-4a5a-a4bb-de7f1e118786"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "5c9c194f-67b0-4df6-8fa1-b7f75e8ed099"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063",
+						"id": "e5c816c8-24f5-47c5-beb2-141dab73cff9"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063 Ludwigshafen",
+						"id": "b2eecfa2-9400-4b3d-bb78-a58816f8d8fa"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "Deutschland",
+						"id": "0598ac0d-09f8-411e-b7c6-871f207a93c3"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "8e633cc9-ef12-4bd4-8154-97e9f23f2ed6"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.490029, 8.423525",
+						"id": "85b8f05d-4b62-4d89-9578-077f8856f2d7"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "1186ca14-39f9-4e0c-ba72-037ac8d08695"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "2d1d8d88-a4e2-4285-81d9-965e186cffca"
+					}
+				},
+				"op_affected": {
+					"label": "Betroffene ...",
+					"prefix": "opaff_",
+					"id": "942a3e28-95d7-4e32-96eb-29d9c3d7d38d",
+					"opaff_persons": {
+						"label": "Personen",
+						"type": "number",
+						"size": 60,
+						"value": 1,
+						"id": "2b3b0835-8e3b-4324-847b-bf5a3c1826ee"
+					},
+					"opaff_objects": {
+						"label": "Objekte",
+						"type": "number",
+						"size": 40,
+						"value": null,
+						"id": "e4dd3ff7-61d0-4a60-90ab-0160e77fdfd4"
+					}
+				},
+				"op_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": "Grün",
+					"id": "63f67fcc-7302-4f34-91be-7f89171c3a61"
+				}
+			},
+			"index": 0,
+			"x": -5.068523562148311,
+			"y": -16.242053352774633,
+			"vy": 0.0011099771493426431,
+			"vx": 0.0013943347165804175,
+			"fx": null,
+			"fy": null,
+			"isDragged": false
+		},
+		{
+			"id": "8b76f075-9f2c-4d42-952e-2234531e7ff6",
+			"shape": { "type": "emergency-reporter", "scale": 1 },
+			"payload": {
+				"name": { "first": "", "last": "" },
+				"pending": false,
+				"intervalID": "",
+				"location": "49.490029, 8.423525",
+				"category": "ambulance",
+				"label": "",
+				"callback_number": "6(92)471-76-23"
+			},
+			"taxonomy": {
+				"label": "Meldend",
+				"prefix": "erep_",
+				"id": "e15bd668-a345-41ad-962e-5ad98a07e1ae",
+				"erep_name": {
+					"label": "Name",
+					"prefix": "erepn_",
+					"id": "2f30197f-215c-4086-99eb-1ab8ad67aec9",
+					"erepn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "",
+						"id": "9a6dc600-deef-450c-834f-57bc45ffb16c"
+					},
+					"erepn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": null,
+						"id": "d8f13f5c-45a7-4868-8f33-894657258ce7"
+					}
+				},
+				"erep_phonenumber": {
+					"label": "Telefonnummer",
+					"type": "text",
+					"options": [],
+					"size": 60,
+					"value": "6(92)471-76-23",
+					"id": "3eea36a7-d3c7-4e4d-ae01-3fb1b84171d7"
+				},
+				"erep_separatedrecallnumber": {
+					"label": "gesonderte Rückrufnummer",
+					"type": "text",
+					"options": [],
+					"size": 20,
+					"value": null,
+					"id": "e2eff2e4-84b0-4033-ba28-a8226d788446"
+				},
+				"erep_emergencyrelation": {
+					"label": "Notfallbezug",
+					"type": "selection",
+					"options": ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"],
+					"size": 40,
+					"value": "selbst betroffen",
+					"id": "3ce0addf-dd17-400f-8274-c10e1a5ce59f"
+				},
+				"erep_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "7add275f-ce10-4f53-b1c7-dc4f61ce4a29",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": "Bremserstraße",
+						"id": "c6dbe3b6-8b5e-4592-8ce4-9f4c2a82a154"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "347ed6e2-1327-45dd-a1d3-fdd4e7509e9e"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063",
+						"id": "26df7a09-b90c-4809-bcd6-71d20e01b2ac"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063 Ludwigshafen",
+						"id": "f8afc006-bf13-4bf4-81f2-3980125efb20"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "Deutschland",
+						"id": "c93514a9-1c42-476e-8d15-e28fcfbc7051"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "7d5f5f6e-a197-436a-a266-c896ec1a3c05"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.490029, 8.423525",
+						"id": "4d314efc-a566-42e0-a8a2-305aeee8dac8"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "e2ee463f-8538-4141-82d1-efb1272b8099"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "5cb7787d-be8f-43b1-80a2-4022286242b7"
+					}
+				},
+				"erep_reportertype": {
+					"label": "Art",
+					"prefix": "ereprt_",
+					"id": "12361b40-6ddb-4c13-bb1d-21c105e7f887",
+					"ereprt_eCall": {
+						"label": "eCall",
+						"prefix": "eCall_",
+						"id": "901fa2b5-eb3d-4853-94c7-7c4a7a00a3c1",
+						"eCall_eCall": {
+							"label": "eCall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "ca371cc8-d04a-41e5-9232-2524585c0056"
+						},
+						"eCall_persons": {
+							"label": "Anzahl Personen",
+							"type": "selection",
+							"options": ["1", "2", "3", "4", "5", "6", "viele"],
+							"size": 20,
+							"value": null,
+							"id": "b7f3bebe-a283-468c-b6b2-839e0f9a499b"
+						},
+						"eCall_direction": {
+							"label": "Richtung",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "cddb2b0d-b853-45a3-8084-07fcfe224d1f"
+						},
+						"eCall_position": {
+							"label": "GPS-Position",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "62d2f520-2d02-42fc-ad3d-f927b1b0440b"
+						},
+						"eCall_energytype": {
+							"label": "Antriebsart",
+							"type": "selection",
+							"options": ["Benzin", "Diesel", "Gas", "Elektro"],
+							"size": 20,
+							"value": null,
+							"id": "b0537e66-fa3d-435f-b7eb-5e1fd967efc1"
+						},
+						"eCall_releasedby": {
+							"label": "Ausgelöst durch",
+							"type": "selection",
+							"options": ["Manuell", "Automatisch"],
+							"size": 20,
+							"value": null,
+							"id": "77609f78-5231-4be9-a1f1-1b0fad79ecf7"
+						},
+						"eCall_fin": {
+							"label": "FIN",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "f330d684-77bf-4d02-a028-7b01fd633c64"
+						},
+						"eCall_airbagsreleased": {
+							"label": "AirBags ausgelöst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "7ee2858d-916b-4c91-8b35-bf9e54e8ebe8"
+						},
+						"eCall_rescuecard": {
+							"label": "Rettungskarte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "e2e14028-ae96-4564-b976-e0b20be8cf78"
+						}
+					},
+					"ereprt_wearable": {
+						"label": "Wearable",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "baee08da-4b40-49af-a81d-b7b255eb1ba2"
+					},
+					"ereprt_person": {
+						"label": "Person",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "132c7144-4bb8-45b7-a7d8-df763b7276b8"
+					},
+					"ereprt_bma": {
+						"label": "BMA",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "165153d1-0183-46b0-ae15-378eb0e1c0a0"
+					}
+				},
+				"erep_organisation": {
+					"label": "Organisation",
+					"prefix": "ereporg_",
+					"id": "cb2096ea-9b52-49b2-82fd-d8c68d8a6e6e",
+					"ereporg_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 30,
+						"value": "Ja",
+						"id": "34f9519a-e0ce-46ee-810a-19538a5261b3"
+					},
+					"ereporg_practice": {
+						"label": "Arztpraxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "4c817dc6-182e-4a43-ae1a-b8727783ff51"
+					},
+					"ereporg_firedepartment": {
+						"label": "Feuerwehr",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "84e40c07-a389-46c2-99fb-16f3482ba3eb"
+					},
+					"ereporg_externemergencycallcenter": {
+						"label": "Externe Leitstelle",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "c8c94d7b-50a6-4bc9-997f-9ecfad1b42e1"
+					},
+					"ereporg_homeemergencycall": {
+						"label": "Hausnotruf",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "ea330379-7533-4bd1-a7d0-8a6d78f02223"
+					}
+				},
+				"erep_competence": {
+					"label": "Kompetenz",
+					"prefix": "comp_",
+					"id": "2869de94-ca8c-472a-b194-593165722198",
+					"comp_medcompetence": {
+						"label": "Med. Kompetenz",
+						"prefix": "medcomp_",
+						"id": "5fc127b7-c580-4007-9b27-52ea35666da3",
+						"medcomp_doctor": {
+							"label": "Arzt",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "6f03d257-83b5-450b-8a96-12540d4eb05e"
+						},
+						"medcomp_supporter": {
+							"label": "Hilfspersonal",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "6bf6b401-1d47-490f-883a-2cdcd8ec568d"
+						}
+					},
+					"comp_firecompetence": {
+						"label": "Feuerw. Kompetenz",
+						"prefix": "firecomp_",
+						"id": "6a0fe9d8-4fff-4abb-85b4-699edd091e1d",
+						"firecomp_professional": {
+							"label": "Professional",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "de18145a-9e88-4229-9578-0408ad58e4a2"
+						},
+						"firecomp_firstresponder": {
+							"label": "Ersthelfer",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "cf4bc23c-1bb5-4024-bc5d-83f23f220e5a"
+						}
+					},
+					"comp_police": {
+						"label": "Polizei",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "c0717fd9-38ec-47bd-a578-0ef8f880eb8f"
+					}
+				}
+			},
+			"x": -406.51420814481105,
+			"y": 12.525407370294229,
+			"index": 1,
+			"vy": 0.0005976068201833735,
+			"vx": 0.0011287928942499098,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": -411.356001125859, "y": 17.30599331970228 }
+		},
+		{
+			"id": "73e81618-fcf4-4490-a462-53f4f8c9e2eb",
+			"shape": { "type": "emergency-reporter", "scale": 0.5 },
+			"suggestion": {
+				"type": "substituting",
+				"nonExclusive": false
+			},
+			"satellite": { "source": "8b76f075-9f2c-4d42-952e-2234531e7ff6", "angle": "240", "distance": "300" },
+			"payload": {
+				"name": { "first": "Michael", "last": "Barnett" },
+				"pending": false,
+				"intervalID": "",
+				"location": "49.490029, 8.423525",
+				"category": "ambulance",
+				"label": "Hilfspersonal",
+				"callback_number": "6(92)471-76-23"
+			},
+			"taxonomy": {
+				"label": "Meldend",
+				"prefix": "erep_",
+				"id": "0aef529d-172a-4dc7-b0de-cab8cb85a6d8",
+				"erep_name": {
+					"label": "Name",
+					"prefix": "erepn_",
+					"id": "c83f025d-8127-4b7f-9dac-dbd453eeb807",
+					"erepn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "Michael",
+						"id": "fcbc6a67-4975-4203-ae94-8a06c12bc0fd"
+					},
+					"erepn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Barnett",
+						"id": "32350931-a399-4ecb-8b1b-5a28bab91a4d"
+					}
+				},
+				"erep_phonenumber": {
+					"label": "Telefonnummer",
+					"type": "text",
+					"options": [],
+					"size": 60,
+					"value": "6(92)471-76-23",
+					"id": "2820e13a-2de9-487e-8ead-551135945b43"
+				},
+				"erep_separatedrecallnumber": {
+					"label": "gesonderte Rückrufnummer",
+					"type": "text",
+					"options": [],
+					"size": 20,
+					"value": null,
+					"id": "89d63fa8-0f90-49c0-a276-d1fc3fa61289"
+				},
+				"erep_emergencyrelation": {
+					"label": "Notfallbezug",
+					"type": "selection",
+					"options": ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"],
+					"size": 40,
+					"value": "selbst betroffen",
+					"id": "83eb434e-890a-41b0-8aca-e2c6b326f610"
+				},
+				"erep_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "bb598d7e-8e85-4cc1-b089-2608471d3f80",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": "Bremserstraße",
+						"id": "21a4d852-b437-4d64-9116-c5fc81103d76"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "af76b1af-7be4-40be-abb4-9ef6692bee12"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063",
+						"id": "0993888f-b808-46a1-b18d-f54ce2789e10"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063 Ludwigshafen",
+						"id": "362d4fd9-2eff-49b7-8cad-2196d1098018"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "Deutschland",
+						"id": "6bf4b8d8-88eb-4d40-b0a2-c56a204651de"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "052fbb8f-f666-4ae9-994c-5bd520c3a736"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.490029, 8.423525",
+						"id": "c5504be6-9c9a-4e6e-b20f-520df84fef99"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "2d8b276a-32f5-4d7f-a59c-4c1324ee4389"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "f2f1d0d5-63e0-4b32-a18e-41682bd5583c"
+					}
+				},
+				"erep_reportertype": {
+					"label": "Art",
+					"prefix": "ereprt_",
+					"id": "deecd7de-b92e-49d9-af7d-4b8ef062661b",
+					"ereprt_eCall": {
+						"label": "eCall",
+						"prefix": "eCall_",
+						"id": "37092c4a-ec0a-427c-a6e0-487a9630396d",
+						"eCall_eCall": {
+							"label": "eCall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "5fe3bf10-7417-4e94-b420-9182f95eb75f"
+						},
+						"eCall_persons": {
+							"label": "Anzahl Personen",
+							"type": "selection",
+							"options": ["1", "2", "3", "4", "5", "6", "viele"],
+							"size": 20,
+							"value": null,
+							"id": "84a77dd6-5496-48b5-a7ad-2911bb79d53f"
+						},
+						"eCall_direction": {
+							"label": "Richtung",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "a0edef7c-5776-41c6-83de-e5a29a1976fa"
+						},
+						"eCall_position": {
+							"label": "GPS-Position",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "3dc84ed1-79bf-4a8c-a707-a789f708fc77"
+						},
+						"eCall_energytype": {
+							"label": "Antriebsart",
+							"type": "selection",
+							"options": ["Benzin", "Diesel", "Gas", "Elektro"],
+							"size": 20,
+							"value": null,
+							"id": "a1016b01-90b3-4a37-8f63-58578ac2835a"
+						},
+						"eCall_releasedby": {
+							"label": "Ausgelöst durch",
+							"type": "selection",
+							"options": ["Manuell", "Automatisch"],
+							"size": 20,
+							"value": null,
+							"id": "72c4ec6f-9a3a-4e7c-9a4d-44ca92372262"
+						},
+						"eCall_fin": {
+							"label": "FIN",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "e87f2420-25d5-48b4-a615-7da516a67f71"
+						},
+						"eCall_airbagsreleased": {
+							"label": "AirBags ausgelöst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "27b02981-8be4-49e8-ad6e-d234f8c9bd12"
+						},
+						"eCall_rescuecard": {
+							"label": "Rettungskarte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "d8009309-100d-4bad-96a1-20fe094d8a85"
+						}
+					},
+					"ereprt_wearable": {
+						"label": "Wearable",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "0a857233-2d5e-455a-bf05-010839d02af7"
+					},
+					"ereprt_person": {
+						"label": "Person",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "e437eeac-6cbc-4977-9a29-9f8ac45ad58c"
+					},
+					"ereprt_bma": {
+						"label": "BMA",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "1fe69785-62bc-4af3-b24e-40842270b135"
+					}
+				},
+				"erep_organisation": {
+					"label": "Organisation",
+					"prefix": "ereporg_",
+					"id": "f5610210-8197-4cff-8fd0-00ae767dc2b4",
+					"ereporg_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 30,
+						"value": "Ja",
+						"id": "4a98cf22-2bb3-4405-9acd-ab4ba6c4336a"
+					},
+					"ereporg_practice": {
+						"label": "Arztpraxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "c53b3115-2d96-49dc-b883-5a5f8e29e362"
+					},
+					"ereporg_firedepartment": {
+						"label": "Feuerwehr",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "cfdee0c5-9d4f-4202-bf24-1a2abb4622c4"
+					},
+					"ereporg_externemergencycallcenter": {
+						"label": "Externe Leitstelle",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "1a5c3bab-658a-4747-a3b4-302273e9e434"
+					},
+					"ereporg_homeemergencycall": {
+						"label": "Hausnotruf",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "f8312590-1dc1-4b16-bc54-75e1ff8ae60f"
+					}
+				},
+				"erep_competence": {
+					"label": "Kompetenz",
+					"prefix": "comp_",
+					"id": "d81d1f16-f3af-4bc1-bc01-45b214987bf0",
+					"comp_medcompetence": {
+						"label": "Med. Kompetenz",
+						"prefix": "medcomp_",
+						"id": "533cc9c9-616a-4973-ac73-7cf2b0cac147",
+						"medcomp_doctor": {
+							"label": "Arzt",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "65be80e2-aae8-4765-a8cb-7574132c0e3f"
+						},
+						"medcomp_supporter": {
+							"label": "Hilfspersonal",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": "Ja",
+							"id": "86cad529-091a-47dd-9d50-f3b5e26b4892"
+						}
+					},
+					"comp_firecompetence": {
+						"label": "Feuerw. Kompetenz",
+						"prefix": "firecomp_",
+						"id": "6fd4b719-3502-4bf1-8d55-82e7a9e5de2f",
+						"firecomp_professional": {
+							"label": "Professional",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "ac3dfda0-59ad-4391-86e2-62093ac732ec"
+						},
+						"firecomp_firstresponder": {
+							"label": "Ersthelfer",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "92b80880-17fa-44a9-896f-40c112b23e47"
+						}
+					},
+					"comp_police": {
+						"label": "Polizei",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "f01a42df-01cd-4eda-a74d-41260a8d0831"
+					}
+				}
+			},
+			"x": -794.648922015928,
+			"y": 51.982609204588414,
+			"index": 2,
+			"vy": 0.00041324801567549797,
+			"vx": 0.0009881203932333722,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": -783.6086317685127, "y": 52.479588049768765 }
+		},
+		{
+			"id": "8ffc4d0e-1658-448d-b7fc-5079d0bbef65",
+			"shape": { "type": "emergency-reporter", "scale": 0.5 },
+			"suggestion": {
+				"type": "substituting",
+				"nonExclusive": false
+			},
+			"satellite": { "source": "8b76f075-9f2c-4d42-952e-2234531e7ff6", "angle": "270", "distance": "300" },
+			"payload": {
+				"name": { "first": "Teresa", "last": "Cortez" },
+				"pending": false,
+				"intervalID": "",
+				"location": "49.490029, 8.423525",
+				"category": "ambulance",
+				"label": "Arzt",
+				"callback_number": "6(92)471-76-23"
+			},
+			"taxonomy": {
+				"label": "Meldend",
+				"prefix": "erep_",
+				"id": "cced21f8-784b-4715-a518-35b7338ab08f",
+				"erep_name": {
+					"label": "Name",
+					"prefix": "erepn_",
+					"id": "b0dd68fe-8ba4-403c-a078-6d6af906971d",
+					"erepn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "Teresa",
+						"id": "8e60bd09-b223-4bdd-b7a6-7d2125d42f26"
+					},
+					"erepn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Cortez",
+						"id": "45a20455-b829-4e1e-91a9-6eee630ae14b"
+					}
+				},
+				"erep_phonenumber": {
+					"label": "Telefonnummer",
+					"type": "text",
+					"options": [],
+					"size": 60,
+					"value": "6(92)471-76-23",
+					"id": "ad6355c0-2064-4a8c-b678-9b64aa45b478"
+				},
+				"erep_separatedrecallnumber": {
+					"label": "gesonderte Rückrufnummer",
+					"type": "text",
+					"options": [],
+					"size": 20,
+					"value": null,
+					"id": "864ae878-675d-4936-b0af-22ebb8e837aa"
+				},
+				"erep_emergencyrelation": {
+					"label": "Notfallbezug",
+					"type": "selection",
+					"options": ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"],
+					"size": 40,
+					"value": "selbst betroffen",
+					"id": "fa9b5e18-5007-40af-aa65-686af7dc6f7a"
+				},
+				"erep_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "ca3fdf19-860e-432e-bfd6-aeb262cc1942",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": "Bremserstraße",
+						"id": "356d47bd-9413-436a-b3c3-f8388566ab59"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "b181d084-5421-4b03-b96d-6a7b2333b140"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063",
+						"id": "b0a092be-c1bb-4e33-8ecc-37d125a2e8ce"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063 Ludwigshafen",
+						"id": "fbd3c699-a99d-4543-92a0-4b3dd50a7d52"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "Deutschland",
+						"id": "ca85b981-f58b-4c09-81b5-e49953bec372"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "b536080b-91ee-4a05-901a-2385881f8eac"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.490029, 8.423525",
+						"id": "0b94db58-cae0-4440-a986-6536999a29ca"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "91230ae7-f799-4f22-bd16-9ed2b8c6e69f"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "ddb57d90-6330-432b-a548-d60fd0c937ab"
+					}
+				},
+				"erep_reportertype": {
+					"label": "Art",
+					"prefix": "ereprt_",
+					"id": "12902cb6-b101-47ce-bc9d-33d34d781d56",
+					"ereprt_eCall": {
+						"label": "eCall",
+						"prefix": "eCall_",
+						"id": "0b039369-71e7-4097-b64f-a1e7280d8736",
+						"eCall_eCall": {
+							"label": "eCall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "61f32828-06f2-43e4-b385-fb977c488577"
+						},
+						"eCall_persons": {
+							"label": "Anzahl Personen",
+							"type": "selection",
+							"options": ["1", "2", "3", "4", "5", "6", "viele"],
+							"size": 20,
+							"value": null,
+							"id": "0634802f-de84-4199-829d-404c9b064173"
+						},
+						"eCall_direction": {
+							"label": "Richtung",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "381e6666-c106-4555-b39e-52fc3cbd553d"
+						},
+						"eCall_position": {
+							"label": "GPS-Position",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "de1636d8-0a04-47a4-82f9-ad2344ca2be9"
+						},
+						"eCall_energytype": {
+							"label": "Antriebsart",
+							"type": "selection",
+							"options": ["Benzin", "Diesel", "Gas", "Elektro"],
+							"size": 20,
+							"value": null,
+							"id": "b7abb70f-03b7-4698-92d4-4d50c0ab849e"
+						},
+						"eCall_releasedby": {
+							"label": "Ausgelöst durch",
+							"type": "selection",
+							"options": ["Manuell", "Automatisch"],
+							"size": 20,
+							"value": null,
+							"id": "0c891fc2-3462-405a-9a37-e88d697b16a4"
+						},
+						"eCall_fin": {
+							"label": "FIN",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "4e814acb-d2fc-4824-b27f-bbe202d90c64"
+						},
+						"eCall_airbagsreleased": {
+							"label": "AirBags ausgelöst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "9b61dc59-45ea-48d5-a6a2-e629a0d3796c"
+						},
+						"eCall_rescuecard": {
+							"label": "Rettungskarte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "45f741d5-d061-48ef-a74f-b68ef81966f6"
+						}
+					},
+					"ereprt_wearable": {
+						"label": "Wearable",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "d6d8cab9-09e6-4414-8100-8a09bef363b0"
+					},
+					"ereprt_person": {
+						"label": "Person",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "14178954-b448-4ab8-9a8e-bfbb59b31db3"
+					},
+					"ereprt_bma": {
+						"label": "BMA",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "6bf32672-6555-4029-8abe-d270343cd4de"
+					}
+				},
+				"erep_organisation": {
+					"label": "Organisation",
+					"prefix": "ereporg_",
+					"id": "43ec71c5-b469-4f13-ba19-77d28c15e608",
+					"ereporg_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 30,
+						"value": "Ja",
+						"id": "3dc0924f-020a-460e-8f23-73e80ec44e69"
+					},
+					"ereporg_practice": {
+						"label": "Arztpraxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "6c506bf1-14b7-47bb-9afa-680f6cae529c"
+					},
+					"ereporg_firedepartment": {
+						"label": "Feuerwehr",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "6130661a-1fab-4844-b93c-3d9a15cca4e4"
+					},
+					"ereporg_externemergencycallcenter": {
+						"label": "Externe Leitstelle",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "4c8cf09c-e8e1-4f45-940d-39291ba62a33"
+					},
+					"ereporg_homeemergencycall": {
+						"label": "Hausnotruf",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "422887a8-3558-4b16-8ce5-5c8004f215fd"
+					}
+				},
+				"erep_competence": {
+					"label": "Kompetenz",
+					"prefix": "comp_",
+					"id": "1b0d24ec-194d-49df-8086-9f3c58db47c9",
+					"comp_medcompetence": {
+						"label": "Med. Kompetenz",
+						"prefix": "medcomp_",
+						"id": "be96bcb7-43a9-4508-a6a4-529e890bee8a",
+						"medcomp_doctor": {
+							"label": "Arzt",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": "Ja",
+							"id": "b08093ee-cb76-4012-b970-955b77d2f50a"
+						},
+						"medcomp_supporter": {
+							"label": "Hilfspersonal",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "4d916bc2-9f33-4e94-b426-6046ae9e7e4e"
+						}
+					},
+					"comp_firecompetence": {
+						"label": "Feuerw. Kompetenz",
+						"prefix": "firecomp_",
+						"id": "174130a7-4786-476b-ae61-aff6de0fc283",
+						"firecomp_professional": {
+							"label": "Professional",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "9c80f61d-90f9-4417-94f6-dab22cd79a4a"
+						},
+						"firecomp_firstresponder": {
+							"label": "Ersthelfer",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "cb2603e9-1c49-4bd6-913f-4386ebe26031"
+						}
+					},
+					"comp_police": {
+						"label": "Polizei",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "eb903cc9-c63f-4987-b7b4-6de12bc7e7f7"
+					}
+				}
+			},
+			"x": -739.5060423197796,
+			"y": -137.9654150929763,
+			"index": 3,
+			"vy": 0.0004894251834669346,
+			"vx": 0.0009632721959367496,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": -736.0905060733195, "y": -116.86336680593796 }
+		},
+		{
+			"id": "e0afcba2-541d-4090-b6be-7f32d2882de5",
+			"shape": { "type": "emergency-reporter", "scale": 0.5 },
+			"suggestion": {
+				"type": "substituting",
+				"nonExclusive": false
+			},
+			"satellite": { "source": "8b76f075-9f2c-4d42-952e-2234531e7ff6", "angle": "300", "distance": "300" },
+			"payload": {
+				"name": { "first": "Sarah", "last": "Sims" },
+				"pending": false,
+				"intervalID": "",
+				"location": "49.490029, 8.423525",
+				"category": "ambulance",
+				"label": "Hilfspersonal",
+				"callback_number": "6(92)471-76-23"
+			},
+			"taxonomy": {
+				"label": "Meldend",
+				"prefix": "erep_",
+				"id": "b9b457a4-f05d-4370-becf-6243028e747d",
+				"erep_name": {
+					"label": "Name",
+					"prefix": "erepn_",
+					"id": "b7f427f6-add6-4dcd-849e-5fc830f6e719",
+					"erepn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "Sarah",
+						"id": "09cb52fa-e5e2-4ee4-a1a7-63d0ba75bf45"
+					},
+					"erepn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Sims",
+						"id": "3de3a9b9-5af0-4089-9c43-71660f192611"
+					}
+				},
+				"erep_phonenumber": {
+					"label": "Telefonnummer",
+					"type": "text",
+					"options": [],
+					"size": 60,
+					"value": "6(92)471-76-23",
+					"id": "100aa56e-c5c9-4b1f-8ef5-d05e56d27cba"
+				},
+				"erep_separatedrecallnumber": {
+					"label": "gesonderte Rückrufnummer",
+					"type": "text",
+					"options": [],
+					"size": 20,
+					"value": null,
+					"id": "98ea7376-63bd-4486-a65e-44010c989c03"
+				},
+				"erep_emergencyrelation": {
+					"label": "Notfallbezug",
+					"type": "selection",
+					"options": ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"],
+					"size": 40,
+					"value": "selbst betroffen",
+					"id": "daedb8da-d053-4870-9ee3-5e7015f1ad73"
+				},
+				"erep_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "1f3e8c00-9ffe-4ca6-a1c3-9d021f81a660",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": "Bremserstraße",
+						"id": "7159278f-9da1-442b-9fd6-459e64a892cc"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "b44f6069-63db-42b7-bd0d-7a15f77bc812"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063",
+						"id": "7dd79146-4c0e-4c51-bfc3-2c507e7e8d72"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": "67063 Ludwigshafen",
+						"id": "65468af0-ce43-40eb-892b-5bc2a5736f9e"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "Deutschland",
+						"id": "f9c300b4-00a2-41b3-8207-ddf01613cbdf"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "53a4cadd-ddd7-4a0f-91a6-20f1e0df6061"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.490029, 8.423525",
+						"id": "656807b7-e746-45da-9aae-2b771e158e93"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "70402cdb-73b8-4678-a009-53db9e0c2c17"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "f9c4f5c3-34b8-45f5-b07d-be12c794004c"
+					}
+				},
+				"erep_reportertype": {
+					"label": "Art",
+					"prefix": "ereprt_",
+					"id": "7476067d-29e3-41ca-815d-68f3fd8423f0",
+					"ereprt_eCall": {
+						"label": "eCall",
+						"prefix": "eCall_",
+						"id": "9fccdf6a-e1f2-4ebd-9ac4-02d97e7e42d6",
+						"eCall_eCall": {
+							"label": "eCall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "8503421a-5376-4af0-b49d-a8eaafe9e067"
+						},
+						"eCall_persons": {
+							"label": "Anzahl Personen",
+							"type": "selection",
+							"options": ["1", "2", "3", "4", "5", "6", "viele"],
+							"size": 20,
+							"value": null,
+							"id": "8a98eeeb-adb0-42b1-9db5-9ceeb5e67319"
+						},
+						"eCall_direction": {
+							"label": "Richtung",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "a8a826e8-4d49-4478-8340-0191294e27f0"
+						},
+						"eCall_position": {
+							"label": "GPS-Position",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "fa04aceb-f1e9-4dcf-a4a1-42cbd635057f"
+						},
+						"eCall_energytype": {
+							"label": "Antriebsart",
+							"type": "selection",
+							"options": ["Benzin", "Diesel", "Gas", "Elektro"],
+							"size": 20,
+							"value": null,
+							"id": "2cfe4fa9-81eb-4aa3-b7f6-97a21e87d02e"
+						},
+						"eCall_releasedby": {
+							"label": "Ausgelöst durch",
+							"type": "selection",
+							"options": ["Manuell", "Automatisch"],
+							"size": 20,
+							"value": null,
+							"id": "6f6b63de-b32d-469c-a68a-1b31062fffe8"
+						},
+						"eCall_fin": {
+							"label": "FIN",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "7cc42959-b17e-404e-8fb4-ccf2d455bdc6"
+						},
+						"eCall_airbagsreleased": {
+							"label": "AirBags ausgelöst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "cd177566-cb61-4a87-bff7-566e37003043"
+						},
+						"eCall_rescuecard": {
+							"label": "Rettungskarte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "1d674444-44f1-4602-8426-17f9769be15a"
+						}
+					},
+					"ereprt_wearable": {
+						"label": "Wearable",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "9cba3299-1a7a-41d9-ae29-66f5df1b47e0"
+					},
+					"ereprt_person": {
+						"label": "Person",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "8bf29a91-7ca7-45b4-b7f0-a28157225170"
+					},
+					"ereprt_bma": {
+						"label": "BMA",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "3deef54e-b869-44c4-baf0-1763db1555b8"
+					}
+				},
+				"erep_organisation": {
+					"label": "Organisation",
+					"prefix": "ereporg_",
+					"id": "87c97325-7642-47e8-98bd-3c9c47c88d7f",
+					"ereporg_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 30,
+						"value": "Ja",
+						"id": "e93d4af2-6497-4b8c-a66f-38a11db985be"
+					},
+					"ereporg_practice": {
+						"label": "Arztpraxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "0cffc754-b34c-41be-b580-bd213331e95b"
+					},
+					"ereporg_firedepartment": {
+						"label": "Feuerwehr",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "be15a8a6-39fa-433a-b6ad-8d5ad4a369f0"
+					},
+					"ereporg_externemergencycallcenter": {
+						"label": "Externe Leitstelle",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "cb6080dd-97fd-4a45-bc51-9880eea6b640"
+					},
+					"ereporg_homeemergencycall": {
+						"label": "Hausnotruf",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "32540385-ea6e-41a1-8bc1-984b533eeb70"
+					}
+				},
+				"erep_competence": {
+					"label": "Kompetenz",
+					"prefix": "comp_",
+					"id": "2743bf3f-ae0f-4238-aa71-07de73fdcd66",
+					"comp_medcompetence": {
+						"label": "Med. Kompetenz",
+						"prefix": "medcomp_",
+						"id": "f2c93edf-3c01-4f40-a65d-5a7869c0fd22",
+						"medcomp_doctor": {
+							"label": "Arzt",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "f137ad64-b155-4bad-8c0c-f9891cc3cab1"
+						},
+						"medcomp_supporter": {
+							"label": "Hilfspersonal",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": "Ja",
+							"id": "2abbf192-f797-4c1f-8fd1-1b66ef2c2b31"
+						}
+					},
+					"comp_firecompetence": {
+						"label": "Feuerw. Kompetenz",
+						"prefix": "firecomp_",
+						"id": "d3fcc157-b532-41f4-9435-6e6752655ea0",
+						"firecomp_professional": {
+							"label": "Professional",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "ac339a5b-61d6-4e4f-b87d-57898c0351ab"
+						},
+						"firecomp_firstresponder": {
+							"label": "Ersthelfer",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "62406b73-61da-4f98-807e-6e6738e63691"
+						}
+					},
+					"comp_police": {
+						"label": "Polizei",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e2885036-4df4-4291-a185-0def76585947"
+					}
+				}
+			},
+			"x": -716.961633764293,
+			"y": 257.2585929610119,
+			"index": 4,
+			"vy": 0.0003682932727808594,
+			"vx": 0.001095713799173972,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": -714.9202433930202, "y": 244.12963047662993 }
+		},
+		{
+			"id": "5447ab16-96e1-4b85-a700-ffaf676e8c90",
+			"shape": { "type": "affected-person", "scale": 1 },
+			"spawn": { "source": "n0", "angle": 180, "distance": 400 },
+			"payload": {
+				"status": "minor",
+				"name": { "first": "", "last": "" },
+				"sex": "",
+				"age": "",
+				"accessibility": "",
+				"tags": []
+			},
+			"taxonomy": {
+				"label": "Betroffene Person",
+				"prefix": "ap_",
+				"id": "a56e6f4a-a001-42af-9989-c4688edc28b6",
+				"ap_name": {
+					"label": "Name",
+					"prefix": "apn_",
+					"id": "87653e2c-5d99-4e3b-b8df-8d3c4b20be66",
+					"apn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": null,
+						"id": "baee7ba2-ab0e-4761-b194-a3d8e98e89b5"
+					},
+					"apn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": null,
+						"id": "7e8b0aaa-db78-450d-9eeb-785322f4170a"
+					}
+				},
+				"ap_age": {
+					"label": "Alter",
+					"type": "number",
+					"size": 50,
+					"value": null,
+					"id": "ed9c2f6c-2157-445d-a436-a570327e01dd"
+				},
+				"ap_sex": {
+					"label": "Geschlecht",
+					"type": "selection",
+					"options": ["Männlich", "Weiblich", "Divers"],
+					"size": 50,
+					"value": null,
+					"id": "93aed792-c39c-4030-9679-43820bd3414e"
+				},
+				"ap_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": "Grün",
+					"id": "8c640b03-c9a6-4412-9e68-016b160670e3"
+				},
+				"ap_symptoms": {
+					"label": "Symptome",
+					"prefix": "aps_",
+					"id": "d00af178-bb94-4cea-b3b6-d6ea085ca603",
+					"aps_pain": {
+						"label": "Schmerzen",
+						"type": "selection",
+						"options": ["Stark", "Mittel", "Schwach", "Nein"],
+						"size": 80,
+						"value": null,
+						"id": "0b95e7d2-3249-471d-a9fa-f14cd8f8385e"
+					},
+					"aps_painlocation": {
+						"label": "Schmerzbereich",
+						"type": "selection",
+						"options": [
+							"Brust",
+							"Kopf",
+							"Nacken",
+							"Schulter",
+							"Rücken",
+							"Arm",
+							"Hand",
+							"Becken",
+							"Wehen",
+							"Oberbauch",
+							"Hüfte",
+							"Nieren",
+							"Genital",
+							"Oberschenke",
+							"Knie",
+							"Unterschenkel",
+							"Fuß"
+						],
+						"size": 40,
+						"value": null,
+						"id": "d8119bc3-c6e0-40ef-abdb-de0ed62dac1f"
+					},
+					"aps_painmovementrelated": {
+						"label": "Schmerzen bewegungsabhängig",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "5e891c90-c5f1-4327-9c62-f3c6ef94ea1a"
+					},
+					"aps_fiever": {
+						"label": "Fieber",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "349dcd57-ab2e-491d-a940-497a6212a3ec"
+					},
+					"aps_heatfeeling": {
+						"label": "Hitzeempfinden",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "d303e4dd-da56-4a73-b41a-d2b6c78ccd67"
+					},
+					"aps_coldfadeskin": {
+						"label": "kalte fahle Haut",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "23592614-8b1a-4d9b-9252-13dbdcad813c"
+					},
+					"aps_coldsweat": {
+						"label": "kalter Schweiß",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e05c1b47-a899-46ff-b86a-66c37c68d8ea"
+					},
+					"aps_shivers": {
+						"label": "Schüttelfrost",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "2e278534-77cb-4dde-93a4-51287a6bbfb1"
+					},
+					"aps_bluelips": {
+						"label": "blaue Lippen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "d3ecd6d1-6f74-4c2b-9c92-89a9d71f48d6"
+					}
+				},
+				"ap_diagnosis": {
+					"label": "Diagnose",
+					"prefix": "apd_",
+					"id": "375ff7c8-c585-44a8-bc63-4d8d69e28250",
+					"apd_heartattack": {
+						"label": "Herzinfakt",
+						"type": "selection",
+						"options": ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"],
+						"size": 80,
+						"value": null,
+						"id": "d55d8d24-b6d8-4a4d-8537-336e3170fcdd"
+					}
+				},
+				"ap_condition": {
+					"label": "Zustand",
+					"prefix": "apc_",
+					"id": "bd948bc4-6a9f-4e19-9857-84928c118eff",
+					"apc_vitalcondition": {
+						"label": "Vitalwerte",
+						"prefix": "apcvc_",
+						"id": "f3f03ac9-8f0b-4296-afe0-68194974148d",
+						"apcvc_breath": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 100,
+							"value": null,
+							"id": "fb7b6208-a645-4ecc-b452-09a50b5812d8"
+						},
+						"apcvc_breathmovement": {
+							"label": "Atembewegung",
+							"type": "selection",
+							"options": ["Ja", "Nein!", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "277b9db6-9a05-43cf-9de2-ab869f9ab55c"
+						},
+						"apcvc_breathproblem": {
+							"label": "Atemstörung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 40,
+							"value": null,
+							"id": "8e63195c-a8d2-492b-88f7-94aa468bc28c"
+						},
+						"apcvc_consciousness": {
+							"label": "bei Bewusstsein",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "dd5fc3a4-da01-4def-b7c3-eb556b07020b"
+						},
+						"apcvc_unconscioussince": {
+							"label": "bewusstlos seit",
+							"type": "selection",
+							"options": ["gerade", "Stunden", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "792755e3-4c08-4928-b254-b9f060d0732e"
+						},
+						"apcvc_pulse": {
+							"label": "Puls",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt"],
+							"size": 100,
+							"value": null,
+							"id": "1bc6f217-2c80-4d45-bd02-9ca76edb8f68"
+						}
+					},
+					"apc_physicalcondition": {
+						"label": "Physisch",
+						"prefix": "apcpc_",
+						"id": "a679bcc4-3792-44f5-95b4-7ef7b7173336",
+						"apcpc_diabetes": {
+							"label": "Diabetes",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "e5753807-4616-4b71-ab5e-acf351030a3d"
+						},
+						"apcpc_bloodstream": {
+							"label": "Kreislaufprobleme",
+							"type": "selection",
+							"options": ["Stark", "Leicht", "Nein", "Unbekannt"],
+							"size": 60,
+							"value": null,
+							"id": "cf671daa-97d2-4a81-800d-5ffe21002932"
+						},
+						"apcpc_dizziness": {
+							"label": "Schwindel",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "106c2e40-92ed-41c2-8771-bd87616d7e18"
+						},
+						"apcpc_pregnant": {
+							"label": "Schwanger",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "a78a809e-ff89-4b1f-9b8d-ecacf8e36484"
+						},
+						"apcpc_wheelchair": {
+							"label": "Rollstuhl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "c7f6ba58-92d1-469c-bb15-2267015b1cdb"
+						},
+						"apcpc_visuallyimpared": {
+							"label": "Blind/Sehbehindert",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "c86634a5-aa88-4d16-ac4d-c006fed1cbea"
+						},
+						"apcpc_oftenhypertension": {
+							"label": "oft Bluthochdruck",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "f1cdfcc2-3aa4-44d2-b22a-0d7b218fc2be"
+						},
+						"apcpc_oftencholesterol": {
+							"label": "oft hohe Cholesterinwerte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "50f55c94-16bd-4932-b5e0-ad98401c52be"
+						},
+						"apcpc_hearthsuffering": {
+							"label": "Herzleiden",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "10e60067-a18f-4f56-834a-696753c950d4"
+						},
+						"apcpc_infection": {
+							"label": "Infektion",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "14be6e19-a788-4876-92c5-8dd0a9028345"
+						},
+						"apcpc_infectionsince": {
+							"label": "Infektion seid",
+							"type": "selection",
+							"options": ["Stunden", "Tage", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "78758b10-3069-4566-84b4-64ddc6d8ce75"
+						},
+						"apcpc_infectioncovid": {
+							"label": "Covid",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "b5cd5834-496a-437b-93d0-5d31cd7faa73"
+						}
+					},
+					"apc_mentalcondition": {
+						"label": "Mental",
+						"prefix": "apcmc_",
+						"id": "cea9f273-52f1-488a-86d1-27e1cde5c987",
+						"apcmc_fear": {
+							"label": "Angst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "8994d7b9-ada9-439a-962d-6bc0fc624f13"
+						},
+						"apcmc_threaten": {
+							"label": "Bedrohung",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "f645fed3-53aa-43ec-bb36-205ea0d0bdb1"
+						},
+						"apcmc_weakness": {
+							"label": "Schwächegefühl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "94112fba-c955-40ca-a87d-4e946051b743"
+						},
+						"apcmc_stress": {
+							"label": "Stress",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "202f2f93-0a35-4af9-a3d5-638a08b7bac8"
+						}
+					}
+				},
+				"ap_accessibility": {
+					"label": "Zugänglichkeit",
+					"prefix": "apa_",
+					"id": "be666878-2860-45e8-9184-d74443a4cc38",
+					"apa_free": {
+						"label": "Frei Zugänglich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 100,
+						"value": null,
+						"id": "dec519d4-cb88-4506-a543-3c65703bc58f"
+					},
+					"apa_confined": {
+						"label": "Eingeschlossen",
+						"type": "selection",
+						"options": ["Nein", "in Wohnung", "in PKW"],
+						"size": 40,
+						"value": null,
+						"id": "728abdfe-53be-4336-86ab-9780fe7b4cf7"
+					},
+					"apa_clamped": {
+						"label": "Eingeklemmt",
+						"type": "selection",
+						"options": ["Nein", "in PKW", "in Maschine"],
+						"size": 40,
+						"value": null,
+						"id": "414023ad-9f00-4801-8468-758695e50552"
+					},
+					"apa_exposed": {
+						"label": "Exponierte Lage",
+						"type": "selection",
+						"options": ["Nein", "Höhe", "Tiefe"],
+						"size": 40,
+						"value": null,
+						"id": "a0eafa52-ca78-41f2-b684-89173a401d02"
+					},
+					"apa_water": {
+						"label": "im Wasser",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e364c5bf-a418-47c5-b5c0-5e19af47d83e"
+					},
+					"apa_offroad": {
+						"label": "im Gelände",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "ccce86cd-d375-43d6-82c3-a9814e3c9749"
+					},
+					"apa_missed": {
+						"label": "Vermisst",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "9837e82e-6951-4e02-a955-649e7c01e308"
+					},
+					"apa_danger": {
+						"label": "Gefahrenbereich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "85d33276-b9ad-4785-9886-d1d2a268bc0e"
+					}
+				},
+				"ap_guesseddiagnosis": {
+					"label": "Verdachtsdiagnose",
+					"prefix": "apgd_",
+					"id": "392fb67d-6547-4634-ab2b-fea023078fe7",
+					"apgd_injury": {
+						"label": "Verletzung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "2ee7b71b-4a34-4afa-a992-3905c7d9fd91"
+					},
+					"apgd_presickness": {
+						"label": "Vorerkrankung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "5b839614-81cd-4f9d-aaec-8ec3dfd6a85d"
+					},
+					"apgd_medication": {
+						"label": "Medikation",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "1e6db13b-038d-4056-b3e8-252d863bdacf"
+					},
+					"apgd_allergy": {
+						"label": "Allergien",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "9745fb3c-dad6-4a30-b795-962e884a2254"
+					},
+					"apgd_age": {
+						"label": "Alter",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "39f639c3-c9b0-4077-9812-504b4ecc281c"
+					},
+					"apgd_f": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "deaae06e-c454-4299-bc77-7507930bd108"
+					},
+					"apgd_g": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "75acd587-eb56-4ac8-9c0f-d747cfe923cb"
+					},
+					"apgd_h": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "8fd375b7-bb54-4553-bb07-109cb52eb426"
+					},
+					"apgd_i": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "d3cbbd30-de88-4df6-a70a-58f947e3c71c"
+					},
+					"apgd_j": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "de46830e-fd5f-45c9-8228-d979d3955884"
+					},
+					"apgd_k": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "4c5d46c7-a59c-454f-9702-ea25e302aeab"
+					},
+					"apgd_l": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "c1c431b8-d27e-4bc3-b19c-fec9c3226699"
+					}
+				}
+			},
+			"x": 12.894616226288345,
+			"y": 405.937941401847,
+			"index": 5,
+			"vy": 0.0006065830919377113,
+			"vx": -0.0011984434104997158,
+			"fx": null,
+			"fy": null,
+			"anchor": { "type": "soft", "x": -1.7800714373518822, "y": 393.98741785643244 },
+			"isDragged": false
+		},
+		{
+			"id": "623bc7c9-d01b-4d6e-83c8-1dcb8939dd20",
+			"shape": { "type": "emergency-action", "scale": 1 },
+			"spawn": { "source": "node-0.7003966166797269", "angle": 90, "distance": 500 },
+			"payload": { "category": "", "status": "scheduled", "label": "", "priority": "", "tags": [] },
+			"taxonomy": {
+				"label": "Maßnahme",
+				"prefix": "proc_",
+				"id": "77a51e06-371c-4236-899f-112fdcd12581",
+				"proc_medical": {
+					"label": "Medizinisch",
+					"prefix": "procmed_",
+					"id": "e62dd980-3a80-478a-a81f-3904b3a8659d",
+					"procmed_threatment": {
+						"label": "Behandlung",
+						"prefix": "procmedthreat_",
+						"id": "81c71509-80a7-471c-8e5a-4f6b5cfdb5ee",
+						"procmedthreat_threatment": {
+							"label": "Behandlung erforderlich",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 50,
+							"value": null,
+							"id": "294d87c9-9bb6-4b70-86ee-933ad7fa3f21"
+						},
+						"procmedthreat_oxigenreq": {
+							"label": "O2 erforderlich",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "9cc4b57f-ca82-4e9a-b933-c726f1e7e674"
+						},
+						"procmedthreat_painkiller": {
+							"label": "Schmerzmittel erforderlich",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "d7049885-7fab-4f3b-8c4d-d94f9ee3946a"
+						}
+					},
+					"procmed_food": {
+						"label": "Verpflegung",
+						"type": "number",
+						"size": 10,
+						"value": null,
+						"id": "605dc49d-72f2-4684-a7ab-d267075e0384"
+					},
+					"procmed_care": {
+						"label": "Betreuung",
+						"type": "number",
+						"size": 20,
+						"value": null,
+						"id": "3db3906b-85c0-4f46-b706-11a2596a6e85"
+					},
+					"procmed_transport": {
+						"label": "Transport",
+						"prefix": "procmedtransp_",
+						"id": "f76950ed-731a-4d17-9bf5-bc281e5ad3f8",
+						"procmedtransp_threatment": {
+							"label": "Transport erforderlich",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 50,
+							"value": null,
+							"id": "fedda4fe-0599-46b3-9163-5b3db0c00dae"
+						},
+						"procmedtransp_laying": {
+							"label": "liegend",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "026c17cf-b5cf-4488-a634-785d1b07b61a"
+						},
+						"procmedtransp_sitting": {
+							"label": "sitzend",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "f50a917f-020f-49e0-9fa9-a8e862f0623e"
+						},
+						"procmedtransp_specialrights": {
+							"label": "Sonderrechte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"id": "01775442-23e9-46a0-a932-47a1d127c50b",
+							"value": null
+						},
+						"procmedtransp_transporttarget": {
+							"label": "Transportziel",
+							"type": "text",
+							"size": 40,
+							"value": null,
+							"id": "abe26fad-1b14-452d-bb2c-f86437efeac3"
+						},
+						"procmedtransp_oxigenreq": {
+							"label": "mit O2",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "8bd39b16-b815-4978-9a35-99480f8bf1b8"
+						},
+						"procmedtransp_breathsupportreq": {
+							"label": "mit Beatmung ",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "b86c310b-0358-4014-a097-781253b3a9b9"
+						},
+						"procmedtransp_perfusorreq": {
+							"label": "mit Perfusor",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "8a3ce3dc-fd57-4b1b-9c4b-2c57d6b62a4d"
+						},
+						"procmedtransp_monitorreq": {
+							"label": "mit Monitor",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "2e1a87ea-6898-4818-bec3-8859826480da"
+						},
+						"procmedtransp_vakuummatreq": {
+							"label": "mit Vakuummatratze",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "eb6789e4-4538-49f2-843b-70a51dd65dd3"
+						}
+					}
+				},
+				"proc_technical": {
+					"label": "Technisch",
+					"prefix": "procmedtec_",
+					"id": "1311a653-5125-4aa0-9865-e44f435b20ad",
+					"procmedtec_firefighting": {
+						"label": "Brandbekämpfung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 50,
+						"value": null,
+						"id": "4009d888-57eb-4fa7-adb3-68455f74622e"
+					},
+					"procmedtec_rescue": {
+						"label": "Rettung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"id": "6e457f2f-beae-4cf4-a9a3-89a3e9e5d200",
+						"value": null
+					},
+					"procmedtec_extrication": {
+						"label": "Befreiung, Bergen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "0468a2c2-cb3d-44de-b9bf-67f7dafb0ba7"
+					},
+					"procmedtec_protection": {
+						"label": "Schützen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "e30a7a89-8b30-437e-a1d3-a4d8a2435d15"
+					},
+					"procmedtec_transport": {
+						"label": "Transport",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "912df29d-e524-41e3-a9e5-949cb80c3ca8"
+					}
+				},
+				"proc_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Geplant", "Laufend", "Abgeschlossen"],
+					"size": 50,
+					"value": "Geplant",
+					"id": "2d20d429-3462-47e0-a19d-c21d3fba5a86"
+				}
+			},
+			"x": 471.8248835154055,
+			"y": 426.92334488672583,
+			"index": 6,
+			"vy": -0.0002891569765099165,
+			"vx": -0.003110663576395003,
+			"fx": null,
+			"fy": null,
+			"anchor": { "type": "soft", "x": 470.590906659529, "y": 422.04349731262306 },
+			"isDragged": false
+		}
+	],
+	"links": [
+		{
+			"source": "8b76f075-9f2c-4d42-952e-2234531e7ff6",
+			"target": "53804b4f-22b8-43df-bbda-63eeeb2b8da5",
+			"type": "solid",
+			"directed": true,
+			"strength": "weak"
+		},
+		{
+			"source": "73e81618-fcf4-4490-a462-53f4f8c9e2eb",
+			"target": "8b76f075-9f2c-4d42-952e-2234531e7ff6",
+			"type": "dotted",
+			"directed": true,
+			"strength": "weak"
+		},
+		{
+			"source": "8ffc4d0e-1658-448d-b7fc-5079d0bbef65",
+			"target": "8b76f075-9f2c-4d42-952e-2234531e7ff6",
+			"type": "dotted",
+			"directed": true,
+			"strength": "weak"
+		},
+		{
+			"source": "e0afcba2-541d-4090-b6be-7f32d2882de5",
+			"target": "8b76f075-9f2c-4d42-952e-2234531e7ff6",
+			"type": "dotted",
+			"directed": true,
+			"strength": "weak"
+		},
+		{
+			"source": "53804b4f-22b8-43df-bbda-63eeeb2b8da5",
+			"target": "5447ab16-96e1-4b85-a700-ffaf676e8c90",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "loose"
+		},
+		{
+			"source": "5447ab16-96e1-4b85-a700-ffaf676e8c90",
+			"target": "623bc7c9-d01b-4d6e-83c8-1dcb8939dd20",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "weak"
+		}
+	],
+	"hasUpdate": false
+}
