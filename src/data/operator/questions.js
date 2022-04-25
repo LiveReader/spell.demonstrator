@@ -450,6 +450,27 @@ const questionTemplates = [
 			d.taxonomy.diagnosis.heartattack.value = v;
 		},
 	},
+
+	/// Unconsciousness Questions
+	// Diabetes
+	// d.taxonomy.condition.physicalcondition.diabetes
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 876,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Diabetes",
+		description: "Hat die Person Diabetes?",
+		label: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.label,
+		options: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.options,
+		value: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.value,
+		condition: (d) => unconsciousnessActivator(d) && !d?.taxonomy?.condition?.physicalcondition?.diabetes?.value,
+	},
+	// Medikamente
+
+	// Alkohol
+
+	// Gatvergiftung
 ];
 
 function heartAttackActivator(d) {
@@ -460,6 +481,10 @@ function heartAttackActivator(d) {
 		d?.taxonomy?.symptoms?.painlocation &&
 		d?.taxonomy?.symptoms?.painlocation?.value == "Brust"
 	);
+}
+
+function unconsciousnessActivator(d) {
+	return d?.taxonomy?.condition?.vitalcondition?.consciousness == "Ja";
 }
 
 for (let i = 0; i < questionTemplates.length; i++) {
