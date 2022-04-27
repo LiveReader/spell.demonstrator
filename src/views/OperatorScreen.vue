@@ -713,6 +713,7 @@ function acceptSuggestion(suggestion) {
 	const node = graph.value.nodes.find((n) => n.id == suggestion.id);
 	if (!node) return;
 
+	const nonExclusive = suggestion.suggestion.nonExclusive;
 	if (suggestion.suggestion.type == "attaching") {
 		// attaching suggestion
 		node.shape.scale = 1;
@@ -739,7 +740,7 @@ function acceptSuggestion(suggestion) {
 		taxonomy2payload[source.shape.type](source, graph.value);
 	}
 	removeCloseButton(suggestion);
-	if (!suggestion.suggestion.nonExclusive) {
+	if (!nonExclusive) {
 		getSuggestions(source).forEach((s) => removeSuggestion(s));
 	}
 	suggestion.callback(suggestion, source);
