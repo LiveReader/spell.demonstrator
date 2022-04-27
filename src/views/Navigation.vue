@@ -19,6 +19,10 @@
 			</v-list>
 			<v-divider></v-divider>
 			<slot></slot>
+			<v-divider></v-divider>
+			<v-container>
+				<v-switch v-model="touchScreen" :label="`TouchScreen: ${touchScreen.toString()}`"></v-switch>
+			</v-container>
 		</v-navigation-drawer>
 		<v-navigation-drawer
 			id="menu"
@@ -38,6 +42,11 @@
 		</v-navigation-drawer>
 	</div>
 </template>
+
+<script>
+const touchScreen = ref(false);
+export { touchScreen };
+</script>
 
 <script setup>
 import { ref, onMounted, defineProps } from "vue";
