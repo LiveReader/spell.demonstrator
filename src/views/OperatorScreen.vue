@@ -59,7 +59,7 @@ import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
 import { generateRessources } from "../../generator";
 
-import Navigation from "./Navigation.vue";
+import Navigation, { touchScreen } from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 import SideBar from "../components/SideBar.vue";
 import NodeModal from "../components/NodeModal.vue";
@@ -882,6 +882,14 @@ watch(
 				heartAttackSuggestion(node);
 			}
 		}
+	}
+);
+
+watch(
+	() => touchScreen.value,
+	() => {
+		generateOpenQuestions();
+		updateClosedQuestions();
 	}
 );
 </script>

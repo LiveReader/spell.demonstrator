@@ -165,13 +165,15 @@ const locations = [
 		street: "Schneegasse",
 		buildingno: "32",
 		zipcode: "67059",
-		city: "Luxemburg",
+		city: "Ludwigshafen",
 		country: "Deutschland",
 		note: "",
 		gps: "49.482931, 8.430324",
 		threewords: "",
 	},
 ];
+// array of all locations with the .selectionLabel function
+const locationsSelection = ["Schneegasse 32, 67059 Ludwigshafen"];
 const location = () => locations[Math.floor(Math.random() * locations.length)];
 
 export {
@@ -196,5 +198,6 @@ export {
 	ressourceTimes,
 	ressourceTime,
 	locations,
+	locationsSelection,
 	location,
 };
