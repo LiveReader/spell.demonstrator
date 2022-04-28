@@ -1,4 +1,4 @@
-import { transportTargets } from "../random";
+import { enumerations, transportTargets } from "../random";
 
 // prettier-ignore
 const Type = {
@@ -37,8 +37,8 @@ const medical = {
 	label: "Medizinisch",
 	prefix: "procmed_",
 	threatment: threatment,
-	food: { label: "Verpflegung", type: Type.Number, size: 10, value: null, id: "e193167a-66fe-5e67-9992-79c2403b4f43" },
-	care: { label: "Betreuung", type: Type.Number, size: 20, value: null, id: "0506d77b-39e3-54a9-8c3d-352b4218639f" },
+	food: { label: "Verpflegung", type: Type.Number, options: enumerations, size: 10, value: null, id: "e193167a-66fe-5e67-9992-79c2403b4f43" },
+	care: { label: "Betreuung", type: Type.Number, options: enumerations, size: 20, value: null, id: "0506d77b-39e3-54a9-8c3d-352b4218639f" },
 	transport: transport,
 };
 

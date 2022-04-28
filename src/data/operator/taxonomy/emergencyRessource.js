@@ -1,4 +1,4 @@
-import { ressourceIdentifiers, ressourceTimes } from "../random";
+import { enumerations, ressourceIdentifiers, ressourceTimes } from "../random";
 
 // prettier-ignore
 const Type = {
@@ -30,7 +30,7 @@ const emergencyRessource = {
 	medtype: { label: "Med-Typ", type: Type.Selection, options: ["KTW", "RTW", "NEF", "ITW", "HC-ITW", "RTH", "Tele-Arzt", "116117", "ZPK"], size: 20, value: null, id: "74fa78c7-ff4f-50e9-aebe-491e38fed1ce" },
 	fdtype: { label: "FD-Typ", type: Type.Selection, options: ["Löschfahrzeug", "Truppenfahrzeug", "Techn. Equip.", "Leiterwage"], size: 20, value: null, id: "33cc2ec6-1f4a-5b4a-afb3-d1f482d8141b" },
 	identifier: { label: "Kennung", type: Type.Text, options: ressourceIdentifiers, size: 40, value: null, id: "481de74d-a8a9-506d-a80f-17714046813f" },
-	status: { label: "Status", type: Type.Number, size: 40, value: null, id: "78f54114-0429-5355-b3be-59c9a91e4b71" },
+	status: { label: "Status", type: Type.Number, options: enumerations, size: 40, value: null, id: "78f54114-0429-5355-b3be-59c9a91e4b71" },
 	alerted: { label: "Alarmiert", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "64294b32-d26d-502f-b2f9-656b1313364e" },
 	time: { label: "Zeit", type: Type.Text, options: ressourceTimes, size: 40, value: null, id: "cdb68048-15f6-5f4b-a74a-00cd6d3f79a0" },
 	location: location,

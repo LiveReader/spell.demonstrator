@@ -1,4 +1,4 @@
-import {} from "../random";
+import { enumerations } from "../random";
 
 // prettier-ignore
 const Type = {
@@ -175,11 +175,19 @@ const affected = {
 	persons: {
 		label: "Personen",
 		type: Type.Number,
+		options: enumerations,
 		size: 60,
 		value: null,
 		id: "c0000b86-8a1a-533c-9134-0ce5caf8f019",
 	},
-	objects: { label: "Objekte", type: Type.Number, size: 40, value: null, id: "ccda6bf2-6e31-5760-b955-06b398a8ec6c" },
+	objects: {
+		label: "Objekte",
+		type: Type.Number,
+		options: enumerations,
+		size: 40,
+		value: null,
+		id: "ccda6bf2-6e31-5760-b955-06b398a8ec6c",
+	},
 };
 
 // prettier-ignore

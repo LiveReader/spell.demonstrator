@@ -1,3 +1,6 @@
+const enumerations = [...Array(101).keys()];
+const enumeration = () => enumerations[Math.floor(Math.random() * enumerations.length)];
+
 const firstNames = [
 	"Hilda",
 	"Marc",
@@ -172,6 +175,8 @@ const locations = [
 const location = () => locations[Math.floor(Math.random() * locations.length)];
 
 export {
+	enumerations,
+	enumeration,
 	firstNames,
 	firstName,
 	lastNames,
