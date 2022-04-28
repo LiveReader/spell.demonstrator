@@ -1,3 +1,5 @@
+import { objects } from "../random";
+
 // prettier-ignore
 const Type = {
 	Text: "text",
@@ -88,7 +90,7 @@ const objecttype = {
 const affectedObject = {
 	label: "Betroffenes Objekt",
 	prefix: "ao_",
-	name: { label: "Name", type: Type.Text, size: 50, value: null, id: "9ff30bcc-edd1-5fc1-aaf1-dcaf26dbe134" },
+	name: { label: "Name", type: Type.Text, options: objects, size: 50, value: null, id: "9ff30bcc-edd1-5fc1-aaf1-dcaf26dbe134" },
 	status: { label: "Status", type: Type.Selection, options: ["Grün", "Gelb", "Rot"], size: 50, value: null, id: "10bd5fc5-fe2a-5adb-81ce-9824bcaa8875" },
 	mobile: mobile,
 	residentialtype: residentialtype,

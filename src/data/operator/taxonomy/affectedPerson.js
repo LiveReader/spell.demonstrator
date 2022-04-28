@@ -1,3 +1,5 @@
+import { firstNames, lastNames } from "../random";
+
 // prettier-ignore
 const Type = {
 	Text: "text",
@@ -11,12 +13,14 @@ const name = {
 	first: {
 		label: "Vorname",
 		type: Type.Text,
+		options: firstNames,
 		size: 40,
 		value: null, id: "2a0c8106-eb8a-5508-9eab-0823756e0ad2",
 	},
 	last: {
 		label: "Nachname",
 		type: Type.Text,
+		options: lastNames,
 		size: 40,
 		value: null, id: "85183058-65e5-5bad-9fe9-2ce6b599d540",
 	},

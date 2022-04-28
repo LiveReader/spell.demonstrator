@@ -1,3 +1,5 @@
+import { transportTargets } from "../random";
+
 // prettier-ignore
 const Type = {
 	Text: "text",
@@ -22,7 +24,7 @@ const transport = {
 	laying: { label: "liegend", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "7e71dedf-a083-503d-9736-4b3003c14561" },
 	sitting: { label: "sitzend", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "b634e217-c7c1-57ae-836d-347a7b494d85" },
 	specialrights: { label: "Sonderrechte", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "39a3ad1f-f5ee-5e0a-8c2d-e31b42c18e01" },
-	transporttarget: { label: "Transportziel", type: Type.Text, size: 40, value: null, id: "6cd7d302-4dea-576f-ab01-e9abe9aa19ca",},
+	transporttarget: { label: "Transportziel", type: Type.Text, options: transportTargets, size: 40, value: null, id: "6cd7d302-4dea-576f-ab01-e9abe9aa19ca",},
 	oxigenreq: { label: "mit O2", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "e56a6add-0f66-55a6-bc17-ab43e893bc99" },
 	breathsupportreq: { label: "mit Beatmung ", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "5e1da1a6-e556-544f-b53f-7979548c434b" },
 	perfusorreq: { label: "mit Perfusor", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "950c4092-fbb3-5541-9923-8b1149bb43e3" },

@@ -1,3 +1,5 @@
+import { firstNames, lastNames, phoneNumbers, VINs, compasDirections } from "../random";
+
 // prettier-ignore
 const Type = {
 	Text: "text",
@@ -8,8 +10,8 @@ const Type = {
 const name = {
 	label: "Name",
 	prefix: "erepn_",
-	first: { label: "Vorname", type: Type.Text, size: 40, value: null, id: "2e7947e1-d619-5c41-a7c3-4ea9a3275169",},
-	last: { label: "Nachname", type: Type.Text, size: 40, value: null, id: "b0f41ffa-20d7-5841-ab2d-cb90bbde8e45",},
+	first: { label: "Vorname", type: Type.Text, options: firstNames, size: 40, value: null, id: "2e7947e1-d619-5c41-a7c3-4ea9a3275169",},
+	last: { label: "Nachname", type: Type.Text, options: lastNames, size: 40, value: null, id: "b0f41ffa-20d7-5841-ab2d-cb90bbde8e45",},
 };
 
 // prettier-ignore
@@ -18,11 +20,12 @@ const eCall = {
 	prefix: "eCall_",
 	eCall: { label: "eCall", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null, id: "4a2555f2-e586-59fe-ae67-b2ea370c6adc" },
 	persons: { label: "Anzahl Personen", type: Type.Selection, options: ["1", "2", "3", "4", "5", "6", "viele"], size: 20, value: null, id: "3af29036-677d-5e57-9f01-94ddefe98c8f" },
-	direction: { label: "Richtung", type: Type.Text, options: [], size: 20, value: null, id: "cdb67b3b-24de-517e-96e4-94ed6e80ad3e" },
+	direction: { label: "Richtung", type: Type.Text, options: compasDirections, size: 20, value: null, id: "cdb67b3b-24de-517e-96e4-94ed6e80ad3e" },
+	// TODO location options
 	position: { label: "GPS-Position", type: Type.Text, options: [], size: 20, value: null, id: "67552151-53df-5fbe-9b39-8e20ff6a9220" },
 	energytype: { label: "Antriebsart", type: Type.Selection, options: ["Benzin", "Diesel", "Gas", "Elektro"], size: 20, value: null, id: "37150997-b75a-5d52-94df-497d2b5aa9f6" },
 	releasedby: { label: "Ausgelöst durch", type: Type.Selection, options: ["Manuell", "Automatisch"], size: 20, value: null, id: "7c56b9d2-870f-5437-805a-6a4500b1fba9" },
-	fin: { label: "FIN", type: Type.Text, options: [], size: 20, value: null, id: "69fbabd3-8ecc-565b-8267-60abc04cac6d" },
+	fin: { label: "FIN", type: Type.Text, options: VINs, size: 20, value: null, id: "69fbabd3-8ecc-565b-8267-60abc04cac6d" },
 	airbagsreleased: { label: "AirBags ausgelöst", type: Type.Selection, options: ["Ja", "Nein"], size: 30, value: null, id: "d3143613-7c53-51ff-be99-7aa45324287d" },
 	rescuecard: { label: "Rettungskarte", type: Type.Selection, options: ["Ja", "Nein"], size: 30, value: null, id: "64069922-7fc7-5870-89ee-af9e0d44ff77" },
 }
@@ -77,6 +80,7 @@ const organisation = {
 const location = {
 	label: "Standort",
 	prefix: "loc_",
+	// TODO location options
 	street: { label: "Straße", type: Type.Text, options: [], size: 30, value: null, id: "792f5789-b30e-5d29-97bb-0878b74f4c40" },
 	buildingno: { label: "Hausnummer", type: Type.Text, options: [], size: 30, value: null, id: "0bd5510f-d85a-57a7-bb99-47e94c3461a7" },
 	zipcode: { label: "PLZ", type: Type.Text, options: [], size: 40, value: null, id: "e756da44-09ae-58e9-9b74-8efacd20dcf6" },
@@ -93,8 +97,8 @@ const emergencyReporter = {
 	label: "Meldend",
 	prefix: "erep_",
 	name: name,
-	phonenumber: { label: "Telefonnummer", type: Type.Text, options: [], size: 60, value: null, id: "6d22fee8-d37e-5a67-ac6e-3733d88ffe0c" },
-	separatedrecallnumber: { label: "gesonderte Rückrufnummer", type: Type.Text, options: [], size: 20, value: null, id: "1e056e7c-1607-52da-839c-2dda5bfe815c" },
+	phonenumber: { label: "Telefonnummer", type: Type.Text, options: phoneNumbers, size: 60, value: null, id: "6d22fee8-d37e-5a67-ac6e-3733d88ffe0c" },
+	separatedrecallnumber: { label: "gesonderte Rückrufnummer", type: Type.Text, options: phoneNumbers, size: 20, value: null, id: "1e056e7c-1607-52da-839c-2dda5bfe815c" },
 	emergencyrelation: { label: "Notfallbezug", type: Type.Selection, options: ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"], size: 40, value: null, id: "26187462-36b2-56f8-9b56-3e8a89b58c2a" },
 	location: location,
 	reportertype: reportertype,
