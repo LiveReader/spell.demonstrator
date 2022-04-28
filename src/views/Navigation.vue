@@ -21,7 +21,14 @@
 			<slot></slot>
 			<v-divider></v-divider>
 			<v-container>
-				<v-switch v-model="touchScreen" :label="`TouchScreen: ${touchScreen.toString()}`"></v-switch>
+				<v-list density="compact" color="#00000000">
+					<v-list-item prepend-icon="mdi-reload" title="Reload" rounded="xl" @click="reload"> </v-list-item>
+					<v-switch
+						v-model="touchScreen"
+						class="ml-2"
+						:label="`TouchScreen: ${touchScreen ? 'On' : 'Off'}`"
+					></v-switch>
+				</v-list>
 			</v-container>
 		</v-navigation-drawer>
 		<v-navigation-drawer
@@ -49,7 +56,7 @@ export { touchScreen };
 </script>
 
 <script setup>
-import { ref, onMounted, defineProps } from "vue";
+import { ref, watch, onMounted, defineProps } from "vue";
 import router from "../routers/index";
 
 let extendedDrawer = ref(false);
@@ -88,6 +95,10 @@ function nav(item) {
 	});
 }
 
+function reload() {
+	window.location.reload();
+}
+
 const props = defineProps({
 	color: {
 		type: String,
@@ -107,7 +118,15 @@ onMounted(() => {
 	sidebarItems.forEach((i) => {
 		i.active = router.currentRoute.value.path === i.to;
 	});
+	touchScreen.value = localStorage.getItem("touchScreen") === "true";
 });
+
+watch(
+	() => touchScreen.value,
+	(val) => {
+		localStorage.setItem("touchScreen", val);
+	}
+);
 </script>
 
 <style lang="scss">
