@@ -48,7 +48,7 @@ const technical = {
 	prefix: "procmedtec_",
 	firefighting: { label: "Brandbekämpfung", type: Type.Selection, options: ["Ja", "Nein"], size: 50, value: null, id: "0f28d35a-f91d-5388-8b79-583d05b613a8" },
 	transport: { label: "Transport", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "030b839c-2ae5-52f3-b93b-a0831994c61c" },
-	rescue: { label: "Rettung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "ba743a60-2b9f-5c97-834e-568a0586383c" },
+	rescue: { label: "Behandlung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "ba743a60-2b9f-5c97-834e-568a0586383c" },
 	extrication: { label: "Befreiung, Bergen", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "6653a5ba-a939-5ea6-9f14-95660718857b" },
 	protection: { label: "Schützen", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "d8dd8864-5cb3-52ab-a45b-1d6dd0515eeb" },
 };

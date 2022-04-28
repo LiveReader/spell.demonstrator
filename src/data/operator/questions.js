@@ -26,8 +26,8 @@ const questionTemplates = [
 		priority: 999,
 		question_type: QuestionType.Selection,
 		question: "Art der Aktion",
-		description: "Brandbekämpfung, Transport, Rettung, Befreiung / Bergung, Schützen",
-		options: ["Brandbekämpfung", "Transport", "Rettung", "Befreiung, Bergung", "Schützen"],
+		description: "Brandbekämpfung, Transport, Behandlung, Befreiung / Bergung, Schützen",
+		options: ["Brandbekämpfung", "Transport", "Behandlung", "Befreiung, Bergung", "Schützen"],
 		value: (d) =>
 			d?.taxonomy?.technical?.firefighting?.value ??
 			d?.taxonomy?.technical?.transport?.value ??
@@ -49,7 +49,7 @@ const questionTemplates = [
 				case "Transport":
 					d.taxonomy.technical.transport.value = "Ja";
 					break;
-				case "Rettung":
+				case "Behandlung":
 					d.taxonomy.technical.rescue.value = "Ja";
 					break;
 				case "Befreiung, Bergung":
