@@ -10,6 +10,7 @@
 			<div
 				v-if="
 					Array.isArray(item.value) &&
+					!touchScreen &&
 					(item.question_type == 'text' || item.question_type == 'number' || item.question_type == 'date')
 				"
 			>
@@ -28,10 +29,34 @@
 				></v-text-field>
 			</div>
 
+			<!-- Multiple Text Inputs <TOUCHSCREEN> -->
+			<div
+				v-if="
+					Array.isArray(item.value) &&
+					touchScreen &&
+					(item.question_type == 'text' || item.question_type == 'number' || item.question_type == 'date')
+				"
+			>
+				<v-autocomplete
+					v-for="(subItem, index) in item.value"
+					:key="item.id + '_' + index.toString()"
+					v-model="item.value[index]"
+					:label="item.label[index]"
+					:items="item.options[index]"
+					class="inputField mt-3"
+					density="comfortable"
+					variant="outlined"
+					clearable
+					@focusout="$emit('input', item)"
+					@click:clear="$emit('input', item)"
+				></v-autocomplete>
+			</div>
+
 			<!-- Single Text Inputs  -->
 			<v-text-field
 				v-if="
 					!Array.isArray(item.value) &&
+					!touchScreen &&
 					(item.question_type == 'number' || item.question_type == 'date' || item.question_type == 'text')
 				"
 				v-model="item.value"
@@ -44,6 +69,24 @@
 				@focusout="$emit('input', item)"
 				@click:clear="$emit('input', item)"
 			></v-text-field>
+
+			<!--  Single Text Inputs <TOUCHSCREEN> -->
+			<v-autocomplete
+				v-if="
+					!Array.isArray(item.value) &&
+					touchScreen &&
+					(item.question_type == 'number' || item.question_type == 'date' || item.question_type == 'text')
+				"
+				v-model="item.value"
+				:label="item.label"
+				:items="item.options"
+				class="inputField mt-3"
+				density="comfortable"
+				variant="outlined"
+				clearable
+				@focusout="$emit('input', item)"
+				@click:clear="$emit('input', item)"
+			></v-autocomplete>
 
 			<!-- Yes/No Inputs  -->
 			<div width="100%" style="display: flex; justify-content: center">
@@ -97,6 +140,7 @@
 </template>
 
 <script setup>
+import { touchScreen } from "../views/Navigation.vue";
 import { defineProps, defineEmits } from "vue";
 import * as random from "../data/operator/random";
 
