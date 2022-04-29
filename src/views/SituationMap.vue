@@ -51,7 +51,7 @@ import "leaflet/dist/leaflet.css";
 let restrictPanning = false;
 let restrictZoom = true;
 let showDebugRect = false;
-let logClicks = false;
+let logClicks = true;
 
 // sample points;
 let ludwigshafen = [49.4704113, 8.4381568];
@@ -65,6 +65,11 @@ let ruchheim = [49.4723270557513, 8.328341303731001];
 let ludwigshafenBounds = [
 	[49.406059, 8.347909],
 	[49.540137, 8.565615],
+];
+
+let worldBounds = [
+	[-360, -180],
+	[360, 180],
 ];
 
 // leaflet/graphly refs/options
@@ -92,12 +97,12 @@ let svgElementBounds;
 // actual settings
 let nodeScale = 1;
 if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
-svgElementBounds = ludwigshafenBounds;
+svgElementBounds = worldBounds;
 svgDimensions = {
 	x: 2000,
 	y: 2000,
 }
-minZoom = 12;
+minZoom =0;
 maxZoom = 18;
 initialZoom = 14;
 
