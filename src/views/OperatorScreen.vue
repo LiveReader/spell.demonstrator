@@ -66,6 +66,10 @@ import NodeModal from "../components/NodeModal.vue";
 
 let safefileCollapsed = ref(false);
 
+const newEdgeMode = ref(false);
+const newEdgeSource = ref(null);
+const newEdgeTarget = ref(null);
+
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let modal = ref({ show: false, node: null, title: "" });
 let selectedNodes = ref([]);
@@ -321,6 +325,16 @@ let controlItems = ref([
 			generateOpenQuestions();
 		},
 	},
+	{
+		icon: "mdi-link",
+		enabled: true,
+		selected: newEdgeMode,
+		checkEnabled: () => true,
+		onClick: () => {
+			selectedNodes.value = [];
+			newEdgeMode.value = true;
+		},
+	},
 ]);
 
 function downloadPrefixedTaxonomy() {
@@ -376,6 +390,24 @@ function onBackground(e, pos) {
 	filterQuestions();
 }
 function onClick(e, d) {
+	if (newEdgeMode.value) {
+		if (newEdgeSource.value == null) {
+			newEdgeSource.value = d;
+			selectedNodes.value = [d.id];
+		} else if (newEdgeTarget.value == null) {
+			if (d.id == newEdgeSource.value.id) return;
+			newEdgeTarget.value = d;
+			selectedNodes.value = [newEdgeSource.value.id, d.id];
+		}
+		if (newEdgeSource.value != null && newEdgeTarget.value != null) {
+			addEdge(newEdgeSource.value, newEdgeTarget.value);
+			newEdgeSource.value = null;
+			newEdgeTarget.value = null;
+			newEdgeMode.value = false;
+			selectedNodes.value = [];
+		}
+		return;
+	}
 	if (d.shape.type == "assessment") return;
 	if (d.shape.type == "close-button") return onSuggestionCloseClick(d);
 	if (d.suggestion) return acceptSuggestion(d);
