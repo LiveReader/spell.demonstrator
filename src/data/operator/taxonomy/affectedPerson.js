@@ -1,3 +1,5 @@
+import { enumerations, firstNames, lastNames } from "../random";
+
 // prettier-ignore
 const Type = {
 	Text: "text",
@@ -11,12 +13,14 @@ const name = {
 	first: {
 		label: "Vorname",
 		type: Type.Text,
+		options: firstNames,
 		size: 40,
 		value: null, id: "2a0c8106-eb8a-5508-9eab-0823756e0ad2",
 	},
 	last: {
 		label: "Nachname",
 		type: Type.Text,
+		options: lastNames,
 		size: 40,
 		value: null, id: "85183058-65e5-5bad-9fe9-2ce6b599d540",
 	},
@@ -134,7 +138,7 @@ const affectedPerson = {
 	label: "Betroffene Person",
 	prefix: "ap_",
 	name: name,
-	age: { label: "Alter", type: Type.Number, size: 50, value: null, id: "eed739cc-cc8e-5b74-a392-0664e29ea371" },
+	age: { label: "Alter", type: Type.Number, options: enumerations, size: 50, value: null, id: "eed739cc-cc8e-5b74-a392-0664e29ea371" },
 	sex: { label: "Geschlecht", type: Type.Selection, options: ["Männlich", "Weiblich", "Divers"], size: 50, value: null, id: "eafe4079-8152-5e40-81a3-f01355268c31" },
 	status: { label: "Status", type: Type.Selection, options: ["Grün", "Gelb", "Rot"], size: 50, value: null, id: "f4cb36f3-d38e-5da7-943e-7df63b8682c9" },
 	symptoms: symptoms,

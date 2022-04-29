@@ -1,4 +1,6 @@
+import { touchScreen } from "../../views/Navigation.vue";
 import { taxonomy2payload } from "./converter/index";
+import { enumerations, locations, locationsSelection } from "./random";
 
 const NodeType = {
 	Operation: "operation",
@@ -24,8 +26,8 @@ const questionTemplates = [
 		priority: 999,
 		question_type: QuestionType.Selection,
 		question: "Art der Aktion",
-		description: "Brandbekämpfung, Transport, Rettung, Befreiung / Bergung, Schützen",
-		options: ["Brandbekämpfung", "Transport", "Rettung", "Befreiung, Bergung", "Schützen"],
+		description: "Brandbekämpfung, Transport, Behandlung, Befreiung / Bergung, Schützen",
+		options: ["Brandbekämpfung", "Transport", "Behandlung", "Befreiung, Bergung", "Schützen"],
 		value: (d) =>
 			d?.taxonomy?.technical?.firefighting?.value ??
 			d?.taxonomy?.technical?.transport?.value ??
@@ -47,7 +49,7 @@ const questionTemplates = [
 				case "Transport":
 					d.taxonomy.technical.transport.value = "Ja";
 					break;
-				case "Rettung":
+				case "Behandlung":
 					d.taxonomy.technical.rescue.value = "Ja";
 					break;
 				case "Befreiung, Bergung":
@@ -59,19 +61,47 @@ const questionTemplates = [
 			}
 		},
 	},
+	// TODO Location data for touch input
 	{
 		node_type: NodeType.EmergencyReporter,
 		priority: 999,
 		question_type: QuestionType.Text,
 		question: "Notfall-Ort",
-		description: "Ort, Straße, Hausnummer, Stockwerk",
+		description: "Ort, Straße, Hausnummer",
 		options: [],
 		label: ["Straße", "Ort"],
 		value: (d) => [d?.taxonomy?.location?.street?.value, d?.taxonomy?.location?.city?.value],
-		condition: (d) => !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		condition: (d) =>
+			!touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
 		action: (v, d, g) => {
 			d.taxonomy.location.street.value = v[0] ?? "";
 			d.taxonomy.location.city.value = v[1] ?? "";
+		},
+	},
+	{
+		node_type: NodeType.EmergencyReporter,
+		priority: 999,
+		question_type: QuestionType.Text,
+		question: "Notfall-Ort",
+		description: "Ort, Straße, Hausnummer",
+		options: locationsSelection,
+		label: "Notfall-Ort",
+		value: (d) =>
+			`${d?.taxonomy?.location?.street?.value ?? ""} ${d?.taxonomy?.location?.buildingno?.value ?? ""}, ${
+				d?.taxonomy?.location?.zipcode?.value ?? ""
+			} ${d?.taxonomy?.location?.city?.value ?? ""}`,
+		condition: (d) => touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		action: (v, d, g) => {
+			const index = locationsSelection.indexOf(v);
+			const data = locations[index];
+			d.taxonomy.location.street.value = data.street ?? "";
+			d.taxonomy.location.buildingno.value = data.buildingno ?? "";
+			d.taxonomy.location.zipcode.value = data.zipcode ?? "";
+			d.taxonomy.location.city.value = data.city ?? "";
+			d.taxonomy.location.country.value = data.country ?? "";
+			d.taxonomy.location.note.value = data.note ?? "";
+			d.taxonomy.location.gps.value = data.gps ?? "";
+			d.taxonomy.location.threewords.value = data.threewords ?? "";
 		},
 	},
 	// Rückrufnummer
@@ -81,8 +111,8 @@ const questionTemplates = [
 		question_type: QuestionType.Text,
 		question: "Rückrufnummer",
 		description: "Unter welcher Nummer kann ich Sie ggf. zurückrufen?",
-		options: [],
 		label: "Telefonnummer",
+		options: (d) => d?.taxonomy?.phonenumber?.options,
 		value: (d) => d?.taxonomy?.phonenumber?.value,
 		condition: (d) => !d?.taxonomy?.phonenumber?.value,
 		action: (v, d, g) => {
@@ -98,6 +128,7 @@ const questionTemplates = [
 		question: "Name",
 		description: "Wie heißt die meldende Person?",
 		label: (d) => [d?.taxonomy?.name?.first?.label, d?.taxonomy?.name?.last?.label],
+		options: (d) => [d?.taxonomy?.name?.first?.options, d?.taxonomy?.name?.last?.options],
 		value: (d) => [d?.taxonomy?.name?.first?.value, d?.taxonomy?.name?.last?.value],
 		condition: (d) => !d?.taxonomy?.name?.first?.value || !d?.taxonomy?.name?.last?.value,
 		action: (v, d, g) => {
@@ -156,6 +187,8 @@ const questionTemplates = [
 		question: "Anzahl Betroffener",
 		description: "Wie viele Personen sind betroffen?",
 		label: "Anzahl",
+		option: () => enumerations,
+		options: (d) => d?.taxonomy?.affected?.persons?.options,
 		value: (d) => d?.taxonomy?.affected?.persons?.value,
 		condition: (d) => !d?.taxonomy?.affected?.persons?.value,
 		action: (v, d, g) => {
@@ -172,6 +205,7 @@ const questionTemplates = [
 		question: "Name",
 		description: "Wie heißt die betroffene Person?",
 		label: (d) => [d?.taxonomy?.name?.first?.label, d?.taxonomy?.name?.last?.label],
+		options: (d) => [d?.taxonomy?.name?.first?.options, d?.taxonomy?.name?.last?.options],
 		value: (d) => [d?.taxonomy?.name?.first?.value, d?.taxonomy?.name?.last?.value],
 		condition: (d) => !d?.taxonomy?.name?.first?.value || !d?.taxonomy?.name?.last?.value,
 		action: (v, d, g) => {
@@ -188,6 +222,7 @@ const questionTemplates = [
 		question: "Alter",
 		description: "Wie alt ist die betroffene Person?",
 		label: "Alter in Jahren (min 1)",
+		options: (d) => d?.taxonomy?.age?.options,
 		value: (d) => d?.taxonomy?.age?.value,
 		condition: (d) => !d?.taxonomy?.age?.value,
 		action: (v, d, g) => (d.taxonomy.age.value = v > 0 ? v.toString() : null),

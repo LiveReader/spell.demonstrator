@@ -1,3 +1,5 @@
+import { enumerations } from "../random";
+
 // prettier-ignore
 const Type = {
 	Text: "text",
@@ -155,6 +157,7 @@ const emergencyType = {
 const location = {
 	label: "Standort",
 	prefix: "loc_",
+	// TODO location options
 	street: { label: "Straße", type: Type.Text, options: [], size: 30, value: null, id: "175ab624-3e3d-528a-b028-52c1b92ac018" },
 	buildingno: { label: "Hausnummer", type: Type.Text, options: [], size: 30, value: null, id: "37259d35-b7d7-5ca8-b4e9-4ebc9667ca65" },
 	zipcode: { label: "PLZ", type: Type.Text, options: [], size: 40, value: null, id: "24d4c550-e6ef-564c-aa76-574f266c9554" },
@@ -172,11 +175,19 @@ const affected = {
 	persons: {
 		label: "Personen",
 		type: Type.Number,
+		options: enumerations,
 		size: 60,
 		value: null,
 		id: "c0000b86-8a1a-533c-9134-0ce5caf8f019",
 	},
-	objects: { label: "Objekte", type: Type.Number, size: 40, value: null, id: "ccda6bf2-6e31-5760-b955-06b398a8ec6c" },
+	objects: {
+		label: "Objekte",
+		type: Type.Number,
+		options: enumerations,
+		size: 40,
+		value: null,
+		id: "ccda6bf2-6e31-5760-b955-06b398a8ec6c",
+	},
 };
 
 // prettier-ignore

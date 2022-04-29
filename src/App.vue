@@ -24,4 +24,7 @@ export default {
 	overflow: hidden;
 	font-family: "Roboto";
 }
+*::-webkit-scrollbar {
+	display: none;
+}
 </style>
