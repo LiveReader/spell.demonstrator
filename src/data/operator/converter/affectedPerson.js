@@ -57,12 +57,12 @@ function setAssessment(node, graph) {
 				type: "assessment",
 				scale: 1,
 			},
-			spawn: {
+			satellite: {
 				source: node.id,
 				angle: 50,
 				distance: 250,
 			},
-			satellite: {
+			spawn: {
 				source: node.id,
 				angle: 50,
 				distance: 250,
