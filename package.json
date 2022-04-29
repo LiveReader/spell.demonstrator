@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev": "vite --host",
 		"build": "vite build",
+		"preview": "vite preview --port 80 --host",
 		"serve": "vite serve --port 80 --host",
 		"lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
 		"format": "prettier .  --write"
