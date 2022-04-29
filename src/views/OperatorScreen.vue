@@ -411,58 +411,6 @@ function onClick(e, d) {
 	if (d.shape.type == "assessment") return;
 	if (d.shape.type == "close-button") return onSuggestionCloseClick(d);
 	if (d.suggestion) return acceptSuggestion(d);
-	// accept suggestions
-	if (d.suggestion) {
-		const sourceNode = graph.value.nodes.find((n) => n.id == d.spawn.source);
-		if (d.shape.type == "emergency-ressource") {
-			delete d.suggestion;
-			d.taxonomy.alerted.value = "Ja";
-			d.taxonomy.status.value = "3";
-			d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
-			sourceNode.taxonomy.status.value = "Laufend";
-			taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
-			taxonomy2payload[d.shape.type](d, graph.value);
-			d.shape.scale = 1;
-			// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
-			graph.value.nodes = graph.value.nodes.filter((node) => {
-				if (node.suggestion && node.spawn?.source == sourceNode.id) {
-					return false;
-				}
-				return true;
-			});
-			graph.value.links = graph.value.links.filter((link) => {
-				if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
-					return false;
-				}
-				return true;
-			});
-			graph.value.links.push({
-				source: sourceNode,
-				target: d,
-				type: "solid",
-				directed: false,
-				label: "",
-				strength: "weak",
-			});
-		} else if (d.shape.type == "emergency-reporter") {
-			sourceNode.taxonomy = d.taxonomy;
-			taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
-			// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
-			graph.value.nodes = graph.value.nodes.filter((node) => {
-				if (node.suggestion && node.spawn?.source == sourceNode.id) {
-					return false;
-				}
-				return true;
-			});
-			graph.value.links = graph.value.links.filter((link) => {
-				if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
-					return false;
-				}
-				return true;
-			});
-		}
-		graph.value.hasUpdate = true;
-	}
 
 	if (e.shiftKey) {
 		selectedNodes.value.push(d.id);
@@ -667,6 +615,11 @@ function addSuggestion(
 			angle: angle,
 			distance: distance,
 		},
+		spawn: {
+			source: node.id,
+			angle: angle,
+			distance: distance,
+		},
 		taxonomy: taxonomy,
 		callback: callback,
 	};
@@ -692,6 +645,11 @@ function addSuggestionCloseButton(suggestion) {
 			scale: 1,
 		},
 		satellite: {
+			source: suggestion.id,
+			angle: 45,
+			distance: 80,
+		},
+		spawn: {
 			source: suggestion.id,
 			angle: 45,
 			distance: 80,
