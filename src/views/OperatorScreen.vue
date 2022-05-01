@@ -410,7 +410,7 @@ function onClick(e, d) {
 	}
 	if (d.shape.type == "assessment") return;
 	if (d.shape.type == "close-button") return onSuggestionCloseClick(d);
-	if (d.suggestion) return acceptSuggestion(d);
+	if (d.suggestion && !newEdgeMode.value) return acceptSuggestion(d);
 
 	if (e.shiftKey) {
 		selectedNodes.value.push(d.id);
@@ -748,8 +748,7 @@ function heartAttackSuggestion(source) {
 	let both = false;
 	// ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"]
 	d1.taxonomy.status.value = "Geplant";
-	console.log(source.taxonomy.diagnosis.heartattack.value);
-	switch (source.taxonomy.diagnosis.heartattack.value) {
+	switch (source.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value) {
 		case "Ausgeschlossen":
 			break;
 		case "Unwahrscheinlich":
@@ -861,7 +860,7 @@ watch(
 				}
 			}
 		} else if (node?.shape?.type == "affected-person") {
-			if (!node.taxonomy.diagnosis.heartattack.value) return;
+			if (!node.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value) return;
 			if (!graph.value.links.find((l) => l.source.id == node.id && l.target.shape.type == "emergency-action")) {
 				for (let i = 0; i < graph.value.links.length; i++) {
 					const link = graph.value.links[i];

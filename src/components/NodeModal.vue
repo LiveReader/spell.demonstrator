@@ -60,6 +60,21 @@ let questionItem = ref({});
 function closeInput(d) {
 	const nodeTax = findID(this.modal.node.taxonomy, d.id);
 	nodeTax.value = d.value;
+	if (this.modal.node.shape.type == "affected-person") {
+		const initialneurologicalfindings = this.modal.node.taxonomy.condition.initialneurologicalfindings;
+		const rx = /\((.*?)\)/;
+		const eyes = initialneurologicalfindings.glasgowcomascale.eyes.value
+			? parseInt(rx.exec(initialneurologicalfindings.glasgowcomascale.eyes.value)[1])
+			: 0;
+		const verbal = initialneurologicalfindings.glasgowcomascale.verbal.value
+			? parseInt(rx.exec(initialneurologicalfindings.glasgowcomascale.verbal.value)[1])
+			: 0;
+		const motor = initialneurologicalfindings.glasgowcomascale.motor.value
+			? parseInt(rx.exec(initialneurologicalfindings.glasgowcomascale.motor.value)[1])
+			: 0;
+		this.modal.node.taxonomy.condition.initialneurologicalfindings.glasgowcomascalevalue.value =
+			eyes + verbal + motor;
+	}
 	render(this.modal);
 	nodes
 		.selectAll("g.node")
