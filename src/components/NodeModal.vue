@@ -4,7 +4,7 @@
 			<v-card-header>
 				<v-card-header-text>
 					<v-card-title>{{ modal.title ?? "" }}</v-card-title>
-					<v-card-subtitle>{{ modal.subtitle ?? "" }}</v-card-subtitle>
+					<v-card-subtitle>{{ subPath || ">" }}</v-card-subtitle>
 				</v-card-header-text>
 				<v-btn class="accent-color-filled" flat @click="closeModal">Done</v-btn>
 			</v-card-header>
@@ -17,8 +17,8 @@
 	</v-overlay>
 </template>
 
-<script>
-import { onUpdated, onMounted, watch, ref } from "vue";
+<script setup>
+import { onUpdated, onMounted, watch, ref, defineProps, defineEmits } from "vue";
 import { findID } from "../data/operator/taxonomy/index";
 
 import QuestionCard from "./QuestionCard.vue";
@@ -27,7 +27,7 @@ import * as d3 from "d3";
 import "@livereader/graphly-d3/style.css";
 
 function closeModal() {
-	this.$props.modal.show = false;
+	props.modal.show = false;
 }
 
 function taxonomyData(taxonomy) {
@@ -58,10 +58,10 @@ let showInput = ref(false);
 let questionItem = ref({});
 
 function closeInput(d) {
-	const nodeTax = findID(this.modal.node.taxonomy, d.id);
+	const nodeTax = findID(props.modal.node.taxonomy, d.id);
 	nodeTax.value = d.value;
-	if (this.modal.node.shape.type == "affected-person") {
-		const initialneurologicalfindings = this.modal.node.taxonomy.condition.initialneurologicalfindings;
+	if (props.modal.node.shape.type == "affected-person") {
+		const initialneurologicalfindings = props.modal.node.taxonomy.condition.initialneurologicalfindings;
 		const rx = /\((.*?)\)/;
 		const eyes = initialneurologicalfindings.glasgowcomascale.eyes.value
 			? parseInt(rx.exec(initialneurologicalfindings.glasgowcomascale.eyes.value)[1])
@@ -72,10 +72,10 @@ function closeInput(d) {
 		const motor = initialneurologicalfindings.glasgowcomascale.motor.value
 			? parseInt(rx.exec(initialneurologicalfindings.glasgowcomascale.motor.value)[1])
 			: 0;
-		this.modal.node.taxonomy.condition.initialneurologicalfindings.glasgowcomascalevalue.value =
+		props.modal.node.taxonomy.condition.initialneurologicalfindings.glasgowcomascalevalue.value =
 			eyes + verbal + motor;
 	}
-	render(this.modal);
+	render(props.modal);
 	nodes
 		.selectAll("g.node")
 		.filter((n) => n.data.id == d.id)
@@ -84,11 +84,12 @@ function closeInput(d) {
 		});
 	zoomTo([focus.x, focus.y, focus.r * 2], 0);
 	showInput.value = false;
-	this.$emit("input", d);
+	emits("input", d);
 }
 
 let svg = ref(null);
 let taxonomy = ref({});
+let subPath = ref("");
 let size = {
 	width: 500,
 	height: 500,
@@ -131,6 +132,17 @@ function zoomTo(v, duration = 750) {
 	return v;
 }
 
+function getPath(d) {
+	let curr = d;
+	let path = [];
+	while (curr.parent) {
+		path.push(curr?.data?.name ?? "");
+		curr = curr.parent;
+	}
+	path = path.reverse();
+	subPath.value = path.join(" > ");
+}
+
 function render(modal) {
 	if (!modal.node) return;
 	taxonomy.value = taxonomyData(modal.node.taxonomy);
@@ -147,11 +159,19 @@ function render(modal) {
 			d3.select(this).attr("stroke", null);
 		})
 		.on("click", (e, d) => {
-			if (focus == d) return;
+			if (focus == d) {
+				focus = d.parent;
+				zoomTo([focus.x, focus.y, focus.r * 2]);
+				e.stopPropagation();
+				getPath(d.parent);
+				return;
+			}
 			d.children ? (focus = d) : (focus = d.parent);
 			zoomTo([focus.x, focus.y, focus.r * 2]);
 			e.stopPropagation();
+			getPath(d);
 			if (!d.children) {
+				getPath(d.parent);
 				showInput.value = true;
 				questionItem.value = {
 					id: d.data.id,
@@ -202,68 +222,53 @@ function render(modal) {
 		});
 }
 
-export default {
-	components: { QuestionCard },
-	props: {
-		modal: {
-			type: Object,
-			required: true,
-			default: () => ({ show: false, node: null, title: "", subtitle: "" }),
-			validator: (value) => {
-				return value.show !== undefined && value.node !== undefined;
-			},
+const props = defineProps({
+	modal: {
+		type: Object,
+		required: true,
+		default: () => ({ show: false, node: null, title: "", subtitle: "" }),
+		validator: (value) => {
+			return value.show !== undefined && value.node !== undefined;
 		},
 	},
-	emits: ["input", "close"],
-	setup(props, context) {
-		onMounted(() => {
-			if (!svg.value) {
-				svg.value = d3.create("svg").attr("id", "taxonomy-svg");
-				svg.value
-					.attr("viewBox", `-${size.width / 2} -${size.height / 2} ${size.width} ${size.height}`)
-					.style("cursor", "pointer")
-					.on("click", (e) => {
-						focus = root;
-						zoomTo([root.x, root.y, root.r * 2]);
-					});
-				nodes = svg.value.append("g").classed("nodes", true);
-				labels = svg.value.append("g").classed("labels", true);
-			}
-		});
-		onUpdated(() => {
-			if (!document.getElementById("taxonomy-svg")) {
-				document.getElementById("card-content").prepend(svg.value.node());
-			}
-		});
-		watch(
-			() => props.modal.node && props.modal.show,
-			() => {
-				render(props.modal);
+});
+const emits = defineEmits(["input", "close"]);
+onMounted(() => {
+	if (!svg.value) {
+		svg.value = d3.create("svg").attr("id", "taxonomy-svg");
+		svg.value
+			.attr("viewBox", `-${size.width / 2} -${size.height / 2} ${size.width} ${size.height}`)
+			.style("cursor", "pointer")
+			.on("click", (e) => {
 				focus = root;
 				zoomTo([root.x, root.y, root.r * 2]);
-			}
-		);
-		watch(
-			() => props.modal.show,
-			(newVal, oldVal) => {
-				if (newVal == false) {
-					context.emit("close", props.modal.node);
-				}
-			}
-		);
-	},
-	data: () => ({
-		showInput,
-		questionItem,
-		svg,
-		taxonomy,
-	}),
-	methods: {
-		render,
-		closeInput,
-		closeModal,
-	},
-};
+				subPath.value = "";
+			});
+		nodes = svg.value.append("g").classed("nodes", true);
+		labels = svg.value.append("g").classed("labels", true);
+	}
+});
+onUpdated(() => {
+	if (!document.getElementById("taxonomy-svg")) {
+		document.getElementById("card-content").prepend(svg.value.node());
+	}
+});
+watch(
+	() => props.modal.node && props.modal.show,
+	() => {
+		render(props.modal);
+		focus = root;
+		zoomTo([root.x, root.y, root.r * 2]);
+	}
+);
+watch(
+	() => props.modal.show,
+	(newVal, oldVal) => {
+		if (newVal == false) {
+			emits("close", props.modal.node);
+		}
+	}
+);
 </script>
 
 <style lang="scss">
