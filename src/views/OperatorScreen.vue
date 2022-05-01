@@ -752,21 +752,18 @@ function heartAttackSuggestion(source) {
 		case "Ausgeschlossen":
 			break;
 		case "Unwahrscheinlich":
-			d1.taxonomy.technical.transport.value = "Ja";
-			d1.taxonomy.medical.threatment.threatment.value = "Ja";
+			d1.taxonomy.actiontype.transport.value = "Ja";
 			d1.taxonomy.medical.transport.laying.value = "Ja";
 			break;
 		case "Möglich":
 		case "Wahrscheinlich":
 		case "Sicher":
-			d1.taxonomy.technical.transport.value = "Ja";
-			d1.taxonomy.medical.threatment.threatment.value = "Ja";
+			d1.taxonomy.actiontype.transport.value = "Ja";
 			d1.taxonomy.medical.transport.laying.value = "Ja";
 			d1.taxonomy.medical.transport.monitorreq.value = "Ja";
 			d1.taxonomy.medical.transport.specialrights.value = "Ja";
 			both = true;
-			d2.taxonomy.technical.rescue.value = "Ja";
-			d2.taxonomy.medical.threatment.threatment.value = "Ja";
+			d2.taxonomy.actiontype.rescue.value = "Ja";
 			d2.taxonomy.medical.transport.laying.value = "Ja";
 			d2.taxonomy.medical.transport.monitorreq.value = "Ja";
 			d2.taxonomy.medical.transport.specialrights.value = "Ja";
@@ -841,11 +838,11 @@ watch(
 		if (node?.shape?.type == "emergency-action") {
 			if (
 				!(
-					node.taxonomy.technical.firefighting.value == "Ja" ||
-					node.taxonomy.technical.transport.value == "Ja" ||
-					node.taxonomy.technical.rescue.value == "Ja" ||
-					node.taxonomy.technical.extrication.value == "Ja" ||
-					node.taxonomy.technical.protection.value == "Ja"
+					node.taxonomy.actiontype.firefighting.value == "Ja" ||
+					node.taxonomy.actiontype.transport.value == "Ja" ||
+					node.taxonomy.actiontype.rescue.value == "Ja" ||
+					node.taxonomy.actiontype.extrication.value == "Ja" ||
+					node.taxonomy.actiontype.protection.value == "Ja"
 				)
 			)
 				return;
