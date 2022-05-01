@@ -477,12 +477,12 @@ const questionTemplates = [
 		question_type: QuestionType.Selection,
 		question: "Herzinfakt Einschätzung",
 		description: "Einschätzung des Herzinfakt-Risikos.",
-		label: (d) => d?.taxonomy?.diagnosis?.heartattack?.label,
-		options: (d) => d?.taxonomy?.diagnosis?.heartattack?.options,
-		value: (d) => d?.taxonomy?.diagnosis?.heartattack?.value,
-		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.diagnosis?.heartattack?.value,
+		label: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.label,
+		options: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.options,
+		value: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value,
 		action: (v, d, g) => {
-			d.taxonomy.diagnosis.heartattack.value = v;
+			d.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value = v;
 		},
 	},
 
@@ -510,7 +510,7 @@ const questionTemplates = [
 
 function heartAttackActivator(d) {
 	return (
-		!d?.taxonomy?.diagnosis?.heartattack?.value &&
+		!d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value &&
 		d?.taxonomy?.symptoms?.pain?.value &&
 		d?.taxonomy?.symptoms?.pain?.value != "Nein" &&
 		d?.taxonomy?.symptoms?.painlocation &&

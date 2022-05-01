@@ -18,18 +18,18 @@ function affectedPerson(node, graph) {
 		}
 	}
 
-	let diagnosis_tags = getTags(tax.diagnosis);
+	let diagnosis_tags = getTags(tax.guesseddiagnosis);
 	let symptom_tags = getTags(tax.symptoms);
 	let vitalcondition_tags = getTags(tax.condition.vitalcondition);
 	let physicalcondition_tags = getTags(tax.condition.physicalcondition);
 	let mentalcondition_tags = getTags(tax.condition.mentalcondition);
 	let tags = diagnosis_tags.concat(symptom_tags, vitalcondition_tags, physicalcondition_tags, mentalcondition_tags);
 
-	if (node?.taxonomy?.diagnosis?.heartattack?.value == "Ausgeschlossen") {
+	if (node?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value == "Ausgeschlossen") {
 		node.taxonomy.status.value = "Grün";
-	} else if (node?.taxonomy?.diagnosis?.heartattack?.value == "Unwahrscheinlich") {
+	} else if (node?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value == "Unwahrscheinlich") {
 		node.taxonomy.status.value = "Gelb";
-	} else if (node?.taxonomy?.diagnosis?.heartattack?.value) {
+	} else if (node?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value) {
 		node.taxonomy.status.value = "Rot";
 	}
 
@@ -100,7 +100,7 @@ function setAssessment(node, graph) {
 
 function heartAttackActivator(d) {
 	return (
-		!d?.taxonomy?.diagnosis?.heartattack?.value &&
+		!d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value &&
 		d?.taxonomy?.symptoms?.pain?.value &&
 		d?.taxonomy?.symptoms?.pain?.value != "Nein" &&
 		d?.taxonomy?.symptoms?.painlocation &&
