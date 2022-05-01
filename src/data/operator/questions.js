@@ -29,34 +29,34 @@ const questionTemplates = [
 		description: "Brandbekämpfung, Transport, Behandlung, Befreiung / Bergung, Schützen",
 		options: ["Brandbekämpfung", "Transport", "Behandlung", "Befreiung, Bergung", "Schützen"],
 		value: (d) =>
-			d?.taxonomy?.technical?.firefighting?.value ??
-			d?.taxonomy?.technical?.transport?.value ??
-			d?.taxonomy?.technical?.rescue?.value ??
-			d?.taxonomy?.technical?.extrication?.value ??
-			d?.taxonomy?.technical?.protection?.value ??
+			d?.taxonomy?.actiontype?.firefighting?.value ??
+			d?.taxonomy?.actiontype?.transport?.value ??
+			d?.taxonomy?.actiontype?.rescue?.value ??
+			d?.taxonomy?.actiontype?.extrication?.value ??
+			d?.taxonomy?.actiontype?.protection?.value ??
 			null,
 		condition: (d) =>
-			!d?.taxonomy?.technical?.firefighting.value &&
-			!d?.taxonomy?.technical?.transport.value &&
-			!d?.taxonomy?.technical?.rescue.value &&
-			!d?.taxonomy?.technical?.extrication.value &&
-			!d?.taxonomy?.technical?.protection.value,
+			!d?.taxonomy?.actiontype?.firefighting.value &&
+			!d?.taxonomy?.actiontype?.transport.value &&
+			!d?.taxonomy?.actiontype?.rescue.value &&
+			!d?.taxonomy?.actiontype?.extrication.value &&
+			!d?.taxonomy?.actiontype?.protection.value,
 		action: (v, d, g) => {
 			switch (v) {
 				case "Brandbekämpfung":
-					d.taxonomy.technical.firefighting.value = "Ja";
+					d.taxonomy.actiontype.firefighting.value = "Ja";
 					break;
 				case "Transport":
-					d.taxonomy.technical.transport.value = "Ja";
+					d.taxonomy.actiontype.transport.value = "Ja";
 					break;
 				case "Behandlung":
-					d.taxonomy.technical.rescue.value = "Ja";
+					d.taxonomy.actiontype.rescue.value = "Ja";
 					break;
 				case "Befreiung, Bergung":
-					d.taxonomy.technical.extrication.value = "Ja";
+					d.taxonomy.actiontype.extrication.value = "Ja";
 					break;
 				case "Schützen":
-					d.taxonomy.technical.protection.value = "Ja";
+					d.taxonomy.actiontype.protection.value = "Ja";
 					break;
 			}
 		},
