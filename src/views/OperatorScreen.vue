@@ -32,6 +32,7 @@
 			:selected="selectedNodes"
 			:link-distance="300"
 			:gravity="0"
+			:transition-duration="0"
 			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
