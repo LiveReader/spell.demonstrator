@@ -277,7 +277,7 @@ watch(
 	overflow-y: auto !important;
 }
 #taxonomy-svg {
-	height: calc(80vh - 80px);
+	height: calc(80vh - 100px);
 	width: 100%;
 	border-radius: 0.5rem;
 	background-color: #f4f4f4;
