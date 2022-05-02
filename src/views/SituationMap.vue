@@ -35,16 +35,11 @@ import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
+import { LMap, LTileLayer} from "@vue-leaflet/vue-leaflet";
+import { latLngBounds, latLng } from "leaflet";
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
-
-import {
-	LMap,
-	LTileLayer,
-} from "@vue-leaflet/vue-leaflet";
-import { latLngBounds, latLng } from "leaflet";
 import * as L from "leaflet" ;
-
 import "leaflet/dist/leaflet.css";
 
 // debug flags
@@ -53,33 +48,42 @@ let restrictZoom = true;
 let showDebugRect = false;
 let logClicks = true;
 
+import { fileNames, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
+
+// file paths
+const {
+	graphFiles, 
+	operationalAreas, 
+	closureFiles, 
+	cloudFiles, 
+	meetingPointFiles, 
+	trafficJamFiles,
+} = fileNames;
+
 // sample points;
-let ludwigshafen = [49.4704113, 8.4381568];
-let bridge = [49.48189951214223, 8.458592891693117];
-let station = [49.4764344146968, 8.432521820068361];
-let rheingoenheim = [49.44269710566854, 8.417619077780465];
-let kaefertal = [49.50942310213057, 8.517818007391345];
-let lindenhof = [49.472413664609626, 8.468794078498757];
-let ruchheim = [49.4723270557513, 8.328341303731001];
+const {
+	ludwigshafen,
+	bridge,
+	station,
+	rheingoenheim,
+	kaefertal,
+	lindenhof,
+	ruchheim,
+	ludwigshafenBounds,
+	worldBounds,
+} = samplePoints;
 
-let ludwigshafenBounds = [
-	[49.006059, 8.347909],
-	[49.940137, 8.565615],
-];
-
-let worldBounds = [
-	[-360, -180],
-	[360, 180],
-];
+// geojson styles
+const {
+    defaultGJStyle,
+    invertedMapStyle,
+    closureGJStyle,
+    trafficJamGJStyle,
+    cloudGJStyle,
+} = GJStyles;
 
 // leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
-let graphFiles;
-let operationalAreas;
-let closureFiles;
-let cloudFiles;
-let meetingPointFiles;
-let trafficJamFiles;
 let selectedNodes = ref([]);
 let map;
 let tileLayer;
@@ -103,49 +107,9 @@ svgDimensions = {
 	x: 2000,
 	y: 2000,
 }
-minZoom =0;
+minZoom = 12;
 maxZoom = 18;
 initialZoom = 14;
-
-// file paths
-graphFiles = [
-	"Apple Watch.json",
-	"Atemwegsreizung 1.json",
-	"Atemwegsreizung 2.json",
-	"Atemwegsreizung 3.json",
-	"Atemwegsreizung 4.json",
-	"Atemwegsreizung 5.json",
-	"Brand Gartenanlage.json",
-	"Brand L523.json",
-	"Dialyse.json",
-	"E-Call.json",
-	"HNR.json",
-	"Save File 1.json",
-	"sturz.json",
-	"transport.json",
-	"unfall.json",
-	"Verletzte Gartenanlage.json",
-	"zugentgleisung.json",
-];
-operationalAreas = [
-	"vermka_rlp.6.geojson",
-];
-closureFiles = [
-	"closure1.json",
-	"closure2.json",
-	"closure3.json",
-];
-cloudFiles = [
-	"cloud.json",
-	"cloud2.json",
-	"cloud3.json",
-];
-meetingPointFiles = [
-	"meeting_point.json",
-];
-trafficJamFiles = [
-	"traffic_jam1.json",
-];
 
 // Timeline
 let buttons = ref([
@@ -158,34 +122,6 @@ let buttons = ref([
 	"Verletzte Gartenanlage",
 	"Augen-/Atemwegsreizungen",
 ]);
-
-// geojson styles
-let defaultGJStyle = {
-	fillColor: '#000',
-	weight: 2,
-	opacity: 1,
-	color: '#fff',
-	fillOpacity: 0.25,
-};
-let invertedMapStyle = {
-	...defaultGJStyle,
-	opacity: 0,
-};
-let closureGJStyle = {
-	...defaultGJStyle,
-	color: '#f00',
-	dashArray: '1 4',
-};
-let trafficJamGJStyle = {
-	...defaultGJStyle,
-	color: '#f0f',
-};
-let cloudGJStyle = {
-	...defaultGJStyle,
-	fillColor: '#ff9f00',
-	color: '#ff7a00',
-	weight: 1,
-}
 
 // DOM refs
 let svgElementRef;
@@ -312,7 +248,7 @@ function positionNodes() {
 
 function scaleNodes(scale) {
 	graph.value.nodes.forEach(node => {
-		node.shape.scale = scale;
+		node.shape.scale = scale * 0.8;
 	});
 	graph.value.hasUpdate = true;
 }
@@ -469,10 +405,8 @@ export default {
 	},
 	methods: {
 		onZoomAnim   ({ target, center, zoom })  {
-			console.log("ZOOM");
 			const oldZoom = map.getZoom()
 			let scale =  Math.pow(2, 13) / Math.pow(2, zoom);
-			console.log(oldZoom,zoom);
 			if (zoom !== oldZoom) {
 				if (zoom == undefined) {
 					scale =  Math.pow(2, 13) / Math.pow(2, oldZoom);
