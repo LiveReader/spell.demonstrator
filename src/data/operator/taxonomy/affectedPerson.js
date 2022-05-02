@@ -53,7 +53,7 @@ const measurements = {
 	breathingrate: { label: "AF", type: Type.Number, options: ["0", "5", "8", "10", "12", "15", "20", "30"], size: 30, value: null, id: "9e33c4b7-6e2d-5e9f-978a-a3d653f7762a" },
 	oxygensaturation: { label: "SpO2", type: Type.Number, options: ["60%", "80%", "90%", "95%", "99%"], size: 30, value: null, id: "a56304ce-7789-56ca-8054-6b8654c8ab7a" },
 	bodytemperature: { label: "Temp", type: Type.Number, options: ["36°C", "37°C", "38°C", "39°C", "40°C", "41°C"], size: 30, value: null, id: "9e89fbfb-069a-56bf-8d28-76baade06223" },
-	ecg: { label: "EKG", type: Type.Selection, options: ["Sinusrhythmus", "Kammerflimmern", "Asystolie", "Absolute Arrythmie", "AV-Block", "Tachykardie"], size: 30, value: null, id: "357f382c-bffa-521f-a564-d6172c0ddf69" },
+	ecg: { label: "EKG", type: Type.Selection, options: ["STEMI", "Sinusrhythmus", "Kammerflimmern", "Asystolie", "Absolute Arrythmie", "AV-Block", "Tachykardie"], size: 30, value: null, id: "357f382c-bffa-521f-a564-d6172c0ddf69" },
 	breathing: { label: "Atmung", type: Type.Selection, options: ["unauffällig", "Stridor", "Dyspnoe", "Zyanose", "Apnoe", "Beatmung"], size: 30, value: null, id: "e35cc145-15f5-5fc3-a8fb-268a1221a11e" },
 };
 
