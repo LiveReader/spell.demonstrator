@@ -32,6 +32,7 @@
 			:selected="selectedNodes"
 			:link-distance="300"
 			:gravity="0"
+			:transition-duration="0"
 			@new-edge="addEdge"
 			@background="onBackground"
 			@click="onClick"
@@ -65,6 +66,10 @@ import SideBar from "../components/SideBar.vue";
 import NodeModal from "../components/NodeModal.vue";
 
 let safefileCollapsed = ref(false);
+
+const newEdgeMode = ref(false);
+const newEdgeSource = ref(null);
+const newEdgeTarget = ref(null);
 
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let modal = ref({ show: false, node: null, title: "" });
@@ -321,6 +326,16 @@ let controlItems = ref([
 			generateOpenQuestions();
 		},
 	},
+	{
+		icon: "mdi-link",
+		enabled: true,
+		selected: newEdgeMode,
+		checkEnabled: () => true,
+		onClick: () => {
+			selectedNodes.value = [];
+			newEdgeMode.value = true;
+		},
+	},
 ]);
 
 function downloadPrefixedTaxonomy() {
@@ -376,61 +391,27 @@ function onBackground(e, pos) {
 	filterQuestions();
 }
 function onClick(e, d) {
+	if (newEdgeMode.value) {
+		if (newEdgeSource.value == null) {
+			newEdgeSource.value = d;
+			selectedNodes.value = [d.id];
+		} else if (newEdgeTarget.value == null) {
+			if (d.id == newEdgeSource.value.id) return;
+			newEdgeTarget.value = d;
+			selectedNodes.value = [newEdgeSource.value.id, d.id];
+		}
+		if (newEdgeSource.value != null && newEdgeTarget.value != null) {
+			addEdge(newEdgeSource.value, newEdgeTarget.value);
+			newEdgeSource.value = null;
+			newEdgeTarget.value = null;
+			newEdgeMode.value = false;
+			selectedNodes.value = [];
+		}
+		return;
+	}
 	if (d.shape.type == "assessment") return;
 	if (d.shape.type == "close-button") return onSuggestionCloseClick(d);
-	if (d.suggestion) return acceptSuggestion(d);
-	// accept suggestions
-	if (d.suggestion) {
-		const sourceNode = graph.value.nodes.find((n) => n.id == d.spawn.source);
-		if (d.shape.type == "emergency-ressource") {
-			delete d.suggestion;
-			d.taxonomy.alerted.value = "Ja";
-			d.taxonomy.status.value = "3";
-			d.taxonomy.time.value = d.taxonomy.time.value.replace("bräuchte", "braucht");
-			sourceNode.taxonomy.status.value = "Laufend";
-			taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
-			taxonomy2payload[d.shape.type](d, graph.value);
-			d.shape.scale = 1;
-			// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
-			graph.value.nodes = graph.value.nodes.filter((node) => {
-				if (node.suggestion && node.spawn?.source == sourceNode.id) {
-					return false;
-				}
-				return true;
-			});
-			graph.value.links = graph.value.links.filter((link) => {
-				if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
-					return false;
-				}
-				return true;
-			});
-			graph.value.links.push({
-				source: sourceNode,
-				target: d,
-				type: "solid",
-				directed: false,
-				label: "",
-				strength: "weak",
-			});
-		} else if (d.shape.type == "emergency-reporter") {
-			sourceNode.taxonomy = d.taxonomy;
-			taxonomy2payload[sourceNode.shape.type](sourceNode, graph.value);
-			// find all other nodes that are suggestions and have a link to the same target as this node and filter them out + remove the links of the removed nodes
-			graph.value.nodes = graph.value.nodes.filter((node) => {
-				if (node.suggestion && node.spawn?.source == sourceNode.id) {
-					return false;
-				}
-				return true;
-			});
-			graph.value.links = graph.value.links.filter((link) => {
-				if ((link.source.suggestion || link.source == d) && link.target == sourceNode) {
-					return false;
-				}
-				return true;
-			});
-		}
-		graph.value.hasUpdate = true;
-	}
+	if (d.suggestion && !newEdgeMode.value) return acceptSuggestion(d);
 
 	if (e.shiftKey) {
 		selectedNodes.value.push(d.id);
@@ -635,6 +616,11 @@ function addSuggestion(
 			angle: angle,
 			distance: distance,
 		},
+		spawn: {
+			source: node.id,
+			angle: angle,
+			distance: distance,
+		},
 		taxonomy: taxonomy,
 		callback: callback,
 	};
@@ -660,6 +646,11 @@ function addSuggestionCloseButton(suggestion) {
 			scale: 1,
 		},
 		satellite: {
+			source: suggestion.id,
+			angle: 45,
+			distance: 80,
+		},
+		spawn: {
 			source: suggestion.id,
 			angle: 45,
 			distance: 80,
@@ -758,26 +749,22 @@ function heartAttackSuggestion(source) {
 	let both = false;
 	// ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"]
 	d1.taxonomy.status.value = "Geplant";
-	console.log(source.taxonomy.diagnosis.heartattack.value);
-	switch (source.taxonomy.diagnosis.heartattack.value) {
+	switch (source.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value) {
 		case "Ausgeschlossen":
 			break;
 		case "Unwahrscheinlich":
-			d1.taxonomy.technical.transport.value = "Ja";
-			d1.taxonomy.medical.threatment.threatment.value = "Ja";
+			d1.taxonomy.actiontype.transport.value = "Ja";
 			d1.taxonomy.medical.transport.laying.value = "Ja";
 			break;
 		case "Möglich":
 		case "Wahrscheinlich":
 		case "Sicher":
-			d1.taxonomy.technical.transport.value = "Ja";
-			d1.taxonomy.medical.threatment.threatment.value = "Ja";
+			d1.taxonomy.actiontype.transport.value = "Ja";
 			d1.taxonomy.medical.transport.laying.value = "Ja";
 			d1.taxonomy.medical.transport.monitorreq.value = "Ja";
 			d1.taxonomy.medical.transport.specialrights.value = "Ja";
 			both = true;
-			d2.taxonomy.technical.rescue.value = "Ja";
-			d2.taxonomy.medical.threatment.threatment.value = "Ja";
+			d2.taxonomy.actiontype.rescue.value = "Ja";
 			d2.taxonomy.medical.transport.laying.value = "Ja";
 			d2.taxonomy.medical.transport.monitorreq.value = "Ja";
 			d2.taxonomy.medical.transport.specialrights.value = "Ja";
@@ -852,11 +839,11 @@ watch(
 		if (node?.shape?.type == "emergency-action") {
 			if (
 				!(
-					node.taxonomy.technical.firefighting.value == "Ja" ||
-					node.taxonomy.technical.transport.value == "Ja" ||
-					node.taxonomy.technical.rescue.value == "Ja" ||
-					node.taxonomy.technical.extrication.value == "Ja" ||
-					node.taxonomy.technical.protection.value == "Ja"
+					node.taxonomy.actiontype.firefighting.value == "Ja" ||
+					node.taxonomy.actiontype.transport.value == "Ja" ||
+					node.taxonomy.actiontype.rescue.value == "Ja" ||
+					node.taxonomy.actiontype.extrication.value == "Ja" ||
+					node.taxonomy.actiontype.protection.value == "Ja"
 				)
 			)
 				return;
@@ -871,7 +858,7 @@ watch(
 				}
 			}
 		} else if (node?.shape?.type == "affected-person") {
-			if (!node.taxonomy.diagnosis.heartattack.value) return;
+			if (!node.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value) return;
 			if (!graph.value.links.find((l) => l.source.id == node.id && l.target.shape.type == "emergency-action")) {
 				for (let i = 0; i < graph.value.links.length; i++) {
 					const link = graph.value.links[i];

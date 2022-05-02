@@ -44,16 +44,64 @@ const symptoms = {
 };
 
 // prettier-ignore
-const diagnosis = {
-	label: "Diagnose",
-	prefix: "apd_",
-	heartattack: { label: "Herzinfakt", type: Type.Selection, options: ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"], size: 80, value: null, id: "018d751d-b779-55dd-a2d7-49dfd581255e" },
-	
+const measurements = {
+	label: "Messwerte",
+	prefix: "apmeas_",
+	bloodpressure: { label: "RR", prefix: "apmeasbp_", systolic: { label: "Systolisch", type: Type.Number, options: ["60", "80", "100", "120", "140", "180", "220", "260"], size: 30, value: null, id: "01da5536-2b93-5af0-b552-df088c2ccec5" }, diastolic: { label: "Diastolisch", type: Type.Number, options: ["40", "60", "80", "100", "120", "140", "160"], size: 30, value: null, id: "04eb3bc0-b0e5-57ce-a32d-de9d163cc7d8" } },
+	heartfailure: { label: "HF", type: Type.Number, options: ["30", "40", "60", "70", "80", "90", "100", "120", "140", "160", "200"], size: 30, value: null, id: "414a7ce2-11f0-5d7e-a881-12f74dfd2fbc" },
+	bloodglucosevalue: { label: "BZ", type: Type.Number, options: ["30", "60", "80", "120", "140", "200"], size: 30, value: null, id: "a59fee62-8474-5bd3-a153-cc13ae3db9f4" },
+	breathingrate: { label: "AF", type: Type.Number, options: ["0", "5", "8", "10", "12", "15", "20", "30"], size: 30, value: null, id: "9e33c4b7-6e2d-5e9f-978a-a3d653f7762a" },
+	oxygensaturation: { label: "SpO2", type: Type.Number, options: ["60%", "80%", "90%", "95%", "99%"], size: 30, value: null, id: "a56304ce-7789-56ca-8054-6b8654c8ab7a" },
+	bodytemperature: { label: "Temp", type: Type.Number, options: ["36°C", "37°C", "38°C", "39°C", "40°C", "41°C"], size: 30, value: null, id: "9e89fbfb-069a-56bf-8d28-76baade06223" },
+	ecg: { label: "EKG", type: Type.Selection, options: ["STEMI", "Sinusrhythmus", "Kammerflimmern", "Asystolie", "Absolute Arrythmie", "AV-Block", "Tachykardie"], size: 30, value: null, id: "357f382c-bffa-521f-a564-d6172c0ddf69" },
+	breathing: { label: "Atmung", type: Type.Selection, options: ["unauffällig", "Stridor", "Dyspnoe", "Zyanose", "Apnoe", "Beatmung"], size: 30, value: null, id: "e35cc145-15f5-5fc3-a8fb-268a1221a11e" },
+};
+
+// prettier-ignore
+const initialneurologicalfindings = {
+	label: "Erstbefund Neurologie",
+	prefix: "apneuro_",
+	glasgowcomascale: {
+		label: "GCS",
+		prefix: "apneurogcs_",
+		eyes: {
+			label: "Augen öffnen",
+			type: Type.Selection,
+			options: ["keine Reaktion (1)", "auf Schmerzreiz (2)", "auf Aufforderung (3)", "spontan (4)"],
+			size: 30,
+			value: null,
+			id: "864a8387-6d1b-596e-b3d7-ddf761794471",
+		},
+		verbal: {
+			label: "Verbal",
+			type: Type.Selection,
+			options: ["keine Reaktion (1)", "unverständliche Laute (2)", "einzelne Wörter (3)", "verwirrt (4)", "orientiert (5)"],
+			size: 30,
+			value: null,
+			id: "2729dadf-b605-516d-b65b-cef4abe5a838",
+		},
+		motor: {
+			label: "Motor",
+			type: Type.Selection,
+			options: ["keine Reaktion (1)", "Strecksynergismen (2)", "Beugesynergismen (3)", "auf Schmerzreiz ungezielt (4)", "auf Schmerzreiz gezielt (5)", "auf Aufforderung (6)"],
+			size: 30,
+			value: null,
+			id: "d7620e7a-ef46-54a5-856e-053ff2e79ece",
+		},
+	},
+	glasgowcomascalevalue: {
+		label: "GCS Wert",
+		type: Type.Number,
+		options: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
+		size: 30,
+		value: null,
+		id: "9ebee19c-b2ef-5e2c-af18-122916b5eb8d",
+	},
 };
 
 // prettier-ignore
 const physicalcondition = {
-	label: "Physisch",
+	label: "Vorgeschichte",
 	prefix: "apcpc_",
 	diabetes: { label: "Diabetes", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null, id: "1ea10387-b3aa-5aa5-90ae-ceed4618c5fa" },
 	bloodstream: { label: "Kreislaufprobleme", type: Type.Selection, options: ["Stark", "Leicht", "Nein", "Unbekannt"], size: 60, value: null, id: "74dd1198-2d67-5a97-84fd-6d94b9655c11" },
@@ -65,7 +113,7 @@ const physicalcondition = {
 	oftencholesterol: { label: "oft hohe Cholesterinwerte", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "a2085d0e-c600-5d5d-86f5-51453a6167af" },
 	hearthsuffering: { label: "Herzleiden", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "f225c624-dd7f-5542-ba26-f6d509613417" },
 	infection: { label: "Infektion", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "bc13c5a0-b5ee-5374-a66a-05b3a6830947" },
-	infectionsince: { label: "Infektion seid", type: Type.Selection, options: ["Stunden", "Tage", "unbekannt"], size: 40, value: null, id: "d9cf160a-abf5-5868-a8a8-5aac3b00e5ad" },
+	infectionsince: { label: "Infektion seit", type: Type.Selection, options: ["Stunden", "Tage", "unbekannt"], size: 40, value: null, id: "d9cf160a-abf5-5868-a8a8-5aac3b00e5ad" },
 	infectioncovid: { label: "Covid", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "bf842150-6416-5cce-bddc-336d65e49511" },
 }
 
@@ -95,6 +143,8 @@ const vitalcondition = {
 const condition = {
 	label: "Zustand",
 	prefix: "apc_",
+	measurements: measurements,
+	initialneurologicalfindings: initialneurologicalfindings,
 	vitalcondition: vitalcondition,
 	physicalcondition: physicalcondition,
 	mentalcondition: mentalcondition,	
@@ -115,22 +165,44 @@ const accessibility = {
 };
 
 // prettier-ignore
+const centralnervoussystem = {
+	label: "ZNS",
+	prefix: "apcns_",
+	stroke: { label: "Schlaganfall", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "8957158d-bb44-5623-8353-19d1465cd4a1" },
+	seizure: { label: "Krampfanfall", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "26a36f42-7cfc-541e-96f2-6b6b4a7a35aa" },
+	meningitis: { label: "Meningitis", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "d5bfcbcf-e794-5a18-858c-1d7dd01025f3" },
+	syncope: { label: "Synkope", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "20f6c43f-3deb-52d5-b7f8-2b0340fa1a00" },
+}
+
+// prettier-ignore
+const cardiovascular = {
+	label: "Herz-Kreislauf",
+	prefix: "apcardi_",
+	heartattack: { label: "Herzinfakt", type: Type.Selection, options: ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"], size: 80, value: null, id: "018d751d-b779-55dd-a2d7-49dfd581255e" },
+	stemi: { label: "STEMI", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "b06e4000-5fb9-5141-ae6b-7777dffdc7a3" },
+	arrhythmia: { label: "Rhythmusstörung", type: Type.Selection, options: ["tachykard", "bradykard"], size: 40, value: null, id: "75433a36-43de-59c6-9332-6156568eb6ef" },
+	pulmonaryembolism: { label: "Lungenembolie", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "2b7ad6b4-2f7d-540a-9993-dfde2021ec1c" },
+	hyperthensiveemergency: { label: "Hyperthensiver Notfall", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "c0fdd979-a500-54ea-9a6b-7c30e6b335f0" },
+	pacemaker: { label: "Schrittmacher", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "a9e408f2-1fb1-5d36-855d-811c227f56c7" },
+}
+
+// prettier-ignore
+const breathing = {
+	label: "Atmung",
+	prefix: "apbreat_",
+	asthma: { label: "Asthma", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "25f4ff02-eebd-5d55-ac22-c008e02b0b8b" },
+	copd: { label: "COPD", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "591615df-351c-5392-ac44-f9cea3f6b383" },
+	pneumonie: { label: "Pneumonie/ Bronchitis", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "59019568-29c6-52a2-b1a8-189cd685d5e5" },
+	aspiration: { label: "Aspiration", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "e872de9d-4bc7-55ab-9719-a6e306f4a684" },
+}
+
+// prettier-ignore
 const guesseddiagnosis = {
 	label: "Verdachtsdiagnose",
 	prefix: "apgd_",
-	injury: { label: "Verletzung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "54a9095c-8953-5980-9a07-e2cf7faac15b" },
-	presickness: { label: "Vorerkrankung", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "c13beaf6-74b2-53fa-aa03-f6dbaab2d4e0" },
-	medication: { label: "Medikation", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "68b548b1-9e63-54cc-8c3b-b539c87b2157" },
-	allergy: { label: "Allergien", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "2538c72b-72c7-564e-a702-ed5eac5f68aa" },
-	age: { label: "Alter", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "9eb808bb-13c6-5f69-88d1-2feee4947681" },
-	f: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "0b0274b3-e800-5fa6-b44f-d0839f4a9897" },
-	g: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "a35b0d59-3c96-5e69-98ac-af2267bbc55d" },
-	h: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "e4cea4b3-93f5-523c-bbe6-56a6d9717f75" },
-	i: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "0baecc51-6ad2-58af-b678-9491f89e6a0b" },
-	j: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "695e07d2-2a00-52c9-80a7-cb875a017f93" },
-	k: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "008328a7-1c07-5c74-a7d8-25067086122e" },
-	l: { label: "Diagnose", type: Type.Selection, options: ["Ja", "Nein"], size: 20, value: null, id: "180e2a18-fa4d-555f-971f-e9021a5447e9" },
-	
+	centralnervoussystem: centralnervoussystem,
+	cardiovascular: cardiovascular,
+	breathing: breathing,
 }
 
 // prettier-ignore
@@ -142,7 +214,6 @@ const affectedPerson = {
 	sex: { label: "Geschlecht", type: Type.Selection, options: ["Männlich", "Weiblich", "Divers"], size: 50, value: null, id: "eafe4079-8152-5e40-81a3-f01355268c31" },
 	status: { label: "Status", type: Type.Selection, options: ["Grün", "Gelb", "Rot"], size: 50, value: null, id: "f4cb36f3-d38e-5da7-943e-7df63b8682c9" },
 	symptoms: symptoms,
-	diagnosis: diagnosis,
 	condition: condition,
 	accessibility: accessibility,
 	guesseddiagnosis: guesseddiagnosis,

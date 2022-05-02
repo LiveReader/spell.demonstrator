@@ -9,12 +9,12 @@ function emergencyAction(node) {
 
 	let category = "";
 	let label = "";
-	const technicalKeys = Object.keys(node.taxonomy.technical);
+	const technicalKeys = Object.keys(node.taxonomy.actiontype);
 	for (let i = 0; i < technicalKeys.length; i++) {
 		const key = technicalKeys[i];
 		if (key == "label" || key == "id" || key == "prefix") continue;
-		if (node.taxonomy.technical[key].value == "Ja") {
-			label = node.taxonomy.technical[key].label;
+		if (node.taxonomy.actiontype[key].value == "Ja") {
+			label = node.taxonomy.actiontype[key].label;
 			switch (label) {
 				case "Brandbekämpfung":
 					category = "fire-department";
@@ -35,12 +35,12 @@ function emergencyAction(node) {
 	}
 
 	let priority = "";
-	const threatmentKeys = Object.keys(node.taxonomy.medical.threatment);
-	for (let i = 0; i < threatmentKeys.length; i++) {
-		const key = threatmentKeys[i];
-		if (key == "label" || key == "id" || key == "prefix" || !node.taxonomy.medical.threatment[key].value) continue;
-		if (node.taxonomy.medical.threatment[key].value == "Ja") {
-			priority = node.taxonomy.medical.threatment[key].label;
+	const treatmentKeys = Object.keys(node.taxonomy.medical.treatment);
+	for (let i = 0; i < treatmentKeys.length; i++) {
+		const key = treatmentKeys[i];
+		if (key == "label" || key == "id" || key == "prefix" || !node.taxonomy.medical.treatment[key].value) continue;
+		if (node.taxonomy.medical.treatment[key].value == "Ja") {
+			priority = node.taxonomy.medical.treatment[key].label;
 		}
 	}
 
