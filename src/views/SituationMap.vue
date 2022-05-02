@@ -63,8 +63,8 @@ let lindenhof = [49.472413664609626, 8.468794078498757];
 let ruchheim = [49.4723270557513, 8.328341303731001];
 
 let ludwigshafenBounds = [
-	[49.406059, 8.347909],
-	[49.540137, 8.565615],
+	[49.006059, 8.347909],
+	[49.940137, 8.565615],
 ];
 
 let worldBounds = [
@@ -93,11 +93,12 @@ let initialZoom;
 
 let svgDimensions;
 let svgElementBounds;
+let graphlyDimensions;
 
 // actual settings
 let nodeScale = 1;
 if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
-svgElementBounds = worldBounds;
+svgElementBounds = ludwigshafenBounds;
 svgDimensions = {
 	x: 2000,
 	y: 2000,
@@ -205,8 +206,8 @@ function latLngToGraphlyCoordinates(latLng) {
 		y: containerElementBoundingRect.top - worldBoundingRect.top + containerPoint.y,
 	};
 	let graphlyCoordinate = {
-		x: ((worldPixelPosition.x - worldBoundingRect.width / 2) / worldBoundingRect.width) * svgDimensions.x,
-		y: ((worldPixelPosition.y - worldBoundingRect.height / 2) / worldBoundingRect.height) * svgDimensions.y,
+		x: ((worldPixelPosition.x - worldBoundingRect.width / 2) / worldBoundingRect.width) * graphlyDimensions.x,
+		y: ((worldPixelPosition.y - worldBoundingRect.height / 2) / worldBoundingRect.height) * graphlyDimensions.y,
 	}
 	return graphlyCoordinate;
 }
@@ -423,6 +424,14 @@ export default {
 				bubblingMouseEvents: false,
 			}).addTo(map);
 
+			/* Graphly Dimensions will be determined by initial pixel size of svg container, so save them: */
+			let svgClientRect = svgElementRef.getBoundingClientRect();
+			graphlyDimensions = {
+				x: svgClientRect.width,
+				y: svgClientRect.height,
+			};
+			console.log(graphlyDimensions);
+
 			/* Load graph data from demo */
 			let urls = graphFiles.map(file => `/saveFiles/${file}`);
 			fetchAll(urls).then(arr => {
@@ -452,6 +461,7 @@ export default {
 	mounted() {
 		map.on('click', this.innerClick);
 		map.on('zoomanim', this.onZoomAnim);
+		map.on('zoomend', this.onZoomAnim);
 		graphlyElementRef = document.querySelector('#graphly');
 		mapElementRef = document.querySelector('#map');
 		worldElementRef = document.querySelector('#world');
@@ -459,9 +469,14 @@ export default {
 	},
 	methods: {
 		onZoomAnim   ({ target, center, zoom })  {
+			console.log("ZOOM");
 			const oldZoom = map.getZoom()
-			const scale =  Math.pow(2, 13) / Math.pow(2, zoom);
+			let scale =  Math.pow(2, 13) / Math.pow(2, zoom);
+			console.log(oldZoom,zoom);
 			if (zoom !== oldZoom) {
+				if (zoom == undefined) {
+					scale =  Math.pow(2, 13) / Math.pow(2, oldZoom);
+				}
 				scaleNodes(scale);
 			}
 			this.mousePos = null
