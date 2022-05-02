@@ -1,32 +1,36 @@
 # SpellApi.DefaultApi
 
-All URIs are relative to *http://localhost:8080/v3*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAttribute**](DefaultApi.md#deleteAttribute) | **DELETE** /attribute/{attributeId} | Delete an attribute object
-[**deleteDataObject**](DefaultApi.md#deleteDataObject) | **DELETE** /dataObject/{dataObjectId} | Delete a DataObject object
-[**exportGraph**](DefaultApi.md#exportGraph) | **GET** /graph | Export a Notitia JSON dump
-[**getOperation**](DefaultApi.md#getOperation) | **GET** /operation/{operationId} | Get a specific operation object by ID
+[**createDataObject**](DefaultApi.md#createDataObject) | **POST** /dataObject | Create a new DataObject and subordinate DataObject
+[**debug**](DefaultApi.md#debug) | **GET** /debug | Get the whole Jena model in JSON-LD representation
+[**deleteAttribute**](DefaultApi.md#deleteAttribute) | **DELETE** /attribute | Delete an attribute object
+[**deleteDataObject**](DefaultApi.md#deleteDataObject) | **DELETE** /dataObject | Delete a DataObject object
+[**getDataObject**](DefaultApi.md#getDataObject) | **GET** /dataObject | Get a specific DataObject by ID
 [**getOperationList**](DefaultApi.md#getOperationList) | **GET** /operations | List of operation objects
-[**importGraph**](DefaultApi.md#importGraph) | **POST** /graph | Import a Notitia JSON dump
-[**loadScenarios**](DefaultApi.md#loadScenarios) | **POST** /scenario/load | Load a list of scenarios into the datatbase
+[**loadScenarios**](DefaultApi.md#loadScenarios) | **POST** /scenario/load | Load a list of scenarios into the database
 [**resetDatabase**](DefaultApi.md#resetDatabase) | **POST** /reset | Reset the database to a predefined state
+[**updateAttribute**](DefaultApi.md#updateAttribute) | **PUT** /attribute | Update the value of an existing Attribute
+[**updateDataObject**](DefaultApi.md#updateDataObject) | **PUT** /dataObject | Update an existing DataObject and subordinate DataObject
 
-<a name="deleteAttribute"></a>
-# **deleteAttribute**
-> deleteAttribute(attributeId)
+<a name="createDataObject"></a>
+# **createDataObject**
+> createDataObject(body, operationId, parentDataObjectId)
 
-Delete an attribute object
+Create a new DataObject and subordinate DataObject
 
 ### Example
 ```javascript
 import {SpellApi} from 'spell_api';
 
 let apiInstance = new SpellApi.DefaultApi();
-let attributeId = "attributeId_example"; // String | String ID of the Attribute to delete
+let body = new SpellApi.DataObject(); // DataObject | The DataObject to create
+let operationId = "operationId_example"; // String | Encoded String ID of the Operation DataObject this DataObject belongs to
+let parentDataObjectId = "parentDataObjectId_example"; // String | Encoded String ID of the parent DataObject pointing to this DataObject via hasA
 
-apiInstance.deleteAttribute(attributeId, (error, data, response) => {
+apiInstance.createDataObject(body, operationId, parentDataObjectId, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -39,7 +43,90 @@ apiInstance.deleteAttribute(attributeId, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **attributeId** | **String**| String ID of the Attribute to delete | 
+ **body** | [**DataObject**](DataObject.md)| The DataObject to create | 
+ **operationId** | **String**| Encoded String ID of the Operation DataObject this DataObject belongs to | 
+ **parentDataObjectId** | **String**| Encoded String ID of the parent DataObject pointing to this DataObject via hasA | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+<a name="debug"></a>
+# **debug**
+> Object debug()
+
+Get the whole Jena model in JSON-LD representation
+
+### Example
+```javascript
+import {SpellApi} from 'spell_api';
+
+let apiInstance = new SpellApi.DefaultApi();
+apiInstance.debug((error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+});
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**Object**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="deleteAttribute"></a>
+# **deleteAttribute**
+> deleteAttribute(id, operationId, valueOnly)
+
+Delete an attribute object
+
+### Example
+```javascript
+import {SpellApi} from 'spell_api';
+
+let apiInstance = new SpellApi.DefaultApi();
+let id = "id_example"; // String | Encoded String ID of the Attribute to delete
+let operationId = "operationId_example"; // String | Encoded String ID of the Operation DataObject this Attribute belongs to
+let valueOnly = true; // Boolean | 
+
+apiInstance.deleteAttribute(id, operationId, valueOnly, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encoded String ID of the Attribute to delete | 
+ **operationId** | **String**| Encoded String ID of the Operation DataObject this Attribute belongs to | 
+ **valueOnly** | **Boolean**|  | 
 
 ### Return type
 
@@ -56,7 +143,7 @@ No authorization required
 
 <a name="deleteDataObject"></a>
 # **deleteDataObject**
-> deleteDataObject(dataObjectId)
+> deleteDataObject(id, operationId, cascadingDelete)
 
 Delete a DataObject object
 
@@ -65,9 +152,11 @@ Delete a DataObject object
 import {SpellApi} from 'spell_api';
 
 let apiInstance = new SpellApi.DefaultApi();
-let dataObjectId = "dataObjectId_example"; // String | String ID of the DataObject to delete
+let id = "id_example"; // String | Encoded String ID of the DataObject to delete
+let operationId = "operationId_example"; // String | Encoded String ID of the Operation DataObject this DataObject belongs to
+let cascadingDelete = true; // Boolean | Cascading option will delete all DataObjects connected via asserted hasA (not inferred)
 
-apiInstance.deleteDataObject(dataObjectId, (error, data, response) => {
+apiInstance.deleteDataObject(id, operationId, cascadingDelete, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -80,7 +169,9 @@ apiInstance.deleteDataObject(dataObjectId, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dataObjectId** | **String**| String ID of the DataObject to delete | 
+ **id** | **String**| Encoded String ID of the DataObject to delete | 
+ **operationId** | **String**| Encoded String ID of the Operation DataObject this DataObject belongs to | 
+ **cascadingDelete** | **Boolean**| Cascading option will delete all DataObjects connected via asserted hasA (not inferred) | 
 
 ### Return type
 
@@ -95,56 +186,20 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: Not defined
 
-<a name="exportGraph"></a>
-# **exportGraph**
-> NotitiaExportFormat exportGraph()
+<a name="getDataObject"></a>
+# **getDataObject**
+> DataObject getDataObject(id)
 
-Export a Notitia JSON dump
-
-### Example
-```javascript
-import {SpellApi} from 'spell_api';
-
-let apiInstance = new SpellApi.DefaultApi();
-apiInstance.exportGraph((error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully. Returned data: ' + data);
-  }
-});
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**NotitiaExportFormat**](NotitiaExportFormat.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-<a name="getOperation"></a>
-# **getOperation**
-> OperationObject getOperation(operationId)
-
-Get a specific operation object by ID
+Get a specific DataObject by ID
 
 ### Example
 ```javascript
 import {SpellApi} from 'spell_api';
 
 let apiInstance = new SpellApi.DefaultApi();
-let operationId = "operationId_example"; // String | String ID of the operation to get
+let id = "id_example"; // String | Encoded String ID of the DataObject to get
 
-apiInstance.getOperation(operationId, (error, data, response) => {
+apiInstance.getDataObject(id, (error, data, response) => {
   if (error) {
     console.error(error);
   } else {
@@ -157,11 +212,11 @@ apiInstance.getOperation(operationId, (error, data, response) => {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **operationId** | **String**| String ID of the operation to get | 
+ **id** | **String**| Encoded String ID of the DataObject to get | 
 
 ### Return type
 
-[**OperationObject**](OperationObject.md)
+[**DataObject**](DataObject.md)
 
 ### Authorization
 
@@ -208,52 +263,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="importGraph"></a>
-# **importGraph**
-> importGraph(body)
-
-Import a Notitia JSON dump
-
-### Example
-```javascript
-import {SpellApi} from 'spell_api';
-
-let apiInstance = new SpellApi.DefaultApi();
-let body = new SpellApi.NotitiaExportFormat(); // NotitiaExportFormat | Node array and link array that are loaded into the DB. The  database will be resetted.
-
-apiInstance.importGraph(body, (error, data, response) => {
-  if (error) {
-    console.error(error);
-  } else {
-    console.log('API called successfully.');
-  }
-});
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**NotitiaExportFormat**](NotitiaExportFormat.md)| Node array and link array that are loaded into the DB. The  database will be resetted. | 
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
-
 <a name="loadScenarios"></a>
 # **loadScenarios**
 > loadScenarios(body)
 
-Load a list of scenarios into the datatbase
+Load a list of scenarios into the database
 
 ### Example
 ```javascript
@@ -324,5 +338,97 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+<a name="updateAttribute"></a>
+# **updateAttribute**
+> updateAttribute(id, operationId, attributeValue)
+
+Update the value of an existing Attribute
+
+### Example
+```javascript
+import {SpellApi} from 'spell_api';
+
+let apiInstance = new SpellApi.DefaultApi();
+let id = "id_example"; // String | Encoded String ID of the Attribute to update
+let operationId = "operationId_example"; // String | Encoded String ID of the Operation DataObject this Attribute belongs to
+let attributeValue = "attributeValue_example"; // String | The new value of the Attribute
+
+apiInstance.updateAttribute(id, operationId, attributeValue, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| Encoded String ID of the Attribute to update | 
+ **operationId** | **String**| Encoded String ID of the Operation DataObject this Attribute belongs to | 
+ **attributeValue** | **String**| The new value of the Attribute | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+<a name="updateDataObject"></a>
+# **updateDataObject**
+> updateDataObject(body, operationId, parentDataObjectId, updateSubordinateDataObject)
+
+Update an existing DataObject and subordinate DataObject
+
+### Example
+```javascript
+import {SpellApi} from 'spell_api';
+
+let apiInstance = new SpellApi.DefaultApi();
+let body = new SpellApi.DataObject(); // DataObject | The DataObject and all subordinate DataObjects in their current version
+let operationId = "operationId_example"; // String | Encoded String ID of the Operation DataObject this DataObject belongs to
+let parentDataObjectId = "parentDataObjectId_example"; // String | Encoded String ID of the parent DataObject pointing to this DataObject via hasA
+let updateSubordinateDataObject = true; // Boolean | Decides whether subordinate DataObjects should be updated
+
+apiInstance.updateDataObject(body, operationId, parentDataObjectId, updateSubordinateDataObject, (error, data, response) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+});
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DataObject**](DataObject.md)| The DataObject and all subordinate DataObjects in their current version | 
+ **operationId** | **String**| Encoded String ID of the Operation DataObject this DataObject belongs to | 
+ **parentDataObjectId** | **String**| Encoded String ID of the parent DataObject pointing to this DataObject via hasA | 
+ **updateSubordinateDataObject** | **Boolean**| Decides whether subordinate DataObjects should be updated | 
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 

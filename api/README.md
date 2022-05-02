@@ -71,7 +71,9 @@ Please follow the [installation](#installation) instruction and execute the foll
 var SpellApi = require('spell_api');
 
 var api = new SpellApi.DefaultApi()
-var attributeId = "attributeId_example"; // {String} String ID of the Attribute to delete
+var body = new SpellApi.DataObject(); // {DataObject} The DataObject to create
+var operationId = "operationId_example"; // {String} Encoded String ID of the Operation DataObject this DataObject belongs to
+var parentDataObjectId = "parentDataObjectId_example"; // {String} Encoded String ID of the parent DataObject pointing to this DataObject via hasA
 
 var callback = function(error, data, response) {
   if (error) {
@@ -80,37 +82,33 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-api.deleteAttribute(attributeId, callback);
+api.createDataObject(body, operationId, parentDataObjectId, callback);
 ```
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:8080/v3*
+All URIs are relative to *http://localhost:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*SpellApi.DefaultApi* | [**deleteAttribute**](docs/DefaultApi.md#deleteAttribute) | **DELETE** /attribute/{attributeId} | Delete an attribute object
-*SpellApi.DefaultApi* | [**deleteDataObject**](docs/DefaultApi.md#deleteDataObject) | **DELETE** /dataObject/{dataObjectId} | Delete a DataObject object
-*SpellApi.DefaultApi* | [**exportGraph**](docs/DefaultApi.md#exportGraph) | **GET** /graph | Export a Notitia JSON dump
-*SpellApi.DefaultApi* | [**getOperation**](docs/DefaultApi.md#getOperation) | **GET** /operation/{operationId} | Get a specific operation object by ID
+*SpellApi.DefaultApi* | [**createDataObject**](docs/DefaultApi.md#createDataObject) | **POST** /dataObject | Create a new DataObject and subordinate DataObject
+*SpellApi.DefaultApi* | [**debug**](docs/DefaultApi.md#debug) | **GET** /debug | Get the whole Jena model in JSON-LD representation
+*SpellApi.DefaultApi* | [**deleteAttribute**](docs/DefaultApi.md#deleteAttribute) | **DELETE** /attribute | Delete an attribute object
+*SpellApi.DefaultApi* | [**deleteDataObject**](docs/DefaultApi.md#deleteDataObject) | **DELETE** /dataObject | Delete a DataObject object
+*SpellApi.DefaultApi* | [**getDataObject**](docs/DefaultApi.md#getDataObject) | **GET** /dataObject | Get a specific DataObject by ID
 *SpellApi.DefaultApi* | [**getOperationList**](docs/DefaultApi.md#getOperationList) | **GET** /operations | List of operation objects
-*SpellApi.DefaultApi* | [**importGraph**](docs/DefaultApi.md#importGraph) | **POST** /graph | Import a Notitia JSON dump
-*SpellApi.DefaultApi* | [**loadScenarios**](docs/DefaultApi.md#loadScenarios) | **POST** /scenario/load | Load a list of scenarios into the datatbase
+*SpellApi.DefaultApi* | [**loadScenarios**](docs/DefaultApi.md#loadScenarios) | **POST** /scenario/load | Load a list of scenarios into the database
 *SpellApi.DefaultApi* | [**resetDatabase**](docs/DefaultApi.md#resetDatabase) | **POST** /reset | Reset the database to a predefined state
+*SpellApi.DefaultApi* | [**updateAttribute**](docs/DefaultApi.md#updateAttribute) | **PUT** /attribute | Update the value of an existing Attribute
+*SpellApi.DefaultApi* | [**updateDataObject**](docs/DefaultApi.md#updateDataObject) | **PUT** /dataObject | Update an existing DataObject and subordinate DataObject
 
 ## Documentation for Models
 
  - [SpellApi.Attribute](docs/Attribute.md)
  - [SpellApi.DataObject](docs/DataObject.md)
- - [SpellApi.NotitiaEdge](docs/NotitiaEdge.md)
- - [SpellApi.NotitiaExportFormat](docs/NotitiaExportFormat.md)
- - [SpellApi.NotitiaNode](docs/NotitiaNode.md)
- - [SpellApi.NotitiaNodeShape](docs/NotitiaNodeShape.md)
- - [SpellApi.NotitiaTaxonomy](docs/NotitiaTaxonomy.md)
  - [SpellApi.OntologyClass](docs/OntologyClass.md)
  - [SpellApi.OperationList](docs/OperationList.md)
  - [SpellApi.OperationListNodes](docs/OperationListNodes.md)
- - [SpellApi.OperationObject](docs/OperationObject.md)
  - [SpellApi.ScenarioLoadBody](docs/ScenarioLoadBody.md)
 
 ## Documentation for Authorization

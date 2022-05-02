@@ -8,3 +8,4 @@ Name | Type | Description | Notes
 **label** | **String** | Name | [optional] 
 **ref** | **String** | IRI reference to another DataObject | [optional] 
 **attributes** | [**[Attribute]**](Attribute.md) |  | [optional] 
+**dataObjects** | [**[DataObject]**](DataObject.md) | has a | [optional] 
