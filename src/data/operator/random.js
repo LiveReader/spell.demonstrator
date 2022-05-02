@@ -1,3 +1,6 @@
+const enumerations = [...Array(101).keys()];
+const enumeration = () => enumerations[Math.floor(Math.random() * enumerations.length)];
+
 const firstNames = [
 	"Hilda",
 	"Marc",
@@ -70,240 +73,185 @@ const phoneNumbers = [
 ];
 const phoneNumber = () => phoneNumbers[Math.floor(Math.random() * phoneNumbers.length)];
 
-const locations = {
-	Ludwigshafen: {
-		67059: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		67061: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		67063: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		67065: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		67067: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		67069: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		67071: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
-		68159: {
-			Hauptstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-			Bahnhofstraße: {
-				6: {
-					gps: "49.8984, 8.664",
-				},
-				24: {
-					gps: "49.8984, 8.664",
-				},
-				52: {
-					gps: "49.8984, 8.664",
-				},
-			},
-		},
+const objects = ["Zug", "VW Golf", "Mercedes", "BMW", "Audi"];
+const object = () => objects[Math.floor(Math.random() * objects.length)];
+
+const VINs = ["4S4BRDSC2D2221585", "5FNRL38739B001353", "1FVACYDC37HW59012", "1C4RJFAG8DC537142", "5NPEC4AC5BH041176"];
+const VIN = () => VINs[Math.floor(Math.random() * VINs.length)];
+
+const compasDirections = ["North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West"];
+const compasDirection = () => compasDirections[Math.floor(Math.random() * compasDirections.length)];
+
+const transportTargets = ["Uniklinikum Ludwigshafen", "BG Klinikum Ludwigshafen", "Krankenhaus Zum Guten Hirten Ludwigshafen"];
+const transportTarget = () => transportTargets[Math.floor(Math.random() * transportTargets.length)];
+
+const ressourceIdentifiers = [
+	"LU 01/83-01",
+	"LU 01/83-02",
+	"LU 01/83-03",
+	"LU 01/83-04",
+	"LU 01/85-01",
+	"LU 01/85-02",
+	"LU 01/85-03",
+	"LU 01/85-04",
+	"LU 01/85-05",
+	"LU 02/82-01",
+	"LU 11/82-01",
+	"LU 11/83-01",
+	"LU 11/83-02",
+	"LU 11/85-01",
+	"LU 11/85-02",
+	"LU 11/85-03",
+	"LU 22/82-01",
+	"LU 22/82-51",
+	"LU 21/83-04",
+	"LU 21/84-01",
+	"LU 21/85-01",
+	"LU 23/83-01",
+	"LU 23/84-01",
+	"LU 23/85-01",
+	"LU 31/82-01",
+	"LU 31/83-01",
+	"LU 31/83-02",
+	"LU 31/85-01",
+	"LU 31/85-02",
+	"LU 31/85-03",
+	"LU 31/85-04",
+	"LU 42/82-01",
+	"LU 42/83-01",
+	"LU 42/85-01",
+	"LU 42/85-02",
+	"LU 43/82-01",
+	"LU 43/83-01",
+	"LU 43/83-02",
+	"LU 43/85-01",
+	"LU 43/85-02",
+	"LU 43/85-03",
+	"LU 44/83-01",
+	"LU 44/85-01",
+	"LU 51/82-01",
+	"LU 51/83-01",
+	"LU 51/83-02",
+	"LU 51/85-01",
+	"LU 51/85-02",
+	"LU 51/85-03",
+	"LU 45/82-01",
+	"LU 46/83-01",
+	"LU 46/84-01",
+];
+const ressourceIdentifier = () => ressourceIdentifiers[Math.floor(Math.random() * ressourceIdentifiers.length)];
+
+const ressourceTimes = [
+	"seit 1min",
+	"in 1min",
+	"braucht 1min",
+	"seit 3min",
+	"in 3min",
+	"braucht 3min",
+	"seit 5min",
+	"in 5min",
+	"braucht 5min",
+	"seit 8min",
+	"in 8min",
+	"braucht 8min",
+	"seit 12min",
+	"in 12min",
+	"braucht 12min",
+];
+const ressourceTime = () => ressourceTimes[Math.floor(Math.random() * ressourceTimes.length)];
+
+const locations = [
+	{
+		street: "Schneegasse",
+		buildingno: "32",
+		zipcode: "67059",
+		city: "Ludwigshafen",
+		country: "Deutschland",
+		note: "",
+		gps: "49.482931, 8.430324",
+		threewords: "",
 	},
-};
-const locationCities = () => {
-	const cities = [];
-	const cityKeys = Object.keys(locations);
-	for (const i in cityKeys) {
-		const cityKey = cityKeys[i];
-		const zipCodeKeys = Object.keys(locations[cityKey]);
-		for (const j in zipCodeKeys) {
-			const zipCodeKey = zipCodeKeys[j];
-			cities.push(`${zipCodeKey} ${cityKey}`);
-		}
-	}
-	return cities;
-};
-const locationStreets = (city, zipCode) => {
-	const streets = [];
-	if (!city || !zipCode) return streets;
-	const streetKeys = Object.keys(locations[city][zipCode]);
-	for (const i in streetKeys) {
-		const streetKey = streetKeys[i];
-		const numberKeys = Object.keys(locations[city][zipCode][streetKey]);
-		for (const j in numberKeys) {
-			const numberKey = numberKeys[j];
-			streets.push(`${streetKey} ${numberKey}`);
-		}
-	}
-	return streets;
-};
-const getGPS = (city, zipCode, street, number) => locations[city][zipCode][street][number].gps;
+];
+const locationsSelection = ["Schneegasse 32, 67059 Ludwigshafen"];
+const location = () => locations[Math.floor(Math.random() * locations.length)];
+
+const times = [
+	"00:00",
+	"00:30",
+	"01:00",
+	"01:30",
+	"02:00",
+	"02:30",
+	"03:00",
+	"03:30",
+	"04:00",
+	"04:30",
+	"05:00",
+	"05:30",
+	"06:00",
+	"06:30",
+	"07:00",
+	"07:30",
+	"08:00",
+	"08:30",
+	"09:00",
+	"09:30",
+	"10:00",
+	"10:30",
+	"11:00",
+	"11:30",
+	"12:00",
+	"12:30",
+	"13:00",
+	"13:30",
+	"14:00",
+	"14:30",
+	"15:00",
+	"15:30",
+	"16:00",
+	"16:30",
+	"17:00",
+	"17:30",
+	"18:00",
+	"18:30",
+	"19:00",
+	"19:30",
+	"20:00",
+	"20:30",
+	"21:00",
+	"21:30",
+	"22:00",
+	"22:30",
+	"23:00",
+	"23:30",
+	"00:00",
+];
+const time = () => times[Math.floor(Math.random() * times.length)];
 
 export {
+	enumerations,
+	enumeration,
 	firstNames,
 	firstName,
 	lastNames,
 	lastName,
 	phoneNumbers,
 	phoneNumber,
+	objects,
+	object,
+	VINs,
+	VIN,
+	compasDirections,
+	compasDirection,
+	transportTargets,
+	transportTarget,
+	ressourceIdentifiers,
+	ressourceIdentifier,
+	ressourceTimes,
+	ressourceTime,
 	locations,
-	locationCities,
-	locationStreets,
-	getGPS,
+	locationsSelection,
+	location,
+	times,
+	time,
 };

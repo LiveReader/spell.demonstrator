@@ -1,4 +1,6 @@
+import { touchScreen } from "../../views/Navigation.vue";
 import { taxonomy2payload } from "./converter/index";
+import { enumerations, locations, locationsSelection } from "./random";
 
 const NodeType = {
 	Operation: "operation",
@@ -24,39 +26,56 @@ const questionTemplates = [
 		priority: 999,
 		question_type: QuestionType.Selection,
 		question: "Art der Aktion",
-		description: "Brandbekämpfung, Transport, Rettung, Befreiung / Bergung, Schützen",
-		options: ["Brandbekämpfung", "Transport", "Rettung", "Befreiung, Bergung", "Schützen"],
+		description: "Brandbekämpfung, Transport, Behandlung, Befreiung / Bergung, Schützen",
+		options: ["Brandbekämpfung", "Transport", "Behandlung", "Befreiung, Bergung", "Schützen"],
 		value: (d) =>
-			d?.taxonomy?.technical?.firefighting?.value ??
-			d?.taxonomy?.technical?.transport?.value ??
-			d?.taxonomy?.technical?.rescue?.value ??
-			d?.taxonomy?.technical?.extrication?.value ??
-			d?.taxonomy?.technical?.protection?.value ??
+			d?.taxonomy?.actiontype?.firefighting?.value ??
+			d?.taxonomy?.actiontype?.transport?.value ??
+			d?.taxonomy?.actiontype?.rescue?.value ??
+			d?.taxonomy?.actiontype?.extrication?.value ??
+			d?.taxonomy?.actiontype?.protection?.value ??
 			null,
 		condition: (d) =>
-			!d?.taxonomy?.technical?.firefighting.value &&
-			!d?.taxonomy?.technical?.transport.value &&
-			!d?.taxonomy?.technical?.rescue.value &&
-			!d?.taxonomy?.technical?.extrication.value &&
-			!d?.taxonomy?.technical?.protection.value,
+			!d?.taxonomy?.actiontype?.firefighting.value &&
+			!d?.taxonomy?.actiontype?.transport.value &&
+			!d?.taxonomy?.actiontype?.rescue.value &&
+			!d?.taxonomy?.actiontype?.extrication.value &&
+			!d?.taxonomy?.actiontype?.protection.value,
 		action: (v, d, g) => {
 			switch (v) {
 				case "Brandbekämpfung":
-					d.taxonomy.technical.firefighting.value = "Ja";
+					d.taxonomy.actiontype.firefighting.value = "Ja";
 					break;
 				case "Transport":
-					d.taxonomy.technical.transport.value = "Ja";
+					d.taxonomy.actiontype.transport.value = "Ja";
 					break;
-				case "Rettung":
-					d.taxonomy.technical.rescue.value = "Ja";
+				case "Behandlung":
+					d.taxonomy.actiontype.rescue.value = "Ja";
 					break;
 				case "Befreiung, Bergung":
-					d.taxonomy.technical.extrication.value = "Ja";
+					d.taxonomy.actiontype.extrication.value = "Ja";
 					break;
 				case "Schützen":
-					d.taxonomy.technical.protection.value = "Ja";
+					d.taxonomy.actiontype.protection.value = "Ja";
 					break;
 			}
+		},
+	},
+	// TODO Location data for touch input
+	{
+		node_type: NodeType.EmergencyReporter,
+		priority: 999,
+		question_type: QuestionType.Text,
+		question: "Notfall-Ort",
+		description: "Ort, Straße, Hausnummer",
+		options: [],
+		label: ["Straße", "Ort"],
+		value: (d) => [d?.taxonomy?.location?.street?.value, d?.taxonomy?.location?.city?.value],
+		condition: (d) =>
+			!touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		action: (v, d, g) => {
+			d.taxonomy.location.street.value = v[0] ?? "";
+			d.taxonomy.location.city.value = v[1] ?? "";
 		},
 	},
 	{
@@ -64,14 +83,25 @@ const questionTemplates = [
 		priority: 999,
 		question_type: QuestionType.Text,
 		question: "Notfall-Ort",
-		description: "Ort, Straße, Hausnummer, Stockwerk",
-		options: [],
-		label: ["Straße", "Ort"],
-		value: (d) => [d?.taxonomy?.location?.street?.value, d?.taxonomy?.location?.city?.value],
-		condition: (d) => !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		description: "Ort, Straße, Hausnummer",
+		options: locationsSelection,
+		label: "Notfall-Ort",
+		value: (d) =>
+			`${d?.taxonomy?.location?.street?.value ?? ""} ${d?.taxonomy?.location?.buildingno?.value ?? ""}, ${
+				d?.taxonomy?.location?.zipcode?.value ?? ""
+			} ${d?.taxonomy?.location?.city?.value ?? ""}`,
+		condition: (d) => touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
 		action: (v, d, g) => {
-			d.taxonomy.location.street.value = v[0] ?? "";
-			d.taxonomy.location.city.value = v[1] ?? "";
+			const index = locationsSelection.indexOf(v);
+			const data = locations[index];
+			d.taxonomy.location.street.value = data.street ?? "";
+			d.taxonomy.location.buildingno.value = data.buildingno ?? "";
+			d.taxonomy.location.zipcode.value = data.zipcode ?? "";
+			d.taxonomy.location.city.value = data.city ?? "";
+			d.taxonomy.location.country.value = data.country ?? "";
+			d.taxonomy.location.note.value = data.note ?? "";
+			d.taxonomy.location.gps.value = data.gps ?? "";
+			d.taxonomy.location.threewords.value = data.threewords ?? "";
 		},
 	},
 	// Rückrufnummer
@@ -81,8 +111,8 @@ const questionTemplates = [
 		question_type: QuestionType.Text,
 		question: "Rückrufnummer",
 		description: "Unter welcher Nummer kann ich Sie ggf. zurückrufen?",
-		options: [],
 		label: "Telefonnummer",
+		options: (d) => d?.taxonomy?.phonenumber?.options,
 		value: (d) => d?.taxonomy?.phonenumber?.value,
 		condition: (d) => !d?.taxonomy?.phonenumber?.value,
 		action: (v, d, g) => {
@@ -98,6 +128,7 @@ const questionTemplates = [
 		question: "Name",
 		description: "Wie heißt die meldende Person?",
 		label: (d) => [d?.taxonomy?.name?.first?.label, d?.taxonomy?.name?.last?.label],
+		options: (d) => [d?.taxonomy?.name?.first?.options, d?.taxonomy?.name?.last?.options],
 		value: (d) => [d?.taxonomy?.name?.first?.value, d?.taxonomy?.name?.last?.value],
 		condition: (d) => !d?.taxonomy?.name?.first?.value || !d?.taxonomy?.name?.last?.value,
 		action: (v, d, g) => {
@@ -156,6 +187,8 @@ const questionTemplates = [
 		question: "Anzahl Betroffener",
 		description: "Wie viele Personen sind betroffen?",
 		label: "Anzahl",
+		option: () => enumerations,
+		options: (d) => d?.taxonomy?.affected?.persons?.options,
 		value: (d) => d?.taxonomy?.affected?.persons?.value,
 		condition: (d) => !d?.taxonomy?.affected?.persons?.value,
 		action: (v, d, g) => {
@@ -172,6 +205,7 @@ const questionTemplates = [
 		question: "Name",
 		description: "Wie heißt die betroffene Person?",
 		label: (d) => [d?.taxonomy?.name?.first?.label, d?.taxonomy?.name?.last?.label],
+		options: (d) => [d?.taxonomy?.name?.first?.options, d?.taxonomy?.name?.last?.options],
 		value: (d) => [d?.taxonomy?.name?.first?.value, d?.taxonomy?.name?.last?.value],
 		condition: (d) => !d?.taxonomy?.name?.first?.value || !d?.taxonomy?.name?.last?.value,
 		action: (v, d, g) => {
@@ -188,6 +222,7 @@ const questionTemplates = [
 		question: "Alter",
 		description: "Wie alt ist die betroffene Person?",
 		label: "Alter in Jahren (min 1)",
+		options: (d) => d?.taxonomy?.age?.options,
 		value: (d) => d?.taxonomy?.age?.value,
 		condition: (d) => !d?.taxonomy?.age?.value,
 		action: (v, d, g) => (d.taxonomy.age.value = v > 0 ? v.toString() : null),
@@ -442,24 +477,49 @@ const questionTemplates = [
 		question_type: QuestionType.Selection,
 		question: "Herzinfakt Einschätzung",
 		description: "Einschätzung des Herzinfakt-Risikos.",
-		label: (d) => d?.taxonomy?.diagnosis?.heartattack?.label,
-		options: (d) => d?.taxonomy?.diagnosis?.heartattack?.options,
-		value: (d) => d?.taxonomy?.diagnosis?.heartattack?.value,
-		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.diagnosis?.heartattack?.value,
+		label: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.label,
+		options: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.options,
+		value: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value,
 		action: (v, d, g) => {
-			d.taxonomy.diagnosis.heartattack.value = v;
+			d.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value = v;
 		},
 	},
+
+	/// Unconsciousness Questions
+	// Diabetes
+	// d.taxonomy.condition.physicalcondition.diabetes
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 876,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Diabetes",
+		description: "Hat die Person Diabetes?",
+		label: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.label,
+		options: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.options,
+		value: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.value,
+		condition: (d) => unconsciousnessActivator(d) && !d?.taxonomy?.condition?.physicalcondition?.diabetes?.value,
+	},
+	// Medikamente
+
+	// Alkohol
+
+	// Gatvergiftung
 ];
 
 function heartAttackActivator(d) {
 	return (
-		!d?.taxonomy?.diagnosis?.heartattack?.value &&
+		!d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value &&
 		d?.taxonomy?.symptoms?.pain?.value &&
 		d?.taxonomy?.symptoms?.pain?.value != "Nein" &&
 		d?.taxonomy?.symptoms?.painlocation &&
 		d?.taxonomy?.symptoms?.painlocation?.value == "Brust"
 	);
+}
+
+function unconsciousnessActivator(d) {
+	return d?.taxonomy?.condition?.vitalcondition?.consciousness == "Ja";
 }
 
 for (let i = 0; i < questionTemplates.length; i++) {

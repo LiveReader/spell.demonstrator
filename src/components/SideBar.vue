@@ -7,8 +7,10 @@
 					:key="item"
 					:icon="item.icon"
 					flat
-					class="controlButton mx-1"
-					:class="{ delete: item.isDelete, disabled: !item.enabled }"
+					class="controlButton ma-1"
+					width="38"
+					height="38"
+					:class="{ delete: item.isDelete, disabled: !item.enabled, selected: item.selected }"
 					:disabled="!item.enabled"
 					@click="item.onClick"
 				></v-btn>
@@ -59,13 +61,6 @@
 				</v-expansion-panel-text>
 			</v-expansion-panel>
 		</v-expansion-panels>
-
-		<!-- <v-card class="mx-2 mt-2 mb-2 px-2 rounded-lg barCard questions">
-			<div v-for="item in questions" :key="item.id">
-				<QuestionCard class="mt-3 mb-3" :item="item" @input="(d) => $emit('question-input', d)"></QuestionCard>
-				<v-divider></v-divider>
-			</div>
-		</v-card> -->
 	</v-navigation-drawer>
 </template>
 
@@ -122,6 +117,9 @@ export default {
 	}
 	&.disabled {
 		background-color: #a6a6a6 !important;
+	}
+	&.selected {
+		background-color: #4fc3f7 !important;
 	}
 }
 </style>
