@@ -1,41 +1,61 @@
-const fileNames = {
-    graphFiles: [
-        "Apple Watch.json",
-        "Atemwegsreizung 1.json",
-        "Atemwegsreizung 2.json",
-        "Atemwegsreizung 3.json",
-        "Atemwegsreizung 4.json",
-        "Atemwegsreizung 5.json",
-        "Brand Gartenanlage.json",
-        "Brand L523.json",
-        "Dialyse.json",
-        "E-Call.json",
-        "sturz.json",
-        "transport.json",
-        "unfall.json",
-        "Verletzte Gartenanlage.json",
-        "zugentgleisung.json",
-    ],
-    operationalAreas: [
-        "vermka_rlp.6.geojson",
-    ],
-    closureFiles: [
-        "closure1.json",
-        "closure2.json",
-        "closure3.json",
-    ],
-    cloudFiles: [
-        "cloud.json",
-        "cloud2.json",
-        "cloud3.json",
-    ],
-    meetingPointFiles: [
-        "meeting_point.json",
-    ],
-    trafficJamFiles: [
-        "traffic_jam1.json",
-    ],
-};
+const scenarios = [
+    {
+        label: "Zugentgleisung",
+        graphFiles: [
+            "unfall.json",
+            "sturz.json",
+            "transport.json",
+            "zugentgleisung.json",
+            "Brand L523.json",
+            "E-Call.json",
+            "Hausnotruf.json",
+            "Apple Watch.json",
+            "Dialyse.json",
+        ],
+        closureFiles: [
+            "closure1.json",
+            "closure2.json",
+            "closure3.json",
+        ],
+        trafficJamFiles: [
+            "traffic_jam1.json",
+        ],
+        operationalAreas: [
+            "vermka_rlp.6.geojson",
+        ],
+    },
+    {
+        label: "Brand in der Gartenanlage",
+        graphFiles: [
+            "Brand Gartenanlage.json",
+        ],
+        cloudFiles: [
+            "cloud.json",
+            "cloud2.json",
+            "cloud3.json",
+        ],
+
+    },
+    {
+        label: "Verletzte in der Gartenanlage",
+        graphFiles: [
+            "Verletzte Gartenanlage.json",
+        ],
+    },
+    {
+        label: "Augen-/ Atemwegsreizungen",
+        graphFiles: [
+            "Atemwegsreizung 1.json",
+            "Atemwegsreizung 2.json",
+            "Atemwegsreizung 3.json",
+            "Atemwegsreizung 4.json",
+            "Atemwegsreizung 5.json",
+        ],
+        meetingPointFiles: [
+            "meeting_point.json",
+        ],
+    },
+];
 
 const samplePoints = {
     ludwigshafen: [49.4704113, 8.4381568],
@@ -55,32 +75,32 @@ const samplePoints = {
     ],
 };
 
-/** geojson styles */ 
+/** geojson styles */
 let defaultGJStyle = {
-	fillColor: '#000',
-	weight: 2,
-	opacity: 1,
-	color: '#fff',
-	fillOpacity: 0.25,
+    fillColor: '#000',
+    weight: 2,
+    opacity: 1,
+    color: '#fff',
+    fillOpacity: 0.25,
 };
 let invertedMapStyle = {
-	...defaultGJStyle,
-	opacity: 0,
+    ...defaultGJStyle,
+    opacity: 0,
 };
 let closureGJStyle = {
-	...defaultGJStyle,
-	color: '#f00',
-	dashArray: '1 4',
+    ...defaultGJStyle,
+    color: '#f00',
+    dashArray: '1 4',
 };
 let trafficJamGJStyle = {
-	...defaultGJStyle,
-	color: '#f0f',
+    ...defaultGJStyle,
+    color: '#f0f',
 };
 let cloudGJStyle = {
-	...defaultGJStyle,
-	fillColor: '#ff9f00',
-	color: '#ff7a00',
-	weight: 1,
+    ...defaultGJStyle,
+    fillColor: '#ff9f00',
+    color: '#ff7a00',
+    weight: 1,
 }
 
 const GJStyles = {
@@ -91,4 +111,4 @@ const GJStyles = {
     cloudGJStyle,
 };
 
-export { fileNames, samplePoints, GJStyles };
+export { scenarios, samplePoints, GJStyles };

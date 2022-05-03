@@ -62,17 +62,7 @@ let restrictZoom = true;
 let showDebugRect = false;
 let logClicks = true;
 
-import { fileNames, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
-
-// file paths
-const {
-	graphFiles, 
-	operationalAreas, 
-	closureFiles, 
-	cloudFiles, 
-	meetingPointFiles, 
-	trafficJamFiles,
-} = fileNames;
+import { scenarios, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
 
 // sample points;
 const {
@@ -126,16 +116,7 @@ maxZoom = 18;
 initialZoom = 14;
 
 // Timeline
-let buttons = ref([
-	// "Verkehrsunfall",
-	// "Sturz",
-	// "Krankentransport",
-	"Zugentgleisung",
-	// "Brand L523",
-	"Brand Gartenanlage",
-	"Verletzte in der Gartenanlage",
-	"Augen-/ Atemwegsreizungen",
-]);
+let buttons = ref(scenarios.map(scenario => scenario.label));
 
 // DOM refs
 let svgElementRef;
@@ -274,6 +255,92 @@ function postInitGraph() {
 	scaleNodes(initialScale);
 }
 
+function initScenario(scenario) {
+	const {
+		label,
+		graphFiles, 
+		operationalAreas, 
+		closureFiles, 
+		cloudFiles, 
+		meetingPointFiles, 
+		trafficJamFiles,
+	} = scenario;
+
+	/* Add Ludwigshafen border as geojson */
+	if(operationalAreas) {
+		fetchAll(operationalAreas.map(file => `mapData/${file}`))
+			.then((data) => {
+				data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
+				geojsonLayer = L.geoJSON(data, {
+					style:  (feature) => invertedMapStyle,
+					interactive: false,
+				}).addTo(map);
+			});
+	}
+	if(closureFiles) {
+		fetchAll(closureFiles.map(file => `mapData/${file}`))
+		.then((closures) => {
+			for (const closure of closures) {
+				L.geoJSON(closure, {
+					style:  (feature) => closureGJStyle,
+					interactive: true,
+				}).addTo(map);
+			}
+		});
+	}
+	if(trafficJamFiles) {
+		fetchAll(trafficJamFiles.map(file => `mapData/${file}`))
+			.then((trafficJams) => {
+				for (const trafficJam of trafficJams) {
+					geojsonLayer = L.geoJSON(trafficJam, {
+						style:  (feature) => trafficJamGJStyle,
+						interactive: true,
+					}).addTo(map);
+				}
+			});
+	}
+	if(cloudFiles) {
+		fetchAll(cloudFiles.map(file => `mapData/${file}`))
+			.then((clouds) => {
+				for (const cloud of clouds) {
+					geojsonLayer = L.geoJSON(cloud, {
+						style: (feature) => cloudGJStyle,
+						interactive: true,
+					}).addTo(map);
+				}
+			});
+	}
+	if(meetingPointFiles) {
+		fetchAll(meetingPointFiles.map(file => `mapData/${file}`))
+			.then((meetingPoints) => {
+				for (const meetingPoint of meetingPoints) {
+					geojsonLayer = L.geoJSON(meetingPoint, {
+						interactive: true,
+					}).addTo(map);
+				}
+			});
+	}
+	if (graphFiles) {
+		let urls = graphFiles.map(file => `/saveFiles/${file}`);
+		fetchAll(urls).then(arr => {
+			let nodes = []
+				.concat(...arr.map(graph => graph.nodes))
+				.filter(node => node.shape.type == 'operation' && node.payload.location)
+			nodes.forEach((node, idx) => {
+				node.id = `n${idx}`;
+				node.ignoreLODs = true;
+			});
+			graph.value = {
+				nodes: nodes,
+				links: [],
+				hasUpdate: true,
+			};
+			console.log(nodes);
+			postInitGraph();
+		});
+	}
+}
+
 export default {
 	name: "SituationMap",
 	components: {
@@ -305,62 +372,14 @@ export default {
 			}
 
 			/* Add a debug circle */
+			// Necessary fix to prevent scenario elements beeing drawn on top of graphly..
 			let circle = L.circle(bridge, {
-				color: 'red',
-				fillColor: '#f03',
-				fillOpacity: 0.5,
-				radius: 50,
-				interactive: true,
+					color: 'red',
+					fillColor: '#f03',
+					fillOpacity: 0.5,
+					radius: 50,
+					interactive: true,
 			}).addTo(map);
-
-			/* Add Ludwigshafen border as geojson */
-			fetchAll(operationalAreas.map(file => `mapData/${file}`))
-				.then((data) => {
-					data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
-					geojsonLayer = L.geoJSON(data, {
-						style:  (feature) => invertedMapStyle,
-						interactive: false,
-					}).addTo(map);
-				});
-
-			fetchAll(closureFiles.map(file => `mapData/${file}`))
-				.then((closures) => {
-					for (const closure of closures) {
-						L.geoJSON(closure, {
-							style:  (feature) => closureGJStyle,
-							interactive: true,
-						}).addTo(map);
-					}
-				});
-
-			fetchAll(trafficJamFiles.map(file => `mapData/${file}`))
-				.then((trafficJams) => {
-					for (const trafficJam of trafficJams) {
-						geojsonLayer = L.geoJSON(trafficJam, {
-							style:  (feature) => trafficJamGJStyle,
-							interactive: true,
-						}).addTo(map);
-					}
-				});
-
-			fetchAll(cloudFiles.map(file => `mapData/${file}`))
-				.then((clouds) => {
-					for (const cloud of clouds) {
-						geojsonLayer = L.geoJSON(cloud, {
-							style: (feature) => cloudGJStyle,
-							interactive: true,
-						}).addTo(map);
-					}
-				});
-
-			fetchAll(meetingPointFiles.map(file => `mapData/${file}`))
-				.then((meetingPoints) => {
-					for (const meetingPoint of meetingPoints) {
-						geojsonLayer = L.geoJSON(meetingPoint, {
-							interactive: true,
-						}).addTo(map);
-					}
-				});
 
 			/* Add root svg (overlay) element to inject Graphly */
 			svgElementRef = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -380,25 +399,8 @@ export default {
 				x: svgClientRect.width,
 				y: svgClientRect.height,
 			};
-			console.log(graphlyDimensions);
-
-			/* Load graph data from demo */
-			let urls = graphFiles.map(file => `/saveFiles/${file}`);
-			fetchAll(urls).then(arr => {
-				let nodes = []
-					.concat(...arr.map(graph => graph.nodes))
-					.filter(node => node.shape.type == 'operation' && node.payload.location)
-				nodes.forEach((node, idx) => {
-					node.id = `n${idx}`;
-					node.ignoreLODs = true;
-				});
-				graph.value = {
-					nodes: nodes,
-					links: [],
-					hasUpdate: true,
-				};
-				postInitGraph();
-			});
+			
+			initScenario(scenarios[0]);
 		});
 	},
 	data: () => ({
@@ -487,7 +489,7 @@ button {
 	flex-basis: 225px;
 }
 .v-slider {
-    margin: 10px 180px 0px !important;
+    margin: 10px 170px 0px !important;
 }
 .v-bottom-navigation__content {
 	flex-direction: column;
