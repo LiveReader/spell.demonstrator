@@ -153,7 +153,7 @@
 <script setup>
 import { ref } from "vue";
 
-import * as SpellApi from "spell_api";
+import * as SpellApi from "open_api_definition";
 var api = new SpellApi.DefaultApi();
 
 const deleteAttributeInp = ref("");
@@ -203,9 +203,28 @@ const getOperationListRes = ref("");
 const getOperationListLoading = ref(false);
 function getOperationList() {
 	getOperationListLoading.value = true;
+	// fetch("http://localhost:8080/operations", {
+	// 	method: "GET",
+	// 	headers: {
+	// 		"Content-Type": "application/json",
+	// 		"Access-Control-Allow-Origin": "*",
+	// 	},
+	// })
+	// 	.then((res) => {
+	// 		console.log(res);
+	// 		getOperationListLoading.value = false;
+	// 		getOperationListRes.value = res;
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log(err);
+	// 		getOperationListLoading.value = false;
+	// 		getOperationListRes.value = err;
+	// 	});
 	api.getOperationList((err, data, res) => {
+		console.log(data);
+		console.log(res);
 		getOperationListLoading.value = false;
-		getOperationListRes.value = res;
+		getOperationListRes.value = JSON.stringify(data, null, 2);
 	});
 }
 
