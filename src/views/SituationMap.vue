@@ -116,10 +116,10 @@ let buttons = ref([
 	// "Verkehrsunfall",
 	// "Sturz",
 	// "Krankentransport",
-	// "Zugentgleisung",
+	"Zugentgleisung",
 	// "Brand L523",
 	"Brand Gartenanlage",
-	"Verletzte Gartenanlage",
+	"Verletzte in der Gartenanlage",
 	"Augen-/Atemwegsreizungen",
 ]);
 
