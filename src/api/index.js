@@ -18,31 +18,25 @@ class API {
 	constructor() {
 		this.bpInstancePrefix = "http://www.semanticweb.org/bpinstance#";
 		this.bpDomainPrefiox = "http://www.semanticweb.org/bpdomain#";
+		this.operations = [];
 
+		// TODO remove this hardcoded scenario loader
+		this.loadScenario(0, () => this.loadScenario(1, () => this.loadScenario(2)));
+	}
+
+	reset(callback = () => {}) {
+		spellApi.resetDatabase((err, data, res) => callback(data));
+	}
+
+	loadScenario(number, callback = () => {}) {
 		spellApi.loadScenarios(
 			JSON.stringify({
-				id: [0],
+				id: [number],
 			}),
 			(err, data, res) => {
-				spellApi.loadScenarios(
-					JSON.stringify({
-						id: [1],
-					}),
-					(err, data, res) => {
-						spellApi.loadScenarios(
-							JSON.stringify({
-								id: [2],
-							}),
-							(err, data, res) => {
-								console.log(res);
-							}
-						);
-					}
-				);
+				callback(data);
 			}
 		);
-
-		this.operations = [];
 	}
 
 	getOperations() {
@@ -71,11 +65,9 @@ class API {
 		return graph;
 
 		function convert(d, g, source = null) {
-			// id is data.id after "#" in url
 			const type = (d?.type?.id ?? "").split("#")[1];
-			// check if type is included in NodeType
 			if (!Object.values(NodeType).includes(type)) {
-				convertTax(d, g, source);
+				convertFurtherTree(d, g, source);
 			} else {
 				convertNode(d, g, source);
 			}
@@ -107,17 +99,10 @@ class API {
 				};
 				graph.links.push(link);
 			}
-			for (let i in d["attributes"]) {
-				const attr = d["attributes"][i];
-				convertAttribute(attr, node);
-			}
-			for (let i in d["dataObjects"]) {
-				const child = d["dataObjects"][i];
-				convert(child, g, node);
-			}
+			convertFurtherTree(d, g, node);
 		}
 
-		function convertTax(d, g, source = null) {
+		function convertFurtherTree(d, g, source = null) {
 			for (let i in d["attributes"]) {
 				const attr = d["attributes"][i];
 				convertAttribute(attr, source);
@@ -133,6 +118,8 @@ class API {
 			const entry = findTaxEntry(source.taxonomy, name);
 			if (!entry) return;
 			entry.value = attr.value;
+			console.log(attr.id);
+			entry.ontoID = attr.id;
 		}
 	}
 }
