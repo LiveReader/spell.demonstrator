@@ -1,20 +1,20 @@
 {
 	"name": "spell.demonstrator",
-	"version": "0.0.0",
-	"private": true,
+	"version": "0.1.0",
 	"scripts": {
-		"serve": "vite preview",
+		"dev": "vite --host",
 		"build": "vite build",
-		"dev": "vite",
-		"preview": "vite preview",
+		"preview": "vite preview --port 80 --host",
+		"serve": "vite serve --port 80 --host",
 		"lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
 		"format": "prettier .  --write"
 	},
 	"dependencies": {
-		"@livereader/graphly-d3": "^0.4.3",
+		"@livereader/graphly-d3": "^0.4.6",
 		"@mdi/font": "5.9.55",
 		"d3": "^7.3.0",
 		"leaflet": "^1.7.1",
+		"open_api_definition": "file:api",
 		"roboto-fontface": "*",
 		"vue": "^3.2.25",
 		"vue-router": "^4.0.13",

@@ -1,4 +1,6 @@
+import { touchScreen } from "../../views/Navigation.vue";
 import { taxonomy2payload } from "./converter/index";
+import { enumerations, locations, locationsSelection } from "./random";
 
 const NodeType = {
 	Operation: "operation",
@@ -20,18 +22,86 @@ const questionTemplates = [
 	// =============== Kernfragen
 	// Notfallort
 	{
+		node_type: NodeType.EmergencyAction,
+		priority: 999,
+		question_type: QuestionType.Selection,
+		question: "Art der Aktion",
+		description: "Brandbekämpfung, Transport, Behandlung, Befreiung / Bergung, Schützen",
+		options: ["Brandbekämpfung", "Transport", "Behandlung", "Befreiung, Bergung", "Schützen"],
+		value: (d) =>
+			d?.taxonomy?.actiontype?.firefighting?.value ??
+			d?.taxonomy?.actiontype?.transport?.value ??
+			d?.taxonomy?.actiontype?.rescue?.value ??
+			d?.taxonomy?.actiontype?.extrication?.value ??
+			d?.taxonomy?.actiontype?.protection?.value ??
+			null,
+		condition: (d) =>
+			!d?.taxonomy?.actiontype?.firefighting.value &&
+			!d?.taxonomy?.actiontype?.transport.value &&
+			!d?.taxonomy?.actiontype?.rescue.value &&
+			!d?.taxonomy?.actiontype?.extrication.value &&
+			!d?.taxonomy?.actiontype?.protection.value,
+		action: (v, d, g) => {
+			switch (v) {
+				case "Brandbekämpfung":
+					d.taxonomy.actiontype.firefighting.value = "Ja";
+					break;
+				case "Transport":
+					d.taxonomy.actiontype.transport.value = "Ja";
+					break;
+				case "Behandlung":
+					d.taxonomy.actiontype.rescue.value = "Ja";
+					break;
+				case "Befreiung, Bergung":
+					d.taxonomy.actiontype.extrication.value = "Ja";
+					break;
+				case "Schützen":
+					d.taxonomy.actiontype.protection.value = "Ja";
+					break;
+			}
+		},
+	},
+	// TODO Location data for touch input
+	{
 		node_type: NodeType.EmergencyReporter,
 		priority: 999,
 		question_type: QuestionType.Text,
 		question: "Notfall-Ort",
-		description: "Ort, Straße, Hausnummer, Stockwerk",
+		description: "Ort, Straße, Hausnummer",
 		options: [],
 		label: ["Straße", "Ort"],
 		value: (d) => [d?.taxonomy?.location?.street?.value, d?.taxonomy?.location?.city?.value],
-		condition: (d) => !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		condition: (d) =>
+			!touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
 		action: (v, d, g) => {
 			d.taxonomy.location.street.value = v[0] ?? "";
 			d.taxonomy.location.city.value = v[1] ?? "";
+		},
+	},
+	{
+		node_type: NodeType.EmergencyReporter,
+		priority: 999,
+		question_type: QuestionType.Text,
+		question: "Notfall-Ort",
+		description: "Ort, Straße, Hausnummer",
+		options: locationsSelection,
+		label: "Notfall-Ort",
+		value: (d) =>
+			`${d?.taxonomy?.location?.street?.value ?? ""} ${d?.taxonomy?.location?.buildingno?.value ?? ""}, ${
+				d?.taxonomy?.location?.zipcode?.value ?? ""
+			} ${d?.taxonomy?.location?.city?.value ?? ""}`,
+		condition: (d) => touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		action: (v, d, g) => {
+			const index = locationsSelection.indexOf(v);
+			const data = locations[index];
+			d.taxonomy.location.street.value = data.street ?? "";
+			d.taxonomy.location.buildingno.value = data.buildingno ?? "";
+			d.taxonomy.location.zipcode.value = data.zipcode ?? "";
+			d.taxonomy.location.city.value = data.city ?? "";
+			d.taxonomy.location.country.value = data.country ?? "";
+			d.taxonomy.location.note.value = data.note ?? "";
+			d.taxonomy.location.gps.value = data.gps ?? "";
+			d.taxonomy.location.threewords.value = data.threewords ?? "";
 		},
 	},
 	// Rückrufnummer
@@ -41,8 +111,8 @@ const questionTemplates = [
 		question_type: QuestionType.Text,
 		question: "Rückrufnummer",
 		description: "Unter welcher Nummer kann ich Sie ggf. zurückrufen?",
-		options: [],
 		label: "Telefonnummer",
+		options: (d) => d?.taxonomy?.phonenumber?.options,
 		value: (d) => d?.taxonomy?.phonenumber?.value,
 		condition: (d) => !d?.taxonomy?.phonenumber?.value,
 		action: (v, d, g) => {
@@ -58,6 +128,7 @@ const questionTemplates = [
 		question: "Name",
 		description: "Wie heißt die meldende Person?",
 		label: (d) => [d?.taxonomy?.name?.first?.label, d?.taxonomy?.name?.last?.label],
+		options: (d) => [d?.taxonomy?.name?.first?.options, d?.taxonomy?.name?.last?.options],
 		value: (d) => [d?.taxonomy?.name?.first?.value, d?.taxonomy?.name?.last?.value],
 		condition: (d) => !d?.taxonomy?.name?.first?.value || !d?.taxonomy?.name?.last?.value,
 		action: (v, d, g) => {
@@ -116,6 +187,8 @@ const questionTemplates = [
 		question: "Anzahl Betroffener",
 		description: "Wie viele Personen sind betroffen?",
 		label: "Anzahl",
+		option: () => enumerations,
+		options: (d) => d?.taxonomy?.affected?.persons?.options,
 		value: (d) => d?.taxonomy?.affected?.persons?.value,
 		condition: (d) => !d?.taxonomy?.affected?.persons?.value,
 		action: (v, d, g) => {
@@ -132,6 +205,7 @@ const questionTemplates = [
 		question: "Name",
 		description: "Wie heißt die betroffene Person?",
 		label: (d) => [d?.taxonomy?.name?.first?.label, d?.taxonomy?.name?.last?.label],
+		options: (d) => [d?.taxonomy?.name?.first?.options, d?.taxonomy?.name?.last?.options],
 		value: (d) => [d?.taxonomy?.name?.first?.value, d?.taxonomy?.name?.last?.value],
 		condition: (d) => !d?.taxonomy?.name?.first?.value || !d?.taxonomy?.name?.last?.value,
 		action: (v, d, g) => {
@@ -147,10 +221,11 @@ const questionTemplates = [
 		question_type: (d) => d?.taxonomy?.age?.type,
 		question: "Alter",
 		description: "Wie alt ist die betroffene Person?",
-		label: "Alter in Jahren",
+		label: "Alter in Jahren (min 1)",
+		options: (d) => d?.taxonomy?.age?.options,
 		value: (d) => d?.taxonomy?.age?.value,
 		condition: (d) => !d?.taxonomy?.age?.value,
-		action: (v, d, g) => (d.taxonomy.age.value = (v ?? 0).toString()),
+		action: (v, d, g) => (d.taxonomy.age.value = v > 0 ? v.toString() : null),
 	},
 	// Geschlecht
 	{
@@ -323,8 +398,129 @@ const questionTemplates = [
 			d.taxonomy.condition.physicalcondition.infectionsince.value = v;
 		},
 	},
-	//
+
+	/// HeartAttack Questions
+	// Bluthochdruck
+	// d.taxonomy.condition.physicalcondition.oftenhypertension
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 881,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Bluthochdruck",
+		description: "Hat die Person oft Bluthochdruck?",
+		label: (d) => d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.label,
+		options: (d) => d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.options,
+		value: (d) => d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.value,
+		condition: (d) =>
+			heartAttackActivator(d) && !d?.taxonomy?.condition?.physicalcondition?.oftenhypertension?.value,
+		action: (v, d, g) => {
+			d.taxonomy.condition.physicalcondition.oftenhypertension.value = v;
+		},
+	},
+	// kalte fahle Haut
+	// d.taxonomy.symptoms.coldfadeskin
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 880,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "kalte fahle Haut",
+		description: "Hat die Person kalte fahle Haut?",
+		label: (d) => d?.taxonomy?.symptoms?.coldfadeskin?.label,
+		options: (d) => d?.taxonomy?.symptoms?.coldfadeskin?.options,
+		value: (d) => d?.taxonomy?.symptoms?.coldfadeskin?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.symptoms?.coldfadeskin?.value,
+		action: (v, d, g) => {
+			d.taxonomy.symptoms.coldfadeskin.value = v;
+		},
+	},
+	// kalter Schweiß
+	// d.taxonomy.symptoms.coldsweat
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 879,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "kalter Schweiß",
+		description: "Hat die Person kalter Schweiß?",
+		label: (d) => d?.taxonomy?.symptoms?.coldsweat?.label,
+		options: (d) => d?.taxonomy?.symptoms?.coldsweat?.options,
+		value: (d) => d?.taxonomy?.symptoms?.coldsweat?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.symptoms?.coldsweat?.value,
+		action: (v, d, g) => {
+			d.taxonomy.symptoms.coldsweat.value = v;
+		},
+	},
+	// Bewegungsabhängig
+	// d.taxonomy.symptoms.painmovementrelated
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 878,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Bewegungsabhängig",
+		description: "Sind die Schmerzen bewegungsabhängig?",
+		label: (d) => d?.taxonomy?.symptoms?.painmovementrelated?.label,
+		options: (d) => d?.taxonomy?.symptoms?.painmovementrelated?.options,
+		value: (d) => d?.taxonomy?.symptoms?.painmovementrelated?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.symptoms?.painmovementrelated?.value,
+		action: (v, d, g) => {
+			d.taxonomy.symptoms.painmovementrelated.value = v;
+		},
+	},
+	// confirmation question
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 877,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Herzinfakt Einschätzung",
+		description: "Einschätzung des Herzinfakt-Risikos.",
+		label: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.label,
+		options: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.options,
+		value: (d) => d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value,
+		condition: (d) => heartAttackActivator(d) && !d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value,
+		action: (v, d, g) => {
+			d.taxonomy.guesseddiagnosis.cardiovascular.heartattack.value = v;
+		},
+	},
+
+	/// Unconsciousness Questions
+	// Diabetes
+	// d.taxonomy.condition.physicalcondition.diabetes
+	{
+		node_type: NodeType.AffectedPerson,
+		priority: 876,
+		headline: (d) => (d?.taxonomy?.name?.first?.value ?? "Person") + " " + (d?.taxonomy?.name?.last?.value ?? ""),
+		question_type: QuestionType.Selection,
+		question: "Diabetes",
+		description: "Hat die Person Diabetes?",
+		label: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.label,
+		options: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.options,
+		value: (d) => d?.taxonomy?.condition?.physicalcondition?.diabetes?.value,
+		condition: (d) => unconsciousnessActivator(d) && !d?.taxonomy?.condition?.physicalcondition?.diabetes?.value,
+	},
+	// Medikamente
+
+	// Alkohol
+
+	// Gatvergiftung
 ];
+
+function heartAttackActivator(d) {
+	return (
+		!d?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value &&
+		d?.taxonomy?.symptoms?.pain?.value &&
+		d?.taxonomy?.symptoms?.pain?.value != "Nein" &&
+		d?.taxonomy?.symptoms?.painlocation &&
+		d?.taxonomy?.symptoms?.painlocation?.value == "Brust"
+	);
+}
+
+function unconsciousnessActivator(d) {
+	return d?.taxonomy?.condition?.vitalcondition?.consciousness == "Ja";
+}
 
 for (let i = 0; i < questionTemplates.length; i++) {
 	questionTemplates[i].templateIndex = i.toString();

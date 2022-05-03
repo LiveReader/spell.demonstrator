@@ -6,7 +6,7 @@
 			:title="'Lagemanagement'"
 		></Navigation>
 
-		<div id="map" style="height: 100vh; width: inherit;">
+		<div id="map" style="height: 100vh; width: inherit">
 			<!-- <div id="overlay" style=" width: 100%; position: absolute; z-index: 401; top: 0; ">
 				<div id="timeline" style="background: #fff; height: 32px; width: 80%; margin: 10px auto auto;">
 
@@ -23,7 +23,7 @@
 
 		<v-bottom-navigation color="primary">
 			<v-btn v-for="item in buttons" :key="item">
-				<span>{{item}}</span>
+				<span>{{ item }}</span>
 				<v-icon>mdi-history</v-icon>
 			</v-btn>
 		</v-bottom-navigation>

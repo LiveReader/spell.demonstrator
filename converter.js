@@ -1,5 +1,5 @@
 import { saveFiles } from "./src/data/operator/saveFiles/index";
-import { taxonomyTemplate, generatePrefixedTaxonomy } from "./src/data/operator/taxonomy/index";
+import { taxonomyTemplate, generatePrefixedTaxonomy, parsePrefixedTaxonomy } from "./src/data/operator/taxonomy/index";
 
 function replaceID(graph, id, newID) {
 	graph.nodes.forEach((node) => {
@@ -17,6 +17,25 @@ function replaceID(graph, id, newID) {
 	});
 }
 
+function generateUUID() {
+	// Public Domain/MIT
+	var d = new Date().getTime(); //Timestamp
+	var d2 = (typeof performance !== "undefined" && performance.now && performance.now() * 1000) || 0; //Time in microseconds since page-load or 0 if unsupported
+	return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+		var r = Math.random() * 16; //random number between 0 and 16
+		if (d > 0) {
+			//Use timestamp until depleted
+			r = (d + r) % 16 | 0;
+			d = Math.floor(d / 16);
+		} else {
+			//Use microseconds since page-load if supported
+			r = (d2 + r) % 16 | 0;
+			d2 = Math.floor(d2 / 16);
+		}
+		return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+	});
+}
+
 function updateTaxonomy(oldTax, newTax) {
 	if (oldTax == null || Array.isArray(oldTax) || oldTax == undefined || typeof oldTax !== "object") return oldTax;
 	if (newTax == null || Array.isArray(newTax) || newTax == undefined || typeof newTax !== "object") return newTax;
@@ -24,6 +43,9 @@ function updateTaxonomy(oldTax, newTax) {
 	for (let i = 0; i < keys.length; i++) {
 		const key = keys[i];
 		oldTax[key] = updateTaxonomy(oldTax[key] ?? {}, newTax[key]);
+		if (key == "id") {
+			oldTax.id = generateUUID();
+		}
 	}
 	return oldTax;
 }
@@ -40,7 +62,7 @@ function download(obj, name) {
 	a.click();
 }
 
-function converter() {
+function converter(allFiles = false) {
 	const startSzenario = {
 		nodes: [],
 		links: [],
@@ -49,11 +71,11 @@ function converter() {
 		nodes: [],
 		links: [],
 	};
-	saveFiles.forEach((item) => {
-		item.file().then((graph, index) => {
+	saveFiles.forEach((item, index) => {
+		item.file().then((graph) => {
 			graph.nodes.forEach((node) => {
-				replaceID(graph, "n0", "node-" + Math.random());
-				replaceID(graph, "n1", "node-" + Math.random());
+				node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
+				replaceID(graph, node.id, generateUUID());
 				const taxCopy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape.type]));
 				node.taxonomy = updateTaxonomy(node.taxonomy, taxCopy);
 				node.taxonomy = generatePrefixedTaxonomy(node.taxonomy);
@@ -96,7 +118,11 @@ function converter() {
 					breathSzenario.links.push(JSON.parse(JSON.stringify(link)));
 				}
 			});
-			if (item.name == "Brand Gartenanlage" || item.name == "Verletzte Gartenanlage") {
+			if (allFiles) {
+				setTimeout(() => {
+					download(graph, item.name);
+				}, 500 * index);
+			} else if (item.name == "Brand Gartenanlage" || item.name == "Verletzte Gartenanlage") {
 				setTimeout(() => {
 					download(graph, item.name);
 				}, 500 * index);
@@ -106,7 +132,7 @@ function converter() {
 	setTimeout(() => {
 		download(startSzenario, "Start Szenario");
 		download(breathSzenario, "Augen- Atemwegsreizungen");
-	}, 5000);
+	}, saveFiles.length * 500 + 1000);
 }
 
 export default converter;

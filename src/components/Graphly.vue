@@ -45,6 +45,10 @@ export default {
 			type: Object,
 			default: () => null,
 		},
+		transitionDuration: {
+			type: Number,
+			default: 300,
+		},
 	},
 	emits: [
 		"new-edge",
@@ -65,6 +69,7 @@ export default {
 			simulation.setTemplateOrigin("http://" + window.location.host + "/templates/");
 			simulation.setLinkDistance(props.linkDistance);
 			simulation.setGravity(props.gravity);
+			simulation.setTransitionDuration(props.transitionDuration);
 			simulation.onNewEdge((source, target) => {
 				context.emit("new-edge", source, target);
 			});
@@ -145,6 +150,12 @@ export default {
 			() => props.draggableNodes,
 			() => {
 				simulation.draggableNodes(props.draggableNodes);
+			}
+		);
+		watch(
+			() => props.transitionDuration,
+			() => {
+				simulation.setTransitionDuration(props.transitionDuration);
 			}
 		);
 	},

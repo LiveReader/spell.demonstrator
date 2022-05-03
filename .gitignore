@@ -4,3 +4,4 @@ dist
 dist-ssr
 *.local
 public/saveFiles/old
+docker-compose.yaml

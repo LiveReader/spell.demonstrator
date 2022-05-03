@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<Banner app />
+		<!-- <Banner app /> -->
 		<v-main>
 			<router-view></router-view>
 		</v-main>
@@ -11,9 +11,9 @@
 import Banner from "./views/Banner.vue";
 export default {
 	name: "App",
-	components: {
-		Banner,
-	},
+	// components: {
+	// 	Banner,
+	// },
 	data: () => ({}),
 	methods: {},
 };
@@ -23,5 +23,8 @@ export default {
 #app {
 	overflow: hidden;
 	font-family: "Roboto";
+}
+*::-webkit-scrollbar {
+	display: none;
 }
 </style>
