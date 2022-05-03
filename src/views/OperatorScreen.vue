@@ -2,6 +2,12 @@
 	<div id="operator-screen">
 		<Navigation :color="'#4db6ac'" :icon="'./spell.demonstrator.operator.svg'" :title="'Notitia Operator'">
 			<v-list density="compact" nav color="#00000000">
+				<v-list-item
+					v-for="(operation, index) in api.operations"
+					:key="operation.id"
+					:title="operation.id.split('#')[1]"
+					@click="openOperation(operation)"
+				></v-list-item>
 				<v-list-group>
 					<template #activator="{ props }">
 						<v-list-item
@@ -64,6 +70,23 @@ import Navigation, { touchScreen } from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 import SideBar from "../components/SideBar.vue";
 import NodeModal from "../components/NodeModal.vue";
+
+import API from "../api/index";
+const api = new API();
+
+function openOperation(op) {
+	api.getOperation(op.id, (operation) => {
+		console.log(operation);
+		graph.value = operation.graph;
+		for (let i = 0; i < graph.value.nodes.length; i++) {
+			const node = graph.value.nodes[i];
+			node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
+			taxonomy2payload[node.shape.type](node, graph.value);
+		}
+		graph.value.hasUpdate = true;
+		generateOpenQuestions();
+	});
+}
 
 let safefileCollapsed = ref(false);
 
@@ -830,6 +853,8 @@ onMounted(() => {
 		}
 		graph.value.hasUpdate = true;
 	});
+
+	api.getOperations();
 });
 
 watch(
