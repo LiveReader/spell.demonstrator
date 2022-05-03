@@ -13,6 +13,26 @@ const taxonomyTemplate = {
 	"emergency-action": emergencyAction,
 	"emergency-ressource": emergencyRessource,
 };
+Object.keys(taxonomyTemplate).forEach((key) => {
+	taxonomyTemplate[key] = generateOntoIDTaxonomy(taxonomyTemplate[key]);
+});
+function generateOntoIDTaxonomy(taxonomy) {
+	const taxonomyCopy = JSON.parse(JSON.stringify(taxonomy));
+	return generateOntoID(taxonomyCopy);
+}
+function generateOntoID(tax) {
+	if (tax == null || Array.isArray(tax) || typeof tax !== "object") return tax;
+	const keys = Object.keys(tax);
+	for (let i = 0; i < keys.length; i++) {
+		const key = keys[i];
+		tax[key] = generateOntoID(tax[key]);
+	}
+	if (Object.keys(tax).includes("value")) {
+		tax.ontoID = null;
+	}
+	return tax;
+}
+
 const prefixedTaxonomyTemplate = generatePrefixedTaxonomy(taxonomyTemplate);
 
 function findID(obj, id) {
