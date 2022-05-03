@@ -10,8 +10,6 @@ const fileNames = {
         "Brand L523.json",
         "Dialyse.json",
         "E-Call.json",
-        "HNR.json",
-        "Save File 1.json",
         "sturz.json",
         "transport.json",
         "unfall.json",

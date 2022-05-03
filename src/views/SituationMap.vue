@@ -22,11 +22,25 @@
 		/>
 
 		<v-bottom-navigation color="primary">
-			<v-btn v-for="item in buttons" :key="item">
-				<span>{{ item }}</span>
-				<v-icon>mdi-history</v-icon>
-			</v-btn>
+
+			<div id="nav">
+				<v-slider
+					v-model="fruits"
+					:max="3"
+					step="1"
+					tick-size="4"
+				></v-slider>
+
+				<div id="buttons">
+					<v-btn v-for="item in buttons" :key="item">
+						<span>{{ item }}</span>
+						<v-icon>mdi-history</v-icon>
+					</v-btn>
+				</div>
+			</div>
+
 		</v-bottom-navigation>
+
 	</div>
 </template>
 
@@ -120,7 +134,7 @@ let buttons = ref([
 	// "Brand L523",
 	"Brand Gartenanlage",
 	"Verletzte in der Gartenanlage",
-	"Augen-/Atemwegsreizungen",
+	"Augen-/ Atemwegsreizungen",
 ]);
 
 // DOM refs
@@ -392,6 +406,8 @@ export default {
 		svgElementRef,
 		selectedNodes,
 		buttons,
+		value: 0,
+        fruits: 0,
     }),
 
 	mounted() {
@@ -443,5 +459,44 @@ export default {
 	height: 100vh;
 	overflow: hidden;
 	background-color: #fafafc;
+}
+header {
+	box-shadow: none !important;
+    background: rgba(0,0,0,0) !important;
+	top: 50px;
+	left: 0;
+	height: 120px !important;
+	width: 100% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+#nav {
+	box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+	border-radius: 5px;
+	background-color: white;
+}
+#buttons {
+	display: flex;
+	justify-content: center;
+}
+button {
+	flex-basis: 225px;
+}
+.v-slider {
+    margin: 10px 180px 0px !important;
+}
+.v-bottom-navigation__content {
+	flex-direction: column;
+	width: auto !important;
+}
+.v-input {
+	flex: 0 1 auto !important;
+}
+.v-input__details {
+	position: absolute;
 }
 </style>
