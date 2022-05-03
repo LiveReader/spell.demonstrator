@@ -21,7 +21,7 @@
 			:selected="selectedNodes"
 		/>
 
-		<v-bottom-navigation color="primary">
+		<v-bottom-navigation :value="1" color="primary">
 
 			<div id="nav">
 				<v-slider
@@ -29,11 +29,12 @@
 					:max="3"
 					step="1"
 					tick-size="4"
+					@input="ttt"
 				></v-slider>
 
 				<div id="buttons">
-					<v-btn v-for="item in buttons" :key="item">
-						<span>{{ item }}</span>
+					<v-btn v-for="(item, index) in uiScenarios" :key="item" @click="onButtonChange(index)">
+						<span>{{ item.label }}</span>
 						<v-icon>mdi-history</v-icon>
 					</v-btn>
 				</div>
@@ -63,6 +64,7 @@ let showDebugRect = false;
 let logClicks = true;
 
 import { scenarios, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
+let uiScenarios = ref(scenarios);
 
 // sample points;
 const {
@@ -98,13 +100,16 @@ let maxBounds;
 let minZoom;
 let maxZoom;
 let initialZoom;
+var currentZoom;
+let layers = [];
+let scenarioIdx = ref(0);
 
 let svgDimensions;
 let svgElementBounds;
 let graphlyDimensions;
 
 // actual settings
-let nodeScale = 1;
+let nodeScale = 0.8;
 if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
 svgElementBounds = ludwigshafenBounds;
 svgDimensions = {
@@ -192,7 +197,8 @@ function addNodeListeners() {
 	worldElementRef = document.querySelector('#world');
 	let nodes = graph.value.nodes;
 	let observer = new MutationObserver(mutations => {
-		nodeElementRefs = mutations.filter(mutation => mutation.target.classList[0] === 'nodeWorld')
+		nodeElementRefs = mutations
+			.filter(mutation => mutation.target.classList[0] === 'nodeWorld' && mutation.addedNodes.length > 0)
 			.map(mutation => {
 				let elem = mutation.addedNodes[0];
 				return {
@@ -243,85 +249,111 @@ function positionNodes() {
 
 function scaleNodes(scale) {
 	graph.value.nodes.forEach(node => {
-		node.shape.scale = scale * 0.8;
+		node.shape.scale = scale;
 	});
 	graph.value.hasUpdate = true;
+	console.log("NEW SCAALE", scale);
 }
 
 function postInitGraph() {
 	addNodeListeners();
 	positionNodes();
-	let initialScale = scaleFromZoom(initialZoom);
+	let initialScale = scaleFromZoom(currentZoom ? currentZoom : initialZoom);
 	scaleNodes(initialScale);
 }
 
-function initScenario(scenario) {
-	const {
-		label,
-		graphFiles, 
-		operationalAreas, 
-		closureFiles, 
-		cloudFiles, 
-		meetingPointFiles, 
-		trafficJamFiles,
-	} = scenario;
+function ttt() {
+	console.log("ASDFAsdf");
+}
+
+function initScenario(scenarioIndex) {
+	let	allGraphFiles = []; 
+	let allOperationalAreas = []; 
+	let allClosureFiles = []; 
+	let allCloudFiles = []; 
+	let allMeetingPointFiles = []; 
+	let allTrafficJamFiles = [];
+	for (let i = 0; i <= scenarioIndex; i++) {
+		const {
+			label,
+			graphFiles, 
+			operationalAreas, 
+			closureFiles, 
+			cloudFiles, 
+			meetingPointFiles, 
+			trafficJamFiles,
+		} = scenarios[i];
+		if (graphFiles) allGraphFiles.push(...graphFiles);
+		if (operationalAreas) allOperationalAreas.push(...operationalAreas);
+		if (closureFiles) allClosureFiles.push(...closureFiles);
+		if (cloudFiles) allCloudFiles.push(...cloudFiles);
+		if (meetingPointFiles) allMeetingPointFiles.push(...meetingPointFiles);
+		if (trafficJamFiles) allTrafficJamFiles.push(...trafficJamFiles);
+	};
+
+	layers.forEach(layer => layer.remove());
 
 	/* Add Ludwigshafen border as geojson */
-	if(operationalAreas) {
-		fetchAll(operationalAreas.map(file => `mapData/${file}`))
+	if(allOperationalAreas) {
+		fetchAll(allOperationalAreas.map(file => `mapData/${file}`))
 			.then((data) => {
 				data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
 				geojsonLayer = L.geoJSON(data, {
 					style:  (feature) => invertedMapStyle,
 					interactive: false,
 				}).addTo(map);
+				layers.push(geojsonLayer);
 			});
 	}
-	if(closureFiles) {
-		fetchAll(closureFiles.map(file => `mapData/${file}`))
+	if(allClosureFiles) {
+		fetchAll(allClosureFiles.map(file => `mapData/${file}`))
 		.then((closures) => {
 			for (const closure of closures) {
-				L.geoJSON(closure, {
+				const closureLayer = L.geoJSON(closure, {
 					style:  (feature) => closureGJStyle,
 					interactive: true,
 				}).addTo(map);
+				layers.push(closureLayer);
 			}
 		});
 	}
-	if(trafficJamFiles) {
-		fetchAll(trafficJamFiles.map(file => `mapData/${file}`))
+	if(allTrafficJamFiles) {
+		fetchAll(allTrafficJamFiles.map(file => `mapData/${file}`))
 			.then((trafficJams) => {
 				for (const trafficJam of trafficJams) {
-					geojsonLayer = L.geoJSON(trafficJam, {
+					const trafficJamLayer = L.geoJSON(trafficJam, {
 						style:  (feature) => trafficJamGJStyle,
 						interactive: true,
 					}).addTo(map);
+					layers.push(trafficJamLayer);
 				}
 			});
 	}
-	if(cloudFiles) {
-		fetchAll(cloudFiles.map(file => `mapData/${file}`))
+	if(allCloudFiles) {
+		fetchAll(allCloudFiles.map(file => `mapData/${file}`))
 			.then((clouds) => {
 				for (const cloud of clouds) {
-					geojsonLayer = L.geoJSON(cloud, {
+					const cloudLayer = L.geoJSON(cloud, {
 						style: (feature) => cloudGJStyle,
 						interactive: true,
 					}).addTo(map);
+					layers.push(cloudLayer);
 				}
 			});
 	}
-	if(meetingPointFiles) {
-		fetchAll(meetingPointFiles.map(file => `mapData/${file}`))
+	if(allMeetingPointFiles) {
+		fetchAll(allMeetingPointFiles.map(file => `mapData/${file}`))
 			.then((meetingPoints) => {
 				for (const meetingPoint of meetingPoints) {
-					geojsonLayer = L.geoJSON(meetingPoint, {
+					const meetingPointLayer = L.geoJSON(meetingPoint, {
 						interactive: true,
 					}).addTo(map);
+					layers.push(meetingPointLayer);
 				}
 			});
 	}
-	if (graphFiles) {
-		let urls = graphFiles.map(file => `/saveFiles/${file}`);
+	if (allGraphFiles) {
+		let urls = allGraphFiles.map(file => `/saveFiles/${file}`);
 		fetchAll(urls).then(arr => {
 			let nodes = []
 				.concat(...arr.map(graph => graph.nodes))
@@ -329,6 +361,9 @@ function initScenario(scenario) {
 			nodes.forEach((node, idx) => {
 				node.id = `n${idx}`;
 				node.ignoreLODs = true;
+				let initialScale = scaleFromZoom(currentZoom);
+				node.shape.scale = initialScale;
+				console.log(currentZoom, initialScale);
 			});
 			graph.value = {
 				nodes: nodes,
@@ -339,6 +374,12 @@ function initScenario(scenario) {
 			postInitGraph();
 		});
 	}
+}
+
+// Listeners
+function onButtonChange(idx) {
+	initScenario(idx);
+	scenarioIdx.value = idx;
 }
 
 export default {
@@ -400,7 +441,7 @@ export default {
 				y: svgClientRect.height,
 			};
 			
-			initScenario(scenarios[0]);
+			initScenario(0);
 		});
 	},
 	data: () => ({
@@ -408,10 +449,15 @@ export default {
 		svgElementRef,
 		selectedNodes,
 		buttons,
+		uiScenarios,
 		value: 0,
-        fruits: 0,
+        fruits: scenarioIdx,
     }),
-
+	watch: {
+        fruits: function(val, oldVal) {
+			onButtonChange(val);
+		}
+	},
 	mounted() {
 		map.on('click', this.innerClick);
 		map.on('zoomanim', this.onZoomAnim);
@@ -424,12 +470,14 @@ export default {
 	methods: {
 		onZoomAnim   ({ target, center, zoom })  {
 			const oldZoom = map.getZoom()
-			let scale =  Math.pow(2, 13) / Math.pow(2, zoom);
+			let scale = scaleFromZoom(zoom);
 			if (zoom !== oldZoom) {
 				if (zoom == undefined) {
-					scale =  Math.pow(2, 13) / Math.pow(2, oldZoom);
+					scale = scaleFromZoom(oldZoom);
 				}
 				scaleNodes(scale);
+				currentZoom = zoom ? zoom : oldZoom;
+				console.log(currentZoom);
 			}
 			this.mousePos = null
  		},
@@ -448,7 +496,9 @@ export default {
 				console.log("graphly coordinate: ", graphlyCoordinates);
 			}
 		},
-	},
+		onButtonChange,
+		ttt,
+	}
 };
 </script>
 
