@@ -30,6 +30,17 @@ function findID(obj, id) {
 	return null;
 }
 
+function findTaxEntry(tax, name) {
+	if (tax == null || Array.isArray(tax) || typeof tax !== "object") return null;
+	const keys = Object.keys(tax);
+	for (let i = 0; i < keys.length; i++) {
+		const key = keys[i];
+		findTaxEntry(tax[key], name);
+		if (key == name) return tax[key];
+	}
+	return null;
+}
+
 function generatePrefixedTaxonomy(taxonomy) {
 	const taxonomyCopy = JSON.parse(JSON.stringify(taxonomy));
 	return generatePrefixes(taxonomyCopy);
@@ -74,4 +85,11 @@ function removePrefixes(tax) {
 	return tax;
 }
 
-export { taxonomyTemplate, prefixedTaxonomyTemplate, findID, generatePrefixedTaxonomy, parsePrefixedTaxonomy };
+export {
+	taxonomyTemplate,
+	prefixedTaxonomyTemplate,
+	findID,
+	findTaxEntry,
+	generatePrefixedTaxonomy,
+	parsePrefixedTaxonomy,
+};
