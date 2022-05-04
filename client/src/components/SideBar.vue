@@ -5,6 +5,7 @@
 				<v-btn
 					v-for="item in controlItems"
 					:key="item"
+					:style="{ 'background-color': !item.isDelete ? props.colorSheme : '' }"
 					:icon="item.icon"
 					flat
 					class="controlButton ma-1"
@@ -18,6 +19,7 @@
 		</v-card>
 
 		<v-expansion-panels
+			v-show="props.showQuestions"
 			v-model="questionCollection"
 			variant="accordion"
 			class="mx-2 mt-2 mb-2 rounded-lg barCard questions"
@@ -40,6 +42,7 @@
 			</v-expansion-panel>
 		</v-expansion-panels>
 		<v-expansion-panels
+			v-show="props.showQuestions"
 			v-model="questionCollection"
 			variant="accordion"
 			class="mx-2 mt-2 mb-2 rounded-lg barCard questions"
@@ -64,33 +67,35 @@
 	</v-navigation-drawer>
 </template>
 
-<script>
+<script setup>
+import { ref, defineProps, defineEmits } from "vue";
 import QuestionCard from "./QuestionCard.vue";
 
-export default {
-	name: "SideBar",
-	components: {
-		QuestionCard,
+const questionCollection = ref("open-questions");
+
+const props = defineProps({
+	controlItems: {
+		type: Array,
+		default: () => [],
 	},
-	props: {
-		controlItems: {
-			type: Array,
-			default: () => [],
-		},
-		openQuestions: {
-			type: Array,
-			default: () => [],
-		},
-		closedQuestions: {
-			type: Array,
-			default: () => [],
-		},
+	colorSheme: {
+		type: String,
+		default: "#4db6ac",
 	},
-	emits: ["control-input", "question-input"],
-	data: () => ({
-		questionCollection: "open-questions",
-	}),
-};
+	showQuestions: {
+		type: Boolean,
+		default: true,
+	},
+	openQuestions: {
+		type: Array,
+		default: () => [],
+	},
+	closedQuestions: {
+		type: Array,
+		default: () => [],
+	},
+});
+const emits = defineEmits(["control-input", "question-input"]);
 </script>
 
 <style lang="scss">
@@ -110,7 +115,7 @@ export default {
 	}
 }
 .controlButton {
-	background-color: #4db6ac !important;
+	// background-color: #4db6ac !important;
 	color: #ffffff !important;
 	&.delete {
 		background-color: #e57373 !important;
