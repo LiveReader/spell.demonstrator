@@ -82,7 +82,11 @@ const VIN = () => VINs[Math.floor(Math.random() * VINs.length)];
 const compasDirections = ["North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West"];
 const compasDirection = () => compasDirections[Math.floor(Math.random() * compasDirections.length)];
 
-const transportTargets = ["Uniklinikum Ludwigshafen", "BG Klinikum Ludwigshafen", "Krankenhaus Zum Guten Hirten Ludwigshafen"];
+const transportTargets = [
+	"Uniklinikum Ludwigshafen",
+	"BG Klinikum Ludwigshafen",
+	"Krankenhaus Zum Guten Hirten Ludwigshafen",
+];
 const transportTarget = () => transportTargets[Math.floor(Math.random() * transportTargets.length)];
 
 const ressourceIdentifiers = [
@@ -162,17 +166,172 @@ const ressourceTime = () => ressourceTimes[Math.floor(Math.random() * ressourceT
 
 const locations = [
 	{
-		street: "Schneegasse",
-		buildingno: "32",
-		zipcode: "67059",
-		city: "Ludwigshafen",
+		street: "Horst-Schork-Straße",
+		buildingno: "154",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
 		country: "Deutschland",
 		note: "",
-		gps: "49.482931, 8.430324",
+		gps: "49.513786428481005, 8.400227027492894",
+		threewords: "",
+	},
+	{
+		street: "Neumannstraße",
+		buildingno: "26",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.51763346719283, 8.39566122749288",
+		threewords: "",
+	},
+	{
+		street: "Gabelsbergerstraße",
+		buildingno: "38",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52073652809325, 8.396746627493034",
+		threewords: "",
+	},
+	{
+		street: "Utestraße",
+		buildingno: "22",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52372436535118, 8.388227932441428",
+		threewords: "",
+	},
+	{
+		street: "Nordring",
+		buildingno: "17",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.523007022478, 8.395813218841276",
+		threewords: "",
+	},
+	{
+		street: "Brandstramstraße",
+		buildingno: "5",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.522467001282024, 8.400270213998212",
+		threewords: "",
+	},
+	{
+		street: "Welschstraße",
+		buildingno: "25",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52136722313849, 8.406357596933924",
+		threewords: "",
+	},
+	{
+		street: "Gabelsbergerstraße",
+		buildingno: "4",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.521818118970266, 8.400779459601784",
+		threewords: "",
+	},
+	{
+		street: "Karolinenstraße",
+		buildingno: "57",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52463031360365, 8.399368813827708",
+		threewords: "",
+	},
+	{
+		street: "Werderstraße",
+		buildingno: "26",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52728700213653, 8.392302982492092",
+		threewords: "",
+	},
+	{
+		street: "Giselherstraße",
+		buildingno: "4",
+		zipcode: "67069",
+		city: "Ludwigshafen am Rhein",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52902893037616, 8.392823009644186",
+		threewords: "",
+	},
+	{
+		street: "Max-Beckmann-Straße",
+		buildingno: "18B",
+		zipcode: "67227",
+		city: "Frankenthal",
+		country: "Deutschland",
+		note: "",
+		gps: "49.5251851218676, 8.366228142274585",
+		threewords: "",
+	},
+	{
+		street: "Carl-Spitzweg-Straße",
+		buildingno: "7",
+		zipcode: "67227",
+		city: "Frankenthal",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52824904501167, 8.361954854482633",
+		threewords: "",
+	},
+	{
+		street: "Franz-Marc-Straße",
+		buildingno: "12",
+		zipcode: "67227",
+		city: "Frankenthal",
+		country: "Deutschland",
+		note: "",
+		gps: "49.51925497573538, 8.362543724066963",
+		threewords: "",
+	},
+	{
+		street: "Jean-Ganss-Straße",
+		buildingno: "19",
+		zipcode: "67227",
+		city: "Frankenthal",
+		country: "Deutschland",
+		note: "",
+		gps: "49.5272231419955, 8.352970207333714",
+		threewords: "",
+	},
+	{
+		street: "Albrecht-Därer-Ring",
+		buildingno: "13B",
+		zipcode: "67227",
+		city: "Frankenthal",
+		country: "Deutschland",
+		note: "",
+		gps: "49.52590469638103, 8.35714826411086",
 		threewords: "",
 	},
 ];
-const locationsSelection = ["Schneegasse 32, 67059 Ludwigshafen"];
+const locationsSelection = [];
+for (let i in locations) {
+	locationsSelection.push(
+		`${locations[i].street} ${locations[i].buildingno}, ${locations[i].zipcode} ${locations[i].city}`
+	);
+}
 const location = () => locations[Math.floor(Math.random() * locations.length)];
 
 const times = [
