@@ -153,8 +153,7 @@
 <script setup>
 import { ref } from "vue";
 
-import * as SpellApi from "open_api_definition";
-var api = new SpellApi.DefaultApi();
+var api = {};
 
 const deleteAttributeInp = ref("");
 const deleteAttributeRes = ref("");
