@@ -176,6 +176,7 @@ async function creategraph (data) {
 		}
 	}
 	for (let j = 0; j < dat.value.nodes.length; j++){
+		console.log(graph.value);
 		//if(dat.value.nodes[j].payload.label == "Operation" && (typeof graph.value.nodes[1] == "undefined" || graph.value.nodes[1].id != dat.value.nodes[j].id)){
 		if(dat.value.nodes[j].payload.label == "Operation" && graph.value.nodes[1].id != dat.value.nodes[j].id){
 			graph.value.nodes.push(dat.value.nodes[j])
@@ -192,6 +193,7 @@ async function creategraph (data) {
 	}
 	for (let i = 0; i < graph.value.nodes.length; i++) {
 		const node = graph.value.nodes[i];
+		console.log(node);
 		node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
 		taxonomy2payload[node.shape.type](node, graph.value);
 	}
@@ -215,6 +217,12 @@ function selectedCase(a){
 	openSaveFile(a)
 }
 function onCloseModal(d) {
+	// taxonomy2payload[d.shape.type](d, graph.value);
+	// selectedNodes.value = [d.id];
+	// graph.value.hasUpdate = true;
+	// generateOpenQuestions();
+	// filterQuestions();
+	console.log(d);
 	taxonomy2payload[d.shape.type](d, graph.value);
 	graph.value.hasUpdate = true;
 }
