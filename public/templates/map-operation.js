@@ -17,16 +17,16 @@ function operation(data, initialShape, changes, Template) {
 
 	const shape = initialShape ? initialShape : Shape.create("g");
 
-	const { body, border, persons, objects, pin } = addBaseShape();
+	const { body, border, persons, content, objects, pin } = addBaseShape();
 	border.classed("selectable", true);
 	pin.classed("hidden", !data.payload?.location);
 	// const label = addLabel();
-	// setState(label.select("path"));
 	const location = addLocation();
 	// const tagCollection = addTagCollection();
 	const personsCount = addPersonsCount();
 	const objectsCount = addObjectsCount();
 	location.classed('hidden', true);
+	setState(content);
 
 	Shape.transform(shape, true, data.shape.scale * operation.shapeSize);
 	return shape;
@@ -41,27 +41,29 @@ function operation(data, initialShape, changes, Template) {
 					<path d="M0,647.048C-11.004,647.048 -21.258,641.128 -26.759,631.598L-195.706,338.974C-201.208,329.444 -201.208,317.604 -195.706,308.074L-26.759,15.45C-21.257,5.92 -11.004,0 0,0L337.894,0C348.897,0 359.151,5.92 364.654,15.45L533.601,308.074C539.103,317.604 539.103,329.444 533.601,338.974L364.654,631.598C359.151,641.128 348.897,647.048 337.894,647.048L0,647.048Z" style="fill:rgb(64,64,64);fill-rule:nonzero;"/>
 				</g>
 			</g>
-			<g transform="matrix(4.16667,0,0,4.16667,-46.0579,-0.1)">
-				<g id="objects" transform="matrix(9,0,0,9,550,550)">
-					<rect x="2" y="7" width="7" height="15" style="fill:rgb(244,244,244);fill-rule:nonzero;"/>
-					<rect x="9" y="2" width="13" height="20" style="fill:rgb(244,244,244);fill-rule:nonzero;"/>
-					<rect x="12" y="6" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="17" y="6" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="12" y="14" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="17" y="14" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="12" y="10" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="17" y="10" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="12" y="18" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="17" y="18" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="5" y="14" width="1" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="5" y="10" width="1" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
-					<rect x="5" y="18" width="1" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+			<g id="content">
+				<g transform="matrix(4.16667,0,0,4.16667,-46.0579,-0.1)">
+					<g id="objects" transform="matrix(8,0,0,8,580,565)">
+						<rect x="2" y="7" width="7" height="15"/>
+						<rect x="9" y="2" width="13" height="20"/>
+						<rect x="12" y="6" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="17" y="6" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="12" y="14" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="17" y="14" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="12" y="10" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="17" y="10" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="12" y="18" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="17" y="18" width="2" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="5" y="14" width="1" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="5" y="10" width="1" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+						<rect x="5" y="18" width="1" height="1" style="fill:rgb(128,128,128);fill-rule:nonzero;stroke:rgb(128,128,128);stroke-width:1px;"/>
+					</g>
 				</g>
-			</g>
-			<g transform="matrix(4.16667,0,0,4.16667,-46.0579,-0.1)">
-				<g id="persons" transform="matrix(9,0,0,9,550,300)">
-					<path d="M12,12C6.48,12 2,16.48 2,22L22,22C22,16.48 17.52,12 12,12Z" style="fill:rgb(244,244,244);fill-rule:nonzero;"/>
-					<path d="M12,12C14.761,12 17,9.761 17,7C17,4.239 14.761,2 12,2C9.239,2 7,4.239 7,7C7,9.761 9.239,12 12,12Z" style="fill:rgb(244,244,244);fill-rule:nonzero;"/>
+				<g transform="matrix(4.16667,0,0,4.16667,-46.0579,-0.1)">
+					<g id="persons" transform="matrix(8,0,0,8,580,315)">
+						<path d="M12,12C6.48,12 2,16.48 2,22L22,22C22,16.48 17.52,12 12,12Z" />
+						<path d="M12,12C14.761,12 17,9.761 17,7C17,4.239 14.761,2 12,2C9.239,2 7,4.239 7,7C7,9.761 9.239,12 12,12Z"/>
+					</g>
 				</g>
 			</g>
 			<g id="border" transform="matrix(4.16667,0,0,4.16667,0,0)">
@@ -78,6 +80,7 @@ function operation(data, initialShape, changes, Template) {
 		const body = frame.select("#body");
 		const border = frame.select("#border");
 		const persons = frame.select("#persons");
+		const content = frame.select('#content');
 		persons.attr("stroke", "none");
 		const objects = frame.select("#objects");
 		objects.attr("stroke", "none");
@@ -86,6 +89,7 @@ function operation(data, initialShape, changes, Template) {
 			body,
 			border,
 			persons,
+			content,
 			objects,
 			pin,
 		};
