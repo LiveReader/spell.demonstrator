@@ -21,7 +21,6 @@ const eCall = {
 	eCall: { label: "eCall", type: Type.Selection, options: ["Ja", "Nein"], size: 60, value: null, id: "4a2555f2-e586-59fe-ae67-b2ea370c6adc" },
 	persons: { label: "Anzahl Personen", type: Type.Selection, options: ["1", "2", "3", "4", "5", "6", "viele"], size: 20, value: null, id: "3af29036-677d-5e57-9f01-94ddefe98c8f" },
 	direction: { label: "Richtung", type: Type.Text, options: compasDirections, size: 20, value: null, id: "cdb67b3b-24de-517e-96e4-94ed6e80ad3e" },
-	// TODO location options
 	position: { label: "GPS-Position", type: Type.Text, options: [], size: 20, value: null, id: "67552151-53df-5fbe-9b39-8e20ff6a9220" },
 	energytype: { label: "Antriebsart", type: Type.Selection, options: ["Benzin", "Diesel", "Gas", "Elektro"], size: 20, value: null, id: "37150997-b75a-5d52-94df-497d2b5aa9f6" },
 	releasedby: { label: "Ausgelöst durch", type: Type.Selection, options: ["Manuell", "Automatisch"], size: 20, value: null, id: "7c56b9d2-870f-5437-805a-6a4500b1fba9" },
@@ -80,7 +79,6 @@ const organisation = {
 const location = {
 	label: "Standort",
 	prefix: "loc_",
-	// TODO location options
 	street: { label: "Straße", type: Type.Text, options: [], size: 30, value: null, id: "792f5789-b30e-5d29-97bb-0878b74f4c40" },
 	buildingno: { label: "Hausnummer", type: Type.Text, options: [], size: 30, value: null, id: "0bd5510f-d85a-57a7-bb99-47e94c3461a7" },
 	zipcode: { label: "PLZ", type: Type.Text, options: [], size: 40, value: null, id: "e756da44-09ae-58e9-9b74-8efacd20dcf6" },

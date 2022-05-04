@@ -11,7 +11,6 @@ const Type = {
 const location = {
 	label: "Standort",
 	prefix: "loc_",
-	// TODO location options
 	street: { label: "Straße", type: Type.Text, options: [], size: 30, value: null, id: "465091d7-14fb-5751-b2cf-9ee8b7854177" },
 	buildingno: { label: "Hausnummer", type: Type.Text, options: [], size: 30, value: null, id: "efe80fda-efb6-5d04-b099-5d331dc393e7" },
 	zipcode: { label: "PLZ", type: Type.Text, options: [], size: 40, value: null, id: "c8956603-3b9b-5a79-9f20-64c762a2c2e4" },

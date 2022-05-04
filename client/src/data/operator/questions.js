@@ -61,7 +61,6 @@ const questionTemplates = [
 			}
 		},
 	},
-	// TODO Location data for touch input
 	{
 		node_type: NodeType.EmergencyReporter,
 		priority: 999,
