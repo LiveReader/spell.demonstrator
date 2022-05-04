@@ -6,6 +6,7 @@ function getOperation(id) {
 
 function addOperation(data) {
 	if (!getOperation(data.nodes[0].id)) {
+		data.editDate = Date.now();
 		operations.push(data);
 	}
 }
@@ -13,6 +14,7 @@ function addOperation(data) {
 function updateOperation(data) {
 	const index = operations.findIndex((o) => o.nodes[0].id === data.nodes[0].id);
 	if (index > -1) {
+		data.editDate = Date.now();
 		operations[index] = data;
 	}
 }

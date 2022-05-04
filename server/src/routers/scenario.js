@@ -10,6 +10,12 @@ function openFile(p) {
 	return JSON.parse(fs.readFileSync(path.resolve(p), "utf8"));
 }
 
+function setEditDates() {
+	operations.forEach((item) => {
+		item.editDate = Date.now();
+	});
+}
+
 const startScenario = [
 	openFile("./data/operations/Unfall.json"),
 	openFile("./data/operations/Sturz.json"),
@@ -30,12 +36,14 @@ const breathScenario = [
 startScenario.forEach((item) => {
 	addOperation(item);
 });
+setEditDates();
 
 router.get("/reset", (req, res) => {
 	clearOperations();
 	startScenario.forEach((item) => {
 		addOperation(item);
 	});
+	setEditDates();
 	res.send(JSON.stringify(operations));
 });
 
@@ -46,21 +54,25 @@ router.get("/:id", (req, res) => {
 			burnGardenScenario.forEach((item) => {
 				addOperation(item);
 			});
+			setEditDates();
 			return res.send(JSON.stringify(operations));
 		case "2":
 			hurtGardenScenario.forEach((item) => {
 				addOperation(item);
 			});
+			setEditDates();
 			return res.send(JSON.stringify(operations));
 		case "3":
 			breathScenario.forEach((item) => {
 				addOperation(item);
 			});
+			setEditDates();
 			return res.send(JSON.stringify(operations));
 		default:
 			startScenario.forEach((item) => {
 				addOperation(item);
 			});
+			setEditDates();
 			return res.send(JSON.stringify(operations));
 	}
 });
