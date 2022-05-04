@@ -168,6 +168,9 @@ let controlItems = ref([
 					item.enabled = item.checkEnabled();
 				});
 			}, 100);
+			setTimeout(() => {
+				putOperation(graph);
+			}, 500);
 		},
 	},
 	{
@@ -223,6 +226,9 @@ let controlItems = ref([
 					item.enabled = item.checkEnabled();
 				});
 			}, 100);
+			setTimeout(() => {
+				putOperation(graph);
+			}, 500);
 		},
 	},
 	{
@@ -277,6 +283,9 @@ let controlItems = ref([
 					item.enabled = item.checkEnabled();
 				});
 			}, 100);
+			setTimeout(() => {
+				putOperation(graph);
+			}, 500);
 		},
 	},
 	{
@@ -332,6 +341,9 @@ let controlItems = ref([
 					});
 				}
 			}, 100);
+			setTimeout(() => {
+				putOperation(graph);
+			}, 500);
 		},
 	},
 	{
@@ -353,6 +365,7 @@ let controlItems = ref([
 			graph.value.hasUpdate = true;
 			questionFilter.value = (q) => true;
 			generateOpenQuestions();
+			putOperation(graph);
 		},
 	},
 	{
@@ -393,6 +406,9 @@ function onCloseModal(d) {
 	graph.value.hasUpdate = true;
 	generateOpenQuestions();
 	filterQuestions();
+	setTimeout(() => {
+		putOperation(graph);
+	}, 500);
 }
 
 function addEdge(source, target) {
@@ -406,10 +422,16 @@ function addEdge(source, target) {
 	};
 	graph.value.links.push(link);
 	graph.value.hasUpdate = true;
+	setTimeout(() => {
+		putOperation(graph);
+	}, 500);
 }
 function onEdgeClick(e, d) {
 	graph.value.links = graph.value.links.filter((l) => l !== d);
 	graph.value.hasUpdate = true;
+	setTimeout(() => {
+		putOperation(graph);
+	}, 500);
 }
 function onBackground(e, pos) {
 	selectedNodes.value = [];
@@ -435,6 +457,9 @@ function onClick(e, d) {
 			newEdgeTarget.value = null;
 			newEdgeMode.value = false;
 			selectedNodes.value = [];
+			setTimeout(() => {
+				putOperation(graph);
+			}, 500);
 		}
 		return;
 	}
@@ -575,6 +600,9 @@ function questionInput(question) {
 		closeQuestion(question);
 		updateClosedQuestions();
 		generateOpenQuestions();
+		setTimeout(() => {
+			putOperation(graph);
+		}, 500);
 	}, 300);
 }
 
