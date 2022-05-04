@@ -56,6 +56,11 @@ import Graphly from "../components/Graphly.vue";
 import * as L from "leaflet" ;
 import "leaflet/dist/leaflet.css";
 
+// TODO
+// - remember scenario after page reload
+// - fix: zooming while hovering over a graphly node the graphly zoom changes instead of the map zoom level
+// - partial update of the graph instead of full reload on any change (optimization, not necessary)
+
 // debug flags
 let restrictPanning = false;
 let restrictZoom = true;
