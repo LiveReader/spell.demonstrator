@@ -1,4 +1,5 @@
 <template>
+	<!-- eslint-disable vue/v-on-event-hyphenation -->
 	<div id="situation-map-screen">
 		<Navigation
 			:color="'#9575cd'"
@@ -6,13 +7,7 @@
 			:title="'Lagemanagement'"
 		></Navigation>
 
-		<div id="map" style="height: 100vh; width: inherit">
-			<!-- <div id="overlay" style=" width: 100%; position: absolute; z-index: 401; top: 0; ">
-				<div id="timeline" style="background: #fff; height: 32px; width: 80%; margin: 10px auto auto;">
-
-				</div>
-			</div> -->
-		</div>
+		<div id="map" style="height: 100vh; width: inherit"></div>
 		<Graphly
 			v-if="svgElementRef"
 			:graph="graph"
@@ -22,31 +17,30 @@
 			:gravity="0"
 		/>
 
-		<v-bottom-navigation
-			:value="value" 
-			color="primary"
-		>
-
-			<div id="nav">
-				<v-slider 
-					v-model="fruits"
-					style="pointer-events: none;"
-					:max="3"
+		<div id="sliderNav">
+			<v-card class="mt-2" style="margin-left: 10%" width="80%" rounded="xl" flat color="#9575cd">
+				<v-slider
+					v-model="scenarioSelection"
+					min="0"
+					max="3"
 					step="1"
-					tick-size="4"
-					@input="ttt"
+					show-ticks="always"
+					@update:modelValue="selectScenario()"
 				></v-slider>
-
-				<div id="buttons">
-					<v-btn v-for="(item, index) in uiScenarios" :key="item" @click="onButtonChange(index)">
-						<span>{{ item.label }}</span>
+				<div id="buttons" class="mb-2">
+					<v-btn
+						v-for="(item, index) in scenarioList"
+						:key="item"
+						flat
+						color="#00000000"
+						@click="selectScenario(index)"
+					>
+						<span>{{ item }}</span>
 						<v-icon>mdi-history</v-icon>
 					</v-btn>
 				</div>
-			</div>
-
-		</v-bottom-navigation>
-
+			</v-card>
+		</div>
 	</div>
 </template>
 
@@ -93,6 +87,58 @@ const {
     cloudGJStyle,
 } = GJStyles;
 
+const operations = ref([]);
+function loadOperations(callback = () => {}) {
+	function load() {
+		fetch("http://localhost:8080/operation/all", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				let hasUpdate = false;
+				if (operations.value.length != data.length) hasUpdate = true;
+				if (!hasUpdate) {
+					for (let i in data) {
+						const op = data[i];
+						const currentOp = operations.value.find((o) => o.id == op.id);
+						if (!currentOp) {
+							hasUpdate = true
+							continue;
+						}
+						if (op.editDate > currentOp.editDate) hasUpdate = true
+					}
+				}
+				if (hasUpdate) {
+					operations.value = data;
+					callback();
+				}
+			});
+	}
+	load();
+	setInterval(load, 3000);
+}
+
+let scenarioSelection = ref(0);
+let scenarioList = ref([
+	"Zugentgleisung",
+	"Brand in der Gartenanlage",
+	"Verletzte in der Gartenanlage",
+	"Augen- / Atemwegsreizungen"
+])
+function selectScenario(index = scenarioSelection.value) {
+	scenarioSelection.value = index;
+	uiScenarios.value = scenarios[index];
+	if (index == 0) {
+		fetch(`http://localhost:8080/scenario/reset`)
+	} else {
+		fetch(`http://localhost:8080/scenario/${index}`)
+	}
+	initScenario(index);
+}
+
 // leaflet/graphly refs/options
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let selectedNodes = ref([]);
@@ -107,7 +153,6 @@ let maxZoom;
 let initialZoom;
 var currentZoom;
 let layers = [];
-let scenarioIdx = ref(0);
 
 let svgDimensions;
 let svgElementBounds;
@@ -289,26 +334,20 @@ function postInitGraph() {
 	scaleNodes(initialScale);
 }
 
-function ttt() {
-	console.log("ASDFAsdf");
-}
-
 function initScenario(scenarioIndex) {
-	let	allGraphFiles = []; 
-	let allClosureFiles = []; 
-	let allCloudFiles = []; 
-	let allMeetingPointFiles = []; 
+	let allClosureFiles = [];
+	let allCloudFiles = [];
+	let allMeetingPointFiles = [];
 	let allTrafficJamFiles = [];
 	for (let i = 0; i <= scenarioIndex; i++) {
 		const {
 			label,
-			graphFiles, 
-			closureFiles, 
-			cloudFiles, 
-			meetingPointFiles, 
+			graphFiles,
+			closureFiles,
+			cloudFiles,
+			meetingPointFiles,
 			trafficJamFiles,
 		} = scenarios[i];
-		if (graphFiles) allGraphFiles.push(...graphFiles);
 		if (closureFiles) allClosureFiles.push(...closureFiles);
 		if (cloudFiles) allCloudFiles.push(...cloudFiles);
 		if (meetingPointFiles) allMeetingPointFiles.push(...meetingPointFiles);
@@ -364,73 +403,102 @@ function initScenario(scenarioIndex) {
 				}
 			});
 	}
-	if (allGraphFiles) {
-		let urls = allGraphFiles.map(file => `/saveFiles/${file}`);
-		fetchAll(urls).then(arr => {
-			let nodes = []
-				.concat(...arr.map(graph => graph.nodes))
-				.filter(node => node.shape.type == 'operation' && node.payload.location)
-			nodes.forEach((node, idx) => {
-				node.id = `n${idx}`;
-				node.ignoreLODs = true;
-				let initialScale = scaleFromZoom(currentZoom);
-				node.shape.scale = initialScale;
-				node.shape.type = 'map-operation';
-			});
-			let nodeAnchors = nodes.map(node => {
-				return { 
-					...node, 
-					id: node.id + "_anchor",
-					shape: {
-						...node.shape, 
-						type: 'map-operation-anchor' 
-					},
-				};
-			});
-			nodes = nodes.map(node => {
-				return {
-					...node,
-					shape: {
-						...node.shape, 
-						type: 'map-operation' 
-					},
-					satellite: {
-						source: node.id + "_anchor",
-						angle: 0,
-						distance: 15
-					}
-				}
-			})
-			let links = nodes.map(node => {
-				return {
-					source: node.id,
-					target: node.id + "_anchor",
-					type: "solid",
-					directed: false,
-					strength: "strong"
-				};
-			});
-
-			nodes = [].concat(nodes, nodeAnchors);
-			console.log(nodes);
-			graph.value = {
-				hasUpdate: true,
-			};
-			graph.value = {
-				nodes: nodes,
-				links: links,
-				hasUpdate: false,
-			};
-			console.log(graph);
-			postInitGraph();
-		});
-	}
 }
 
-// Listeners
-function onButtonChange(idx) {
-	initScenario(idx);
-	scenarioIdx.value = idx;
+function convertOperations() {
+	graph.value.nodes = [];
+	graph.value.links = [];
+	for (let i in operations.value) {
+		const operation = operations.value[i];
+		const operationNode = operation.nodes.find((n) => n.shape.type == "operation");
+		if (!operationNode.payload.location) continue;
+
+		const anchorNode = {
+			id: operationNode.id + '_anchor',
+			shape: {
+				type: "map-operation-anchor",
+				scale: scaleFromZoom(currentZoom),
+			},
+			payload: operationNode.payload,
+		}
+		graph.value.nodes.push(anchorNode);
+
+		operationNode.ignoreLODs = true;
+		operationNode.shape.scale = scaleFromZoom(currentZoom)
+		operationNode.shape.type = "map-operation";
+		operationNode.satellite = {
+			source: operationNode.id + '_anchor',
+			angle: 0,
+			distance: 15,
+		}
+		graph.value.nodes.push(operationNode);
+		graph.value.links.push({
+			source: operationNode.id,
+			target: operationNode.id + '_anchor',
+			type: "solid",
+			directed: false,
+			strength: "strong",
+		})
+	}
+	graph.value.hasUpdate = true;
+	postInitGraph();
+
+	// let nodes = []
+	// 			.concat(...arr.map(graph => graph.nodes))
+	// 			.filter(node => node.shape.type == 'operation' && node.payload.location)
+	// 		nodes.forEach((node, idx) => {
+	// 			node.id = `n${idx}`;
+	// 			node.ignoreLODs = true;
+	// 			let initialScale = scaleFromZoom(currentZoom);
+	// 			node.shape.scale = initialScale;
+	// 			node.shape.type = 'map-operation';
+	// 		});
+	// 		let nodeAnchors = nodes.map(node => {
+	// 			return {
+	// 				...node,
+	// 				id: node.id + "_anchor",
+	// 				shape: {
+	// 					...node.shape,
+	// 					type: 'map-operation-anchor'
+	// 				},
+	// 			};
+	// 		});
+	// 		nodes = nodes.map(node => {
+	// 			return {
+	// 				...node,
+	// 				shape: {
+	// 					...node.shape,
+	// 					type: 'map-operation'
+	// 				},
+	// 				satellite: {
+	// 					source: node.id + "_anchor",
+	// 					angle: 0,
+	// 					distance: 15
+	// 				}
+	// 			}
+	// 		})
+	// 		let links = nodes.map(node => {
+	// 			return {
+	// 				source: node.id,
+	// 				target: node.id + "_anchor",
+	// 				type: "solid",
+	// 				directed: false,
+	// 				strength: "strong"
+	// 			};
+	// 		});
+
+	// 		nodes = [].concat(nodes, nodeAnchors);
+	// 		console.log(nodes);
+	// 		graph.value = {
+	// 			hasUpdate: true,
+	// 		};
+	// 		graph.value = {
+	// 			nodes: nodes,
+	// 			links: links,
+	// 			hasUpdate: false,
+	// 		};
+	// 		console.log(graph);
+	// 		postInitGraph();
 }
 
 export default {
@@ -463,7 +531,7 @@ export default {
 				map.setMaxZoom(maxZoom);
 			}
 
-			
+
 			/* Add Ludwigshafen border as geojson */
 			fetchAll(operationalAreas.map(file => `mapData/${file}`))
 				.then((data) => {
@@ -503,24 +571,21 @@ export default {
 				x: svgClientRect.width,
 				y: svgClientRect.height,
 			};
-			
+
 			initScenario(0);
+			loadOperations(() => convertOperations());
 		});
 	},
 	data: () => ({
+		scenarioSelection,
+		scenarioList,
 		graph,
 		svgElementRef,
 		selectedNodes,
 		buttons,
 		uiScenarios,
 		value: 1,
-        fruits: scenarioIdx,
     }),
-	watch: {
-        fruits: function(val, oldVal) {
-			onButtonChange(val);
-		}
-	},
 	mounted() {
 		map.on('click', this.innerClick);
 		map.on('zoomanim', this.onZoomAnim);
@@ -558,8 +623,7 @@ export default {
 				console.log("graphly coordinate: ", graphlyCoordinates);
 			}
 		},
-		onButtonChange,
-		ttt,
+		selectScenario,
 	}
 };
 </script>
@@ -576,7 +640,7 @@ export default {
 }
 header {
 	box-shadow: none !important;
-    background: rgba(0,0,0,0) !important;
+	background: rgba(0, 0, 0, 0) !important;
 	top: 50px;
 	left: 0;
 	height: 120px !important;
@@ -588,10 +652,13 @@ header {
 	align-items: center;
 	justify-content: center;
 }
-#nav {
-	box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
-	border-radius: 5px;
-	background-color: white;
+#sliderNav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	background-color: #00000000;
+	z-index: 400;
 }
 #buttons {
 	display: flex;
@@ -601,7 +668,7 @@ button {
 	flex-basis: 225px;
 }
 .v-slider {
-    margin: 10px 170px 0px !important;
+	margin: 10px 170px 0px !important;
 }
 .v-bottom-navigation__content {
 	flex-direction: column;
@@ -613,7 +680,8 @@ button {
 .v-input__details {
 	position: absolute;
 }
-.link, .edge {
+.link,
+.edge {
 	stroke: black !important;
 	stroke-width: inherit !important;
 }
