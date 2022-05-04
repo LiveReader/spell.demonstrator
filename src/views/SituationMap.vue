@@ -61,9 +61,9 @@ import "leaflet/dist/leaflet.css";
 let restrictPanning = false;
 let restrictZoom = true;
 let showDebugRect = false;
-let logClicks = true;
+let logClicks = false;
 
-import { scenarios, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
+import { scenarios, operationalAreas, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
 let uiScenarios = ref(scenarios);
 
 // sample points;
@@ -268,7 +268,6 @@ function ttt() {
 
 function initScenario(scenarioIndex) {
 	let	allGraphFiles = []; 
-	let allOperationalAreas = []; 
 	let allClosureFiles = []; 
 	let allCloudFiles = []; 
 	let allMeetingPointFiles = []; 
@@ -277,14 +276,12 @@ function initScenario(scenarioIndex) {
 		const {
 			label,
 			graphFiles, 
-			operationalAreas, 
 			closureFiles, 
 			cloudFiles, 
 			meetingPointFiles, 
 			trafficJamFiles,
 		} = scenarios[i];
 		if (graphFiles) allGraphFiles.push(...graphFiles);
-		if (operationalAreas) allOperationalAreas.push(...operationalAreas);
 		if (closureFiles) allClosureFiles.push(...closureFiles);
 		if (cloudFiles) allCloudFiles.push(...cloudFiles);
 		if (meetingPointFiles) allMeetingPointFiles.push(...meetingPointFiles);
@@ -293,18 +290,6 @@ function initScenario(scenarioIndex) {
 
 	layers.forEach(layer => layer.remove());
 
-	/* Add Ludwigshafen border as geojson */
-	if(allOperationalAreas) {
-		fetchAll(allOperationalAreas.map(file => `mapData/${file}`))
-			.then((data) => {
-				data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
-				geojsonLayer = L.geoJSON(data, {
-					style:  (feature) => invertedMapStyle,
-					interactive: false,
-				}).addTo(map);
-				layers.push(geojsonLayer);
-			});
-	}
 	if(allClosureFiles) {
 		fetchAll(allClosureFiles.map(file => `mapData/${file}`))
 		.then((closures) => {
@@ -411,6 +396,17 @@ export default {
 				map.setMinZoom(minZoom);
 				map.setMaxZoom(maxZoom);
 			}
+
+			
+			/* Add Ludwigshafen border as geojson */
+			fetchAll(operationalAreas.map(file => `mapData/${file}`))
+				.then((data) => {
+					data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
+					geojsonLayer = L.geoJSON(data, {
+						style:  (feature) => invertedMapStyle,
+						interactive: false,
+					}).addTo(map);
+				});
 
 			/* Add a debug circle */
 			// Necessary fix to prevent scenario elements beeing drawn on top of graphly..

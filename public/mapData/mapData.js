@@ -20,9 +20,6 @@ const scenarios = [
         trafficJamFiles: [
             "traffic_jam1.json",
         ],
-        operationalAreas: [
-            "vermka_rlp.6.geojson",
-        ],
     },
     {
         label: "Brand in der Gartenanlage",
@@ -55,6 +52,10 @@ const scenarios = [
             "meeting_point.json",
         ],
     },
+];
+
+const operationalAreas = [
+    "vermka_rlp.6.geojson",
 ];
 
 const samplePoints = {
@@ -111,4 +112,4 @@ const GJStyles = {
     cloudGJStyle,
 };
 
-export { scenarios, samplePoints, GJStyles };
+export { scenarios, operationalAreas, samplePoints, GJStyles };
