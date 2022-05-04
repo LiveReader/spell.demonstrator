@@ -268,7 +268,7 @@ function createGraph() {
 				shape: sn.shape,
 				spawn: {
 					source: sn.id,
-					angle: 120,
+					angle: 180,
 					distance: 300,
 				},
 				payload: sn.payload,
