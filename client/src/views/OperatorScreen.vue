@@ -3,10 +3,10 @@
 		<Navigation :color="'#4db6ac'" :icon="'./spell.demonstrator.operator.svg'" :title="'Notitia Operator'">
 			<v-list density="compact" nav color="#00000000">
 				<v-list-item
-					v-for="(operation, index) in api.operations"
-					:key="operation.id"
-					:title="operation.id.split('#')[1]"
-					@click="openOperation(operation)"
+					v-for="(operation, index) in operations"
+					:key="operation"
+					:title="operation.nodes[0].id"
+					@click="openOperation(operation.nodes[0].id)"
 				></v-list-item>
 				<v-list-group>
 					<template #activator="{ props }">
@@ -71,21 +71,48 @@ import Graphly from "../components/Graphly.vue";
 import SideBar from "../components/SideBar.vue";
 import NodeModal from "../components/NodeModal.vue";
 
-import API from "../api/index";
-const api = new API();
-
-function openOperation(op) {
-	api.getOperation(op.id, (operation) => {
-		console.log(operation);
-		graph.value = operation.graph;
-		for (let i = 0; i < graph.value.nodes.length; i++) {
-			const node = graph.value.nodes[i];
-			node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
-			taxonomy2payload[node.shape.type](node, graph.value);
-		}
-		graph.value.hasUpdate = true;
-		generateOpenQuestions();
-	});
+const operations = ref([]);
+const operationID = ref("");
+function loadOperations() {
+	fetch("http://localhost:8080/operation/all", {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			operations.value = data;
+		});
+}
+function openOperation(id) {
+	operationID.value = id;
+	loadOperation(id);
+}
+function loadOperation(id) {
+	function load() {
+		fetch(`http://localhost:8080/operation/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (data.editDate <= graph.value.editDate) return;
+				console.log(data);
+				graph.value = data;
+				for (let i = 0; i < graph.value.nodes.length; i++) {
+					const node = graph.value.nodes[i];
+					node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
+					taxonomy2payload[node.shape.type](node, graph.value);
+				}
+				graph.value.hasUpdate = true;
+				generateOpenQuestions();
+			});
+	}
+	load();
+	setInterval(load, 3000);
 }
 
 let safefileCollapsed = ref(false);
@@ -854,7 +881,7 @@ onMounted(() => {
 		graph.value.hasUpdate = true;
 	});
 
-	api.getOperations();
+	loadOperations();
 });
 
 watch(
