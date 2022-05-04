@@ -253,7 +253,6 @@ function scaleNodes(scale) {
 		node.shape.scale = scale;
 	});
 	graph.value.hasUpdate = true;
-	console.log("NEW SCAALE", scale);
 }
 
 function postInitGraph() {
@@ -349,7 +348,7 @@ function initScenario(scenarioIndex) {
 				node.ignoreLODs = true;
 				let initialScale = scaleFromZoom(currentZoom);
 				node.shape.scale = initialScale;
-				console.log(currentZoom, initialScale);
+				node.shape.type = 'map-operation';
 			});
 			graph.value = {
 				nodes: nodes,
@@ -474,7 +473,6 @@ export default {
 				}
 				scaleNodes(scale);
 				currentZoom = zoom ? zoom : oldZoom;
-				console.log(currentZoom);
 			}
 			this.mousePos = null
  		},
