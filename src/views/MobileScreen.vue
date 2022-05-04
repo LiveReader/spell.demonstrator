@@ -99,8 +99,8 @@ async function creategraph (data) {
 	for (let h = 0; h < dat.value.nodes.length; h++){
 		if (dat.value.nodes[h].payload.label == Nr.value){
 			const ressource = {
-				anchor: {"type": "hard","x": -100,"y": 0},
 				id: dat.value.nodes[h].id,
+				anchor: {"type": "hard","x": -100,"y": 0},
 				payload: dat.value.nodes[h].payload,
 				shape: dat.value.nodes[h].shape,
 				taxonomy: dat.value.nodes[h].taxonomy,
@@ -110,9 +110,9 @@ async function creategraph (data) {
 		}
 	}
 	for (let i = 0; i < dat.value.links.length; i++){
-		if (dat.value.links[i].target == graph.value.nodes[0].id || dat.value.links[i].source == graph.value.nodes[0].id){
+		if (dat.value.links[i].source == graph.value.nodes[0].id){
 			for (let j = 0; j < dat.value.nodes.length; j++){
-				if (dat.value.links[i].source == dat.value.nodes[j].id){
+				if (dat.value.links[i].target == dat.value.nodes[j].id){
 					if (dat.value.nodes[j].shape.type == "emergency-action"){
 						const ressource = {
 							anchor: {"type": "hard","x": 100,"y": 200},
@@ -133,7 +133,6 @@ async function creategraph (data) {
 						}
 						graph.value.nodes.push(ressource)
 					}
-					//graph.value.nodes.push(dat.value.nodes[j])
 					graph.value.links.push(dat.value.links[i])
 				}
 			}
@@ -176,7 +175,6 @@ async function creategraph (data) {
 		}
 	}
 	for (let j = 0; j < dat.value.nodes.length; j++){
-		console.log(graph.value);
 		//if(dat.value.nodes[j].payload.label == "Operation" && (typeof graph.value.nodes[1] == "undefined" || graph.value.nodes[1].id != dat.value.nodes[j].id)){
 		if(dat.value.nodes[j].payload.label == "Operation" && graph.value.nodes[1].id != dat.value.nodes[j].id){
 			graph.value.nodes.push(dat.value.nodes[j])
@@ -193,7 +191,6 @@ async function creategraph (data) {
 	}
 	for (let i = 0; i < graph.value.nodes.length; i++) {
 		const node = graph.value.nodes[i];
-		console.log(node);
 		node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
 		taxonomy2payload[node.shape.type](node, graph.value);
 	}
@@ -222,7 +219,6 @@ function onCloseModal(d) {
 	// graph.value.hasUpdate = true;
 	// generateOpenQuestions();
 	// filterQuestions();
-	console.log(d);
 	taxonomy2payload[d.shape.type](d, graph.value);
 	graph.value.hasUpdate = true;
 }
