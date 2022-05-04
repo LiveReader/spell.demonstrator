@@ -888,6 +888,9 @@ onMounted(() => {
 	});
 
 	loadOperations();
+	setInterval(() => {
+		loadOperations();
+	}, 5000);
 	loadOperation(operationID, graph, () => {
 		generateOpenQuestions();
 	});
