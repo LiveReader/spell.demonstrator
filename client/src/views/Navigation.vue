@@ -80,12 +80,6 @@ const sidebarItems = [
 		active: false,
 		to: "/task-forces",
 	},
-	{
-		title: "API Playground",
-		icon: "",
-		active: false,
-		to: "/api-playground",
-	},
 ];
 
 function nav(item) {
