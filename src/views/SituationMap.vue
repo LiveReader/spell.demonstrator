@@ -22,14 +22,15 @@
 			:gravity="0"
 		/>
 
-		<v-bottom-navigation 
+		<v-bottom-navigation
 			:value="value" 
 			color="primary"
 		>
 
 			<div id="nav">
-				<v-slider
+				<v-slider 
 					v-model="fruits"
+					style="pointer-events: none;"
 					:max="3"
 					step="1"
 					tick-size="4"
@@ -240,14 +241,16 @@ function positionNodes() {
 		let { location } = node.payload;
 		if (location) {
 			let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
-			node.anchor = {
-				type: 'hard',
-				x: coordinates.x,
-				y: coordinates.y,
-			};
+			if (node.id.endsWith('_anchor')) {
+				node.anchor = {
+					type: 'hard',
+					x: coordinates.x,
+					y: coordinates.y,
+				};
+			}
 		}
 	});
-	graph.value.hasUpdate = true;
+	// graph.value.hasUpdate = true;
 }
 
 function scaleNodes(scale) {
@@ -257,14 +260,31 @@ function scaleNodes(scale) {
 	graph.value.hasUpdate = true;
 	if (!linkElementRefs)  return;
 	linkElementRefs.forEach(ref => {
-		console.log(ref);
 		ref.childNodes[0].style.strokeWidth = scale * 10;
+		ref.childNodes[0].style.stroke = '#f00';
 	});
 }
 
 function postInitGraph() {
 	addNodeListeners();
 	positionNodes();
+	//
+	setTimeout(() => {
+		let nodes = graph.value.nodes;
+		nodes.forEach(node => {
+			let { location } = node.payload;
+			if (location) {
+				let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
+				if (!node.id.endsWith('_anchor')) {
+					node.x = nodes.find(n => n.id === node.id + '_anchor').x;
+					node.y = nodes.find(n => n.id === node.id + '_anchor').y;
+					node.vx = 0;
+					node.vy = 0;
+				}
+			}
+		});
+	}, 1000);
+
 	let initialScale = scaleFromZoom(currentZoom ? currentZoom : initialZoom);
 	scaleNodes(initialScale);
 }
@@ -357,20 +377,51 @@ function initScenario(scenarioIndex) {
 				node.shape.scale = initialScale;
 				node.shape.type = 'map-operation';
 			});
+			let nodeAnchors = nodes.map(node => {
+				return { 
+					...node, 
+					id: node.id + "_anchor",
+					shape: {
+						...node.shape, 
+						type: 'map-operation-anchor' 
+					},
+				};
+			});
+			nodes = nodes.map(node => {
+				return {
+					...node,
+					shape: {
+						...node.shape, 
+						type: 'map-operation' 
+					},
+					satellite: {
+						source: node.id + "_anchor",
+						angle: 0,
+						distance: 15
+					}
+				}
+			})
+			let links = nodes.map(node => {
+				return {
+					source: node.id,
+					target: node.id + "_anchor",
+					type: "solid",
+					directed: false,
+					strength: "strong"
+				};
+			});
+
+			nodes = [].concat(nodes, nodeAnchors);
+			console.log(nodes);
 			graph.value = {
-				nodes: nodes,
-				links: [
-					// {
-					// 	source: "n1",
-					// 	target: "n0",
-					// 	type: "solid",
-					// 	directed: false,
-					// 	strength: "weak"
-					// }
-				],
 				hasUpdate: true,
 			};
-			console.log(nodes);
+			graph.value = {
+				nodes: nodes,
+				links: links,
+				hasUpdate: false,
+			};
+			console.log(graph);
 			postInitGraph();
 		});
 	}
@@ -429,6 +480,7 @@ export default {
 					color: 'red',
 					fillColor: '#f03',
 					fillOpacity: 0,
+					opacity: 0,
 					radius: 50,
 					interactive: true,
 			}).addTo(map);
@@ -560,5 +612,9 @@ button {
 }
 .v-input__details {
 	position: absolute;
+}
+.link, .edge {
+	stroke: black !important;
+	stroke-width: inherit !important;
 }
 </style>
