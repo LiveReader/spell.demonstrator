@@ -28,7 +28,6 @@
 				</v-list-group>
 				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
 			</v-list>
-			<v-btn @click="updateOperation()">Save</v-btn>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
 			<!-- <v-btn @click="converter(true)">Convert SaveFiles</v-btn> -->
 			<!-- <v-btn @click="downloadPrefixedTaxonomy()">Generate Prefixed Taxonomy</v-btn> -->

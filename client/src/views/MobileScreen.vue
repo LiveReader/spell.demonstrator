@@ -2,17 +2,15 @@
 	<div id="mobile-screen">
 		<Navigation :color="'#ffb74d'" :icon="'./spell.demonstrator.einsatzkräfte.svg'" :title="'Einsatzkräfte'">
 			<v-list density="compact" nav color="#00000000">
-				<v-list-group>
-					<template #activator="{ props }">
-						<v-list-item v-bind="props" title="Select emergency-ressource"></v-list-item>
-					</template>
-					<v-list-item
-						v-for="(item, index) in ressource"
-						:key="item.node.id"
-						:title="item.node.payload.label ?? index"
-						@click="selectRessource(item)"
-					></v-list-item>
-				</v-list-group>
+				<v-list-item
+					v-for="(item, index) in ressources"
+					:key="item.node.id"
+					prepend-icon="mdi-ambulance"
+					:title="item.node.payload.label ?? index"
+					rounded="xl"
+					:active="item.node.id === ressourceID"
+					@click="selectRessource(item)"
+				></v-list-item>
 			</v-list>
 		</Navigation>
 		<Graphly
@@ -62,7 +60,7 @@ function updateOperation() {
 }
 
 let ressourceID = ref("");
-let ressource = ref([]);
+let ressources = ref([]);
 let rawGraph = ref({ nodes: [], links: [], hasUpdate: false });
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let selection = ref([]);
@@ -163,12 +161,12 @@ let controlItems = ref([
 ]);
 
 function availableRessources() {
-	ressource.value = [];
+	ressources.value = [];
 	operations.value.forEach((operation) => {
 		for (let i = 0; i < operation.nodes.length; i++) {
 			const node = operation.nodes[i];
 			if (node.shape.type == "emergency-ressource") {
-				ressource.value.push({
+				ressources.value.push({
 					operation: operation,
 					node: node,
 				});
@@ -328,6 +326,7 @@ function onBackground() {
 onMounted(() => {
 	loadOperations(() => {
 		availableRessources();
+		selectRessource(ressources.value[0]);
 	});
 	setInterval(() => {
 		loadOperations(() => {
