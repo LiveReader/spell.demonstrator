@@ -66,6 +66,7 @@ import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
 import { generateRessources } from "../../generator";
+import { loadOperation, putOperation } from "../api/index";
 
 import Navigation, { touchScreen } from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
@@ -88,84 +89,9 @@ function loadOperations() {
 }
 function openOperation(id) {
 	operationID.value = id;
-	loadOperation(id);
-}
-function loadOperation(id) {
-	function load() {
-		fetch(`http://localhost:8080/operation/${id}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				if (data.editDate <= graph.value.editDate) return;
-				console.log(data);
-				graph.value = data;
-				for (let i = 0; i < graph.value.nodes.length; i++) {
-					const node = graph.value.nodes[i];
-					node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
-					taxonomy2payload[node.shape.type](node, graph.value);
-				}
-				graph.value.hasUpdate = true;
-				generateOpenQuestions();
-			});
-	}
-	load();
-	setInterval(load, 1000);
 }
 function updateOperation() {
-	const cpyGraph = {
-		nodes: [],
-		links: [],
-	};
-	graph.value.nodes.forEach((n) => {
-		const node = {
-			id: n.id,
-			shape: {
-				type: n.shape.type,
-				scale: n.shape.scale,
-			},
-			payload: n.payload,
-			taxonomy: generatePrefixedTaxonomy(n.taxonomy),
-			x: n.x || 0,
-			y: n.y || 0,
-		};
-		if (n.anchor) node.anchor = n.anchor;
-		if (n.spawn) {
-			node.spawn = {
-				source: typeof n.spawn.source === "string" ? n.spawn.source : n.spawn.source.id,
-				angle: n.spawn.angle,
-				distance: n.spawn.distance,
-			};
-		}
-		if (n.satellite) {
-			node.satellite = {
-				source: typeof n.satellite.source === "string" ? n.satellite.source : n.satellite.source.id,
-				angle: n.satellite.angle,
-				distance: n.satellite.distance,
-			};
-		}
-		cpyGraph.nodes.push(node);
-	});
-	graph.value.links.forEach((l) => {
-		cpyGraph.links.push({
-			source: typeof l.source === "string" ? l.source : l.source.id,
-			target: typeof l.target === "string" ? l.target : l.target.id,
-			type: l.type,
-			directed: l.directed,
-			label: l.label,
-			strength: l.strength,
-		});
-	});
-	fetch(`http://localhost:8080/operation`, {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(cpyGraph),
-	});
+	putOperation(graph);
 }
 
 let safefileCollapsed = ref(false);
@@ -935,6 +861,9 @@ onMounted(() => {
 	});
 
 	loadOperations();
+	loadOperation(operationID, graph, () => {
+		generateOpenQuestions();
+	});
 });
 
 watch(
