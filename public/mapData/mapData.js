@@ -28,8 +28,6 @@ const scenarios = [
         ],
         cloudFiles: [
             "cloud.json",
-            "cloud2.json",
-            "cloud3.json",
         ],
 
     },
@@ -37,6 +35,9 @@ const scenarios = [
         label: "Verletzte in der Gartenanlage",
         graphFiles: [
             "Verletzte Gartenanlage.json",
+        ],
+        cloudFiles: [
+            "cloud2.json",
         ],
     },
     {
@@ -50,6 +51,9 @@ const scenarios = [
         ],
         meetingPointFiles: [
             "meeting_point.json",
+        ],
+        cloudFiles: [
+            "cloud3.json",
         ],
     },
 ];
