@@ -19,9 +19,13 @@
 			:zoom-boundaries="[1, 1]"
 			:svg="svgElementRef"
 			:selected="selectedNodes"
+			:gravity="0"
 		/>
 
-		<v-bottom-navigation :value="1" color="primary">
+		<v-bottom-navigation 
+			:value="value" 
+			color="primary"
+		>
 
 			<div id="nav">
 				<v-slider
@@ -129,7 +133,8 @@ let rectElementRef;
 let worldElementRef;
 let graphlyElementRef;
 let mapElementRef;
-let nodeElementRefs;
+let nodeElementRefs = [];
+let linkElementRefs = [];
 
 // mapping functions
 function latLngToGraphlyCoordinates(latLng) {
@@ -199,15 +204,12 @@ function addNodeListeners() {
 	let observer = new MutationObserver(mutations => {
 		nodeElementRefs = mutations
 			.filter(mutation => mutation.target.classList[0] === 'nodeWorld' && mutation.addedNodes.length > 0)
-			.map(mutation => {
-				let elem = mutation.addedNodes[0];
-				return {
-					elem: elem,
-					node: nodes.find(n => n.id == elem.id),
-				}
-			});
+			.map(mutation => mutation.addedNodes[0]);
+		let lersToAdd = mutations
+			.filter(mutation => mutation.target.id === 'links' && mutation.addedNodes.length > 0)
+			.map(mutation => mutation.addedNodes[0]);
+		linkElementRefs.push(...lersToAdd);
 		nodeElementRefs
-			.map(ref => ref.elem)
 			.forEach(node => {
 				addNodeListener(node, 'click',  e=>{
 					console.log(node.id);
@@ -253,6 +255,11 @@ function scaleNodes(scale) {
 		node.shape.scale = scale;
 	});
 	graph.value.hasUpdate = true;
+	if (!linkElementRefs)  return;
+	linkElementRefs.forEach(ref => {
+		console.log(ref);
+		ref.childNodes[0].style.strokeWidth = scale * 10;
+	});
 }
 
 function postInitGraph() {
@@ -352,7 +359,15 @@ function initScenario(scenarioIndex) {
 			});
 			graph.value = {
 				nodes: nodes,
-				links: [],
+				links: [
+					// {
+					// 	source: "n1",
+					// 	target: "n0",
+					// 	type: "solid",
+					// 	directed: false,
+					// 	strength: "weak"
+					// }
+				],
 				hasUpdate: true,
 			};
 			console.log(nodes);
@@ -413,7 +428,7 @@ export default {
 			let circle = L.circle(bridge, {
 					color: 'red',
 					fillColor: '#f03',
-					fillOpacity: 0.5,
+					fillOpacity: 0,
 					radius: 50,
 					interactive: true,
 			}).addTo(map);
@@ -446,7 +461,7 @@ export default {
 		selectedNodes,
 		buttons,
 		uiScenarios,
-		value: 0,
+		value: 1,
         fruits: scenarioIdx,
     }),
 	watch: {
