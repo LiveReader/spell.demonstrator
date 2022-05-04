@@ -28,6 +28,7 @@
 				</v-list-group>
 				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
 			</v-list>
+			<v-btn @click="updateOperation()">Save</v-btn>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
 			<!-- <v-btn @click="converter(true)">Convert SaveFiles</v-btn> -->
 			<!-- <v-btn @click="downloadPrefixedTaxonomy()">Generate Prefixed Taxonomy</v-btn> -->
@@ -112,7 +113,59 @@ function loadOperation(id) {
 			});
 	}
 	load();
-	setInterval(load, 3000);
+	setInterval(load, 1000);
+}
+function updateOperation() {
+	const cpyGraph = {
+		nodes: [],
+		links: [],
+	};
+	graph.value.nodes.forEach((n) => {
+		const node = {
+			id: n.id,
+			shape: {
+				type: n.shape.type,
+				scale: n.shape.scale,
+			},
+			payload: n.payload,
+			taxonomy: generatePrefixedTaxonomy(n.taxonomy),
+			x: n.x || 0,
+			y: n.y || 0,
+		};
+		if (n.anchor) node.anchor = n.anchor;
+		if (n.spawn) {
+			node.spawn = {
+				source: typeof n.spawn.source === "string" ? n.spawn.source : n.spawn.source.id,
+				angle: n.spawn.angle,
+				distance: n.spawn.distance,
+			};
+		}
+		if (n.satellite) {
+			node.satellite = {
+				source: typeof n.satellite.source === "string" ? n.satellite.source : n.satellite.source.id,
+				angle: n.satellite.angle,
+				distance: n.satellite.distance,
+			};
+		}
+		cpyGraph.nodes.push(node);
+	});
+	graph.value.links.forEach((l) => {
+		cpyGraph.links.push({
+			source: typeof l.source === "string" ? l.source : l.source.id,
+			target: typeof l.target === "string" ? l.target : l.target.id,
+			type: l.type,
+			directed: l.directed,
+			label: l.label,
+			strength: l.strength,
+		});
+	});
+	fetch(`http://localhost:8080/operation`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(cpyGraph),
+	});
 }
 
 let safefileCollapsed = ref(false);
