@@ -37,7 +37,10 @@ function putOperation(graph) {
 		nodes: [],
 		links: [],
 	};
-	graph.value.nodes.forEach((n) => {
+	for (let i in graph.value.nodes) {
+		const n = graph.value.nodes[i];
+		if (n.suggestion || n.shape.type == "close-button" || n.shape.type == "assessment") continue;
+		console.log(n.shape.type);
 		const node = {
 			id: n.id,
 			shape: {
@@ -65,7 +68,7 @@ function putOperation(graph) {
 			};
 		}
 		cpyGraph.nodes.push(node);
-	});
+	}
 	graph.value.links.forEach((l) => {
 		cpyGraph.links.push({
 			source: typeof l.source === "string" ? l.source : l.source.id,
@@ -85,10 +88,7 @@ function putOperation(graph) {
 	});
 }
 
-export {
-	loadOperation,
-	putOperation,
-}
+export { loadOperation, putOperation };
 
 // import * as SpellApi from "open_api_definition";
 
