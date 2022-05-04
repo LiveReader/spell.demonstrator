@@ -14,6 +14,10 @@ let simulation = null;
 export default {
 	name: "Graphly",
 	props: {
+		alpha: {
+			type: Number,
+			default: 0.1,
+		},
 		graph: {
 			type: Object,
 			default: () => ({ nodes: [], links: [], hasUpdate: false }),
@@ -105,7 +109,7 @@ export default {
 			() => props.graph,
 			() => {
 				if (props.graph.hasUpdate) {
-					simulation.render(props.graph);
+					simulation.render(props.graph, props.alpha);
 					// eslint-disable-next-line vue/no-mutating-props
 					props.graph.hasUpdate = false;
 				}
