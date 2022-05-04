@@ -43,8 +43,23 @@
 		</Navigation>
 		<Graphly
 			:graph="graph"
+			:selected="selection"
 			@double-click="onDoubleClick"
+			@click="onClick"
+			@background="onBackground"
 		/>
+		<v-navigation-drawer permanent position="right" style="height: 65px">
+			<v-card>
+				<v-btn
+					id="btn"
+					:color="'#ffb74d'"
+					v-for="item in btns"
+					:key="item"
+					:icon="item.icon"
+					@click="btns_click(item.name)">
+				</v-btn>
+			</v-card>
+		</v-navigation-drawer>
 		<NodeModal :modal="modal" @close="onCloseModal" />
 	</div>
 </template>
@@ -56,6 +71,7 @@ import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 import NodeModal from "../components/NodeModal.vue";
 import { taxonomy2payload } from "../data/operator/converter/index";
+import { taxonomyTemplate, parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let dat = ref({ nodes: [], links: [], hasUpdate: false });
@@ -64,7 +80,9 @@ let len = ref(0)
 let b = ref()
 let ressource = ref ([])
 let modal = ref({ show: false, node: null, title: "" });
-let selectedNodes = ref([]);
+let btns = ref([{name: "Person hinzufügen", icon: "mdi-account"},{name: "Objekt hinzufügen", icon: "mdi-home"},{name: "löschen", icon: "mdi-delete"}])
+let new_id = ref("new_id_0")
+let selection = ref([])
 
 function availableressources (data){
 	ressource.value = []
@@ -92,38 +110,28 @@ async function creategraph (data) {
 		}
 	}
 	for (let i = 0; i < dat.value.links.length; i++){
-		if (dat.value.links[i].target == graph.value.nodes[0].id){
+		if (dat.value.links[i].target == graph.value.nodes[0].id || dat.value.links[i].source == graph.value.nodes[0].id){
 			for (let j = 0; j < dat.value.nodes.length; j++){
 				if (dat.value.links[i].source == dat.value.nodes[j].id){
-					const ressource = {
-						anchor: {"type": "hard","x": 100,"y": 200},
-						id: dat.value.nodes[j].id,
-						payload: dat.value.nodes[j].payload,
-						shape: dat.value.nodes[j].shape,
-						taxonomy: dat.value.nodes[j].taxonomy,
+					if (dat.value.nodes[j].shape.type == "emergency-action"){
+						const ressource = {
+							anchor: {"type": "hard","x": 100,"y": 200},
+							id: dat.value.nodes[j].id,
+							payload: dat.value.nodes[j].payload,
+							shape: dat.value.nodes[j].shape,
+							taxonomy: dat.value.nodes[j].taxonomy,
+						}
+						graph.value.nodes.push(ressource)
 					}
-					graph.value.nodes.push(ressource)
-					if (dat.value.nodes[j].payload.label == "Operation"){
-						graph.value.nodes[1].anchor = {"type": "hard","x": -300,"y": -200}
-					}
-					//graph.value.nodes.push(dat.value.nodes[j])
-					graph.value.links.push(dat.value.links[i])
-				}
-			}
-		}
-		if (dat.value.links[i].source == graph.value.nodes[0].id){
-			for (let j = 0; j < dat.value.nodes.length; j++){
-				if (dat.value.links[i].target == dat.value.nodes[j].id){
-					const ressource = {
-						anchor: {"type": "hard","x": 100,"y": 200},
-						id: dat.value.nodes[j].id,
-						payload: dat.value.nodes[j].payload,
-						shape: dat.value.nodes[j].shape,
-						taxonomy: dat.value.nodes[j].taxonomy,
-					}
-					graph.value.nodes.push(ressource)
-					if (dat.value.nodes[j].payload.label == "Operation"){
-						graph.value.nodes[1].anchor = {"type": "hard","x": -300,"y": -200}
+					if (dat.value.nodes[j].shape.type == "operation"){
+						const ressource = {
+							anchor: {"type": "hard","x": -300,"y": -200},
+							id: dat.value.nodes[j].id,
+							payload: dat.value.nodes[j].payload,
+							shape: dat.value.nodes[j].shape,
+							taxonomy: dat.value.nodes[j].taxonomy,
+						}
+						graph.value.nodes.push(ressource)
 					}
 					//graph.value.nodes.push(dat.value.nodes[j])
 					graph.value.links.push(dat.value.links[i])
@@ -137,14 +145,29 @@ async function creategraph (data) {
 			if (dat.value.links[i].target == graph.value.nodes[k].id && dat.value.links[i].source != graph.value.nodes[0].id){
 				for (let j = 0; j < dat.value.nodes.length; j++){
 					if (dat.value.links[i].source == dat.value.nodes[j].id){
-						const ressource = {
-							anchor: {"type": "soft","x": 100,"y": 200},
-							id: dat.value.nodes[j].id,
-							payload: dat.value.nodes[j].payload,
-							shape: dat.value.nodes[j].shape,
-							taxonomy: dat.value.nodes[j].taxonomy,
+						if(dat.value.nodes[j].shape.type == "affected-person"){
+							const ressource = {
+								anchor: {"type": "soft","x": 100,"y": 200},
+								id: dat.value.nodes[j].id,
+								payload: dat.value.nodes[j].payload,
+								shape: dat.value.nodes[j].shape,
+								taxonomy: dat.value.nodes[j].taxonomy,
+							}
+							graph.value.nodes.push(ressource)
 						}
-						graph.value.nodes.push(ressource)
+						if(dat.value.nodes[j].shape.type == "affected-object"){
+							const ressource = {
+								anchor: {"type": "soft","x": 100,"y": 200},
+								id: dat.value.nodes[j].id,
+								payload: dat.value.nodes[j].payload,
+								shape: dat.value.nodes[j].shape,
+								taxonomy: dat.value.nodes[j].taxonomy,
+							}
+							graph.value.nodes.push(ressource)
+						}
+						if(dat.value.nodes[j].shape.type == "emergency-reporter"){
+							continue
+						}
 						//graph.value.nodes.push(dat.value.nodes[j])
 						graph.value.links.push(dat.value.links[i])
 					}
@@ -167,6 +190,11 @@ async function creategraph (data) {
 			graph.value.links.push(link)
 		}
 	}
+	for (let i = 0; i < graph.value.nodes.length; i++) {
+		const node = graph.value.nodes[i];
+		node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
+		taxonomy2payload[node.shape.type](node, graph.value);
+	}
 	graph.value.hasUpdate = true;
 }
 function openSaveFile(item) {
@@ -187,9 +215,7 @@ function selectedCase(a){
 	openSaveFile(a)
 }
 function onCloseModal(d) {
-	console.log(d)
 	taxonomy2payload[d.shape.type](d, graph.value);
-	selectedNodes.value = [d.id];
 	graph.value.hasUpdate = true;
 }
 function onDoubleClick(e, d) {
@@ -206,7 +232,58 @@ function onDoubleClick(e, d) {
 			break;
 	}
 	modal.value.title = title;
-	console.log(d)
+}
+function btns_click(g){
+	if (g == "Person hinzufügen"){
+		const affected = {
+			anchor: {"type": "soft","x": 100,"y": 200},
+			id: new_id.value,		
+			shape: {type: "affected-person", "scale": 1},
+			payload: {status: "delayed", name: {first: "",last: "",}, sex: "", age: "", accessibility: "", tag: []},
+			taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["affected-person"] ?? {})),
+		}
+		const link = {
+				source: affected.id,
+				target: graph.value.nodes[1].id,
+				type: "solid",
+				directed: false,
+				strength: "weak",
+			}
+		new_id.value = new_id.value + 1
+		graph.value.nodes.push(affected)
+		graph.value.links.push(link)
+	}
+	if (g == "Objekt hinzufügen"){
+		const affected = {
+			anchor: {"type": "soft","x": 100,"y": 200},
+			id: new_id.value,		
+			shape: {type: "affected-object", "scale": 1},
+			payload: {status: "delayed", label: "", accessibility: "", tag: []},
+			taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["affected-object"] ?? {})),
+		}
+		const link = {
+				source: affected.id,
+				target: graph.value.nodes[1].id,
+				type: "solid",
+				directed: false,
+				strength: "weak",
+			}
+		new_id.value = new_id.value + "1"
+		graph.value.nodes.push(affected)
+		graph.value.links.push(link)
+	}
+	if (g == "löschen"){
+		graph.value.nodes = graph.value.nodes.filter((node) => node.id != selection.value)
+		graph.value.links = graph.value.links.filter((link) => link.target.id != selection.value)
+		graph.value.links = graph.value.links.filter((link) => link.source.id != selection.value)
+	}
+	graph.value.hasUpdate = true
+}
+function onClick(e,d){
+	selection.value = [d.id]
+}
+function onBackground(){
+	selection.value = []
 }
 </script>
 
@@ -220,5 +297,9 @@ function onDoubleClick(e, d) {
 	height: 100vh;
 	overflow: hidden;
 	background-color: #fafafc;
+}
+#btn {
+	margin: 0.5em;
+	margin-left: 20px;
 }
 </style>
