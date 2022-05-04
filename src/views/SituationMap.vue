@@ -221,6 +221,7 @@ function addNodeListeners() {
 					let { location } = graphlyNode.payload;
 					let coordinates = parseLocation(location);
 					console.log(location, coordinates);
+					scaleNodes(scaleFromZoom(maxZoom));
 					map.flyTo(coordinates, maxZoom);
 				});
 			});
