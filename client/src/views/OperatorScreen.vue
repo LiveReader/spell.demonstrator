@@ -1,14 +1,19 @@
 <template>
 	<div id="operator-screen">
-		<Navigation :color="'#4db6ac'" :icon="'./spell.demonstrator.operator.svg'" :title="'Notitia Operator'">
+		<Navigation
+			:color="'#4db6ac'"
+			:icon="'./spell.demonstrator.operator.svg'"
+			:title="'Notitia Operator'"
+			:extended="extendedNavigation"
+		>
 			<v-list density="compact" nav color="#00000000">
 				<v-list-item
-					v-for="(operation, index) in operations"
-					:key="operation"
-					:title="operation.nodes[0].id"
-					@click="openOperation(operation.nodes[0].id)"
+					prepend-icon="mdi-hexagon-multiple"
+					title="Einsätze"
+					rounded="xl"
+					@click="openOperationSelection"
 				></v-list-item>
-				<v-list-group>
+				<!-- <v-list-group>
 					<template #activator="{ props }">
 						<v-list-item
 							v-bind="props"
@@ -25,8 +30,8 @@
 						rounded="xl"
 						@click="openSaveFile(item)"
 					></v-list-item>
-				</v-list-group>
-				<v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item>
+				</v-list-group> -->
+				<!-- <v-list-item prepend-icon="mdi-content-save" title="Save" rounded="xl" @click="saveFile"></v-list-item> -->
 			</v-list>
 			<!-- <v-btn @click="converter()">Generate Szenarios</v-btn> -->
 			<!-- <v-btn @click="converter(true)">Convert SaveFiles</v-btn> -->
@@ -54,6 +59,7 @@
 			@question-input="questionInput"
 		/>
 		<NodeModal :modal="modal" @close="onCloseModal" />
+		<OperationSelection :modal="operationSelectionModal" @operation-selected="openOperation" />
 	</div>
 </template>
 
@@ -71,23 +77,12 @@ import Navigation, { touchScreen } from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 import SideBar from "../components/SideBar.vue";
 import NodeModal from "../components/NodeModal.vue";
+import OperationSelection from "../components/OperationSelection.vue";
 
-const operations = ref([]);
 const operationID = ref("");
-function loadOperations() {
-	fetch("http://localhost:8080/operation/all", {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			operations.value = data;
-		});
-}
 function openOperation(id) {
 	operationID.value = id;
+	extendedNavigation.value = false;
 }
 function updateOperation() {
 	putOperation(graph);
@@ -99,8 +94,10 @@ const newEdgeMode = ref(false);
 const newEdgeSource = ref(null);
 const newEdgeTarget = ref(null);
 
+let extendedNavigation = ref(false);
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
 let modal = ref({ show: false, node: null, title: "" });
+let operationSelectionModal = ref({ show: false });
 let selectedNodes = ref([]);
 let openQuestions = ref([]);
 let previouslyClosed = ref(null);
@@ -378,6 +375,11 @@ let controlItems = ref([
 		},
 	},
 ]);
+
+function openOperationSelection() {
+	operationSelectionModal.value.show = true;
+	extendedNavigation.value = false;
+}
 
 function downloadPrefixedTaxonomy() {
 	const d = JSON.stringify(generatePrefixedTaxonomy(taxonomyTemplate));
@@ -887,10 +889,6 @@ onMounted(() => {
 		graph.value.hasUpdate = true;
 	});
 
-	loadOperations();
-	setInterval(() => {
-		loadOperations();
-	}, 5000);
 	loadOperation(operationID, graph, () => {
 		generateOpenQuestions();
 	});
