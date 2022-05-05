@@ -20,8 +20,9 @@ import Graphly from "./Graphly.vue";
 
 const content = ref(null);
 
+let intervalID = null;
 const operations = ref([]);
-function loadOperations(callback = () => {}, forceReload = false) {
+function loadOperations(callback = () => {}) {
 	function load() {
 		fetch("http://localhost:8080/operation/all", {
 			method: "GET",
@@ -44,17 +45,14 @@ function loadOperations(callback = () => {}, forceReload = false) {
 						if (op.editDate > currentOp.editDate) hasUpdate = true;
 					}
 				}
-				if (forceReload || hasUpdate) {
+				if (hasUpdate) {
 					operations.value = data;
 					callback();
-				}
-				if (forceReload) {
-					forceReload = false;
 				}
 			});
 	}
 	load();
-	setInterval(load, 3000);
+	intervalID = setInterval(load, 3000);
 }
 
 const props = defineProps({
@@ -70,7 +68,6 @@ const props = defineProps({
 const emits = defineEmits(["operationSelected"]);
 
 let graph = ref({ nodes: [], links: [], hasUpdate: false });
-let intervalID = null;
 
 function buildGraph() {
 	graph.value.nodes = [];
@@ -193,12 +190,7 @@ function onClick(e, d) {
 	props.modal.show = false;
 }
 
-onMounted(() => {
-	loadOperations(() => buildGraph());
-	intervalID = setInterval(() => {
-		loadOperations(() => buildGraph());
-	}, 5000);
-});
+onMounted(() => {});
 
 onUnmounted(() => {
 	clearInterval(intervalID);
@@ -208,7 +200,9 @@ watch(
 	() => props.modal.show,
 	() => {
 		if (props.modal.show) {
-			loadOperations(() => buildGraph(), true);
+			loadOperations(() => buildGraph());
+		} else {
+			clearInterval(intervalID);
 		}
 	}
 );
