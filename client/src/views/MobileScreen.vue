@@ -90,7 +90,6 @@ let controlItems = ref([
 				directed: false,
 				strength: "loose",
 			});
-			console.log(ressourceID);
 			rawGraph.value.links.push({
 				source: node.id,
 				target: graph.value.nodes.find((n) => n.shape.type == "emergency-action").id,
@@ -177,7 +176,11 @@ function availableRessources() {
 
 function selectRessource(ressource) {
 	ressourceID.value = ressource.node.id;
-	openOperation(ressource.operation.nodes[0].id);
+	if (ressource.operation.nodes[0].id == operationID.value) {
+		createGraph();
+	} else {
+		openOperation(ressource.operation.nodes[0].id);
+	}
 }
 
 function createGraph() {
@@ -260,7 +263,6 @@ function createGraph() {
 		for (let i in sourceNodes) {
 			const sn = sourceNodes[i];
 			if (sn.shape.type != "affected-person" && sn.shape.type != "affected-object") continue;
-			console.log(sn);
 			const sourceNode = {
 				id: sn.id,
 				shape: sn.shape,
