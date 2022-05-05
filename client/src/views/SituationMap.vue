@@ -249,7 +249,6 @@ function fetchAll(urls) {
 
 // graph functions
 function addNodeListeners() {
-	worldElementRef = document.querySelector('#world');
 	let nodes = graph.value.nodes;
 	let observer = new MutationObserver(mutations => {
 		nodeElementRefs = mutations
@@ -285,58 +284,18 @@ function addNodeListeners() {
 	});
 }
 
-function positionNodes() {
-	let nodes = graph.value.nodes;
-	nodes.forEach(node => {
-		let { location } = node.payload;
-		if (location) {
-			let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
-			if (node.id.endsWith('_anchor')) {
-				node.anchor = {
-					type: 'hard',
-					x: coordinates.x,
-					y: coordinates.y,
-				};
-			}
-		}
-	});
-	// graph.value.hasUpdate = true;
-}
-
 function scaleNodes(scale) {
 	graph.value.nodes.forEach(node => {
 		node.shape.scale = scale;
 	});
+	worldElementRef.style.strokeWidth = scale * 10;
 	graph.value.hasUpdate = true;
-	if (!linkElementRefs)  return;
-	linkElementRefs.forEach(ref => {
-		ref.childNodes[0].style.strokeWidth = scale * 10;
-		ref.childNodes[0].style.stroke = '#f00';
-	});
 }
 
 function postInitGraph() {
 	addNodeListeners();
-	positionNodes();
-	//
-	setTimeout(() => {
-		let nodes = graph.value.nodes;
-		nodes.forEach(node => {
-			let { location } = node.payload;
-			if (location) {
-				let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
-				if (!node.id.endsWith('_anchor')) {
-					node.x = nodes.find(n => n.id === node.id + '_anchor').x;
-					node.y = nodes.find(n => n.id === node.id + '_anchor').y;
-					node.vx = 0;
-					node.vy = 0;
-				}
-			}
-		});
-	}, 1000);
-
-	let initialScale = scaleFromZoom(currentZoom ? currentZoom : initialZoom);
-	scaleNodes(initialScale);
+	// let initialScale = scaleFromZoom(currentZoom ? currentZoom : initialZoom);
+	// scaleNodes(initialScale);
 }
 
 function initScenario(scenarioIndex) {
@@ -411,12 +370,14 @@ function initScenario(scenarioIndex) {
 }
 
 function convertOperations() {
+	worldElementRef = document.querySelector('#world');
 	graph.value.nodes = [];
 	graph.value.links = [];
 	for (let i in operations.value) {
 		const operation = operations.value[i];
 		const operationNode = operation.nodes.find((n) => n.shape.type == "operation");
 		if (!operationNode.payload.location) continue;
+		let coordinates = latLngToGraphlyCoordinates(parseLocation(operationNode.payload.location));
 
 		const anchorNode = {
 			id: operationNode.id + '_anchor',
@@ -425,6 +386,13 @@ function convertOperations() {
 				scale: scaleFromZoom(currentZoom),
 			},
 			payload: operationNode.payload,
+			anchor: {
+				type: 'hard',
+				x: coordinates.x,
+				y: coordinates.y,
+			},
+			x: coordinates.x,
+			y: coordinates.y,
 		}
 		graph.value.nodes.push(anchorNode);
 
@@ -436,6 +404,10 @@ function convertOperations() {
 			angle: 0,
 			distance: 15,
 		}
+		operationNode.x = coordinates.x;
+		operationNode.y = coordinates.y;
+		operationNode.vx = 0;
+		operationNode.vy = 0;
 		graph.value.nodes.push(operationNode);
 		graph.value.links.push({
 			source: operationNode.id,
@@ -609,6 +581,7 @@ header {
 	z-index: 400;
 }
 #buttons {
+	color: #fff;
 	display: flex;
 	justify-content: center;
 }
