@@ -447,6 +447,7 @@ export default {
 			bounds = map.getBounds();
 
 			/* Load OSM data and setup map */
+			// TODO: Point this to 'http://map:8080/tile/{z}/{x}/{y}.png'
 			tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				maxZoom: 18,
