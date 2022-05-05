@@ -4,4 +4,7 @@ dist
 dist-ssr
 *.local
 public/saveFiles/old
-docker-compose.yaml
+
+# Open street map files
+osm*
+*.osm.pbf
