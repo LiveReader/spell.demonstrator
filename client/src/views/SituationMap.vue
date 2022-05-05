@@ -58,7 +58,6 @@ import "leaflet/dist/leaflet.css";
 
 // TODO
 // - remember scenario after page reload
-// - fix: zooming while hovering over a graphly node the graphly zoom changes instead of the map zoom level
 // - partial update of the graph instead of full reload on any change (optimization, not necessary)
 
 // debug flags
@@ -155,8 +154,8 @@ let bounds;
 let maxBounds;
 let minZoom;
 let maxZoom;
-let initialZoom;
-var currentZoom;
+let initialZoom = 14;;
+let currentZoom = initialZoom;
 let layers = [];
 
 let svgDimensions;
@@ -173,7 +172,7 @@ svgDimensions = {
 }
 minZoom = 12;
 maxZoom = 18;
-initialZoom = 14;
+
 
 // Timeline
 let buttons = ref(scenarios.map(scenario => scenario.label));
@@ -268,6 +267,7 @@ function addNodeListeners() {
 				});
 				addNodeListener(node, 'dragstart');
 				addNodeListener(node, 'drag');
+				addNodeListener(node, 'wheel');
 				addNodeListener(node, 'pointerdown');
 				addNodeListener(node, 'dblclick', e => {
 					let graphlyNode = graph.value.nodes.find(n => n.id === node.id);
@@ -443,67 +443,10 @@ function convertOperations() {
 			type: "solid",
 			directed: false,
 			strength: "strong",
-		})
+		});
 	}
 	graph.value.hasUpdate = true;
 	postInitGraph();
-
-	// let nodes = []
-	// 			.concat(...arr.map(graph => graph.nodes))
-	// 			.filter(node => node.shape.type == 'operation' && node.payload.location)
-	// 		nodes.forEach((node, idx) => {
-	// 			node.id = `n${idx}`;
-	// 			node.ignoreLODs = true;
-	// 			let initialScale = scaleFromZoom(currentZoom);
-	// 			node.shape.scale = initialScale;
-	// 			node.shape.type = 'map-operation';
-	// 		});
-	// 		let nodeAnchors = nodes.map(node => {
-	// 			return {
-	// 				...node,
-	// 				id: node.id + "_anchor",
-	// 				shape: {
-	// 					...node.shape,
-	// 					type: 'map-operation-anchor'
-	// 				},
-	// 			};
-	// 		});
-	// 		nodes = nodes.map(node => {
-	// 			return {
-	// 				...node,
-	// 				shape: {
-	// 					...node.shape,
-	// 					type: 'map-operation'
-	// 				},
-	// 				satellite: {
-	// 					source: node.id + "_anchor",
-	// 					angle: 0,
-	// 					distance: 15
-	// 				}
-	// 			}
-	// 		})
-	// 		let links = nodes.map(node => {
-	// 			return {
-	// 				source: node.id,
-	// 				target: node.id + "_anchor",
-	// 				type: "solid",
-	// 				directed: false,
-	// 				strength: "strong"
-	// 			};
-	// 		});
-
-	// 		nodes = [].concat(nodes, nodeAnchors);
-	// 		console.log(nodes);
-	// 		graph.value = {
-	// 			hasUpdate: true,
-	// 		};
-	// 		graph.value = {
-	// 			nodes: nodes,
-	// 			links: links,
-	// 			hasUpdate: false,
-	// 		};
-	// 		console.log(graph);
-	// 		postInitGraph();
 }
 
 export default {
