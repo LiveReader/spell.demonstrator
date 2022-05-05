@@ -5,7 +5,7 @@ function loadOperation(id, graph, callback = () => {}) {
 	let prevID = "";
 	function load() {
 		if (id.value) {
-			fetch(`http://localhost:8080/operation/${id.value}`, {
+			fetch(`/api/operation/${id.value}`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
@@ -82,7 +82,7 @@ function putOperation(graph) {
 			strength: l.strength,
 		});
 	});
-	fetch(`http://localhost:8080/operation`, {
+	fetch(`/api/operation`, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",

@@ -94,7 +94,7 @@ const {
 const operations = ref([]);
 function loadOperations(callback = () => {}) {
 	function load() {
-		fetch("http://localhost:8080/operation/all", {
+		fetch("/api/operation/all", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -136,7 +136,7 @@ function selectScenario(index = scenarioSelection.value) {
 	scenarioSelection.value = index;
 	localStorage.setItem('initialScenario', index);
 	uiScenarios.value = scenarios[index];
-	fetch(`http://localhost:8080/scenario/${index}`)
+	fetch(`/api/scenario/${index}`)
 	initScenario(index);
 }
 

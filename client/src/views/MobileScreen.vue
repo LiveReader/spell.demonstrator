@@ -40,7 +40,7 @@ import NodeModal from "../components/NodeModal.vue";
 const operations = ref([]);
 const operationID = ref("");
 function loadOperations(callback = () => {}) {
-	fetch("http://localhost:8080/operation/all", {
+	fetch("/api/operation/all", {
 		method: "GET",
 		headers: {
 			"Content-Type": "application/json",

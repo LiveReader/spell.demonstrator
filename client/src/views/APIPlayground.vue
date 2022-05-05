@@ -202,7 +202,7 @@ const getOperationListRes = ref("");
 const getOperationListLoading = ref(false);
 function getOperationList() {
 	getOperationListLoading.value = true;
-	// fetch("http://localhost:8080/operations", {
+	// fetch("/api/operations", {
 	// 	method: "GET",
 	// 	headers: {
 	// 		"Content-Type": "application/json",

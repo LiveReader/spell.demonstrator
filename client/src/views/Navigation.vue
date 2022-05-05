@@ -22,7 +22,8 @@
 			<v-divider></v-divider>
 			<v-container>
 				<v-list density="compact" color="#00000000">
-					<v-list-item prepend-icon="mdi-database-remove" title="Reset" rounded="xl" @click="reset"> </v-list-item>
+					<v-list-item prepend-icon="mdi-database-remove" title="Reset" rounded="xl" @click="reset">
+					</v-list-item>
 					<v-list-item prepend-icon="mdi-reload" title="Reload" rounded="xl" @click="reload"> </v-list-item>
 					<v-switch
 						v-model="touchScreen"
@@ -91,7 +92,7 @@ function nav(item) {
 }
 
 function reset() {
-	fetch(`http://localhost:8080/scenario/reset`);
+	fetch(`/api/scenario/reset`);
 }
 function reload() {
 	window.location.reload();

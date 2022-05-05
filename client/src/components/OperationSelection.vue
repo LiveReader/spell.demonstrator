@@ -24,7 +24,7 @@ let intervalID = null;
 const operations = ref([]);
 function loadOperations(callback = () => {}) {
 	function load() {
-		fetch("http://localhost:8080/operation/all", {
+		fetch("/api/operation/all", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -115,7 +115,7 @@ function onClick(e, d) {
 	if (d.id == "newOperation") {
 		const operationID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 		const reporterID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-		fetch("http://localhost:8080/operation", {
+		fetch("/api/operation", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
