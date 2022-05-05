@@ -259,17 +259,29 @@ function addNodeListeners() {
 			.map(mutation => mutation.addedNodes[0]);
 		linkElementRefs.push(...lersToAdd);
 		nodeElementRefs
-			.forEach(node => {
-				addNodeListener(node, 'click',  e=>{
-					console.log(node.id);
-					selectedNodes.value = [node.id];
+			.forEach(nodeRef => {
+				addNodeListener(nodeRef, 'click',  e => {
+					let nodes = graph.value.nodes;
+					let nodeIdx = nodes.indexOf(nodes.find(node => node.id == nodeRef.id));
+					let newNode = {
+						...nodes[nodeIdx],
+					};
+					newNode.id = nodes[nodeIdx].id.slice(-1) + nodes[nodeIdx].id.slice(0, -1);
+					newNode.shape.type = newNode.shape.type == 'map-operation' ? 'operation' : 'map-operation';
+					nodes.splice(nodeIdx, 1);
+
+					graph.value.nodes.push(newNode);
+					graph.value.hasUpdate = true;
+					console.log(newNode);
+
+					selectedNodes.value = [nodeRef.id];
 				});
-				addNodeListener(node, 'dragstart');
-				addNodeListener(node, 'drag');
-				addNodeListener(node, 'wheel');
-				addNodeListener(node, 'pointerdown');
-				addNodeListener(node, 'dblclick', e => {
-					let graphlyNode = graph.value.nodes.find(n => n.id === node.id);
+				addNodeListener(nodeRef, 'dragstart');
+				addNodeListener(nodeRef, 'drag');
+				addNodeListener(nodeRef, 'wheel');
+				addNodeListener(nodeRef, 'pointerdown');
+				addNodeListener(nodeRef, 'dblclick', e => {
+					let graphlyNode = graph.value.nodes.find(n => n.id === nodeRef.id);
 					let { location } = graphlyNode.payload;
 					let coordinates = parseLocation(location);
 					console.log(location, coordinates);
