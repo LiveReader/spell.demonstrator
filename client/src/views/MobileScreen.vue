@@ -177,6 +177,9 @@ function availableRessources() {
 
 function selectRessource(ressource) {
 	ressourceID.value = ressource.node.id;
+	if(ressource.operation.nodes[0].id == operationID.value){
+		createGraph()
+	}
 	openOperation(ressource.operation.nodes[0].id);
 }
 
