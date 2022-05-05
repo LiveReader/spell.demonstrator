@@ -6,3 +6,8 @@ dist-ssr
 public/saveFiles/old
 public/templates/test.svg
 docker-compose.yaml
+
+# Open street map files
+osm*
+*.osm.pbf
+*.osm.pbf
