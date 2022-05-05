@@ -263,6 +263,7 @@ function addNodeListeners() {
 				addNodeListener(nodeRef, 'click',  e => {
 					let nodes = graph.value.nodes;
 					let nodeIdx = nodes.indexOf(nodes.find(node => node.id == nodeRef.id));
+					if (nodeIdx=== -1) return;
 					let newNode = {
 						...nodes[nodeIdx],
 					};
