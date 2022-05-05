@@ -412,7 +412,7 @@ function convertOperations() {
 		operationNode.satellite = {
 			source: operationNode.id + '_anchor',
 			angle: 0,
-			distance: 15,
+			distance: 10,
 		}
 		operationNode.x = coordinates.x;
 		operationNode.y = coordinates.y;
@@ -425,6 +425,7 @@ function convertOperations() {
 			type: "solid",
 			directed: false,
 			strength: "strong",
+			padding: -50,
 		});
 	}
 	graph.value.hasUpdate = true;
@@ -614,12 +615,19 @@ button {
 .v-input__details {
 	position: absolute;
 }
-.link,
-.edge {
-	stroke: black !important;
-	stroke-width: inherit !important;
-}
 .v-slider-thumb__surface {
 	background-color: #fff !important;
+}
+</style>
+
+<style lang="scss">
+#map {
+	.link {
+		.edge {
+			stroke: black !important;
+			stroke-width: inherit !important;
+			stroke-linecap: round !important;
+		}
+	}
 }
 </style>
