@@ -606,4 +606,7 @@ button {
 	stroke: black !important;
 	stroke-width: inherit !important;
 }
+.v-slider-thumb__surface {
+	background-color: #fff !important;
+}
 </style>
