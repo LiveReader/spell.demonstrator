@@ -136,11 +136,7 @@ function selectScenario(index = scenarioSelection.value) {
 	scenarioSelection.value = index;
 	localStorage.setItem('initialScenario', index);
 	uiScenarios.value = scenarios[index];
-	if (index == 0) {
-		fetch(`http://localhost:8080/scenario/reset`)
-	} else {
-		fetch(`http://localhost:8080/scenario/${index}`)
-	}
+	fetch(`http://localhost:8080/scenario/${index}`)
 	initScenario(index);
 }
 

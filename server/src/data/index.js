@@ -5,6 +5,7 @@ function getOperation(id) {
 }
 
 function addOperation(data) {
+	console.log(data);
 	if (!getOperation(data.nodes[0].id)) {
 		data.editDate = Date.now();
 		operations.push(data);
