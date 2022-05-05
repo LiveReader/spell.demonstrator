@@ -878,6 +878,7 @@ onMounted(() => {
 	// 		graph.value.hasUpdate = true;
 	// 		generateOpenQuestions();
 	// 	});
+	operationSelectionModal.value.show = true;
 	document.addEventListener("keydown", (e) => {
 		if (e.ctrlKey && e.key == "+") {
 			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale += 0.25));

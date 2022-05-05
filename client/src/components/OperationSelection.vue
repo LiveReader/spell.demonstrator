@@ -193,6 +193,7 @@ function onClick(e, d) {
 onMounted(() => {});
 
 onUnmounted(() => {
+	operations.value = [];
 	clearInterval(intervalID);
 });
 
@@ -202,6 +203,7 @@ watch(
 		if (props.modal.show) {
 			loadOperations(() => buildGraph());
 		} else {
+			operations.value = [];
 			clearInterval(intervalID);
 		}
 	}
