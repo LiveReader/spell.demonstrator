@@ -633,7 +633,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #situation-map-screen {
 	position: fixed;
 	top: 0;
