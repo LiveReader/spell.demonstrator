@@ -866,18 +866,18 @@ function randomRessourceSuggestion(source, i = 0) {
 }
 
 onMounted(() => {
-	fetch("/graphData.json")
-		.then((response) => response.json())
-		.then((data) => {
-			graph.value = data.graph;
-			for (let i = 0; i < graph.value.nodes.length; i++) {
-				const node = graph.value.nodes[i];
-				if (node.taxonomy) continue;
-				node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
-			}
-			graph.value.hasUpdate = true;
-			generateOpenQuestions();
-		});
+	// fetch("/graphData.json")
+	// 	.then((response) => response.json())
+	// 	.then((data) => {
+	// 		graph.value = data.graph;
+	// 		for (let i = 0; i < graph.value.nodes.length; i++) {
+	// 			const node = graph.value.nodes[i];
+	// 			if (node.taxonomy) continue;
+	// 			node.taxonomy = JSON.parse(JSON.stringify(taxonomyTemplate[node.shape?.type ?? ""] ?? {}));
+	// 		}
+	// 		graph.value.hasUpdate = true;
+	// 		generateOpenQuestions();
+	// 	});
 	document.addEventListener("keydown", (e) => {
 		if (e.ctrlKey && e.key == "+") {
 			selectedNodes.value.forEach((id) => (graph.value.nodes.find((d) => d.id == id).shape.scale += 0.25));

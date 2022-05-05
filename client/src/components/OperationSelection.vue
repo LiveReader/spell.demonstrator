@@ -15,7 +15,7 @@
 
 <script setup>
 import { defineProps, defineEmits, onMounted, onUnmounted, ref, watch } from "vue";
-import { taxonomy2payload } from "../data/operator/converter";
+import { taxonomyTemplate, generatePrefixedTaxonomy, parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import Graphly from "./Graphly.vue";
 
 const content = ref(null);
@@ -78,7 +78,27 @@ function buildGraph() {
 	const height = content.value?.$el?.offsetHeight ?? 0;
 	let x = -1;
 	let y = 0;
-	operations.value.forEach((operation, n) => {
+	let concatOperations = [...operations.value];
+	concatOperations.push({
+		nodes: [
+			{
+				id: "newOperation",
+				shape: {
+					type: "operation",
+					scale: 1,
+				},
+				payload: {
+					status: "",
+					label: "Neuer Einsatz",
+					location: "",
+					affected_persons: "",
+					affected_objects: "",
+					tags: [],
+				},
+			},
+		],
+	});
+	concatOperations.forEach((operation, n) => {
 		const operationNode = operation.nodes.find((n) => n.shape.type == "operation");
 		x = 320 * 3 * x + (y % 2 == 0 ? 320 * 1.5 : 0) + 320 > width ? 0 : x + 1;
 		y = x == 0 ? y + 1 : y;
@@ -95,8 +115,82 @@ function buildGraph() {
 }
 
 function onClick(e, d) {
-	props.modal.show = false;
+	if (d.id == "newOperation") {
+		const operationID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+		const reporterID = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+		fetch("http://localhost:8080/operation", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				nodes: [
+					{
+						id: operationID,
+						shape: {
+							type: "operation",
+							scale: 1,
+						},
+						anchor: {
+							type: "soft",
+							x: "0",
+							y: "0",
+						},
+						payload: {
+							status: "",
+							label: "",
+							location: "",
+							affected_persons: "",
+							affected_objects: "",
+							tags: [],
+						},
+						taxonomy: generatePrefixedTaxonomy(taxonomyTemplate["operation"]),
+					},
+					{
+						id: reporterID,
+						shape: {
+							type: "emergency-reporter",
+							scale: 1,
+						},
+						anchor: {
+							type: "soft",
+							x: "150",
+							y: "-150",
+						},
+						payload: {
+							name: {
+								first: "",
+								last: "",
+							},
+							pending: false,
+							location: "",
+							category: "",
+							label: "",
+							callback_number: "",
+						},
+						taxonomy: generatePrefixedTaxonomy(taxonomyTemplate["emergency-reporter"]),
+					},
+				],
+				links: [
+					{
+						source: reporterID,
+						target: operationID,
+						type: "solid",
+						directed: true,
+						strength: "weak",
+					},
+				],
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				emits("operationSelected", operationID);
+				props.modal.show = false;
+			});
+		return;
+	}
 	emits("operationSelected", d.id);
+	props.modal.show = false;
 }
 
 onMounted(() => {
