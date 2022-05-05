@@ -15,7 +15,6 @@ function loadOperation(id, graph, callback = () => {}) {
 				.then((data) => {
 					if (data.nodes[0].id == prevID && data.editDate <= graph.value.editDate) return;
 					prevID = data.nodes[0].id;
-					console.log(data);
 					graph.value = data;
 					for (let i = 0; i < graph.value.nodes.length; i++) {
 						const node = graph.value.nodes[i];
@@ -40,7 +39,6 @@ function putOperation(graph) {
 	for (let i in graph.value.nodes) {
 		const n = graph.value.nodes[i];
 		if (n.suggestion || n.shape.type == "close-button" || n.shape.type == "assessment") continue;
-		console.log(n.shape.type);
 		const node = {
 			id: n.id,
 			shape: {

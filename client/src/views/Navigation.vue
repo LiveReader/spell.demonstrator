@@ -106,9 +106,14 @@ const props = defineProps({
 		type: String,
 		default: "SPELL Demonstrator",
 	},
+	extended: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 onMounted(() => {
+	extendedDrawer.value = props.extended;
 	sidebarItems.forEach((i) => {
 		i.active = router.currentRoute.value.path === i.to;
 	});
@@ -119,6 +124,14 @@ watch(
 	() => touchScreen.value,
 	(val) => {
 		localStorage.setItem("touchScreen", val);
+	}
+);
+
+watch(
+	() => props.extended,
+	() => {
+		console.log(props.extended);
+		extendedDrawer.value = props.extended;
 	}
 );
 </script>

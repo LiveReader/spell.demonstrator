@@ -1,5 +1,5 @@
 <template>
-	<v-container ref="content" style="margin: 0; padding: 0; height: 100%; width: 100%">
+	<v-container ref="content" style="margin: 0; padding: 0; height: 100%; width: 100%; max-width: none">
 		<svg height="100%" width="100%"></svg>
 	</v-container>
 </template>
