@@ -4,12 +4,12 @@ function emergencyReporter(node) {
 	const tax = node.taxonomy;
 
 	let location = "";
-	if (tax.location.gps.value) {
-		location = tax.location.gps.value;
+	if (tax.location.city.value || tax.location.street.value) {
+		location = tax.location.city.value + ", " + tax.location.street.value;
 	} else if (tax.location.threewords.value) {
 		location = tax.location.threewords.value;
-	} else if (tax.location.city.value || tax.location.street.value) {
-		location = tax.location.city.value + ", " + tax.location.street.value;
+	} else if (tax.location.gps.value) {
+		location = tax.location.gps.value;
 	} else {
 		location = "";
 	}
