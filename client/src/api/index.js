@@ -14,12 +14,15 @@ function loadOperation(id, graph, callback = () => {}) {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data.nodes[0].id == prevID && data.editDate <= graph.value.editDate) return;
+					console.log(data);
 					prevID = data.nodes[0].id;
 					graph.value = data;
 					for (let i = 0; i < graph.value.nodes.length; i++) {
 						const node = graph.value.nodes[i];
-						node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
-						taxonomy2payload[node.shape.type](node, graph.value);
+						if (node.shape.type != "assessment" && node.shape.type != "close-button") {
+							node.taxonomy = parsePrefixedTaxonomy(node.taxonomy);
+							taxonomy2payload[node.shape.type](node, graph.value);
+						}
 					}
 					graph.value.hasUpdate = true;
 					callback();
@@ -38,7 +41,6 @@ function putOperation(graph) {
 	};
 	for (let i in graph.value.nodes) {
 		const n = graph.value.nodes[i];
-		if (n.suggestion || n.shape.type == "close-button" || n.shape.type == "assessment") continue;
 		const node = {
 			id: n.id,
 			shape: {
@@ -46,7 +48,10 @@ function putOperation(graph) {
 				scale: n.shape.scale,
 			},
 			payload: n.payload,
-			taxonomy: generatePrefixedTaxonomy(n.taxonomy),
+			taxonomy:
+				n.shape.type == "assessment" || n.shape.type == "close-button"
+					? {}
+					: generatePrefixedTaxonomy(n.taxonomy),
 			x: n.x || 0,
 			y: n.y || 0,
 		};

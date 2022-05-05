@@ -164,7 +164,7 @@ function availableRessources() {
 	operations.value.forEach((operation) => {
 		for (let i = 0; i < operation.nodes.length; i++) {
 			const node = operation.nodes[i];
-			if (node.shape.type == "emergency-ressource") {
+			if (node.shape.type == "emergency-ressource" && !node.suggestion) {
 				ressources.value.push({
 					operation: operation,
 					node: node,

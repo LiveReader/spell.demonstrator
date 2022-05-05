@@ -71,6 +71,7 @@ import { taxonomy2payload } from "../data/operator/converter/index";
 import { saveFiles } from "../data/operator/saveFiles/index";
 import converter from "../../converter.js";
 import { generateRessources } from "../../generator";
+import { ressourceIdentifier } from "../data/operator/random";
 import { loadOperation, putOperation } from "../api/index";
 
 import Navigation, { touchScreen } from "./Navigation.vue";
@@ -83,9 +84,6 @@ const operationID = ref("");
 function openOperation(id) {
 	operationID.value = id;
 	extendedNavigation.value = false;
-}
-function updateOperation() {
-	putOperation(graph);
 }
 
 let safefileCollapsed = ref(false);
@@ -377,6 +375,7 @@ let controlItems = ref([
 ]);
 
 function openOperationSelection() {
+	putOperation(graph);
 	operationSelectionModal.value.show = true;
 	extendedNavigation.value = false;
 }
@@ -795,6 +794,9 @@ function acceptSuggestion(suggestion) {
 	suggestion.callback(suggestion, source);
 	delete suggestion.callback;
 	graph.value.hasUpdate = true;
+	setTimeout(() => {
+		putOperation(graph);
+	}, 500);
 }
 
 function heartAttackSuggestion(source) {
@@ -842,7 +844,7 @@ function randomRessourceSuggestion(source, i = 0) {
 		taxonomy: JSON.parse(JSON.stringify(taxonomyTemplate["emergency-ressource"] ?? {})),
 	};
 	d.taxonomy.status.value = Math.random() > 0.5 ? "1" : "2";
-	d.taxonomy.identifier.value = "11/83-02";
+	d.taxonomy.identifier.value = ressourceIdentifier();
 	d.taxonomy.time.value = `bräuchte ca.${randomTime} min`;
 	d.taxonomy.alerted.value = "Nein";
 	addSuggestion(
