@@ -58,7 +58,6 @@ import "leaflet/dist/leaflet.css";
 
 // TODO
 // - remember scenario after page reload
-// - fix: zooming while hovering over a graphly node the graphly zoom changes instead of the map zoom level
 // - partial update of the graph instead of full reload on any change (optimization, not necessary)
 
 // debug flags
@@ -135,6 +134,7 @@ let scenarioList = ref([
 ])
 function selectScenario(index = scenarioSelection.value) {
 	scenarioSelection.value = index;
+	localStorage.setItem('initialScenario', index);
 	uiScenarios.value = scenarios[index];
 	if (index == 0) {
 		fetch(`http://localhost:8080/scenario/reset`)
@@ -155,8 +155,8 @@ let bounds;
 let maxBounds;
 let minZoom;
 let maxZoom;
-let initialZoom;
-var currentZoom;
+let initialZoom = 14;;
+let currentZoom = initialZoom;
 let layers = [];
 
 let svgDimensions;
@@ -173,7 +173,7 @@ svgDimensions = {
 }
 minZoom = 12;
 maxZoom = 18;
-initialZoom = 14;
+
 
 // Timeline
 let buttons = ref(scenarios.map(scenario => scenario.label));
@@ -250,7 +250,6 @@ function fetchAll(urls) {
 
 // graph functions
 function addNodeListeners() {
-	worldElementRef = document.querySelector('#world');
 	let nodes = graph.value.nodes;
 	let observer = new MutationObserver(mutations => {
 		nodeElementRefs = mutations
@@ -261,16 +260,29 @@ function addNodeListeners() {
 			.map(mutation => mutation.addedNodes[0]);
 		linkElementRefs.push(...lersToAdd);
 		nodeElementRefs
-			.forEach(node => {
-				addNodeListener(node, 'click',  e=>{
-					console.log(node.id);
-					selectedNodes.value = [node.id];
+			.forEach(nodeRef => {
+				addNodeListener(nodeRef, 'click',  e => {
+					let nodes = graph.value.nodes;
+					let nodeIdx = nodes.indexOf(nodes.find(node => node.id == nodeRef.id));
+					if (nodeIdx=== -1) return;
+					let newNode = {
+						...nodes[nodeIdx],
+					};
+					newNode.id = nodes[nodeIdx].id.slice(-1) + nodes[nodeIdx].id.slice(0, -1);
+					newNode.shape.type = newNode.shape.type == 'map-operation' ? 'operation' : 'map-operation';
+					nodes.splice(nodeIdx, 1);
+
+					graph.value.nodes.push(newNode);
+					graph.value.hasUpdate = true;
+
+					selectedNodes.value = [nodeRef.id];
 				});
-				addNodeListener(node, 'dragstart');
-				addNodeListener(node, 'drag');
-				addNodeListener(node, 'pointerdown');
-				addNodeListener(node, 'dblclick', e => {
-					let graphlyNode = graph.value.nodes.find(n => n.id === node.id);
+				addNodeListener(nodeRef, 'dragstart');
+				addNodeListener(nodeRef, 'drag');
+				addNodeListener(nodeRef, 'wheel');
+				addNodeListener(nodeRef, 'pointerdown');
+				addNodeListener(nodeRef, 'dblclick', e => {
+					let graphlyNode = graph.value.nodes.find(n => n.id === nodeRef.id);
 					let { location } = graphlyNode.payload;
 					let coordinates = parseLocation(location);
 					console.log(location, coordinates);
@@ -285,58 +297,18 @@ function addNodeListeners() {
 	});
 }
 
-function positionNodes() {
-	let nodes = graph.value.nodes;
-	nodes.forEach(node => {
-		let { location } = node.payload;
-		if (location) {
-			let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
-			if (node.id.endsWith('_anchor')) {
-				node.anchor = {
-					type: 'hard',
-					x: coordinates.x,
-					y: coordinates.y,
-				};
-			}
-		}
-	});
-	// graph.value.hasUpdate = true;
-}
-
 function scaleNodes(scale) {
 	graph.value.nodes.forEach(node => {
 		node.shape.scale = scale;
 	});
+	worldElementRef.style.strokeWidth = scale * 10;
 	graph.value.hasUpdate = true;
-	if (!linkElementRefs)  return;
-	linkElementRefs.forEach(ref => {
-		ref.childNodes[0].style.strokeWidth = scale * 10;
-		ref.childNodes[0].style.stroke = '#f00';
-	});
 }
 
 function postInitGraph() {
 	addNodeListeners();
-	positionNodes();
-	//
-	setTimeout(() => {
-		let nodes = graph.value.nodes;
-		nodes.forEach(node => {
-			let { location } = node.payload;
-			if (location) {
-				let coordinates = latLngToGraphlyCoordinates(parseLocation(location));
-				if (!node.id.endsWith('_anchor')) {
-					node.x = nodes.find(n => n.id === node.id + '_anchor').x;
-					node.y = nodes.find(n => n.id === node.id + '_anchor').y;
-					node.vx = 0;
-					node.vy = 0;
-				}
-			}
-		});
-	}, 1000);
-
-	let initialScale = scaleFromZoom(currentZoom ? currentZoom : initialZoom);
-	scaleNodes(initialScale);
+	// let initialScale = scaleFromZoom(currentZoom ? currentZoom : initialZoom);
+	// scaleNodes(initialScale);
 }
 
 function initScenario(scenarioIndex) {
@@ -411,12 +383,14 @@ function initScenario(scenarioIndex) {
 }
 
 function convertOperations() {
+	worldElementRef = document.querySelector('#world');
 	graph.value.nodes = [];
 	graph.value.links = [];
 	for (let i in operations.value) {
 		const operation = operations.value[i];
 		const operationNode = operation.nodes.find((n) => n.shape.type == "operation");
 		if (!operationNode.payload.location) continue;
+		let coordinates = latLngToGraphlyCoordinates(parseLocation(operationNode.payload.location));
 
 		const anchorNode = {
 			id: operationNode.id + '_anchor',
@@ -425,6 +399,13 @@ function convertOperations() {
 				scale: scaleFromZoom(currentZoom),
 			},
 			payload: operationNode.payload,
+			anchor: {
+				type: 'hard',
+				x: coordinates.x,
+				y: coordinates.y,
+			},
+			x: coordinates.x,
+			y: coordinates.y,
 		}
 		graph.value.nodes.push(anchorNode);
 
@@ -436,6 +417,10 @@ function convertOperations() {
 			angle: 0,
 			distance: 15,
 		}
+		operationNode.x = coordinates.x;
+		operationNode.y = coordinates.y;
+		operationNode.vx = 0;
+		operationNode.vy = 0;
 		graph.value.nodes.push(operationNode);
 		graph.value.links.push({
 			source: operationNode.id,
@@ -443,67 +428,10 @@ function convertOperations() {
 			type: "solid",
 			directed: false,
 			strength: "strong",
-		})
+		});
 	}
 	graph.value.hasUpdate = true;
 	postInitGraph();
-
-	// let nodes = []
-	// 			.concat(...arr.map(graph => graph.nodes))
-	// 			.filter(node => node.shape.type == 'operation' && node.payload.location)
-	// 		nodes.forEach((node, idx) => {
-	// 			node.id = `n${idx}`;
-	// 			node.ignoreLODs = true;
-	// 			let initialScale = scaleFromZoom(currentZoom);
-	// 			node.shape.scale = initialScale;
-	// 			node.shape.type = 'map-operation';
-	// 		});
-	// 		let nodeAnchors = nodes.map(node => {
-	// 			return {
-	// 				...node,
-	// 				id: node.id + "_anchor",
-	// 				shape: {
-	// 					...node.shape,
-	// 					type: 'map-operation-anchor'
-	// 				},
-	// 			};
-	// 		});
-	// 		nodes = nodes.map(node => {
-	// 			return {
-	// 				...node,
-	// 				shape: {
-	// 					...node.shape,
-	// 					type: 'map-operation'
-	// 				},
-	// 				satellite: {
-	// 					source: node.id + "_anchor",
-	// 					angle: 0,
-	// 					distance: 15
-	// 				}
-	// 			}
-	// 		})
-	// 		let links = nodes.map(node => {
-	// 			return {
-	// 				source: node.id,
-	// 				target: node.id + "_anchor",
-	// 				type: "solid",
-	// 				directed: false,
-	// 				strength: "strong"
-	// 			};
-	// 		});
-
-	// 		nodes = [].concat(nodes, nodeAnchors);
-	// 		console.log(nodes);
-	// 		graph.value = {
-	// 			hasUpdate: true,
-	// 		};
-	// 		graph.value = {
-	// 			nodes: nodes,
-	// 			links: links,
-	// 			hasUpdate: false,
-	// 		};
-	// 		console.log(graph);
-	// 		postInitGraph();
 }
 
 export default {
@@ -577,7 +505,9 @@ export default {
 				y: svgClientRect.height,
 			};
 
-			initScenario(0);
+			let initialScenario = localStorage.getItem('initialScenario');
+			initialScenario = initialScenario ? parseInt(initialScenario) : 0;
+			selectScenario(initialScenario);
 			loadOperations(() => convertOperations());
 		});
 	},
@@ -666,6 +596,7 @@ header {
 	z-index: 400;
 }
 #buttons {
+	color: #fff;
 	display: flex;
 	justify-content: center;
 }
@@ -689,5 +620,8 @@ button {
 .edge {
 	stroke: black !important;
 	stroke-width: inherit !important;
+}
+.v-slider-thumb__surface {
+	background-color: #fff !important;
 }
 </style>
