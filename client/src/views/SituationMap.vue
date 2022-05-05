@@ -134,6 +134,7 @@ let scenarioList = ref([
 ])
 function selectScenario(index = scenarioSelection.value) {
 	scenarioSelection.value = index;
+	localStorage.setItem('initialScenario', index);
 	uiScenarios.value = scenarios[index];
 	if (index == 0) {
 		fetch(`http://localhost:8080/scenario/reset`)
@@ -273,7 +274,6 @@ function addNodeListeners() {
 
 					graph.value.nodes.push(newNode);
 					graph.value.hasUpdate = true;
-					console.log(newNode);
 
 					selectedNodes.value = [nodeRef.id];
 				});
@@ -505,7 +505,9 @@ export default {
 				y: svgClientRect.height,
 			};
 
-			initScenario(0);
+			let initialScenario = localStorage.getItem('initialScenario');
+			initialScenario = initialScenario ? parseInt(initialScenario) : 0;
+			selectScenario(initialScenario);
 			loadOperations(() => convertOperations());
 		});
 	},
