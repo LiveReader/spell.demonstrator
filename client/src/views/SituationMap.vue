@@ -47,7 +47,7 @@
 <script lang="js">
 import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
-import { taxonomyTemplate } from "../data/operator/taxonomy/index";
+import { parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { LMap, LTileLayer} from "@vue-leaflet/vue-leaflet";
 import { latLngBounds, latLng } from "leaflet";
@@ -385,8 +385,9 @@ function convertOperations() {
 	for (let i in operations.value) {
 		const operation = operations.value[i];
 		const operationNode = operation.nodes.find((n) => n.shape.type == "operation");
-		if (!operationNode.payload.location) continue;
-		let coordinates = latLngToGraphlyCoordinates(parseLocation(operationNode.payload.location));
+		operationNode.taxonomy = parsePrefixedTaxonomy(operationNode.taxonomy);
+		if (!operationNode?.taxonomy?.location?.gps?.value) continue;
+		let coordinates = latLngToGraphlyCoordinates(parseLocation(operationNode.taxonomy.location.gps.value));
 
 		const anchorNode = {
 			id: operationNode.id + '_anchor',
