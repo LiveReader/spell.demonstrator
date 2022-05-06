@@ -447,7 +447,7 @@ export default {
 			/* Load OSM data and setup map */
 			// TODO: Point this to 'http://map:8080/tile/{z}/{x}/{y}.png'
 			// original: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' (needs wlan connection)
-			tileLayer = L.tileLayer('http://map:8080/tile/{z}/{x}/{y}.png', {
+			tileLayer = L.tileLayer(`http://${window.location.hostname}:8080/tile/{z}/{x}/{y}.png`, {
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				maxZoom: 18,
 				id: 'mapbox/streets-v11',
