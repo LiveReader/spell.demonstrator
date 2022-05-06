@@ -86,6 +86,9 @@ const sidebarItems = [
 
 function nav(item) {
 	router.push(item.to);
+	setTimeout(() => {
+		reload();
+	}, 100);
 	sidebarItems.forEach((i) => {
 		i.active = item.to === i.to;
 	});

@@ -1,20 +1,22 @@
 version: "3.4"
 
 services:
+
   app:
     container_name: spell-demonstrator
     build:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "3000:80"
+      - "8000:80"
     restart: unless-stopped
-  map:
-    image: overv/openstreetmap-tile-server
-    volumes:
-      - ./osm-data-rp:/data/database/
-      - ./osm-tiles:/data/tiles/
-    shm_size: "2gb"
-    ports:
-      - "8080:80"
-    command: "run"
+
+  # map:
+  #   image: overv/openstreetmap-tile-server
+  #   volumes:
+  #     - ./osm-data-rp:/data/database/
+  #     - ./osm-tiles:/data/tiles/
+  #   shm_size: "2gb"
+  #   ports:
+  #     - "8080:80"
+  #   command: "run"
