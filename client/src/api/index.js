@@ -14,7 +14,6 @@ function loadOperation(id, graph, callback = () => {}) {
 				.then((response) => response.json())
 				.then((data) => {
 					if (data.nodes[0].id == prevID && data.editDate <= graph.value.editDate) return;
-					console.log(data);
 					prevID = data.nodes[0].id;
 					graph.value = data;
 					for (let i = 0; i < graph.value.nodes.length; i++) {

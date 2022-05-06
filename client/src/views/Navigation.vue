@@ -138,7 +138,6 @@ watch(
 watch(
 	() => props.extended,
 	() => {
-		console.log(props.extended);
 		extendedDrawer.value = props.extended;
 	}
 );

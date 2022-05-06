@@ -16,6 +16,7 @@
 <script setup>
 import { defineProps, defineEmits, onMounted, onUnmounted, ref, watch } from "vue";
 import { taxonomyTemplate, generatePrefixedTaxonomy, parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
+import * as d3 from "d3";
 import Graphly from "./Graphly.vue";
 
 const content = ref(null);
@@ -109,6 +110,7 @@ function buildGraph() {
 		graph.value.nodes.push(operationNode);
 	});
 	graph.value.hasUpdate = true;
+	d3.select(content.value?.$el).select("#world").remove();
 }
 
 function onClick(e, d) {
