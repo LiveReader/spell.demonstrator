@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+public/saveFiles/old
+public/templates/test.svg
+docker-compose.yaml
+
+# Open street map files
+osm*
+*.osm.pbf
+*.osm.pbf
