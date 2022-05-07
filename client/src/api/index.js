@@ -87,7 +87,11 @@ function putOperation(graph) {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify(cpyGraph),
-	});
+	})
+		.then((data) => data.json())
+		.then((data) => {
+			graph.value.editDate = data.editDate;
+		});
 }
 
 export { loadOperation, putOperation };

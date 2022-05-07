@@ -18,8 +18,9 @@ router.post("/", (req, res) => {
 });
 
 router.put("/", (req, res) => {
-	updateOperation(req.body);
-	res.send(JSON.stringify(operations));
+	const editDate = Date.now();
+	updateOperation(req.body, editDate);
+	res.send(JSON.stringify({ editDate: editDate }));
 });
 
 router.delete("/:id", (req, res) => {
