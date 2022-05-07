@@ -6,7 +6,7 @@
 			"anchor": { "type": "soft", "x": "0", "y": "0" },
 			"payload": {
 				"status": "delayed",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "49.52240382312288, 8.398366194466462",
 				"affected_persons": 3,
 				"affected_objects": 0,

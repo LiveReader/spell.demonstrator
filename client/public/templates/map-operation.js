@@ -25,7 +25,7 @@ function operation(data, initialShape, changes, Template) {
 	// const tagCollection = addTagCollection();
 	const personsCount = addPersonsCount();
 	const objectsCount = addObjectsCount();
-	location.classed('hidden', true);
+	location.classed("hidden", true);
 	setState(content);
 
 	Shape.transform(shape, true, data.shape.scale * operation.shapeSize);
@@ -80,7 +80,7 @@ function operation(data, initialShape, changes, Template) {
 		const body = frame.select("#body");
 		const border = frame.select("#border");
 		const persons = frame.select("#persons");
-		const content = frame.select('#content');
+		const content = frame.select("#content");
 		persons.attr("stroke", "none");
 		const objects = frame.select("#objects");
 		objects.attr("stroke", "none");
@@ -101,7 +101,7 @@ function operation(data, initialShape, changes, Template) {
 		const bbox = Shape.getBBox(shape);
 		shape.select("g.label").remove();
 		const labelShape = TagShape(
-			data.payload?.label || " Operation ",
+			data.payload?.label || " Einsatz ",
 			TagStyle(
 				[240, 40],
 				[

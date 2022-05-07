@@ -260,11 +260,11 @@ function createGraph() {
 		if (!source.shape.type == "affected-person" && !source.shape.type == "affected-object") return;
 		const sourceLinks = rawGraph.value.links.filter((l) => l.target == source.id);
 		const sourceNodes = sourceLinks.map((l) => rawGraph.value.nodes.find((n) => n.id == l.source));
-		let ang = -120
-		let dist = 300
-		let min = -120
-		let max = -240
-		let dif = 60
+		let ang = -120;
+		let dist = 300;
+		let min = -120;
+		let max = -240;
+		let dif = 60;
 		for (let i in sourceNodes) {
 			const sn = sourceNodes[i];
 			if (sn.shape.type != "affected-person" && sn.shape.type != "affected-object") continue;
@@ -279,13 +279,13 @@ function createGraph() {
 				payload: sn.payload,
 				taxonomy: sn.taxonomy,
 			};
-			ang = ang - dif
-			if (ang < max){
-				dif = dif / 2
-				min = min - dif
-				max = max + dif
-				ang = min
-				dist = dist + 300
+			ang = ang - dif;
+			if (ang < max) {
+				dif = dif / 2;
+				min = min - dif;
+				max = max + dif;
+				ang = min;
+				dist = dist + 300;
 			}
 			graph.value.nodes.push(sourceNode);
 			graph.value.links.push({
@@ -298,7 +298,6 @@ function createGraph() {
 			});
 		}
 	});
-
 	graph.value.hasUpdate = true;
 }
 

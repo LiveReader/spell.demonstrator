@@ -134,7 +134,7 @@ function operation(data, initialShape, changes, Template) {
 		const bbox = Shape.getBBox(shape);
 		shape.select("g.label").remove();
 		const labelShape = TagShape(
-			data.payload?.label || " Operation ",
+			data.payload?.label || " Einsatz ",
 			TagStyle(
 				[240, 40],
 				[

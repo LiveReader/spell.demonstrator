@@ -225,7 +225,7 @@ const questionTemplates = [
 	{
 		node_type: NodeType.Operation,
 		priority: 996,
-		headline: (d) => d?.payload?.label ?? "Operation",
+		headline: (d) => d?.payload?.label ?? "Einsatz",
 		question_type: QuestionType.Number,
 		question: "Anzahl Betroffener",
 		description: "Wie viele Personen sind betroffen?",
