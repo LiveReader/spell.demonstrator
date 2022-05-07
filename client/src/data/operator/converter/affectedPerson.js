@@ -68,7 +68,7 @@ function setAssessment(node, graph) {
 				distance: 250,
 			},
 			payload: {
-				diagnosis: "Herzinfakt",
+				diagnosis: "Herzinfarkt",
 				assessment: "",
 			},
 		});

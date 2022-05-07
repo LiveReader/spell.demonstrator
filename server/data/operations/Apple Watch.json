@@ -1,1 +1,2416 @@
-{"nodes":[{"id":"5442b7cf-0527-46c7-82b8-cdc82f1941b1","shape":{"type":"operation","scale":1},"anchor":{"type":"soft","x":"0","y":"0"},"payload":{"status":"delayed","label":"Operation","location":"49.47657226095986, 8.457530056406792","affected_persons":1,"affected_objects":0,"tags":["Medizinisch","Unfall"]},"taxonomy":{"label":"Lage","id":"091ba2f2-a228-457c-8400-53e0e5a1ab2c","prefix":"op_","op_emergencyType":{"label":"Art des Notfalls","id":"9d20d465-653f-42bb-b512-b74d27d99ca5","prefix":"emtyp_","emtyp_medical":{"label":"Medizinisch","type":"selection","options":["Ja","Nein"],"size":60,"value":"Ja","id":"8f99b19e-7abb-4913-9e81-76102257f1c5"},"emtyp_psychological":{"label":"Psychosozial","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"e7ef03d2-0a72-4c22-9a52-cfe494817365"},"emtyp_accident":{"label":"Unfall","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"fa04f075-f2ec-4146-a6d8-8405e74881a0"},"emtyp_damageevent":{"label":"Schadensereignis","type":"selection","options":["Explusion","Gefahrgut","Emmisionen","Stromausfall","Technische Störung","Nuklearer Unfall","Ausfall: IT"],"size":20,"value":null,"id":"ff809864-f376-425f-ac9e-3fb1dc978f5c"},"emtyp_searchandrescue":{"label":"Suche und Rettung","type":"selection","options":["Höhlenunfall","Bergunfall","Flugunfall","vermisste Person","Gewässer","Wasserstraße","Forst","Gelände"],"size":20,"value":null,"id":"e07572f9-2040-45c6-8c14-bd8d303400fc"},"emtyp_environmentevent":{"label":"Umwelt-/Klima-Ereignis","type":"selection","options":["Sturm","Hagel","Starkregen","Flut / Hochwasser","Schnee / Eisglätte","Smock","Erdrutsch","Erdbeben","Tsunami","Vulkanausbruch"],"size":20,"value":null,"id":"43bd6adb-c048-403c-8f40-32e07333b4b5"},"emtyp_violence":{"label":"Gewalttat","type":"selection","options":["Häusliche Gewalt","Kindermisshandlung","Stumpfe Waffen","Stichwaffen","Schusswaffen","Massenauseinandersetzung"],"size":20,"value":null,"id":"b285693a-9bd7-46c5-8c66-8d110a4baffd"},"emtyp_threat":{"label":"Bedrohung, Gefährdung","type":"selection","options":["Terrorismus","Amokläufer","LebEL","Bombenentschärfung","Person in Zwangslage","Drohender Suizid","Polizeizugriff","Krieg"],"size":20,"value":null,"id":"c3591bb5-4c54-444c-8282-aa986f8391e3"},"emtyp_other":{"label":"Sonstiges","type":"selection","options":["Tierrettung","Tierseuche","Großveranstaltung","Notfallseelsorge","Fachanforderung"],"size":20,"value":null,"id":"9002576d-08d3-4d33-89c3-261da59aa9a6"},"emtyp_info":{"label":"Auskunftsersuche","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"d39bc815-8e5f-4d26-b4ad-a2c82a5d2914"},"emtyp_transport":{"label":"Transport","type":"selection","options":["Krankenfahrt","Krankentransport","Evakuierung","Intensivtransport"],"size":60,"value":null,"id":"e2b04fbb-9956-4346-896b-91e12f250ae1"},"emtyp_technicalsupport":{"label":"Technische Hilfeleistung","type":"selection","options":["Verkehrsunfall","Gefahrstoffaustritt","Unwetter","Gebäude"],"size":60,"value":null,"id":"aab67687-0dbd-41c3-aa7c-a21af658b321"}},"op_location":{"label":"Ort","id":"7ec2ce23-9f8b-4d8e-91c6-b8c3fd3c3fc1","prefix":"loc_","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":null,"id":"db99b10a-d137-4954-accc-62ab92b2b5e3"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":null,"id":"9a41c329-9376-4d5f-8d1b-32edc2e44434"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.47657226095986, 8.457530056406792","id":"b31b440b-8193-47b8-a780-0931be0990a5"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"8028a08e-bcf5-4f11-8b17-3529265176ba"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"d7966043-0930-4523-80c2-fccaf427d903"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"8d5f080a-7c5e-4aae-81a3-a54c0eec2551"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":null,"id":"8b8959db-a7ab-4f59-8bc7-bcdb91515ef0"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":null,"id":"ec5e3b64-16f6-4abb-bf7b-b0e45684694a"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"08fab9c6-5966-4e34-8c6d-275e05fdccb3"}},"op_affected":{"label":"Betroffene ...","id":"bb7e1fd7-a761-4937-afa2-fa2b72bbc0b1","prefix":"opaff_","opaff_persons":{"label":"Personen","type":"number","size":60,"value":1,"id":"ab48b3a8-2987-4a02-821b-e1de7adf4c00","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]},"opaff_objects":{"label":"Objekte","type":"number","size":40,"value":null,"id":"31236ba1-a0cf-43a5-82e1-5fc68b9c5605","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]}},"op_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":"Gelb","id":"e17c7aac-3051-4a4f-8fb9-2791c75cac22"}},"index":0,"x":0.09300311279292307,"y":0.1016747656783487,"vy":-0.000026999761483514438,"vx":-0.000024697001717569793,"fx":null,"fy":null,"isDragged":false},{"id":"e92d276a-253f-4b5d-ae96-53254dc6af95","shape":{"type":"emergency-reporter","scale":1},"payload":{"name":{"first":"Apple","last":"Watch"},"pending":false,"intervalID":"","location":"","category":"","label":"","callback_number":""},"taxonomy":{"label":"Meldend","id":"1ee66384-cc62-44d0-803c-4f7a475aab3a","prefix":"erep_","erep_name":{"label":"Name","id":"ca0db933-a939-40d8-bc18-ddc6250f40fd","prefix":"erepn_","erepn_first":{"label":"Vorname","type":"text","size":40,"value":"Apple","id":"de5983be-8b0c-4c7d-96a5-4385c97c2d53","options":["Hilda","Marc","Fred","Georgia","Terry","Nellie","Caroline","Milton","Fred","Katie","Franklin","Christopher","Ricardo","Nettie","Anthony","Corey","Aiden","Madge","Myrtle","Winifred"]},"erepn_last":{"label":"Nachname","type":"text","size":40,"value":"Watch","id":"0969ec52-f95f-4871-8ee3-c8c490e3eb2c","options":["Morrison","Austin","Rice","Allison","Wallace","Delgado","Howard","Cook","Ortega","Castillo","Newton","Day","Robinson","Lloyd","Sutton","Morrison","Lopez","Mason","Holt","Floyd"]}},"erep_phonenumber":{"label":"Telefonnummer","type":"text","options":[],"size":60,"value":null,"id":"b8882dc6-4886-4e03-abf5-01ab69db41cd"},"erep_emergencyrelation":{"label":"Notfallbezug","type":"selection","options":["selbst betroffen","ist dabei","sieht es","kein Kontakt"],"size":40,"value":"selbst betroffen","id":"8f410717-6d0a-41aa-8b4c-cc083b1b2bc3"},"erep_location":{"label":"Ort","id":"3d992d8d-693d-40fa-8e97-15269c9c431d","prefix":"loc_","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":null,"id":"fc01b972-36bf-4bd3-b401-27135a38c92e"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":null,"id":"bc62d159-18d3-47b6-8a12-2c3499a23761"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"d4128b75-644f-42d6-b048-661982b533fe"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":null,"id":"85b72c93-ba9d-4826-80c5-465762215684"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"f6d32660-3247-4109-9053-b4b5eb277ffa"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"0f9bda15-764b-4ea1-9c04-9a515d2e0078"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"031e8bf8-4abd-465c-bbee-e8219b73f6b3"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":null,"id":"b85cd836-0d5a-4711-9ca3-38e8265fbd96"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":null,"id":"1f5b8605-6870-4dd4-b507-f0cb4d6b1d87"}},"erep_reportertype":{"label":"Art","id":"a4e0a285-7a2a-4885-b05f-acfc7dbb5cdf","prefix":"ereprt_","ereprt_eCall":{"label":"eCall","id":"5252bc6d-0e47-49ca-a1b5-624bc8231f13","prefix":"eCall_","eCall_eCall":{"label":"eCall","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"08396bbe-d0e0-4420-b96c-279b0d297c4e"},"eCall_persons":{"label":"Anzahl Personen","type":"selection","options":["1","2","3","4","5","6","viele"],"size":20,"value":"1","id":"650f7c09-f6f9-4b7b-bbc1-7a217c2aede8"},"eCall_direction":{"label":"Richtung","type":"text","options":[],"size":20,"value":null,"id":"b3a41ea3-2466-461f-8364-297d45947b3b"},"eCall_position":{"label":"GPS-Position","type":"text","options":[],"size":20,"value":null,"id":"58a201fe-f3f8-4c68-9b57-ed411329fc0f"},"eCall_energytype":{"label":"Antriebsart","type":"selection","options":["Benzin","Diesel","Gas","Elektro"],"size":20,"value":null,"id":"1f9e1b0c-75bf-4686-a18f-cad9a017c9b9"},"eCall_releasedby":{"label":"Ausgelöst durch","type":"selection","options":["Manuell","Automatisch"],"size":20,"value":"Automatisch","id":"8803ead7-0e83-4aa4-ba3b-114452a6cfb7"},"eCall_fin":{"label":"FIN","type":"text","options":[],"size":20,"value":null,"id":"334d7b73-b257-43e7-a263-bd9eb4fbd277"},"eCall_airbagsreleased":{"label":"AirBags ausgelöst","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"0068fe0d-663f-4e8a-a7f4-881bb9b80375"},"eCall_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"ea073254-3419-4f4f-a8d2-d4ceab4f4c11"}},"ereprt_person":{"label":"Person","type":"selection","options":["Ja","Nein"],"size":60,"id":"be898b8a-a31b-4152-a497-ef7a530d54f7","value":null},"ereprt_bma":{"label":"BMA","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"091f0730-acde-429d-9863-f5f41f11ed4d"},"ereprt_applewatch":{"label":"Apple Watch","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"1353e0cc-7045-4039-8ad1-ef81ca93449e"},"ereprt_wearable":{"label":"Wearable","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"ebaf654d-83eb-40c9-b66d-2b65d2c1e753"}},"erep_organisation":{"label":"Organisation","id":"2bf10e5b-478b-4405-9940-36f195e623ac","prefix":"ereporg_","ereporg_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"d5fd94c2-d49d-49a0-9b8f-c5ea11bacf27"},"ereporg_practice":{"label":"Arztpraxis","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"84ea7129-a447-4b5e-a132-badce1a1d40f"},"ereporg_firedepartment":{"label":"Feuerwehr","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"22e27c02-0a20-4ab8-97d0-790730ff6e61"},"ereporg_externemergencycallcenter":{"label":"Externe Leitstelle","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"86f74063-f0ed-4b71-ad3a-bd73d7ab8ae0"},"ereporg_homeemergencycall":{"label":"Hausnotruf","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"42ee48d8-7779-478a-99df-1ea4c34050f9"}},"erep_competence":{"label":"Kompetenz","id":"88e22f77-22a4-4183-8040-d78f975366ad","prefix":"comp_","comp_medcompetence":{"label":"Med. Kompetenz","id":"359cb744-532b-48d9-9c31-d01eaa51f3f5","prefix":"medcomp_","medcomp_doctor":{"label":"Arzt","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"8c9ae99a-bb37-401f-a15b-840ab984e9ae"},"medcomp_supporter":{"label":"Hilfspersonal","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"d2bb3dbc-d994-42cb-95b4-73cb241ece0b"}},"comp_firecompetence":{"label":"Feuerw. Kompetenz","id":"6d9505c4-685e-49d2-94f6-5d482b176192","prefix":"firecomp_","firecomp_professional":{"label":"Professional","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"177c047a-4f3d-4db8-ae9b-efe6a2f2b7b3"},"firecomp_firstresponder":{"label":"Ersthelfer","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"9604951f-cbba-40ed-b1fd-6c170082976a"}},"comp_police":{"label":"Polizei","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"cddca37a-b011-403c-9740-d4d9d3374cc6"}},"erep_separatedrecallnumber":{"label":"gesonderte Rückrufnummer","type":"text","options":[],"size":20,"value":null,"id":"50c8f4e2-e7aa-4b8b-a199-b503ebff5c36"}},"x":204.35517294322366,"y":223.40934297982577,"index":1,"vy":-0.001209109082188979,"vx":-0.0011059864028169302,"fx":null,"fy":null,"isDragged":false},{"id":"85aa252f-ec66-4f33-a14b-bae5ed6f8a43","shape":{"type":"emergency-ressource","scale":1},"spawn":{"source":"node-0.03004279675255961","angle":90,"distance":500},"taxonomy":{"label":"Ressource","prefix":"res_","id":"f559c265-83c3-497a-9833-56cccab6786d","res_medtype":{"label":"Med-Typ","type":"selection","options":["KTW","RTW","NEF","ITW","HC-ITW","RTH","Tele-Arzt","116117","ZPK"],"size":20,"value":"KTW","id":"3bf5fd9c-4225-4f95-9d33-ae9823aa0c95"},"res_fdtype":{"label":"FD-Typ","type":"selection","options":["Löschfahrzeug","Truppenfahrzeug","Techn. Equip.","Leiterwage"],"size":20,"value":null,"id":"356fc05a-a474-46c6-adc8-f22afea7b961"},"res_identifier":{"label":"Kennung","type":"text","size":40,"value":"LU 01/85-04","id":"4087cd99-1c51-46bd-bbf0-4bb7cc6eae9d","options":["LU 01/83-01","LU 01/83-02","LU 01/83-03","LU 01/83-04","LU 01/85-01","LU 01/85-02","LU 01/85-03","LU 01/85-04","LU 01/85-05","LU 02/82-01","LU 11/82-01","LU 11/83-01","LU 11/83-02","LU 11/85-01","LU 11/85-02","LU 11/85-03","LU 22/82-01","LU 22/82-51","LU 21/83-04","LU 21/84-01","LU 21/85-01","LU 23/83-01","LU 23/84-01","LU 23/85-01","LU 31/82-01","LU 31/83-01","LU 31/83-02","LU 31/85-01","LU 31/85-02","LU 31/85-03","LU 31/85-04","LU 42/82-01","LU 42/83-01","LU 42/85-01","LU 42/85-02","LU 43/82-01","LU 43/83-01","LU 43/83-02","LU 43/85-01","LU 43/85-02","LU 43/85-03","LU 44/83-01","LU 44/85-01","LU 51/82-01","LU 51/83-01","LU 51/83-02","LU 51/85-01","LU 51/85-02","LU 51/85-03","LU 45/82-01","LU 46/83-01","LU 46/84-01"]},"res_status":{"label":"Status","type":"number","size":40,"value":"3","id":"70a0a483-f44d-49ca-9b36-85b379ebb433","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]},"res_alerted":{"label":"Alarmiert","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"fdc1b866-303e-4adc-b0c6-2706709d1f81"},"res_time":{"label":"Zeit","type":"text","size":40,"value":"braucht ca.11 min","id":"8cf95362-2335-451e-8acd-448aa7013c0d","options":["seit 1min","in 1min","braucht 1min","seit 3min","in 3min","braucht 3min","seit 5min","in 5min","braucht 5min","seit 8min","in 8min","braucht 8min","seit 12min","in 12min","braucht 12min"]},"res_location":{"label":"Standort","prefix":"loc_","id":"a4e3780a-ab3b-4e80-9587-92b9f9ccd758","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":null,"id":"da534044-d0c0-41ba-894b-27acae4a682d"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"f355511b-2a06-4ee0-bc78-fff47982211f"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":null,"id":"5995f8b8-7970-4a27-94e6-220c542786b7"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":null,"id":"71964680-9206-4f10-a5c2-5910efb26bf4"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":null,"id":"88a4d464-8f5d-4719-8704-8530f86483aa"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"930beffe-d63b-456d-9398-a15b3c7c426e"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.46461860953088, 8.44473359444935","id":"5c349e00-5023-4b15-b918-55f34949bef8"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"90a207d3-6d30-4cad-8439-f55bee4cd961"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"72c27790-f21b-485f-b40f-d2925429e52f"}}},"payload":{"status":"3","label":"LU 01/85-04","time_label":"braucht ca.11 min","alerted":true},"x":975.8189430152521,"y":-12.659977838945185,"index":2,"vy":0.3292949764625368,"vx":-0.20041788177854739,"fx":null,"fy":null,"isDragged":false},{"id":"node-0.7509800706118537","shape":{"type":"affected-person","scale":1},"spawn":{"source":"5442b7cf-0527-46c7-82b8-cdc82f1941b1","angle":180,"distance":800},"payload":{"status":"delayed","name":{"first":"Fritz","last":"Klose"},"sex":"Männlich","age":"57","accessibility":"","tags":["oft Bluthochdruck","Herzleiden"]},"taxonomy":{"label":"Betroffene Person","prefix":"ap_","ap_name":{"label":"Name","prefix":"apn_","apn_first":{"label":"Vorname","type":"text","options":["Hilda","Marc","Fred","Georgia","Terry","Nellie","Caroline","Milton","Fred","Katie","Franklin","Christopher","Ricardo","Nettie","Anthony","Corey","Aiden","Madge","Myrtle","Winifred"],"size":40,"value":"Fritz","id":"2a0c8106-eb8a-5508-9eab-0823756e0ad2"},"apn_last":{"label":"Nachname","type":"text","options":["Morrison","Austin","Rice","Allison","Wallace","Delgado","Howard","Cook","Ortega","Castillo","Newton","Day","Robinson","Lloyd","Sutton","Morrison","Lopez","Mason","Holt","Floyd"],"size":40,"value":"Klose","id":"85183058-65e5-5bad-9fe9-2ce6b599d540"}},"ap_age":{"label":"Alter","type":"number","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],"size":50,"value":"57","id":"eed739cc-cc8e-5b74-a392-0664e29ea371"},"ap_sex":{"label":"Geschlecht","type":"selection","options":["Männlich","Weiblich","Divers"],"size":50,"value":"Männlich","id":"eafe4079-8152-5e40-81a3-f01355268c31"},"ap_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":"Gelb","id":"f4cb36f3-d38e-5da7-943e-7df63b8682c9"},"ap_symptoms":{"label":"Symptome","prefix":"aps_","aps_pain":{"label":"Schmerzen","type":"selection","options":["Stark","Mittel","Schwach","Nein"],"size":80,"value":null,"id":"c8dbf714-5687-543b-96f1-9f31dfa0d2c9"},"aps_painlocation":{"label":"Schmerzbereich","type":"selection","options":["Brust","Kopf","Nacken","Schulter","Rücken","Arm","Hand","Becken","Wehen","Oberbauch","Hüfte","Nieren","Genital","Oberschenke","Knie","Unterschenkel","Fuß"],"size":40,"value":null,"id":"69fe596c-d999-5167-84ad-4eab83384c26"},"aps_painmovementrelated":{"label":"Schmerzen bewegungsabhängig","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"fd0bdfa4-6ea3-5a2d-89ad-32700283f2ba"},"aps_fiever":{"label":"Fieber","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"b5fd10b4-d238-5377-8b64-d06a94d6431a"},"aps_heatfeeling":{"label":"Hitzeempfinden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"0b17db83-014c-54e0-93f1-838902c7d75f"},"aps_coldfadeskin":{"label":"kalte fahle Haut","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"bd524bef-faff-5d6d-9235-fc44a3d2a1ea"},"aps_coldsweat":{"label":"kalter Schweiß","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"0eeb5bfa-7ff8-50f6-acd7-73a8f40beab8"},"aps_shivers":{"label":"Schüttelfrost","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e54e4b0a-6be7-5b5d-8f25-6f9e85f548eb"},"aps_bluelips":{"label":"blaue Lippen","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"7486be69-42e2-572c-a9fc-c89c769f06c3"}},"ap_condition":{"label":"Zustand","prefix":"apc_","apc_measurements":{"label":"Messwerte","prefix":"apmeas_","apmeas_bloodpressure":{"label":"RR","prefix":"apmeasbp_","apmeasbp_systolic":{"label":"Systolisch","type":"number","options":["60","80","100","120","140","180","220","260"],"size":30,"value":null,"id":"01da5536-2b93-5af0-b552-df088c2ccec5"},"apmeasbp_diastolic":{"label":"Diastolisch","type":"number","options":["40","60","80","100","120","140","160"],"size":30,"value":null,"id":"04eb3bc0-b0e5-57ce-a32d-de9d163cc7d8"}},"apmeas_heartfailure":{"label":"HF","type":"number","options":["30","40","60","70","80","90","100","120","140","160","200"],"size":30,"value":null,"id":"414a7ce2-11f0-5d7e-a881-12f74dfd2fbc"},"apmeas_bloodglucosevalue":{"label":"BZ","type":"number","options":["30","60","80","120","140","200"],"size":30,"value":null,"id":"a59fee62-8474-5bd3-a153-cc13ae3db9f4"},"apmeas_breathingrate":{"label":"AF","type":"number","options":["0","5","8","10","12","15","20","30"],"size":30,"value":null,"id":"9e33c4b7-6e2d-5e9f-978a-a3d653f7762a"},"apmeas_oxygensaturation":{"label":"SpO2","type":"number","options":["60%","80%","90%","95%","99%"],"size":30,"value":null,"id":"a56304ce-7789-56ca-8054-6b8654c8ab7a"},"apmeas_bodytemperature":{"label":"Temp","type":"number","options":["36°C","37°C","38°C","39°C","40°C","41°C"],"size":30,"value":null,"id":"9e89fbfb-069a-56bf-8d28-76baade06223"},"apmeas_ecg":{"label":"EKG","type":"selection","options":["STEMI","Sinusrhythmus","Kammerflimmern","Asystolie","Absolute Arrythmie","AV-Block","Tachykardie"],"size":30,"value":null,"id":"357f382c-bffa-521f-a564-d6172c0ddf69"},"apmeas_breathing":{"label":"Atmung","type":"selection","options":["unauffällig","Stridor","Dyspnoe","Zyanose","Apnoe","Beatmung"],"size":30,"value":null,"id":"e35cc145-15f5-5fc3-a8fb-268a1221a11e"}},"apc_initialneurologicalfindings":{"label":"Erstbefund Neurologie","prefix":"apneuro_","apneuro_glasgowcomascale":{"label":"GCS","prefix":"apneurogcs_","apneurogcs_eyes":{"label":"Augen öffnen","type":"selection","options":["keine Reaktion (1)","auf Schmerzreiz (2)","auf Aufforderung (3)","spontan (4)"],"size":30,"value":null,"id":"864a8387-6d1b-596e-b3d7-ddf761794471"},"apneurogcs_verbal":{"label":"Verbal","type":"selection","options":["keine Reaktion (1)","unverständliche Laute (2)","einzelne Wörter (3)","verwirrt (4)","orientiert (5)"],"size":30,"value":null,"id":"2729dadf-b605-516d-b65b-cef4abe5a838"},"apneurogcs_motor":{"label":"Motor","type":"selection","options":["keine Reaktion (1)","Strecksynergismen (2)","Beugesynergismen (3)","auf Schmerzreiz ungezielt (4)","auf Schmerzreiz gezielt (5)","auf Aufforderung (6)"],"size":30,"value":null,"id":"d7620e7a-ef46-54a5-856e-053ff2e79ece"}},"apneuro_glasgowcomascalevalue":{"label":"GCS Wert","type":"number","options":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],"size":30,"value":0,"id":"9ebee19c-b2ef-5e2c-af18-122916b5eb8d"}},"apc_vitalcondition":{"label":"Vitalwerte","prefix":"apcvc_","apcvc_pulse":{"label":"Puls","type":"selection","options":["Ja","Nein","unbekannt"],"size":100,"value":null,"id":"9d2c4094-f4ac-5776-9988-c0a4a4939d8e"},"apcvc_breath":{"label":"Atmung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":100,"value":null,"id":"1caa4f5d-063f-584e-bb6b-ef5a94c9c2b3"},"apcvc_breathmovement":{"label":"Atembewegung","type":"selection","options":["Ja","Nein!","unbekannt"],"size":40,"value":null,"id":"78f2d13c-6f67-575f-bec3-809937037a7e"},"apcvc_breathproblem":{"label":"Atemstörung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":40,"value":null,"id":"f328cf78-b4e4-5456-8f6b-2b64d6ddb402"},"apcvc_consciousness":{"label":"bei Bewusstsein","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"2c8ba825-94d3-5a0e-bfad-5c1ad49d37eb"},"apcvc_unconscioussince":{"label":"bewusstlos seit","type":"selection","options":["gerade","Stunden","unbekannt"],"size":40,"value":null,"id":"8bb517e6-1822-5250-87a6-6a3b26725ff1"}},"apc_physicalcondition":{"label":"Vorgeschichte","prefix":"apcpc_","apcpc_diabetes":{"label":"Diabetes","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"1ea10387-b3aa-5aa5-90ae-ceed4618c5fa"},"apcpc_bloodstream":{"label":"Kreislaufprobleme","type":"selection","options":["Stark","Leicht","Nein","Unbekannt"],"size":60,"value":null,"id":"74dd1198-2d67-5a97-84fd-6d94b9655c11"},"apcpc_dizziness":{"label":"Schwindel","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"69d66626-c18d-50a0-96c2-59b6fdbd3d1d"},"apcpc_pregnant":{"label":"Schwanger","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"0d9d74ed-b538-57d7-a9b5-859840512cdd"},"apcpc_wheelchair":{"label":"Rollstuhl","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"0e01270e-3445-5619-af12-751be8a4e73d"},"apcpc_visuallyimpared":{"label":"Blind/Sehbehindert","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"1863eae6-9331-5009-a963-7b7cb32965f4"},"apcpc_oftenhypertension":{"label":"oft Bluthochdruck","type":"selection","options":["Ja","Nein"],"size":40,"value":"Ja","id":"90205787-4058-5363-b8d5-de6888a5afb6"},"apcpc_oftencholesterol":{"label":"oft hohe Cholesterinwerte","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a2085d0e-c600-5d5d-86f5-51453a6167af"},"apcpc_hearthsuffering":{"label":"Herzleiden","type":"selection","options":["Ja","Nein"],"size":40,"value":"Ja","id":"f225c624-dd7f-5542-ba26-f6d509613417"},"apcpc_infection":{"label":"Infektion","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"bc13c5a0-b5ee-5374-a66a-05b3a6830947"},"apcpc_infectionsince":{"label":"Infektion seit","type":"selection","options":["Stunden","Tage","unbekannt"],"size":40,"value":null,"id":"d9cf160a-abf5-5868-a8a8-5aac3b00e5ad"},"apcpc_infectioncovid":{"label":"Covid","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"bf842150-6416-5cce-bddc-336d65e49511"}},"apc_mentalcondition":{"label":"Mental","prefix":"apcmc_","apcmc_fear":{"label":"Angst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"5b129402-47b6-5050-b152-1b8ea4697db1"},"apcmc_threaten":{"label":"Bedrohung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"787401bc-2197-5ec6-9ab0-86d6037556ac"},"apcmc_weakness":{"label":"Schwächegefühl","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"c93a0e42-60ec-54f3-b903-f2148c7c4d51"},"apcmc_stress":{"label":"Stress","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f4aa5d36-1fab-51c5-b46d-40d8d350ef02"}}},"ap_accessibility":{"label":"Zugänglichkeit","prefix":"apa_","apa_free":{"label":"Frei Zugänglich","type":"selection","options":["Ja","Nein"],"size":100,"value":null,"id":"8096511e-e581-58b3-9c49-da51991d7ca3"},"apa_confined":{"label":"Eingeschlossen","type":"selection","options":["Nein","in Wohnung","in PKW"],"size":40,"value":null,"id":"33784677-230b-5a52-a565-281330b93654"},"apa_clamped":{"label":"Eingeklemmt","type":"selection","options":["Nein","in PKW","in Maschine"],"size":40,"value":null,"id":"be9c4b65-b8be-5ae9-b905-a5635cbaad5d"},"apa_exposed":{"label":"Exponierte Lage","type":"selection","options":["Nein","Höhe","Tiefe"],"size":40,"value":null,"id":"1640567e-4b53-5de7-b5e3-5b9a1e9858b1"},"apa_water":{"label":"im Wasser","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"b69cfdcb-ebe0-582c-a114-6be6092a9c80"},"apa_offroad":{"label":"im Gelände","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"4bbb5e27-d580-5cac-bf49-2f67bc64dd57"},"apa_missed":{"label":"Vermisst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"424a18a8-bbd4-5854-abaf-fca138c853ea"},"apa_danger":{"label":"Gefahrenbereich","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"53655e51-ff5f-5f23-99e0-258658583d01"}},"ap_guesseddiagnosis":{"label":"Verdachtsdiagnose","prefix":"apgd_","apgd_centralnervoussystem":{"label":"ZNS","prefix":"apcns_","apcns_stroke":{"label":"Schlaganfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"8957158d-bb44-5623-8353-19d1465cd4a1"},"apcns_seizure":{"label":"Krampfanfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"26a36f42-7cfc-541e-96f2-6b6b4a7a35aa"},"apcns_meningitis":{"label":"Meningitis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d5bfcbcf-e794-5a18-858c-1d7dd01025f3"},"apcns_syncope":{"label":"Synkope","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"20f6c43f-3deb-52d5-b7f8-2b0340fa1a00"}},"apgd_cardiovascular":{"label":"Herz-Kreislauf","prefix":"apcardi_","apcardi_heartattack":{"label":"Herzinfakt","type":"selection","options":["Ausgeschlossen","Unwahrscheinlich","Möglich","Wahrscheinlich","Sicher"],"size":80,"value":null,"id":"018d751d-b779-55dd-a2d7-49dfd581255e"},"apcardi_stemi":{"label":"STEMI","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"b06e4000-5fb9-5141-ae6b-7777dffdc7a3"},"apcardi_arrhythmia":{"label":"Rhythmusstörung","type":"selection","options":["tachykard","bradykard"],"size":40,"value":null,"id":"75433a36-43de-59c6-9332-6156568eb6ef"},"apcardi_pulmonaryembolism":{"label":"Lungenembolie","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"2b7ad6b4-2f7d-540a-9993-dfde2021ec1c"},"apcardi_hyperthensiveemergency":{"label":"Hyperthensiver Notfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"c0fdd979-a500-54ea-9a6b-7c30e6b335f0"},"apcardi_pacemaker":{"label":"Schrittmacher","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a9e408f2-1fb1-5d36-855d-811c227f56c7"}},"apgd_breathing":{"label":"Atmung","prefix":"apbreat_","apbreat_asthma":{"label":"Asthma","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"25f4ff02-eebd-5d55-ac22-c008e02b0b8b"},"apbreat_copd":{"label":"COPD","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"591615df-351c-5392-ac44-f9cea3f6b383"},"apbreat_pneumonie":{"label":"Pneumonie/ Bronchitis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"59019568-29c6-52a2-b1a8-189cd685d5e5"},"apbreat_aspiration":{"label":"Aspiration","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e872de9d-4bc7-55ab-9719-a6e306f4a684"}}}},"x":14.953779177382094,"y":801.3153870049496,"index":3,"vy":0.0006205198899951441,"vx":-0.000794738713442647,"fx":null,"fy":null,"anchor":{"type":"soft","x":1.1112971131424558,"y":802.2023603586318},"isDragged":false},{"id":"node-0.4551778067621777","shape":{"type":"emergency-action","scale":1},"spawn":{"source":"node-0.7509800706118537","angle":90,"distance":500},"payload":{"category":"ambulance","status":"in-progress","label":"Behandlung","priority":"","tags":[]},"taxonomy":{"label":"Maßnahme","prefix":"proc_","proc_status":{"label":"Status","type":"selection","options":["Geplant","Laufend","Abgeschlossen"],"size":50,"value":"Laufend","id":"1a0a4814-5c24-51db-89c4-edcec6f4cda5"},"proc_actiontype":{"label":"Art der Aktion","prefix":"procmedacttyp_","procmedacttyp_firefighting":{"label":"Brandbekämpfung","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"0f28d35a-f91d-5388-8b79-583d05b613a8"},"procmedacttyp_transport":{"label":"Transport","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"030b839c-2ae5-52f3-b93b-a0831994c61c"},"procmedacttyp_rescue":{"label":"Behandlung","type":"selection","options":["Ja","Nein"],"size":60,"value":"Ja","id":"ba743a60-2b9f-5c97-834e-568a0586383c"},"procmedacttyp_extrication":{"label":"Befreiung, Bergen","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"6653a5ba-a939-5ea6-9f14-95660718857b"},"procmedacttyp_protection":{"label":"Schützen","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"d8dd8864-5cb3-52ab-a45b-1d6dd0515eeb"}},"proc_medical":{"label":"Medizinisch","prefix":"procmed_","procmed_treatment":{"label":"Behandlung","prefix":"procmedtreat_","procmedtreat_medication":{"label":"Medikation","prefix":"procmedmed_","procmedmed_accesses":{"label":"Zugänge","prefix":"procmedmedacc_","procmedmedacc_peripheralaccess":{"label":"Peripherer Zugang","prefix":"procmedmedaccperi_","procmedmedaccperi_location":{"label":"Ort","type":"selection","options":["Handrücken (rete dorsale manus)","lateraler Arm (V. cephalica)","medialer Arm (V. basilica)","Hals (V. jugularis externa)","Fußrücken (rete dorsale pedes)"],"size":40,"value":null,"id":"ad237a20-e673-5f54-90f4-eeab9e86b915"},"procmedmedaccperi_scale":{"label":"Größe (Gauge)","type":"selection","options":["24G gelb","22G blau","20G rosa","18G grün","17G weiß","16G grau","14G orange"],"size":40,"value":null,"id":"c6f61fb3-5f54-5068-8fe2-6f03b6732eee"},"procmedmedaccperi_quantity":{"label":"Anzahl","type":"number","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],"size":40,"value":null,"id":"e9af7793-5907-504e-b779-d1c4c3f75c58"}},"procmedmedacc_intraosseouspuncture":{"label":"Intraossäre Punktion","prefix":"procmedmedaccintr_","procmedmedaccintr_location":{"label":"Ort","type":"selection","options":["Tibia","Humerus","Femur"],"size":40,"value":null,"id":"48ab634f-7267-5afe-8321-2086e7d6308b"},"procmedmedaccintr_type":{"label":"Art","type":"selection","options":["15mm (rot)","25mm (blau)","45mm (gelb)"],"size":40,"value":null,"id":"327a5ffe-9ecf-572b-ac53-d9eeb050448c"},"procmedmedaccintr_quantity":{"label":"Anzahl","type":"number","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],"size":40,"value":null,"id":"d58c60a9-98b6-56c1-9ee2-ed19b7dbdc25"}}},"procmedmed_medicines":{"label":"Medikamente","prefix":"procmedmedmed_","procmedmedmed_analgesics":{"label":"Analgetika","type":"selection","options":["Dipidolor (Piritramid)","Fentanyl","Tramal","Buscopan"],"size":40,"value":null,"id":"f4a10018-3e71-5e7f-b03f-e3dd75eddecb"},"procmedmedmed_antiarrhythmics":{"label":"Antiarrhythmika","type":"selection","options":["Beloc (Metropolol)","Gilurythmal (Ajmalin)","Adrekar (Adenosin)"],"size":40,"value":null,"id":"b7d4d25f-643d-582c-aadc-71117bcb1d2a"},"procmedmedmed_antiemetics":{"label":"Antiemetika","type":"selection","options":["Vomex A","Paspertin (MCP)"],"size":40,"value":null,"id":"2793b163-19cd-53fc-9859-996badb74de7"},"procmedmedmed_nacotica":{"label":"Nakotika","type":"selection","options":["Etomidat","Trapanal","Ketanest"],"size":40,"value":null,"id":"3e5a9124-f863-5460-aa5e-1d1f34925afe"},"procmedmedmed_catecholamines":{"label":"Katecholamine","type":"selection","options":["Alupent","Arterenol","Dopamin","Dobutamin","Suprarenin"],"size":40,"value":null,"id":"08302539-b611-53c7-9e5a-6c98e7d2061c"}}},"procmedtreat_other":{"label":"Sonstiges","prefix":"procmedother_","procmedother_specialstorage":{"label":"Spezielle Lagerung","type":"selection","options":["Flach","Schocklage","Seitenlage","Oberkörper erhöht"],"size":40,"value":null,"id":"66231774-4554-5e53-8d46-0821d1acd137"},"procmedother_cooling":{"label":"Kühlung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f2f1e2ac-af18-5286-b226-a09662f0a320"},"procmedother_immobilization":{"label":"Immobilisation","type":"selection","options":["Vakuummatratze","Spineboard","Zervikalstütze"],"size":40,"value":null,"id":"742b001f-082c-593c-a2d1-5979f59e11ba"}},"procmedtreat_reanimation":{"label":"Reanimation","prefix":"procmedrean_","procmedrean_hlw":{"label":"HLW","prefix":"procmedreanhlw_","procmedreanhlw_duration":{"label":"Dauer","type":"number","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],"size":40,"value":null,"id":"e7b34897-a6c5-580e-b399-96016196bf16"},"procmedreanhlw_firstaiderresuscitation":{"label":"Ersthelferreanimation","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"812efb17-1493-548d-8196-c2451c99b4c6"},"procmedreanhlw_guidedtelephoneresuscitation":{"label":"Angeleitete Telefonreanimation","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"3855bf7e-1c39-5b61-b2fd-0f05633b13d0"}},"procmedrean_defibrillation":{"label":"Defibrillation","prefix":"procmedreandef_","procmedreandef_defibrillation1":{"label":"1. Defibrillation","prefix":"procmedreandef1_","procmedreandef1_time":{"label":"Zeit","type":"number","options":["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30","00:00"],"size":40,"value":null,"id":"eb5ff031-b559-5f19-bbf4-46d2316c22e3"},"procmedreandef1_strength":{"label":"Stärke","type":"selection","options":["120J","150J","200J","250J","300J"],"size":40,"value":null,"id":"b717a0e5-abdf-5b5b-a7c8-6fe05d66845b"}},"procmedreandef_defibrillation2":{"label":"2. Defibrillation","prefix":"procmedreandef2_","procmedreandef2_time":{"label":"Zeit","type":"number","options":["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30","00:00"],"size":40,"value":null,"id":"7138c41f-bf6a-5981-a460-776cd9be2d34"},"procmedreandef2_strength":{"label":"Stärke","type":"selection","options":["120J","150J","200J","250J","300J"],"size":40,"value":null,"id":"3d557eb3-ce15-5cc3-8a5f-af4f10bcefc1"}},"procmedreandef_defibrillation3":{"label":"3. Defibrillation","prefix":"procmedreandef3_","procmedreandef3_time":{"label":"Zeit","type":"number","options":["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30","00:00"],"size":40,"value":null,"id":"33a1c4f1-384b-54fb-930c-a4a1e9acb94d"},"procmedreandef3_strength":{"label":"Stärke","type":"selection","options":["120J","150J","200J","250J","300J"],"size":40,"value":null,"id":"d3263a5a-0b85-5b6e-87fd-031b2c8d4508"}}}},"procmedtreat_breathing":{"label":"Atmung","prefix":"procmedbreat_","procmedbreat_ventilation":{"label":"Beatmung","prefix":"procmedbreatvent_","procmedbreatvent_manual":{"label":"Manuell","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"c81ec294-ef1b-59e7-a474-96f9983519f5"},"procmedbreatvent_machine":{"label":"Maschinell","prefix":"procmedbreatventmach_","procmedbreatventmach_type":{"label":"Typ","type":"selection","options":["Kontrolliert","Assistiert","NIV"],"size":40,"value":null,"id":"e28767de-6ca0-5c6c-a0bf-0e5c71b36d18"},"procmedbreatventmach_parameter":{"label":"Parameter","prefix":"procmedbreatventmachpar_","procmedbreatventmachpar_fio2":{"label":"FiO2","type":"number","options":["40%","60%","80%","100%"],"size":40,"value":null,"id":"bc2e484a-bfa3-5d83-89d2-d17fcb7f1978"},"procmedbreatventmachpar_af":{"label":"AF","type":"number","options":["10/min","12/min","14/min","20/min","40/min","60/min"],"size":40,"value":null,"id":"a633c7dc-9f63-5f67-8501-9d86d830277b"},"procmedbreatventmachpar_zv":{"label":"ZV","type":"number","options":["300ml","350ml","400ml","450ml","500ml"],"size":40,"value":null,"id":"7fc6dd81-cffd-54ce-8e7a-10e885a53616"},"procmedbreatventmachpar_peep":{"label":"PEEP","type":"number","options":["3mbar","4mbar","5mbar","6mbar"],"size":40,"value":null,"id":"238fd5be-ea4a-5eaf-ae5d-71721b87e664"},"procmedbreatventmachpar_pmax":{"label":"Pmax","type":"number","options":["20mbar","25mbar","30mbar"],"size":40,"value":null,"id":"60c0bd7a-46bd-5c74-b7cc-d37676a10c94"}}}},"procmedbreat_airway":{"label":"Atemweg","prefix":"procmedbreatair_","procmedbreatair_oxygensupply":{"label":"Sauerstoffgabe","type":"number","options":["2L","4L","6L","8L","10L","12L"],"size":40,"value":null,"id":"994eaf3e-5b5f-5284-94f6-269938f29966"},"procmedbreatair_cleartheairways":{"label":"Freimachen der Atemwege","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"abe17331-2e11-5e7a-8cdd-b39f20413941"},"procmedbreatair_maskbagresuscitation":{"label":"Masken-Beutel-Beatmung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d7e1e95a-878b-5276-9bc8-27a40f383098"},"procmedbreatair_endotrachealintubation":{"label":"Endotracheale Intubation","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"ede4dbc5-a798-5dbc-b129-5a853843b629"},"procmedbreatair_videolaryngoscope":{"label":"Videolaryngoskop","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"11797c90-2c16-5de3-80de-083933833008"}}}},"procmed_transport":{"label":"Transport","prefix":"procmedtransp_","procmedtransp_laying":{"label":"liegend","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"7e71dedf-a083-503d-9736-4b3003c14561"},"procmedtransp_sitting":{"label":"sitzend","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"b634e217-c7c1-57ae-836d-347a7b494d85"},"procmedtransp_transporttarget":{"label":"Transportziel","type":"text","options":["Uniklinikum Ludwigshafen","BG Klinikum Ludwigshafen","Krankenhaus Zum Guten Hirten Ludwigshafen"],"size":60,"value":null,"id":"6cd7d302-4dea-576f-ab01-e9abe9aa19ca"},"procmedtransp_specialrights":{"label":"Sonderrechte","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"39a3ad1f-f5ee-5e0a-8c2d-e31b42c18e01"},"procmedtransp_perfusorreq":{"label":"mit Perfusor","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"950c4092-fbb3-5541-9923-8b1149bb43e3"},"procmedtransp_oxigenreq":{"label":"mit O2","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e56a6add-0f66-55a6-bc17-ab43e893bc99"},"procmedtransp_breathsupportreq":{"label":"mit Beatmung ","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"5e1da1a6-e556-544f-b53f-7979548c434b"},"procmedtransp_monitorreq":{"label":"mit Monitor","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"60fef3c3-899d-5128-9533-f9bd56148219"},"procmedtransp_vakuummatreq":{"label":"mit Vakuummatratze","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"2fbd3f3d-d703-58f4-a5e5-1f8ac2d2ada4"}}}},"x":497.331364459712,"y":773.6071053563452,"index":4,"vy":0.018044711294389535,"vx":-0.010331615461662455,"fx":null,"fy":null,"anchor":{"type":"soft","x":493.26719011374945,"y":802.2023603586646},"isDragged":false}],"links":[{"source":"e92d276a-253f-4b5d-ae96-53254dc6af95","target":"5442b7cf-0527-46c7-82b8-cdc82f1941b1","type":"solid","directed":true,"strength":"weak"},{"source":"5442b7cf-0527-46c7-82b8-cdc82f1941b1","target":"node-0.7509800706118537","type":"solid","directed":false,"label":"","strength":"loose"},{"source":"node-0.7509800706118537","target":"node-0.4551778067621777","type":"solid","directed":false,"label":"","strength":"weak"},{"source":"node-0.4551778067621777","target":"85aa252f-ec66-4f33-a14b-bae5ed6f8a43","type":"solid","directed":false,"label":"","strength":"weak"}],"hasUpdate":false}
+{
+	"nodes": [
+		{
+			"id": "5442b7cf-0527-46c7-82b8-cdc82f1941b1",
+			"shape": { "type": "operation", "scale": 1 },
+			"anchor": { "type": "soft", "x": "0", "y": "0" },
+			"payload": {
+				"status": "delayed",
+				"label": "Operation",
+				"location": "49.47657226095986, 8.457530056406792",
+				"affected_persons": 1,
+				"affected_objects": 0,
+				"tags": ["Medizinisch", "Unfall"]
+			},
+			"taxonomy": {
+				"label": "Lage",
+				"id": "091ba2f2-a228-457c-8400-53e0e5a1ab2c",
+				"prefix": "op_",
+				"op_emergencyType": {
+					"label": "Art des Notfalls",
+					"id": "9d20d465-653f-42bb-b512-b74d27d99ca5",
+					"prefix": "emtyp_",
+					"emtyp_medical": {
+						"label": "Medizinisch",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": "Ja",
+						"id": "8f99b19e-7abb-4913-9e81-76102257f1c5"
+					},
+					"emtyp_psychological": {
+						"label": "Psychosozial",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "e7ef03d2-0a72-4c22-9a52-cfe494817365"
+					},
+					"emtyp_accident": {
+						"label": "Unfall",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "fa04f075-f2ec-4146-a6d8-8405e74881a0"
+					},
+					"emtyp_damageevent": {
+						"label": "Schadensereignis",
+						"type": "selection",
+						"options": [
+							"Explusion",
+							"Gefahrgut",
+							"Emmisionen",
+							"Stromausfall",
+							"Technische Störung",
+							"Nuklearer Unfall",
+							"Ausfall: IT"
+						],
+						"size": 20,
+						"value": null,
+						"id": "ff809864-f376-425f-ac9e-3fb1dc978f5c"
+					},
+					"emtyp_searchandrescue": {
+						"label": "Suche und Rettung",
+						"type": "selection",
+						"options": [
+							"Höhlenunfall",
+							"Bergunfall",
+							"Flugunfall",
+							"vermisste Person",
+							"Gewässer",
+							"Wasserstraße",
+							"Forst",
+							"Gelände"
+						],
+						"size": 20,
+						"value": null,
+						"id": "e07572f9-2040-45c6-8c14-bd8d303400fc"
+					},
+					"emtyp_environmentevent": {
+						"label": "Umwelt-/Klima-Ereignis",
+						"type": "selection",
+						"options": [
+							"Sturm",
+							"Hagel",
+							"Starkregen",
+							"Flut / Hochwasser",
+							"Schnee / Eisglätte",
+							"Smock",
+							"Erdrutsch",
+							"Erdbeben",
+							"Tsunami",
+							"Vulkanausbruch"
+						],
+						"size": 20,
+						"value": null,
+						"id": "43bd6adb-c048-403c-8f40-32e07333b4b5"
+					},
+					"emtyp_violence": {
+						"label": "Gewalttat",
+						"type": "selection",
+						"options": [
+							"Häusliche Gewalt",
+							"Kindermisshandlung",
+							"Stumpfe Waffen",
+							"Stichwaffen",
+							"Schusswaffen",
+							"Massenauseinandersetzung"
+						],
+						"size": 20,
+						"value": null,
+						"id": "b285693a-9bd7-46c5-8c66-8d110a4baffd"
+					},
+					"emtyp_threat": {
+						"label": "Bedrohung, Gefährdung",
+						"type": "selection",
+						"options": [
+							"Terrorismus",
+							"Amokläufer",
+							"LebEL",
+							"Bombenentschärfung",
+							"Person in Zwangslage",
+							"Drohender Suizid",
+							"Polizeizugriff",
+							"Krieg"
+						],
+						"size": 20,
+						"value": null,
+						"id": "c3591bb5-4c54-444c-8282-aa986f8391e3"
+					},
+					"emtyp_other": {
+						"label": "Sonstiges",
+						"type": "selection",
+						"options": [
+							"Tierrettung",
+							"Tierseuche",
+							"Großveranstaltung",
+							"Notfallseelsorge",
+							"Fachanforderung"
+						],
+						"size": 20,
+						"value": null,
+						"id": "9002576d-08d3-4d33-89c3-261da59aa9a6"
+					},
+					"emtyp_info": {
+						"label": "Auskunftsersuche",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "d39bc815-8e5f-4d26-b4ad-a2c82a5d2914"
+					},
+					"emtyp_transport": {
+						"label": "Transport",
+						"type": "selection",
+						"options": ["Krankenfahrt", "Krankentransport", "Evakuierung", "Intensivtransport"],
+						"size": 60,
+						"value": null,
+						"id": "e2b04fbb-9956-4346-896b-91e12f250ae1"
+					},
+					"emtyp_technicalsupport": {
+						"label": "Technische Hilfeleistung",
+						"type": "selection",
+						"options": ["Verkehrsunfall", "Gefahrstoffaustritt", "Unwetter", "Gebäude"],
+						"size": 60,
+						"value": null,
+						"id": "aab67687-0dbd-41c3-aa7c-a21af658b321"
+					}
+				},
+				"op_location": {
+					"label": "Ort",
+					"id": "7ec2ce23-9f8b-4d8e-91c6-b8c3fd3c3fc1",
+					"prefix": "loc_",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "db99b10a-d137-4954-accc-62ab92b2b5e3"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "9a41c329-9376-4d5f-8d1b-32edc2e44434"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.47657226095986, 8.457530056406792",
+						"id": "b31b440b-8193-47b8-a780-0931be0990a5"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "8028a08e-bcf5-4f11-8b17-3529265176ba"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "d7966043-0930-4523-80c2-fccaf427d903"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "8d5f080a-7c5e-4aae-81a3-a54c0eec2551"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "8b8959db-a7ab-4f59-8bc7-bcdb91515ef0"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "ec5e3b64-16f6-4abb-bf7b-b0e45684694a"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "08fab9c6-5966-4e34-8c6d-275e05fdccb3"
+					}
+				},
+				"op_affected": {
+					"label": "Betroffene ...",
+					"id": "bb7e1fd7-a761-4937-afa2-fa2b72bbc0b1",
+					"prefix": "opaff_",
+					"opaff_persons": {
+						"label": "Personen",
+						"type": "number",
+						"size": 60,
+						"value": 1,
+						"id": "ab48b3a8-2987-4a02-821b-e1de7adf4c00",
+						"options": [
+							0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+							25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+							48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+							71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
+							94, 95, 96, 97, 98, 99, 100
+						]
+					},
+					"opaff_objects": {
+						"label": "Objekte",
+						"type": "number",
+						"size": 40,
+						"value": null,
+						"id": "31236ba1-a0cf-43a5-82e1-5fc68b9c5605",
+						"options": [
+							0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+							25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+							48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+							71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
+							94, 95, 96, 97, 98, 99, 100
+						]
+					}
+				},
+				"op_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": "Gelb",
+					"id": "e17c7aac-3051-4a4f-8fb9-2791c75cac22"
+				}
+			},
+			"index": 0,
+			"x": 0.09300311279292307,
+			"y": 0.1016747656783487,
+			"vy": -0.000026999761483514438,
+			"vx": -0.000024697001717569793,
+			"fx": null,
+			"fy": null,
+			"isDragged": false
+		},
+		{
+			"id": "e92d276a-253f-4b5d-ae96-53254dc6af95",
+			"shape": { "type": "emergency-reporter", "scale": 1 },
+			"payload": {
+				"name": { "first": "Apple", "last": "Watch" },
+				"pending": false,
+				"intervalID": "",
+				"location": "",
+				"category": "",
+				"label": "",
+				"callback_number": ""
+			},
+			"taxonomy": {
+				"label": "Meldend",
+				"id": "1ee66384-cc62-44d0-803c-4f7a475aab3a",
+				"prefix": "erep_",
+				"erep_name": {
+					"label": "Name",
+					"id": "ca0db933-a939-40d8-bc18-ddc6250f40fd",
+					"prefix": "erepn_",
+					"erepn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "Apple",
+						"id": "de5983be-8b0c-4c7d-96a5-4385c97c2d53",
+						"options": [
+							"Hilda",
+							"Marc",
+							"Fred",
+							"Georgia",
+							"Terry",
+							"Nellie",
+							"Caroline",
+							"Milton",
+							"Fred",
+							"Katie",
+							"Franklin",
+							"Christopher",
+							"Ricardo",
+							"Nettie",
+							"Anthony",
+							"Corey",
+							"Aiden",
+							"Madge",
+							"Myrtle",
+							"Winifred"
+						]
+					},
+					"erepn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Watch",
+						"id": "0969ec52-f95f-4871-8ee3-c8c490e3eb2c",
+						"options": [
+							"Morrison",
+							"Austin",
+							"Rice",
+							"Allison",
+							"Wallace",
+							"Delgado",
+							"Howard",
+							"Cook",
+							"Ortega",
+							"Castillo",
+							"Newton",
+							"Day",
+							"Robinson",
+							"Lloyd",
+							"Sutton",
+							"Morrison",
+							"Lopez",
+							"Mason",
+							"Holt",
+							"Floyd"
+						]
+					}
+				},
+				"erep_phonenumber": {
+					"label": "Telefonnummer",
+					"type": "text",
+					"options": [],
+					"size": 60,
+					"value": null,
+					"id": "b8882dc6-4886-4e03-abf5-01ab69db41cd"
+				},
+				"erep_emergencyrelation": {
+					"label": "Notfallbezug",
+					"type": "selection",
+					"options": ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"],
+					"size": 40,
+					"value": "selbst betroffen",
+					"id": "8f410717-6d0a-41aa-8b4c-cc083b1b2bc3"
+				},
+				"erep_location": {
+					"label": "Ort",
+					"id": "3d992d8d-693d-40fa-8e97-15269c9c431d",
+					"prefix": "loc_",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "fc01b972-36bf-4bd3-b401-27135a38c92e"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "bc62d159-18d3-47b6-8a12-2c3499a23761"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "d4128b75-644f-42d6-b048-661982b533fe"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "85b72c93-ba9d-4826-80c5-465762215684"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "f6d32660-3247-4109-9053-b4b5eb277ffa"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "0f9bda15-764b-4ea1-9c04-9a515d2e0078"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "031e8bf8-4abd-465c-bbee-e8219b73f6b3"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "b85cd836-0d5a-4711-9ca3-38e8265fbd96"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "1f5b8605-6870-4dd4-b507-f0cb4d6b1d87"
+					}
+				},
+				"erep_reportertype": {
+					"label": "Art",
+					"id": "a4e0a285-7a2a-4885-b05f-acfc7dbb5cdf",
+					"prefix": "ereprt_",
+					"ereprt_eCall": {
+						"label": "eCall",
+						"id": "5252bc6d-0e47-49ca-a1b5-624bc8231f13",
+						"prefix": "eCall_",
+						"eCall_eCall": {
+							"label": "eCall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "08396bbe-d0e0-4420-b96c-279b0d297c4e"
+						},
+						"eCall_persons": {
+							"label": "Anzahl Personen",
+							"type": "selection",
+							"options": ["1", "2", "3", "4", "5", "6", "viele"],
+							"size": 20,
+							"value": "1",
+							"id": "650f7c09-f6f9-4b7b-bbc1-7a217c2aede8"
+						},
+						"eCall_direction": {
+							"label": "Richtung",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "b3a41ea3-2466-461f-8364-297d45947b3b"
+						},
+						"eCall_position": {
+							"label": "GPS-Position",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "58a201fe-f3f8-4c68-9b57-ed411329fc0f"
+						},
+						"eCall_energytype": {
+							"label": "Antriebsart",
+							"type": "selection",
+							"options": ["Benzin", "Diesel", "Gas", "Elektro"],
+							"size": 20,
+							"value": null,
+							"id": "1f9e1b0c-75bf-4686-a18f-cad9a017c9b9"
+						},
+						"eCall_releasedby": {
+							"label": "Ausgelöst durch",
+							"type": "selection",
+							"options": ["Manuell", "Automatisch"],
+							"size": 20,
+							"value": "Automatisch",
+							"id": "8803ead7-0e83-4aa4-ba3b-114452a6cfb7"
+						},
+						"eCall_fin": {
+							"label": "FIN",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": null,
+							"id": "334d7b73-b257-43e7-a263-bd9eb4fbd277"
+						},
+						"eCall_airbagsreleased": {
+							"label": "AirBags ausgelöst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "0068fe0d-663f-4e8a-a7f4-881bb9b80375"
+						},
+						"eCall_rescuecard": {
+							"label": "Rettungskarte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "ea073254-3419-4f4f-a8d2-d4ceab4f4c11"
+						}
+					},
+					"ereprt_person": {
+						"label": "Person",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"id": "be898b8a-a31b-4152-a497-ef7a530d54f7",
+						"value": null
+					},
+					"ereprt_bma": {
+						"label": "BMA",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "091f0730-acde-429d-9863-f5f41f11ed4d"
+					},
+					"ereprt_applewatch": {
+						"label": "Apple Watch",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "1353e0cc-7045-4039-8ad1-ef81ca93449e"
+					},
+					"ereprt_wearable": {
+						"label": "Wearable",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "ebaf654d-83eb-40c9-b66d-2b65d2c1e753"
+					}
+				},
+				"erep_organisation": {
+					"label": "Organisation",
+					"id": "2bf10e5b-478b-4405-9940-36f195e623ac",
+					"prefix": "ereporg_",
+					"ereporg_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 30,
+						"value": null,
+						"id": "d5fd94c2-d49d-49a0-9b8f-c5ea11bacf27"
+					},
+					"ereporg_practice": {
+						"label": "Arztpraxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "84ea7129-a447-4b5e-a132-badce1a1d40f"
+					},
+					"ereporg_firedepartment": {
+						"label": "Feuerwehr",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "22e27c02-0a20-4ab8-97d0-790730ff6e61"
+					},
+					"ereporg_externemergencycallcenter": {
+						"label": "Externe Leitstelle",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "86f74063-f0ed-4b71-ad3a-bd73d7ab8ae0"
+					},
+					"ereporg_homeemergencycall": {
+						"label": "Hausnotruf",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "42ee48d8-7779-478a-99df-1ea4c34050f9"
+					}
+				},
+				"erep_competence": {
+					"label": "Kompetenz",
+					"id": "88e22f77-22a4-4183-8040-d78f975366ad",
+					"prefix": "comp_",
+					"comp_medcompetence": {
+						"label": "Med. Kompetenz",
+						"id": "359cb744-532b-48d9-9c31-d01eaa51f3f5",
+						"prefix": "medcomp_",
+						"medcomp_doctor": {
+							"label": "Arzt",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "8c9ae99a-bb37-401f-a15b-840ab984e9ae"
+						},
+						"medcomp_supporter": {
+							"label": "Hilfspersonal",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "d2bb3dbc-d994-42cb-95b4-73cb241ece0b"
+						}
+					},
+					"comp_firecompetence": {
+						"label": "Feuerw. Kompetenz",
+						"id": "6d9505c4-685e-49d2-94f6-5d482b176192",
+						"prefix": "firecomp_",
+						"firecomp_professional": {
+							"label": "Professional",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "177c047a-4f3d-4db8-ae9b-efe6a2f2b7b3"
+						},
+						"firecomp_firstresponder": {
+							"label": "Ersthelfer",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "9604951f-cbba-40ed-b1fd-6c170082976a"
+						}
+					},
+					"comp_police": {
+						"label": "Polizei",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "cddca37a-b011-403c-9740-d4d9d3374cc6"
+					}
+				},
+				"erep_separatedrecallnumber": {
+					"label": "gesonderte Rückrufnummer",
+					"type": "text",
+					"options": [],
+					"size": 20,
+					"value": null,
+					"id": "50c8f4e2-e7aa-4b8b-a199-b503ebff5c36"
+				}
+			},
+			"x": 204.35517294322366,
+			"y": 223.40934297982577,
+			"index": 1,
+			"vy": -0.001209109082188979,
+			"vx": -0.0011059864028169302,
+			"fx": null,
+			"fy": null,
+			"isDragged": false
+		},
+		{
+			"id": "85aa252f-ec66-4f33-a14b-bae5ed6f8a43",
+			"shape": { "type": "emergency-ressource", "scale": 1 },
+			"spawn": { "source": "node-0.03004279675255961", "angle": 90, "distance": 500 },
+			"taxonomy": {
+				"label": "Ressource",
+				"prefix": "res_",
+				"id": "f559c265-83c3-497a-9833-56cccab6786d",
+				"res_medtype": {
+					"label": "Med-Typ",
+					"type": "selection",
+					"options": ["KTW", "RTW", "NEF", "ITW", "HC-ITW", "RTH", "Tele-Arzt", "116117", "ZPK"],
+					"size": 20,
+					"value": "KTW",
+					"id": "3bf5fd9c-4225-4f95-9d33-ae9823aa0c95"
+				},
+				"res_fdtype": {
+					"label": "FD-Typ",
+					"type": "selection",
+					"options": ["Löschfahrzeug", "Truppenfahrzeug", "Techn. Equip.", "Leiterwage"],
+					"size": 20,
+					"value": null,
+					"id": "356fc05a-a474-46c6-adc8-f22afea7b961"
+				},
+				"res_identifier": {
+					"label": "Kennung",
+					"type": "text",
+					"size": 40,
+					"value": "LU 01/85-04",
+					"id": "4087cd99-1c51-46bd-bbf0-4bb7cc6eae9d",
+					"options": [
+						"LU 01/83-01",
+						"LU 01/83-02",
+						"LU 01/83-03",
+						"LU 01/83-04",
+						"LU 01/85-01",
+						"LU 01/85-02",
+						"LU 01/85-03",
+						"LU 01/85-04",
+						"LU 01/85-05",
+						"LU 02/82-01",
+						"LU 11/82-01",
+						"LU 11/83-01",
+						"LU 11/83-02",
+						"LU 11/85-01",
+						"LU 11/85-02",
+						"LU 11/85-03",
+						"LU 22/82-01",
+						"LU 22/82-51",
+						"LU 21/83-04",
+						"LU 21/84-01",
+						"LU 21/85-01",
+						"LU 23/83-01",
+						"LU 23/84-01",
+						"LU 23/85-01",
+						"LU 31/82-01",
+						"LU 31/83-01",
+						"LU 31/83-02",
+						"LU 31/85-01",
+						"LU 31/85-02",
+						"LU 31/85-03",
+						"LU 31/85-04",
+						"LU 42/82-01",
+						"LU 42/83-01",
+						"LU 42/85-01",
+						"LU 42/85-02",
+						"LU 43/82-01",
+						"LU 43/83-01",
+						"LU 43/83-02",
+						"LU 43/85-01",
+						"LU 43/85-02",
+						"LU 43/85-03",
+						"LU 44/83-01",
+						"LU 44/85-01",
+						"LU 51/82-01",
+						"LU 51/83-01",
+						"LU 51/83-02",
+						"LU 51/85-01",
+						"LU 51/85-02",
+						"LU 51/85-03",
+						"LU 45/82-01",
+						"LU 46/83-01",
+						"LU 46/84-01"
+					]
+				},
+				"res_status": {
+					"label": "Status",
+					"type": "number",
+					"size": 40,
+					"value": "3",
+					"id": "70a0a483-f44d-49ca-9b36-85b379ebb433",
+					"options": [
+						0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+						26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+						50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73,
+						74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+						98, 99, 100
+					]
+				},
+				"res_alerted": {
+					"label": "Alarmiert",
+					"type": "selection",
+					"options": ["Ja", "Nein"],
+					"size": 20,
+					"value": "Ja",
+					"id": "fdc1b866-303e-4adc-b0c6-2706709d1f81"
+				},
+				"res_time": {
+					"label": "Zeit",
+					"type": "text",
+					"size": 40,
+					"value": "braucht ca.11 min",
+					"id": "8cf95362-2335-451e-8acd-448aa7013c0d",
+					"options": [
+						"seit 1min",
+						"in 1min",
+						"braucht 1min",
+						"seit 3min",
+						"in 3min",
+						"braucht 3min",
+						"seit 5min",
+						"in 5min",
+						"braucht 5min",
+						"seit 8min",
+						"in 8min",
+						"braucht 8min",
+						"seit 12min",
+						"in 12min",
+						"braucht 12min"
+					]
+				},
+				"res_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "a4e3780a-ab3b-4e80-9587-92b9f9ccd758",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "da534044-d0c0-41ba-894b-27acae4a682d"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "f355511b-2a06-4ee0-bc78-fff47982211f"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "5995f8b8-7970-4a27-94e6-220c542786b7"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "71964680-9206-4f10-a5c2-5910efb26bf4"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "88a4d464-8f5d-4719-8704-8530f86483aa"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "930beffe-d63b-456d-9398-a15b3c7c426e"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.46461860953088, 8.44473359444935",
+						"id": "5c349e00-5023-4b15-b918-55f34949bef8"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "90a207d3-6d30-4cad-8439-f55bee4cd961"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "72c27790-f21b-485f-b40f-d2925429e52f"
+					}
+				}
+			},
+			"payload": { "status": "3", "label": "LU 01/85-04", "time_label": "braucht ca.11 min", "alerted": true },
+			"x": 975.8189430152521,
+			"y": -12.659977838945185,
+			"index": 2,
+			"vy": 0.3292949764625368,
+			"vx": -0.20041788177854739,
+			"fx": null,
+			"fy": null,
+			"isDragged": false
+		},
+		{
+			"id": "node-0.7509800706118537",
+			"shape": { "type": "affected-person", "scale": 1 },
+			"spawn": { "source": "5442b7cf-0527-46c7-82b8-cdc82f1941b1", "angle": 180, "distance": 800 },
+			"payload": {
+				"status": "delayed",
+				"name": { "first": "Fritz", "last": "Klose" },
+				"sex": "Männlich",
+				"age": "57",
+				"accessibility": "",
+				"tags": ["oft Bluthochdruck", "Herzleiden"]
+			},
+			"taxonomy": {
+				"label": "Betroffene Person",
+				"prefix": "ap_",
+				"ap_name": {
+					"label": "Name",
+					"prefix": "apn_",
+					"apn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"options": [
+							"Hilda",
+							"Marc",
+							"Fred",
+							"Georgia",
+							"Terry",
+							"Nellie",
+							"Caroline",
+							"Milton",
+							"Fred",
+							"Katie",
+							"Franklin",
+							"Christopher",
+							"Ricardo",
+							"Nettie",
+							"Anthony",
+							"Corey",
+							"Aiden",
+							"Madge",
+							"Myrtle",
+							"Winifred"
+						],
+						"size": 40,
+						"value": "Fritz",
+						"id": "2a0c8106-eb8a-5508-9eab-0823756e0ad2"
+					},
+					"apn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"options": [
+							"Morrison",
+							"Austin",
+							"Rice",
+							"Allison",
+							"Wallace",
+							"Delgado",
+							"Howard",
+							"Cook",
+							"Ortega",
+							"Castillo",
+							"Newton",
+							"Day",
+							"Robinson",
+							"Lloyd",
+							"Sutton",
+							"Morrison",
+							"Lopez",
+							"Mason",
+							"Holt",
+							"Floyd"
+						],
+						"size": 40,
+						"value": "Klose",
+						"id": "85183058-65e5-5bad-9fe9-2ce6b599d540"
+					}
+				},
+				"ap_age": {
+					"label": "Alter",
+					"type": "number",
+					"options": [
+						0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+						26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+						50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73,
+						74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+						98, 99, 100
+					],
+					"size": 50,
+					"value": "57",
+					"id": "eed739cc-cc8e-5b74-a392-0664e29ea371"
+				},
+				"ap_sex": {
+					"label": "Geschlecht",
+					"type": "selection",
+					"options": ["Männlich", "Weiblich", "Divers"],
+					"size": 50,
+					"value": "Männlich",
+					"id": "eafe4079-8152-5e40-81a3-f01355268c31"
+				},
+				"ap_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": "Gelb",
+					"id": "f4cb36f3-d38e-5da7-943e-7df63b8682c9"
+				},
+				"ap_symptoms": {
+					"label": "Symptome",
+					"prefix": "aps_",
+					"aps_pain": {
+						"label": "Schmerzen",
+						"type": "selection",
+						"options": ["Stark", "Mittel", "Schwach", "Nein"],
+						"size": 80,
+						"value": null,
+						"id": "c8dbf714-5687-543b-96f1-9f31dfa0d2c9"
+					},
+					"aps_painlocation": {
+						"label": "Schmerzbereich",
+						"type": "selection",
+						"options": [
+							"Brust",
+							"Kopf",
+							"Nacken",
+							"Schulter",
+							"Rücken",
+							"Arm",
+							"Hand",
+							"Becken",
+							"Wehen",
+							"Oberbauch",
+							"Hüfte",
+							"Nieren",
+							"Genital",
+							"Oberschenke",
+							"Knie",
+							"Unterschenkel",
+							"Fuß"
+						],
+						"size": 40,
+						"value": null,
+						"id": "69fe596c-d999-5167-84ad-4eab83384c26"
+					},
+					"aps_painmovementrelated": {
+						"label": "Schmerzen bewegungsabhängig",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "fd0bdfa4-6ea3-5a2d-89ad-32700283f2ba"
+					},
+					"aps_fiever": {
+						"label": "Fieber",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "b5fd10b4-d238-5377-8b64-d06a94d6431a"
+					},
+					"aps_heatfeeling": {
+						"label": "Hitzeempfinden",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "0b17db83-014c-54e0-93f1-838902c7d75f"
+					},
+					"aps_coldfadeskin": {
+						"label": "kalte fahle Haut",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "bd524bef-faff-5d6d-9235-fc44a3d2a1ea"
+					},
+					"aps_coldsweat": {
+						"label": "kalter Schweiß",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "0eeb5bfa-7ff8-50f6-acd7-73a8f40beab8"
+					},
+					"aps_shivers": {
+						"label": "Schüttelfrost",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e54e4b0a-6be7-5b5d-8f25-6f9e85f548eb"
+					},
+					"aps_bluelips": {
+						"label": "blaue Lippen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "7486be69-42e2-572c-a9fc-c89c769f06c3"
+					}
+				},
+				"ap_condition": {
+					"label": "Zustand",
+					"prefix": "apc_",
+					"apc_measurements": {
+						"label": "Messwerte",
+						"prefix": "apmeas_",
+						"apmeas_bloodpressure": {
+							"label": "RR",
+							"prefix": "apmeasbp_",
+							"apmeasbp_systolic": {
+								"label": "Systolisch",
+								"type": "number",
+								"options": ["60", "80", "100", "120", "140", "180", "220", "260"],
+								"size": 30,
+								"value": null,
+								"id": "01da5536-2b93-5af0-b552-df088c2ccec5"
+							},
+							"apmeasbp_diastolic": {
+								"label": "Diastolisch",
+								"type": "number",
+								"options": ["40", "60", "80", "100", "120", "140", "160"],
+								"size": 30,
+								"value": null,
+								"id": "04eb3bc0-b0e5-57ce-a32d-de9d163cc7d8"
+							}
+						},
+						"apmeas_heartfailure": {
+							"label": "HF",
+							"type": "number",
+							"options": ["30", "40", "60", "70", "80", "90", "100", "120", "140", "160", "200"],
+							"size": 30,
+							"value": null,
+							"id": "414a7ce2-11f0-5d7e-a881-12f74dfd2fbc"
+						},
+						"apmeas_bloodglucosevalue": {
+							"label": "BZ",
+							"type": "number",
+							"options": ["30", "60", "80", "120", "140", "200"],
+							"size": 30,
+							"value": null,
+							"id": "a59fee62-8474-5bd3-a153-cc13ae3db9f4"
+						},
+						"apmeas_breathingrate": {
+							"label": "AF",
+							"type": "number",
+							"options": ["0", "5", "8", "10", "12", "15", "20", "30"],
+							"size": 30,
+							"value": null,
+							"id": "9e33c4b7-6e2d-5e9f-978a-a3d653f7762a"
+						},
+						"apmeas_oxygensaturation": {
+							"label": "SpO2",
+							"type": "number",
+							"options": ["60%", "80%", "90%", "95%", "99%"],
+							"size": 30,
+							"value": null,
+							"id": "a56304ce-7789-56ca-8054-6b8654c8ab7a"
+						},
+						"apmeas_bodytemperature": {
+							"label": "Temp",
+							"type": "number",
+							"options": ["36°C", "37°C", "38°C", "39°C", "40°C", "41°C"],
+							"size": 30,
+							"value": null,
+							"id": "9e89fbfb-069a-56bf-8d28-76baade06223"
+						},
+						"apmeas_ecg": {
+							"label": "EKG",
+							"type": "selection",
+							"options": [
+								"STEMI",
+								"Sinusrhythmus",
+								"Kammerflimmern",
+								"Asystolie",
+								"Absolute Arrythmie",
+								"AV-Block",
+								"Tachykardie"
+							],
+							"size": 30,
+							"value": null,
+							"id": "357f382c-bffa-521f-a564-d6172c0ddf69"
+						},
+						"apmeas_breathing": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["unauffällig", "Stridor", "Dyspnoe", "Zyanose", "Apnoe", "Beatmung"],
+							"size": 30,
+							"value": null,
+							"id": "e35cc145-15f5-5fc3-a8fb-268a1221a11e"
+						}
+					},
+					"apc_initialneurologicalfindings": {
+						"label": "Erstbefund Neurologie",
+						"prefix": "apneuro_",
+						"apneuro_glasgowcomascale": {
+							"label": "GCS",
+							"prefix": "apneurogcs_",
+							"apneurogcs_eyes": {
+								"label": "Augen öffnen",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"auf Schmerzreiz (2)",
+									"auf Aufforderung (3)",
+									"spontan (4)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "864a8387-6d1b-596e-b3d7-ddf761794471"
+							},
+							"apneurogcs_verbal": {
+								"label": "Verbal",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"unverständliche Laute (2)",
+									"einzelne Wörter (3)",
+									"verwirrt (4)",
+									"orientiert (5)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "2729dadf-b605-516d-b65b-cef4abe5a838"
+							},
+							"apneurogcs_motor": {
+								"label": "Motor",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"Strecksynergismen (2)",
+									"Beugesynergismen (3)",
+									"auf Schmerzreiz ungezielt (4)",
+									"auf Schmerzreiz gezielt (5)",
+									"auf Aufforderung (6)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "d7620e7a-ef46-54a5-856e-053ff2e79ece"
+							}
+						},
+						"apneuro_glasgowcomascalevalue": {
+							"label": "GCS Wert",
+							"type": "number",
+							"options": [
+								"0",
+								"1",
+								"2",
+								"3",
+								"4",
+								"5",
+								"6",
+								"7",
+								"8",
+								"9",
+								"10",
+								"11",
+								"12",
+								"13",
+								"14",
+								"15"
+							],
+							"size": 30,
+							"value": 0,
+							"id": "9ebee19c-b2ef-5e2c-af18-122916b5eb8d"
+						}
+					},
+					"apc_vitalcondition": {
+						"label": "Vitalwerte",
+						"prefix": "apcvc_",
+						"apcvc_pulse": {
+							"label": "Puls",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt"],
+							"size": 100,
+							"value": null,
+							"id": "9d2c4094-f4ac-5776-9988-c0a4a4939d8e"
+						},
+						"apcvc_breath": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 100,
+							"value": null,
+							"id": "1caa4f5d-063f-584e-bb6b-ef5a94c9c2b3"
+						},
+						"apcvc_breathmovement": {
+							"label": "Atembewegung",
+							"type": "selection",
+							"options": ["Ja", "Nein!", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "78f2d13c-6f67-575f-bec3-809937037a7e"
+						},
+						"apcvc_breathproblem": {
+							"label": "Atemstörung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 40,
+							"value": null,
+							"id": "f328cf78-b4e4-5456-8f6b-2b64d6ddb402"
+						},
+						"apcvc_consciousness": {
+							"label": "bei Bewusstsein",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "2c8ba825-94d3-5a0e-bfad-5c1ad49d37eb"
+						},
+						"apcvc_unconscioussince": {
+							"label": "bewusstlos seit",
+							"type": "selection",
+							"options": ["gerade", "Stunden", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "8bb517e6-1822-5250-87a6-6a3b26725ff1"
+						}
+					},
+					"apc_physicalcondition": {
+						"label": "Vorgeschichte",
+						"prefix": "apcpc_",
+						"apcpc_diabetes": {
+							"label": "Diabetes",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "1ea10387-b3aa-5aa5-90ae-ceed4618c5fa"
+						},
+						"apcpc_bloodstream": {
+							"label": "Kreislaufprobleme",
+							"type": "selection",
+							"options": ["Stark", "Leicht", "Nein", "Unbekannt"],
+							"size": 60,
+							"value": null,
+							"id": "74dd1198-2d67-5a97-84fd-6d94b9655c11"
+						},
+						"apcpc_dizziness": {
+							"label": "Schwindel",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "69d66626-c18d-50a0-96c2-59b6fdbd3d1d"
+						},
+						"apcpc_pregnant": {
+							"label": "Schwanger",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "0d9d74ed-b538-57d7-a9b5-859840512cdd"
+						},
+						"apcpc_wheelchair": {
+							"label": "Rollstuhl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "0e01270e-3445-5619-af12-751be8a4e73d"
+						},
+						"apcpc_visuallyimpared": {
+							"label": "Blind/Sehbehindert",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "1863eae6-9331-5009-a963-7b7cb32965f4"
+						},
+						"apcpc_oftenhypertension": {
+							"label": "oft Bluthochdruck",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": "Ja",
+							"id": "90205787-4058-5363-b8d5-de6888a5afb6"
+						},
+						"apcpc_oftencholesterol": {
+							"label": "oft hohe Cholesterinwerte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "a2085d0e-c600-5d5d-86f5-51453a6167af"
+						},
+						"apcpc_hearthsuffering": {
+							"label": "Herzleiden",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": "Ja",
+							"id": "f225c624-dd7f-5542-ba26-f6d509613417"
+						},
+						"apcpc_infection": {
+							"label": "Infektion",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "bc13c5a0-b5ee-5374-a66a-05b3a6830947"
+						},
+						"apcpc_infectionsince": {
+							"label": "Infektion seit",
+							"type": "selection",
+							"options": ["Stunden", "Tage", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "d9cf160a-abf5-5868-a8a8-5aac3b00e5ad"
+						},
+						"apcpc_infectioncovid": {
+							"label": "Covid",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "bf842150-6416-5cce-bddc-336d65e49511"
+						}
+					},
+					"apc_mentalcondition": {
+						"label": "Mental",
+						"prefix": "apcmc_",
+						"apcmc_fear": {
+							"label": "Angst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "5b129402-47b6-5050-b152-1b8ea4697db1"
+						},
+						"apcmc_threaten": {
+							"label": "Bedrohung",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "787401bc-2197-5ec6-9ab0-86d6037556ac"
+						},
+						"apcmc_weakness": {
+							"label": "Schwächegefühl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "c93a0e42-60ec-54f3-b903-f2148c7c4d51"
+						},
+						"apcmc_stress": {
+							"label": "Stress",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "f4aa5d36-1fab-51c5-b46d-40d8d350ef02"
+						}
+					}
+				},
+				"ap_accessibility": {
+					"label": "Zugänglichkeit",
+					"prefix": "apa_",
+					"apa_free": {
+						"label": "Frei Zugänglich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 100,
+						"value": null,
+						"id": "8096511e-e581-58b3-9c49-da51991d7ca3"
+					},
+					"apa_confined": {
+						"label": "Eingeschlossen",
+						"type": "selection",
+						"options": ["Nein", "in Wohnung", "in PKW"],
+						"size": 40,
+						"value": null,
+						"id": "33784677-230b-5a52-a565-281330b93654"
+					},
+					"apa_clamped": {
+						"label": "Eingeklemmt",
+						"type": "selection",
+						"options": ["Nein", "in PKW", "in Maschine"],
+						"size": 40,
+						"value": null,
+						"id": "be9c4b65-b8be-5ae9-b905-a5635cbaad5d"
+					},
+					"apa_exposed": {
+						"label": "Exponierte Lage",
+						"type": "selection",
+						"options": ["Nein", "Höhe", "Tiefe"],
+						"size": 40,
+						"value": null,
+						"id": "1640567e-4b53-5de7-b5e3-5b9a1e9858b1"
+					},
+					"apa_water": {
+						"label": "im Wasser",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "b69cfdcb-ebe0-582c-a114-6be6092a9c80"
+					},
+					"apa_offroad": {
+						"label": "im Gelände",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "4bbb5e27-d580-5cac-bf49-2f67bc64dd57"
+					},
+					"apa_missed": {
+						"label": "Vermisst",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "424a18a8-bbd4-5854-abaf-fca138c853ea"
+					},
+					"apa_danger": {
+						"label": "Gefahrenbereich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "53655e51-ff5f-5f23-99e0-258658583d01"
+					}
+				},
+				"ap_guesseddiagnosis": {
+					"label": "Verdachtsdiagnose",
+					"prefix": "apgd_",
+					"apgd_centralnervoussystem": {
+						"label": "ZNS",
+						"prefix": "apcns_",
+						"apcns_stroke": {
+							"label": "Schlaganfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "8957158d-bb44-5623-8353-19d1465cd4a1"
+						},
+						"apcns_seizure": {
+							"label": "Krampfanfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "26a36f42-7cfc-541e-96f2-6b6b4a7a35aa"
+						},
+						"apcns_meningitis": {
+							"label": "Meningitis",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "d5bfcbcf-e794-5a18-858c-1d7dd01025f3"
+						},
+						"apcns_syncope": {
+							"label": "Synkope",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "20f6c43f-3deb-52d5-b7f8-2b0340fa1a00"
+						}
+					},
+					"apgd_cardiovascular": {
+						"label": "Herz-Kreislauf",
+						"prefix": "apcardi_",
+						"apcardi_heartattack": {
+							"label": "Herzinfarkt",
+							"type": "selection",
+							"options": ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"],
+							"size": 80,
+							"value": null,
+							"id": "018d751d-b779-55dd-a2d7-49dfd581255e"
+						},
+						"apcardi_stemi": {
+							"label": "STEMI",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "b06e4000-5fb9-5141-ae6b-7777dffdc7a3"
+						},
+						"apcardi_arrhythmia": {
+							"label": "Rhythmusstörung",
+							"type": "selection",
+							"options": ["tachykard", "bradykard"],
+							"size": 40,
+							"value": null,
+							"id": "75433a36-43de-59c6-9332-6156568eb6ef"
+						},
+						"apcardi_pulmonaryembolism": {
+							"label": "Lungenembolie",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "2b7ad6b4-2f7d-540a-9993-dfde2021ec1c"
+						},
+						"apcardi_hyperthensiveemergency": {
+							"label": "Hyperthensiver Notfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "c0fdd979-a500-54ea-9a6b-7c30e6b335f0"
+						},
+						"apcardi_pacemaker": {
+							"label": "Schrittmacher",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "a9e408f2-1fb1-5d36-855d-811c227f56c7"
+						}
+					},
+					"apgd_breathing": {
+						"label": "Atmung",
+						"prefix": "apbreat_",
+						"apbreat_asthma": {
+							"label": "Asthma",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "25f4ff02-eebd-5d55-ac22-c008e02b0b8b"
+						},
+						"apbreat_copd": {
+							"label": "COPD",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "591615df-351c-5392-ac44-f9cea3f6b383"
+						},
+						"apbreat_pneumonie": {
+							"label": "Pneumonie/ Bronchitis",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "59019568-29c6-52a2-b1a8-189cd685d5e5"
+						},
+						"apbreat_aspiration": {
+							"label": "Aspiration",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "e872de9d-4bc7-55ab-9719-a6e306f4a684"
+						}
+					}
+				}
+			},
+			"x": 14.953779177382094,
+			"y": 801.3153870049496,
+			"index": 3,
+			"vy": 0.0006205198899951441,
+			"vx": -0.000794738713442647,
+			"fx": null,
+			"fy": null,
+			"anchor": { "type": "soft", "x": 1.1112971131424558, "y": 802.2023603586318 },
+			"isDragged": false
+		},
+		{
+			"id": "node-0.4551778067621777",
+			"shape": { "type": "emergency-action", "scale": 1 },
+			"spawn": { "source": "node-0.7509800706118537", "angle": 90, "distance": 500 },
+			"payload": {
+				"category": "ambulance",
+				"status": "in-progress",
+				"label": "Behandlung",
+				"priority": "",
+				"tags": []
+			},
+			"taxonomy": {
+				"label": "Maßnahme",
+				"prefix": "proc_",
+				"proc_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Geplant", "Laufend", "Abgeschlossen"],
+					"size": 50,
+					"value": "Laufend",
+					"id": "1a0a4814-5c24-51db-89c4-edcec6f4cda5"
+				},
+				"proc_actiontype": {
+					"label": "Art der Aktion",
+					"prefix": "procmedacttyp_",
+					"procmedacttyp_firefighting": {
+						"label": "Brandbekämpfung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "0f28d35a-f91d-5388-8b79-583d05b613a8"
+					},
+					"procmedacttyp_transport": {
+						"label": "Transport",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "030b839c-2ae5-52f3-b93b-a0831994c61c"
+					},
+					"procmedacttyp_rescue": {
+						"label": "Behandlung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": "Ja",
+						"id": "ba743a60-2b9f-5c97-834e-568a0586383c"
+					},
+					"procmedacttyp_extrication": {
+						"label": "Befreiung, Bergen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "6653a5ba-a939-5ea6-9f14-95660718857b"
+					},
+					"procmedacttyp_protection": {
+						"label": "Schützen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "d8dd8864-5cb3-52ab-a45b-1d6dd0515eeb"
+					}
+				},
+				"proc_medical": {
+					"label": "Medizinisch",
+					"prefix": "procmed_",
+					"procmed_treatment": {
+						"label": "Behandlung",
+						"prefix": "procmedtreat_",
+						"procmedtreat_medication": {
+							"label": "Medikation",
+							"prefix": "procmedmed_",
+							"procmedmed_accesses": {
+								"label": "Zugänge",
+								"prefix": "procmedmedacc_",
+								"procmedmedacc_peripheralaccess": {
+									"label": "Peripherer Zugang",
+									"prefix": "procmedmedaccperi_",
+									"procmedmedaccperi_location": {
+										"label": "Ort",
+										"type": "selection",
+										"options": [
+											"Handrücken (rete dorsale manus)",
+											"lateraler Arm (V. cephalica)",
+											"medialer Arm (V. basilica)",
+											"Hals (V. jugularis externa)",
+											"Fußrücken (rete dorsale pedes)"
+										],
+										"size": 40,
+										"value": null,
+										"id": "ad237a20-e673-5f54-90f4-eeab9e86b915"
+									},
+									"procmedmedaccperi_scale": {
+										"label": "Größe (Gauge)",
+										"type": "selection",
+										"options": [
+											"24G gelb",
+											"22G blau",
+											"20G rosa",
+											"18G grün",
+											"17G weiß",
+											"16G grau",
+											"14G orange"
+										],
+										"size": 40,
+										"value": null,
+										"id": "c6f61fb3-5f54-5068-8fe2-6f03b6732eee"
+									},
+									"procmedmedaccperi_quantity": {
+										"label": "Anzahl",
+										"type": "number",
+										"options": [
+											0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+											21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+											40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58,
+											59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77,
+											78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96,
+											97, 98, 99, 100
+										],
+										"size": 40,
+										"value": null,
+										"id": "e9af7793-5907-504e-b779-d1c4c3f75c58"
+									}
+								},
+								"procmedmedacc_intraosseouspuncture": {
+									"label": "Intraossäre Punktion",
+									"prefix": "procmedmedaccintr_",
+									"procmedmedaccintr_location": {
+										"label": "Ort",
+										"type": "selection",
+										"options": ["Tibia", "Humerus", "Femur"],
+										"size": 40,
+										"value": null,
+										"id": "48ab634f-7267-5afe-8321-2086e7d6308b"
+									},
+									"procmedmedaccintr_type": {
+										"label": "Art",
+										"type": "selection",
+										"options": ["15mm (rot)", "25mm (blau)", "45mm (gelb)"],
+										"size": 40,
+										"value": null,
+										"id": "327a5ffe-9ecf-572b-ac53-d9eeb050448c"
+									},
+									"procmedmedaccintr_quantity": {
+										"label": "Anzahl",
+										"type": "number",
+										"options": [
+											0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+											21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
+											40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58,
+											59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77,
+											78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96,
+											97, 98, 99, 100
+										],
+										"size": 40,
+										"value": null,
+										"id": "d58c60a9-98b6-56c1-9ee2-ed19b7dbdc25"
+									}
+								}
+							},
+							"procmedmed_medicines": {
+								"label": "Medikamente",
+								"prefix": "procmedmedmed_",
+								"procmedmedmed_analgesics": {
+									"label": "Analgetika",
+									"type": "selection",
+									"options": ["Dipidolor (Piritramid)", "Fentanyl", "Tramal", "Buscopan"],
+									"size": 40,
+									"value": null,
+									"id": "f4a10018-3e71-5e7f-b03f-e3dd75eddecb"
+								},
+								"procmedmedmed_antiarrhythmics": {
+									"label": "Antiarrhythmika",
+									"type": "selection",
+									"options": ["Beloc (Metropolol)", "Gilurythmal (Ajmalin)", "Adrekar (Adenosin)"],
+									"size": 40,
+									"value": null,
+									"id": "b7d4d25f-643d-582c-aadc-71117bcb1d2a"
+								},
+								"procmedmedmed_antiemetics": {
+									"label": "Antiemetika",
+									"type": "selection",
+									"options": ["Vomex A", "Paspertin (MCP)"],
+									"size": 40,
+									"value": null,
+									"id": "2793b163-19cd-53fc-9859-996badb74de7"
+								},
+								"procmedmedmed_nacotica": {
+									"label": "Nakotika",
+									"type": "selection",
+									"options": ["Etomidat", "Trapanal", "Ketanest"],
+									"size": 40,
+									"value": null,
+									"id": "3e5a9124-f863-5460-aa5e-1d1f34925afe"
+								},
+								"procmedmedmed_catecholamines": {
+									"label": "Katecholamine",
+									"type": "selection",
+									"options": ["Alupent", "Arterenol", "Dopamin", "Dobutamin", "Suprarenin"],
+									"size": 40,
+									"value": null,
+									"id": "08302539-b611-53c7-9e5a-6c98e7d2061c"
+								}
+							}
+						},
+						"procmedtreat_other": {
+							"label": "Sonstiges",
+							"prefix": "procmedother_",
+							"procmedother_specialstorage": {
+								"label": "Spezielle Lagerung",
+								"type": "selection",
+								"options": ["Flach", "Schocklage", "Seitenlage", "Oberkörper erhöht"],
+								"size": 40,
+								"value": null,
+								"id": "66231774-4554-5e53-8d46-0821d1acd137"
+							},
+							"procmedother_cooling": {
+								"label": "Kühlung",
+								"type": "selection",
+								"options": ["Ja", "Nein"],
+								"size": 40,
+								"value": null,
+								"id": "f2f1e2ac-af18-5286-b226-a09662f0a320"
+							},
+							"procmedother_immobilization": {
+								"label": "Immobilisation",
+								"type": "selection",
+								"options": ["Vakuummatratze", "Spineboard", "Zervikalstütze"],
+								"size": 40,
+								"value": null,
+								"id": "742b001f-082c-593c-a2d1-5979f59e11ba"
+							}
+						},
+						"procmedtreat_reanimation": {
+							"label": "Reanimation",
+							"prefix": "procmedrean_",
+							"procmedrean_hlw": {
+								"label": "HLW",
+								"prefix": "procmedreanhlw_",
+								"procmedreanhlw_duration": {
+									"label": "Dauer",
+									"type": "number",
+									"options": [
+										0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+										22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41,
+										42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61,
+										62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81,
+										82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100
+									],
+									"size": 40,
+									"value": null,
+									"id": "e7b34897-a6c5-580e-b399-96016196bf16"
+								},
+								"procmedreanhlw_firstaiderresuscitation": {
+									"label": "Ersthelferreanimation",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "812efb17-1493-548d-8196-c2451c99b4c6"
+								},
+								"procmedreanhlw_guidedtelephoneresuscitation": {
+									"label": "Angeleitete Telefonreanimation",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "3855bf7e-1c39-5b61-b2fd-0f05633b13d0"
+								}
+							},
+							"procmedrean_defibrillation": {
+								"label": "Defibrillation",
+								"prefix": "procmedreandef_",
+								"procmedreandef_defibrillation1": {
+									"label": "1. Defibrillation",
+									"prefix": "procmedreandef1_",
+									"procmedreandef1_time": {
+										"label": "Zeit",
+										"type": "number",
+										"options": [
+											"00:00",
+											"00:30",
+											"01:00",
+											"01:30",
+											"02:00",
+											"02:30",
+											"03:00",
+											"03:30",
+											"04:00",
+											"04:30",
+											"05:00",
+											"05:30",
+											"06:00",
+											"06:30",
+											"07:00",
+											"07:30",
+											"08:00",
+											"08:30",
+											"09:00",
+											"09:30",
+											"10:00",
+											"10:30",
+											"11:00",
+											"11:30",
+											"12:00",
+											"12:30",
+											"13:00",
+											"13:30",
+											"14:00",
+											"14:30",
+											"15:00",
+											"15:30",
+											"16:00",
+											"16:30",
+											"17:00",
+											"17:30",
+											"18:00",
+											"18:30",
+											"19:00",
+											"19:30",
+											"20:00",
+											"20:30",
+											"21:00",
+											"21:30",
+											"22:00",
+											"22:30",
+											"23:00",
+											"23:30",
+											"00:00"
+										],
+										"size": 40,
+										"value": null,
+										"id": "eb5ff031-b559-5f19-bbf4-46d2316c22e3"
+									},
+									"procmedreandef1_strength": {
+										"label": "Stärke",
+										"type": "selection",
+										"options": ["120J", "150J", "200J", "250J", "300J"],
+										"size": 40,
+										"value": null,
+										"id": "b717a0e5-abdf-5b5b-a7c8-6fe05d66845b"
+									}
+								},
+								"procmedreandef_defibrillation2": {
+									"label": "2. Defibrillation",
+									"prefix": "procmedreandef2_",
+									"procmedreandef2_time": {
+										"label": "Zeit",
+										"type": "number",
+										"options": [
+											"00:00",
+											"00:30",
+											"01:00",
+											"01:30",
+											"02:00",
+											"02:30",
+											"03:00",
+											"03:30",
+											"04:00",
+											"04:30",
+											"05:00",
+											"05:30",
+											"06:00",
+											"06:30",
+											"07:00",
+											"07:30",
+											"08:00",
+											"08:30",
+											"09:00",
+											"09:30",
+											"10:00",
+											"10:30",
+											"11:00",
+											"11:30",
+											"12:00",
+											"12:30",
+											"13:00",
+											"13:30",
+											"14:00",
+											"14:30",
+											"15:00",
+											"15:30",
+											"16:00",
+											"16:30",
+											"17:00",
+											"17:30",
+											"18:00",
+											"18:30",
+											"19:00",
+											"19:30",
+											"20:00",
+											"20:30",
+											"21:00",
+											"21:30",
+											"22:00",
+											"22:30",
+											"23:00",
+											"23:30",
+											"00:00"
+										],
+										"size": 40,
+										"value": null,
+										"id": "7138c41f-bf6a-5981-a460-776cd9be2d34"
+									},
+									"procmedreandef2_strength": {
+										"label": "Stärke",
+										"type": "selection",
+										"options": ["120J", "150J", "200J", "250J", "300J"],
+										"size": 40,
+										"value": null,
+										"id": "3d557eb3-ce15-5cc3-8a5f-af4f10bcefc1"
+									}
+								},
+								"procmedreandef_defibrillation3": {
+									"label": "3. Defibrillation",
+									"prefix": "procmedreandef3_",
+									"procmedreandef3_time": {
+										"label": "Zeit",
+										"type": "number",
+										"options": [
+											"00:00",
+											"00:30",
+											"01:00",
+											"01:30",
+											"02:00",
+											"02:30",
+											"03:00",
+											"03:30",
+											"04:00",
+											"04:30",
+											"05:00",
+											"05:30",
+											"06:00",
+											"06:30",
+											"07:00",
+											"07:30",
+											"08:00",
+											"08:30",
+											"09:00",
+											"09:30",
+											"10:00",
+											"10:30",
+											"11:00",
+											"11:30",
+											"12:00",
+											"12:30",
+											"13:00",
+											"13:30",
+											"14:00",
+											"14:30",
+											"15:00",
+											"15:30",
+											"16:00",
+											"16:30",
+											"17:00",
+											"17:30",
+											"18:00",
+											"18:30",
+											"19:00",
+											"19:30",
+											"20:00",
+											"20:30",
+											"21:00",
+											"21:30",
+											"22:00",
+											"22:30",
+											"23:00",
+											"23:30",
+											"00:00"
+										],
+										"size": 40,
+										"value": null,
+										"id": "33a1c4f1-384b-54fb-930c-a4a1e9acb94d"
+									},
+									"procmedreandef3_strength": {
+										"label": "Stärke",
+										"type": "selection",
+										"options": ["120J", "150J", "200J", "250J", "300J"],
+										"size": 40,
+										"value": null,
+										"id": "d3263a5a-0b85-5b6e-87fd-031b2c8d4508"
+									}
+								}
+							}
+						},
+						"procmedtreat_breathing": {
+							"label": "Atmung",
+							"prefix": "procmedbreat_",
+							"procmedbreat_ventilation": {
+								"label": "Beatmung",
+								"prefix": "procmedbreatvent_",
+								"procmedbreatvent_manual": {
+									"label": "Manuell",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "c81ec294-ef1b-59e7-a474-96f9983519f5"
+								},
+								"procmedbreatvent_machine": {
+									"label": "Maschinell",
+									"prefix": "procmedbreatventmach_",
+									"procmedbreatventmach_type": {
+										"label": "Typ",
+										"type": "selection",
+										"options": ["Kontrolliert", "Assistiert", "NIV"],
+										"size": 40,
+										"value": null,
+										"id": "e28767de-6ca0-5c6c-a0bf-0e5c71b36d18"
+									},
+									"procmedbreatventmach_parameter": {
+										"label": "Parameter",
+										"prefix": "procmedbreatventmachpar_",
+										"procmedbreatventmachpar_fio2": {
+											"label": "FiO2",
+											"type": "number",
+											"options": ["40%", "60%", "80%", "100%"],
+											"size": 40,
+											"value": null,
+											"id": "bc2e484a-bfa3-5d83-89d2-d17fcb7f1978"
+										},
+										"procmedbreatventmachpar_af": {
+											"label": "AF",
+											"type": "number",
+											"options": ["10/min", "12/min", "14/min", "20/min", "40/min", "60/min"],
+											"size": 40,
+											"value": null,
+											"id": "a633c7dc-9f63-5f67-8501-9d86d830277b"
+										},
+										"procmedbreatventmachpar_zv": {
+											"label": "ZV",
+											"type": "number",
+											"options": ["300ml", "350ml", "400ml", "450ml", "500ml"],
+											"size": 40,
+											"value": null,
+											"id": "7fc6dd81-cffd-54ce-8e7a-10e885a53616"
+										},
+										"procmedbreatventmachpar_peep": {
+											"label": "PEEP",
+											"type": "number",
+											"options": ["3mbar", "4mbar", "5mbar", "6mbar"],
+											"size": 40,
+											"value": null,
+											"id": "238fd5be-ea4a-5eaf-ae5d-71721b87e664"
+										},
+										"procmedbreatventmachpar_pmax": {
+											"label": "Pmax",
+											"type": "number",
+											"options": ["20mbar", "25mbar", "30mbar"],
+											"size": 40,
+											"value": null,
+											"id": "60c0bd7a-46bd-5c74-b7cc-d37676a10c94"
+										}
+									}
+								}
+							},
+							"procmedbreat_airway": {
+								"label": "Atemweg",
+								"prefix": "procmedbreatair_",
+								"procmedbreatair_oxygensupply": {
+									"label": "Sauerstoffgabe",
+									"type": "number",
+									"options": ["2L", "4L", "6L", "8L", "10L", "12L"],
+									"size": 40,
+									"value": null,
+									"id": "994eaf3e-5b5f-5284-94f6-269938f29966"
+								},
+								"procmedbreatair_cleartheairways": {
+									"label": "Freimachen der Atemwege",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "abe17331-2e11-5e7a-8cdd-b39f20413941"
+								},
+								"procmedbreatair_maskbagresuscitation": {
+									"label": "Masken-Beutel-Beatmung",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "d7e1e95a-878b-5276-9bc8-27a40f383098"
+								},
+								"procmedbreatair_endotrachealintubation": {
+									"label": "Endotracheale Intubation",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "ede4dbc5-a798-5dbc-b129-5a853843b629"
+								},
+								"procmedbreatair_videolaryngoscope": {
+									"label": "Videolaryngoskop",
+									"type": "selection",
+									"options": ["Ja", "Nein"],
+									"size": 40,
+									"value": null,
+									"id": "11797c90-2c16-5de3-80de-083933833008"
+								}
+							}
+						}
+					},
+					"procmed_transport": {
+						"label": "Transport",
+						"prefix": "procmedtransp_",
+						"procmedtransp_laying": {
+							"label": "liegend",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "7e71dedf-a083-503d-9736-4b3003c14561"
+						},
+						"procmedtransp_sitting": {
+							"label": "sitzend",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "b634e217-c7c1-57ae-836d-347a7b494d85"
+						},
+						"procmedtransp_transporttarget": {
+							"label": "Transportziel",
+							"type": "text",
+							"options": [
+								"Uniklinikum Ludwigshafen",
+								"BG Klinikum Ludwigshafen",
+								"Krankenhaus Zum Guten Hirten Ludwigshafen"
+							],
+							"size": 60,
+							"value": null,
+							"id": "6cd7d302-4dea-576f-ab01-e9abe9aa19ca"
+						},
+						"procmedtransp_specialrights": {
+							"label": "Sonderrechte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "39a3ad1f-f5ee-5e0a-8c2d-e31b42c18e01"
+						},
+						"procmedtransp_perfusorreq": {
+							"label": "mit Perfusor",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "950c4092-fbb3-5541-9923-8b1149bb43e3"
+						},
+						"procmedtransp_oxigenreq": {
+							"label": "mit O2",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "e56a6add-0f66-55a6-bc17-ab43e893bc99"
+						},
+						"procmedtransp_breathsupportreq": {
+							"label": "mit Beatmung ",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "5e1da1a6-e556-544f-b53f-7979548c434b"
+						},
+						"procmedtransp_monitorreq": {
+							"label": "mit Monitor",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "60fef3c3-899d-5128-9533-f9bd56148219"
+						},
+						"procmedtransp_vakuummatreq": {
+							"label": "mit Vakuummatratze",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "2fbd3f3d-d703-58f4-a5e5-1f8ac2d2ada4"
+						}
+					}
+				}
+			},
+			"x": 497.331364459712,
+			"y": 773.6071053563452,
+			"index": 4,
+			"vy": 0.018044711294389535,
+			"vx": -0.010331615461662455,
+			"fx": null,
+			"fy": null,
+			"anchor": { "type": "soft", "x": 493.26719011374945, "y": 802.2023603586646 },
+			"isDragged": false
+		}
+	],
+	"links": [
+		{
+			"source": "e92d276a-253f-4b5d-ae96-53254dc6af95",
+			"target": "5442b7cf-0527-46c7-82b8-cdc82f1941b1",
+			"type": "solid",
+			"directed": true,
+			"strength": "weak"
+		},
+		{
+			"source": "5442b7cf-0527-46c7-82b8-cdc82f1941b1",
+			"target": "node-0.7509800706118537",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "loose"
+		},
+		{
+			"source": "node-0.7509800706118537",
+			"target": "node-0.4551778067621777",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "weak"
+		},
+		{
+			"source": "node-0.4551778067621777",
+			"target": "85aa252f-ec66-4f33-a14b-bae5ed6f8a43",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "weak"
+		}
+	],
+	"hasUpdate": false
+}

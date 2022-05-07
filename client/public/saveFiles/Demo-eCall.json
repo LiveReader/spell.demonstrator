@@ -1,1 +1,2815 @@
-{"nodes":[{"id":"78b2908b-bf41-4b1f-ab75-e0d24b49f97c","shape":{"type":"operation","scale":1},"anchor":{"type":"soft","x":13.867059489715771,"y":-27.84604535135334},"payload":{"status":"delayed","label":"Operation","location":"49.475000, 8.335056","affected_persons":2,"affected_objects":1,"tags":["Unfall"]},"taxonomy":{"label":"Lage","prefix":"op_","id":"6031155e-2af0-4536-aa28-5ad8c3459ead","op_emergencyType":{"label":"Art des Notfalls","prefix":"emtyp_","id":"6814f420-d3bc-474c-ac71-b16d3aab28f9","emtyp_medical":{"label":"Medizinisch","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"e3e14f35-58cd-43de-b65d-312a4ef29848"},"emtyp_psychological":{"label":"Psychosozial","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"238f5cb9-0cd8-48de-8bf6-6d3b9885860c"},"emtyp_accident":{"label":"Unfall","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"a02ef84b-1d8c-4691-9d34-9f8a4b472bb0"},"emtyp_damageevent":{"label":"Schadensereignis","type":"selection","options":["Brand","Explosion","Gefahrgut","Emmisionen","Stromausfall","Technische Störung","Nuklearer Unfall","Ausfall: IT"],"size":20,"value":null,"id":"8373ef2a-df05-4f80-a501-e93a6c9c6529"},"emtyp_searchandrescue":{"label":"Suche und Rettung","type":"selection","options":["Höhlenunfall","Bergunfall","Flugunfall","vermisste Person","Gewässer","Wasserstraße","Forst","Gelände"],"size":20,"value":null,"id":"a72847cf-ad57-48b7-a7b6-291f2cc5b2a7"},"emtyp_environmentevent":{"label":"Umwelt-/Klima-Ereignis","type":"selection","options":["Sturm","Hagel","Starkregen","Flut / Hochwasser","Schnee / Eisglätte","Smock","Erdrutsch","Erdbeben","Tsunami","Vulkanausbruch"],"size":20,"value":null,"id":"f275705e-6181-4b46-bc23-007efa9827c5"},"emtyp_violence":{"label":"Gewalttat","type":"selection","options":["Häusliche Gewalt","Kindermisshandlung","Stumpfe Waffen","Stichwaffen","Schusswaffen","Massenauseinandersetzung"],"size":20,"value":null,"id":"ad3bd21d-f4af-4e0a-9fbb-ba1b5d5f6cec"},"emtyp_threat":{"label":"Bedrohung, Gefährdung","type":"selection","options":["Terrorismus","Amokläufer","LebEL","Bombenentschärfung","Person in Zwangslage","Drohender Suizid","Polizeizugriff","Krieg"],"size":20,"value":null,"id":"bdc7c9e0-fa71-4914-9834-125b45939526"},"emtyp_other":{"label":"Sonstiges","type":"selection","options":["Tierrettung","Tierseuche","Großveranstaltung","Notfallseelsorge","Fachanforderung"],"size":20,"value":null,"id":"be738d3f-50d3-445a-9d55-edef5088f104"},"emtyp_info":{"label":"Auskunftsersuche","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"c99caa1d-fec5-45a4-8757-5ab26ab7d7a5"},"emtyp_transport":{"label":"Transport","type":"selection","options":["Krankenfahrt","Krankentransport","Evakuierung","Intensivtransport"],"size":60,"value":null,"id":"0813d85d-b4b1-4a11-98c0-2710d063c867"},"emtyp_technicalsupport":{"label":"Technische Hilfeleistung","type":"selection","options":["Verkehrsunfall","Gefahrstoffaustritt","Unwetter","Gebäude"],"size":60,"value":null,"id":"d2f7a9fd-9348-48bc-b7ae-4ff7027a0b39"}},"op_location":{"label":"Standort","prefix":"loc_","id":"7be02eef-fce4-461a-b16f-fe3efc89826f","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":null,"id":"cb3c5d0b-7c11-4be0-9e0c-ca3074ea7dfe"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"c36614af-89ef-4fc9-8884-1324bd426942"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":null,"id":"21ab4c1b-af7e-4765-85ea-c5a5168f7939"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":null,"id":"85f3887b-b589-4811-bc65-ce8a255056bb"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":null,"id":"4accbcc0-ec6e-432a-bbd1-60a620d6bde2"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"dbbc2520-e835-4c03-8215-f4205fcdeb17"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.475000, 8.335056","id":"8734b585-5b85-471c-8082-b75ac3e8e423"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"ba62c7e1-7687-4307-9dda-8e2499d46769"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"997faa77-f7e0-4666-9565-756c63d0c056"}},"op_affected":{"label":"Betroffene ...","prefix":"opaff_","id":"051b04b4-fec6-467e-a0b9-b655bb31f4b0","opaff_persons":{"label":"Personen","type":"number","size":60,"value":2,"id":"57cf704c-0ee5-46ce-bc4f-9e43f5615936","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]},"opaff_objects":{"label":"Objekte","type":"number","size":40,"value":1,"id":"865357df-737e-4d9b-93eb-6dd391586921","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]}},"op_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":"Gelb","id":"97a17854-f160-4255-808f-48f3a7e1a18f"}},"index":0,"x":16.81712054748012,"y":-40.57782795489966,"vy":0.000018729603699851187,"vx":5.758856615367081e-7,"fx":null,"fy":null,"isDragged":false},{"id":"14dbbedf-ff44-4908-a2e9-c901f933f57a","shape":{"type":"emergency-reporter","scale":1},"payload":{"name":{"first":"VW","last":"Golf"},"pending":false,"intervalID":"","location":"49.475000, 8.335056","category":"automatic-system","label":"eCall","callback_number":"06229 73 06 31 "},"taxonomy":{"label":"Meldend","prefix":"erep_","id":"db8a6da4-f500-4cd3-95f9-a47f3f951315","erep_name":{"label":"Name","prefix":"erepn_","id":"6de7a7aa-c1e4-4944-ac39-19cca8eb4efc","erepn_first":{"label":"Vorname","type":"text","size":40,"value":"VW","id":"13cd5249-4a7e-4f9e-8007-f4ecd0d4499e","options":["Hilda","Marc","Fred","Georgia","Terry","Nellie","Caroline","Milton","Fred","Katie","Franklin","Christopher","Ricardo","Nettie","Anthony","Corey","Aiden","Madge","Myrtle","Winifred"]},"erepn_last":{"label":"Nachname","type":"text","size":40,"value":"Golf","id":"19145b77-fca0-47cd-a73c-a3a6fe1b73e2","options":["Morrison","Austin","Rice","Allison","Wallace","Delgado","Howard","Cook","Ortega","Castillo","Newton","Day","Robinson","Lloyd","Sutton","Morrison","Lopez","Mason","Holt","Floyd"]}},"erep_phonenumber":{"label":"Telefonnummer","type":"text","options":[],"size":60,"value":"06229 73 06 31 ","id":"c53286a9-9528-4965-96fc-244d1d2abe7b"},"erep_separatedrecallnumber":{"label":"gesonderte Rückrufnummer","type":"text","options":[],"size":20,"value":null,"id":"17a59fc3-3cd2-415c-8758-54218a866d99"},"erep_emergencyrelation":{"label":"Notfallbezug","type":"selection","options":["selbst betroffen","ist dabei","sieht es","kein Kontakt"],"size":40,"value":"ist dabei","id":"314de328-f31b-4645-8c16-df43843a03eb"},"erep_location":{"label":"Standort","prefix":"loc_","id":"1c6bd91d-2c4a-47d3-a92c-77db64a5b416","loc_street":{"label":"Straße","type":"text","options":[],"size":30,"value":null,"id":"3d6f9dae-3b4f-4be9-a47b-992f93d92405"},"loc_buildingno":{"label":"Hausnummer","type":"text","options":[],"size":30,"value":null,"id":"1ab3e9b6-1357-4fb7-bc04-a894083b8366"},"loc_zipcode":{"label":"PLZ","type":"text","options":[],"size":40,"value":null,"id":"6119ed8b-ec15-4445-9bae-c6fe1cc59e14"},"loc_city":{"label":"Ort","type":"text","options":[],"size":40,"value":null,"id":"c7a3d7d0-3328-4b6f-9ef2-024d359ba6af"},"loc_country":{"label":"Land","type":"text","options":[],"size":20,"value":null,"id":"19c5a42f-6b8e-4f52-ba02-1516f43577ad"},"loc_note":{"label":"Anmerkung","type":"text","options":[],"size":20,"value":null,"id":"4dec1b4e-6355-44a0-9609-2c658f892db4"},"loc_gps":{"label":"GPS","type":"text","options":[],"size":20,"value":"49.475000, 8.335056","id":"ee78ff80-2614-48e5-9a24-a14294ba239a"},"loc_threewords":{"label":"3Words","type":"text","options":[],"size":20,"value":null,"id":"279609ee-6221-4455-b6f1-da9bf97697fb"},"loc_located":{"label":"geortet","type":"selection","options":["Ja","Nein"],"size":20,"value":"Ja","id":"e2a7ddba-55f8-4fc4-8010-a4b141c54d48"}},"erep_reportertype":{"label":"Art","prefix":"ereprt_","id":"ec63a212-d8f8-43c5-9a02-48a426f82a37","ereprt_eCall":{"label":"eCall","prefix":"eCall_","id":"d8e2236d-477b-40b4-90f8-aa3d95c75664","eCall_eCall":{"label":"eCall","type":"selection","options":["Ja","Nein"],"size":60,"value":"Ja","id":"b706926d-b89a-42c6-99af-c354c0b3dc77"},"eCall_persons":{"label":"Anzahl Personen","type":"selection","options":["1","2","3","4","5","6","viele"],"size":20,"value":"2","id":"8f062388-a686-43e0-8df9-5f7112a9553e"},"eCall_direction":{"label":"Richtung","type":"text","options":[],"size":20,"value":"Westen","id":"8203a6c4-8edc-49b1-9098-b814963f9bd5"},"eCall_position":{"label":"GPS-Position","type":"text","options":[],"size":20,"value":"49.475000, 8.335056","id":"84c5c113-ef3e-4bc9-baed-92ee39f7bc23"},"eCall_energytype":{"label":"Antriebsart","type":"selection","options":["Benzin","Diesel","Gas","Elektro"],"size":20,"value":"Diesel","id":"72f8ba62-073f-42f6-94fe-1f2c5fa6eab9"},"eCall_releasedby":{"label":"Ausgelöst durch","type":"selection","options":["Manuell","Automatisch"],"size":20,"value":"Automatisch","id":"9ddf50ea-c80d-41f3-9ce4-e1e16c7955ad"},"eCall_fin":{"label":"FIN","type":"text","options":[],"size":20,"value":"2FMDK4KC4CBA27842","id":"a48fcf13-526c-484b-bd4c-ea8029e630df"},"eCall_airbagsreleased":{"label":"AirBags ausgelöst","type":"selection","options":["Ja","Nein"],"size":30,"value":"Ja","id":"0b41bb17-ca17-4bbc-a7a0-214d3001434f"},"eCall_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":30,"value":"Ja","id":"1334f7b7-e501-4cc1-a2dc-34db9372b6bc"}},"ereprt_wearable":{"label":"Wearable","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"aeac8444-e6c2-4939-afaa-d8d9f468555d"},"ereprt_person":{"label":"Person","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"a19914d7-1d63-424a-b606-541c4691adc6"},"ereprt_bma":{"label":"BMA","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"9b6a18c8-3c09-4b26-b1a9-55d05f6f5f9f"}},"erep_organisation":{"label":"Organisation","prefix":"ereporg_","id":"e776f523-4202-430f-aa4b-cc702bb5940d","ereporg_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"be7be100-2f97-46eb-836f-175819c4d24c"},"ereporg_practice":{"label":"Arztpraxis","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"48616235-4397-4590-8f68-a3401554fafa"},"ereporg_firedepartment":{"label":"Feuerwehr","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"83a73be2-a5cd-4e78-9dab-51337eb180dc"},"ereporg_externemergencycallcenter":{"label":"Externe Leitstelle","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cb111a73-af06-45a8-aa9a-b21b0407a492"},"ereporg_homeemergencycall":{"label":"Hausnotruf","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"6a06458d-dc37-4516-8f51-dd0f8c6fe4b9"}},"erep_competence":{"label":"Kompetenz","prefix":"comp_","id":"58837caf-1324-4284-85c8-cb74993957cd","comp_medcompetence":{"label":"Med. Kompetenz","prefix":"medcomp_","id":"9aabcad2-b2bd-44f1-b8c4-e49b97191e45","medcomp_doctor":{"label":"Arzt","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"167dbac9-546c-4982-992b-c90c98d9ead6"},"medcomp_supporter":{"label":"Hilfspersonal","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"e453aaf0-2778-40b6-ab85-5200f15f18b5"}},"comp_firecompetence":{"label":"Feuerw. Kompetenz","prefix":"firecomp_","id":"7d94a4a5-ef62-489a-8937-18f4341aa115","firecomp_professional":{"label":"Professional","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"4bae2657-fa56-438d-92a0-72a984f276c0"},"firecomp_firstresponder":{"label":"Ersthelfer","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"54750f4b-0d93-47b5-9c4b-ad7485455d23"}},"comp_police":{"label":"Polizei","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"479d8ae9-8814-4085-98ae-a5ea500ed2a5"}}},"x":-385.47523771203726,"y":-45.887467721496655,"index":1,"vy":-0.000028439536239060687,"vx":0.000010737938096952448,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":-385.86036784052976,"y":-38.25424689519246}},{"id":"00b94b4a-9415-421d-968b-6044a48eb531","shape":{"type":"affected-person","scale":1},"spawn":{"source":"n0","angle":180,"distance":400},"payload":{"status":"delayed","name":{"first":"Person","last":"Fahrer"},"sex":"","age":"","accessibility":"","tags":[]},"taxonomy":{"label":"Betroffene Person","prefix":"ap_","id":"0badca64-2b38-4d32-891f-a402e7a62607","ap_name":{"label":"Name","prefix":"apn_","id":"c7297faf-29d7-4843-ae6a-60454cdf60aa","apn_first":{"label":"Vorname","type":"text","size":40,"value":"Person","id":"6722490e-4d1b-40c3-8102-28a0b15430b5","options":["Hilda","Marc","Fred","Georgia","Terry","Nellie","Caroline","Milton","Fred","Katie","Franklin","Christopher","Ricardo","Nettie","Anthony","Corey","Aiden","Madge","Myrtle","Winifred"]},"apn_last":{"label":"Nachname","type":"text","size":40,"value":"Fahrer","id":"8b86b565-7d38-45fc-abba-a22450c51eb4","options":["Morrison","Austin","Rice","Allison","Wallace","Delgado","Howard","Cook","Ortega","Castillo","Newton","Day","Robinson","Lloyd","Sutton","Morrison","Lopez","Mason","Holt","Floyd"]}},"ap_age":{"label":"Alter","type":"number","size":50,"value":null,"id":"6c127368-fe46-4423-9a1d-93b91aa0e187","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]},"ap_sex":{"label":"Geschlecht","type":"selection","options":["Männlich","Weiblich","Divers"],"size":50,"value":null,"id":"1ba4d21a-87c4-4e1c-a00f-804608311279"},"ap_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":null,"id":"09186438-c365-452a-9ccf-fc7860de94a0"},"ap_symptoms":{"label":"Symptome","prefix":"aps_","id":"823c5837-f66a-492c-81be-917308df3e3f","aps_pain":{"label":"Schmerzen","type":"selection","options":["Stark","Mittel","Schwach","Nein"],"size":80,"value":null,"id":"78dc2b02-ad2f-4ed8-a9d5-d187111c58a5"},"aps_painlocation":{"label":"Schmerzbereich","type":"selection","options":["Brust","Kopf","Nacken","Schulter","Rücken","Arm","Hand","Becken","Wehen","Oberbauch","Hüfte","Nieren","Genital","Oberschenke","Knie","Unterschenkel","Fuß"],"size":40,"value":null,"id":"76ccfe4d-1417-496a-a43a-d2dbbf621579"},"aps_painmovementrelated":{"label":"Schmerzen bewegungsabhängig","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"73eb66f3-e050-4a6d-9fdf-b026c69a62b3"},"aps_fiever":{"label":"Fieber","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e528dad2-eec1-4867-910b-63bacfaaf976"},"aps_heatfeeling":{"label":"Hitzeempfinden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a462424c-834a-406d-b258-8a3760c9298c"},"aps_coldfadeskin":{"label":"kalte fahle Haut","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"0a771b6e-6769-41b5-8da5-4e61676e843e"},"aps_coldsweat":{"label":"kalter Schweiß","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a1753d69-29d0-4f50-8bc6-b90b50911a8d"},"aps_shivers":{"label":"Schüttelfrost","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"1b311a61-ecdd-4189-9117-d6a67fe75805"},"aps_bluelips":{"label":"blaue Lippen","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"451dcd70-66d2-430c-bb89-2089ce3afae6"}},"ap_diagnosis":{"label":"Diagnose","prefix":"apd_","id":"28bfed50-47a8-4614-a7c9-6c8f909ad690","apd_heartattack":{"label":"Herzinfakt","type":"selection","options":["Ausgeschlossen","Unwahrscheinlich","Möglich","Wahrscheinlich","Sicher"],"size":80,"value":null,"id":"a558c82a-f6dd-41eb-891b-ea9f734dbbc2"}},"ap_condition":{"label":"Zustand","prefix":"apc_","id":"5613aa7d-8ad6-4c86-b6b8-4cd3212f7e90","apc_vitalcondition":{"label":"Vitalwerte","prefix":"apcvc_","id":"89319a21-2175-4eb9-9482-f56066187fc1","apcvc_breath":{"label":"Atmung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":100,"value":null,"id":"8815997c-aa1c-4041-8f97-70f4c0a0df69"},"apcvc_breathmovement":{"label":"Atembewegung","type":"selection","options":["Ja","Nein!","unbekannt"],"size":40,"value":null,"id":"a6ac1a9d-0ec9-4286-9036-ac1a01a1c15b"},"apcvc_breathproblem":{"label":"Atemstörung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":40,"value":null,"id":"3d48bacc-5ffb-43d5-bb96-650df7acee73"},"apcvc_consciousness":{"label":"bei Bewusstsein","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d23dbfdf-a89a-4050-be45-95a89325439d"},"apcvc_unconscioussince":{"label":"bewusstlos seit","type":"selection","options":["gerade","Stunden","unbekannt"],"size":40,"value":null,"id":"d131ce67-d79e-4afd-af86-ca8b5fd522bf"},"apcvc_pulse":{"label":"Puls","type":"selection","options":["Ja","Nein","unbekannt"],"size":100,"value":null,"id":"aeef9f36-3998-452f-a09c-58b59c26e0ee"}},"apc_physicalcondition":{"label":"Physisch","prefix":"apcpc_","id":"3781b249-b294-4778-9ea6-193d0d89b08a","apcpc_diabetes":{"label":"Diabetes","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"3309fb4f-92a2-4685-b0a7-257ba946088e"},"apcpc_bloodstream":{"label":"Kreislaufprobleme","type":"selection","options":["Stark","Leicht","Nein","Unbekannt"],"size":60,"value":null,"id":"b9a127ee-d590-4072-af70-258a70b01349"},"apcpc_dizziness":{"label":"Schwindel","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"1d7d48b5-7cfd-4f39-ae7f-176e79347174"},"apcpc_pregnant":{"label":"Schwanger","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"1ec6e345-c21d-4810-b423-88d2d9f88405"},"apcpc_wheelchair":{"label":"Rollstuhl","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"ccade147-ac0b-443b-a92b-44adebc33665"},"apcpc_visuallyimpared":{"label":"Blind/Sehbehindert","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"de38713f-4ab6-4b19-a82c-dfde925023d6"},"apcpc_oftenhypertension":{"label":"oft Bluthochdruck","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"74b06fd5-d9f1-4790-bd37-ec852f106565"},"apcpc_oftencholesterol":{"label":"oft hohe Cholesterinwerte","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9677858c-340f-4c97-ae7e-bd32175b5810"},"apcpc_hearthsuffering":{"label":"Herzleiden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"29f38036-d596-4246-a4e0-35d0c363760d"},"apcpc_infection":{"label":"Infektion","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"fcf355c6-008e-451c-9f10-6cd0ce4bbeca"},"apcpc_infectionsince":{"label":"Infektion seid","type":"selection","options":["Stunden","Tage","unbekannt"],"size":40,"value":null,"id":"8843665a-b4f7-4dcd-9034-d5a1955537c2"},"apcpc_infectioncovid":{"label":"Covid","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"699915d6-50b6-47fb-ab22-7e8714e91128"}},"apc_mentalcondition":{"label":"Mental","prefix":"apcmc_","id":"ddae9c36-e707-429e-b4ea-d46e837e47c9","apcmc_fear":{"label":"Angst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9a393f50-7cdc-4484-9d9f-f76daee84a67"},"apcmc_threaten":{"label":"Bedrohung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"3d4506dc-f9ec-478c-abd2-37a4f0dda759"},"apcmc_weakness":{"label":"Schwächegefühl","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9bee6bc6-f6b0-4fea-8051-1f6413f913bb"},"apcmc_stress":{"label":"Stress","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"fca60f83-210c-43bc-8ab9-b4d6c8cd0d38"}},"apc_measurements":{"label":"Messwerte","prefix":"apmeas_","apmeas_bloodpressure":{"label":"RR","prefix":"apmeasbp_","apmeasbp_systolic":{"label":"Systolisch","type":"number","options":["60","80","100","120","140","180","220","260"],"size":30,"value":null,"id":"82f4b40d-cb0f-403e-8d31-eb02b64bac4a"},"apmeasbp_diastolic":{"label":"Diastolisch","type":"number","options":["40","60","80","100","120","140","160"],"size":30,"value":null,"id":"63337ff4-e291-40ae-872b-70456c40d16c"}},"apmeas_heartfailure":{"label":"HF","type":"number","options":["30","40","60","70","80","90","100","120","140","160","200"],"size":30,"value":null,"id":"705d941f-ae87-4f46-8808-a02d15054ccf"},"apmeas_bloodglucosevalue":{"label":"BZ","type":"number","options":["30","60","80","120","140","200"],"size":30,"value":null,"id":"231eb45a-028c-4be2-aebf-153cb7d6a02c"},"apmeas_breathingrate":{"label":"AF","type":"number","options":["0","5","8","10","12","15","20","30"],"size":30,"value":null,"id":"52392b23-3673-463d-a082-728bbaa006ec"},"apmeas_oxygensaturation":{"label":"SpO2","type":"number","options":["60%","80%","90%","95%","99%"],"size":30,"value":null,"id":"e3b5b0f5-ea72-46eb-bb65-91b3aa8fd68a"},"apmeas_bodytemperature":{"label":"Temp","type":"number","options":["36°C","37°C","38°C","39°C","40°C","41°C"],"size":30,"value":null,"id":"ed31079a-0e97-4f9b-9c57-04047d98e087"},"apmeas_ecg":{"label":"EKG","type":"selection","options":["STEMI","Sinusrhythmus","Kammerflimmern","Asystolie","Absolute Arrythmie","AV-Block","Tachykardie"],"size":30,"value":null,"id":"1ca7b746-5469-4912-81e0-15fb5cf979c1"},"apmeas_breathing":{"label":"Atmung","type":"selection","options":["unauffällig","Stridor","Dyspnoe","Zyanose","Apnoe","Beatmung"],"size":30,"value":null,"id":"70e697d4-8cb0-4513-863f-791dbb1627cf"}},"apc_initialneurologicalfindings":{"label":"Erstbefund Neurologie","prefix":"apneuro_","apneuro_glasgowcomascale":{"label":"GCS","prefix":"apneurogcs_","apneurogcs_eyes":{"label":"Augen öffnen","type":"selection","options":["keine Reaktion (1)","auf Schmerzreiz (2)","auf Aufforderung (3)","spontan (4)"],"size":30,"value":null,"id":"7d5f2a6f-98e2-41f1-b07f-1c153748016b"},"apneurogcs_verbal":{"label":"Verbal","type":"selection","options":["keine Reaktion (1)","unverständliche Laute (2)","einzelne Wörter (3)","verwirrt (4)","orientiert (5)"],"size":30,"value":null,"id":"9dcd43b5-01d0-4a8e-8a6f-f07b2c277ff2"},"apneurogcs_motor":{"label":"Motor","type":"selection","options":["keine Reaktion (1)","Strecksynergismen (2)","Beugesynergismen (3)","auf Schmerzreiz ungezielt (4)","auf Schmerzreiz gezielt (5)","auf Aufforderung (6)"],"size":30,"value":null,"id":"79b32ff3-1761-4636-b5e8-55569b85beb7"}},"apneuro_glasgowcomascalevalue":{"label":"GCS Wert","type":"number","options":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],"size":30,"value":null,"id":"097dbb73-2702-4f15-ad17-2dcfca9593b3"}}},"ap_accessibility":{"label":"Zugänglichkeit","prefix":"apa_","id":"6a888d3e-e44c-4ecf-9613-e931724cf150","apa_free":{"label":"Frei Zugänglich","type":"selection","options":["Ja","Nein"],"size":100,"value":null,"id":"8ec2da33-1ad6-4469-ae02-f41ea3a2efb2"},"apa_confined":{"label":"Eingeschlossen","type":"selection","options":["Nein","in Wohnung","in PKW"],"size":40,"value":null,"id":"37df3aec-37df-472c-bcfb-b1c5172af829"},"apa_clamped":{"label":"Eingeklemmt","type":"selection","options":["Nein","in PKW","in Maschine"],"size":40,"value":null,"id":"a25de8a6-773b-40ca-8d6f-26b429aa61ed"},"apa_exposed":{"label":"Exponierte Lage","type":"selection","options":["Nein","Höhe","Tiefe"],"size":40,"value":null,"id":"1888aab9-2a81-4052-badc-bdd09b756027"},"apa_water":{"label":"im Wasser","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"54c24e76-ca2a-4bd1-b4e4-2e0cbf32e122"},"apa_offroad":{"label":"im Gelände","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"edb59577-91b9-4519-bbb6-16806f8e8d38"},"apa_missed":{"label":"Vermisst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6eaef402-323f-4603-ae3d-38769d90473e"},"apa_danger":{"label":"Gefahrenbereich","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"3f86d205-568c-4848-bbc0-e8ddf96e382a"}},"ap_guesseddiagnosis":{"label":"Verdachtsdiagnose","prefix":"apgd_","id":"8ff73394-db35-4f6e-831f-ab3a64d486e3","apgd_injury":{"label":"Verletzung","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"89a3a1d7-11a4-4538-aa36-64dc4fc96637"},"apgd_presickness":{"label":"Vorerkrankung","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"22b3744e-3485-4868-bd37-7703e9790f27"},"apgd_medication":{"label":"Medikation","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"1ed8ede1-3f91-4e61-bc95-8d99815cbb3b"},"apgd_allergy":{"label":"Allergien","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"2007a2e6-39c2-47c2-8650-5bb042aa893c"},"apgd_age":{"label":"Alter","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"020b0e1e-82b0-4dfa-a22c-14011c96b14d"},"apgd_f":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cec5b7f4-abe6-489a-b230-81231a4ee778"},"apgd_g":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"4ae89450-5b57-4789-97b6-1322d956b558"},"apgd_h":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"91a1ae53-6167-49d3-bf4b-82cbc99ad3c4"},"apgd_i":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"eb3f2c29-6be2-4e48-a280-aef51831604d"},"apgd_j":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"90780dbc-5037-4cf9-9b80-71824f25ae41"},"apgd_k":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"479a9f2a-f0b6-4724-a015-d750f9a6a36f"},"apgd_l":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"4f763b09-c8e0-4198-a03a-bd93b96ee8a9"},"apgd_centralnervoussystem":{"label":"ZNS","prefix":"apcns_","apcns_stroke":{"label":"Schlaganfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"cadf3be7-0302-453d-9fc0-6d13838e0b73"},"apcns_seizure":{"label":"Krampfanfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"570ccd0c-03f2-42e6-b4f0-4718ad65b622"},"apcns_meningitis":{"label":"Meningitis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"c193300b-e5d8-4402-b827-ab8e8d7cd0a5"},"apcns_syncope":{"label":"Synkope","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"b6186027-76f4-491a-9ee9-46681763e540"}},"apgd_cardiovascular":{"label":"Herz-Kreislauf","prefix":"apcardi_","apcardi_heartattack":{"label":"Herzinfakt","type":"selection","options":["Ausgeschlossen","Unwahrscheinlich","Möglich","Wahrscheinlich","Sicher"],"size":80,"value":null,"id":"ce30cea4-cf44-4c50-b104-05e90460adac"},"apcardi_stemi":{"label":"STEMI","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"427b1c04-c6fe-4a16-95a7-0fb85c931de0"},"apcardi_arrhythmia":{"label":"Rhythmusstörung","type":"selection","options":["tachykard","bradykard"],"size":40,"value":null,"id":"349f53e1-5bbf-47aa-aa27-9ead93fbbe56"},"apcardi_pulmonaryembolism":{"label":"Lungenembolie","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"55138a4c-0fb0-49d1-8f89-3bf32c721d5f"},"apcardi_hyperthensiveemergency":{"label":"Hyperthensiver Notfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"3ebeaa57-af3b-4d22-91f0-ee07f70bd685"},"apcardi_pacemaker":{"label":"Schrittmacher","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"732c9024-f1c4-4b32-a4d6-7e45a3cb5ae0"}},"apgd_breathing":{"label":"Atmung","prefix":"apbreat_","apbreat_asthma":{"label":"Asthma","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"0c3adffa-7c29-4799-b52f-0082e05511df"},"apbreat_copd":{"label":"COPD","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"803b3cdd-dd45-4194-a0c9-afb07d644a93"},"apbreat_pneumonie":{"label":"Pneumonie/ Bronchitis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"376c82ad-1406-4509-a6d4-efdec1d657f4"},"apbreat_aspiration":{"label":"Aspiration","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"749763fd-c1a4-44e9-a2c9-3d3ded0568d2"}}}},"x":24.367499264586307,"y":323.9047145383767,"index":2,"vy":0.00003801818595468246,"vx":-0.0000055868230852743805,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":20.843281882172302,"y":325.0015559733432}},{"id":"a36fb7e1-3218-4279-8f20-d40bafd492f6","shape":{"type":"affected-person","scale":1},"spawn":{"source":"n0","angle":180,"distance":800},"payload":{"status":"delayed","name":{"first":"Person","last":"Beifahrer"},"sex":"","age":"","accessibility":"","tags":[]},"taxonomy":{"label":"Betroffene Person","prefix":"ap_","id":"45c02b4d-e168-4f80-b9cf-8def21976258","ap_name":{"label":"Name","prefix":"apn_","id":"903d983e-5a2b-4aba-bd36-8323492487f0","apn_first":{"label":"Vorname","type":"text","size":40,"value":"Person","id":"f2bb5a76-2d38-43b1-9071-351a940666a2","options":["Hilda","Marc","Fred","Georgia","Terry","Nellie","Caroline","Milton","Fred","Katie","Franklin","Christopher","Ricardo","Nettie","Anthony","Corey","Aiden","Madge","Myrtle","Winifred"]},"apn_last":{"label":"Nachname","type":"text","size":40,"value":"Beifahrer","id":"24cd689f-d529-445a-b6b0-cff77e8cfb37","options":["Morrison","Austin","Rice","Allison","Wallace","Delgado","Howard","Cook","Ortega","Castillo","Newton","Day","Robinson","Lloyd","Sutton","Morrison","Lopez","Mason","Holt","Floyd"]}},"ap_age":{"label":"Alter","type":"number","size":50,"value":null,"id":"2dd2ba6d-8a4f-4707-bffd-aadc488d6c11","options":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]},"ap_sex":{"label":"Geschlecht","type":"selection","options":["Männlich","Weiblich","Divers"],"size":50,"value":null,"id":"3ac499a1-4f17-41f3-9560-ec12fa459c77"},"ap_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":null,"id":"7e2c2dff-df5a-4a21-b11c-4068141933a1"},"ap_symptoms":{"label":"Symptome","prefix":"aps_","id":"f6b362f9-e762-41a7-8d19-3ea87935ecb9","aps_pain":{"label":"Schmerzen","type":"selection","options":["Stark","Mittel","Schwach","Nein"],"size":80,"value":null,"id":"3abe588b-9ec2-43a6-84b9-c93a3c205ede"},"aps_painlocation":{"label":"Schmerzbereich","type":"selection","options":["Brust","Kopf","Nacken","Schulter","Rücken","Arm","Hand","Becken","Wehen","Oberbauch","Hüfte","Nieren","Genital","Oberschenke","Knie","Unterschenkel","Fuß"],"size":40,"value":null,"id":"966e75a2-0252-4790-9513-86d65235f152"},"aps_painmovementrelated":{"label":"Schmerzen bewegungsabhängig","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9a45f677-fc7f-45d0-8937-257a457b2ea2"},"aps_fiever":{"label":"Fieber","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d7c6d8b9-2d15-458c-b286-a7e5d606cfa8"},"aps_heatfeeling":{"label":"Hitzeempfinden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6440b502-2365-4d41-912f-a0dc41c6453c"},"aps_coldfadeskin":{"label":"kalte fahle Haut","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a2737992-8c39-442d-b870-e45c9aadef84"},"aps_coldsweat":{"label":"kalter Schweiß","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"ad026f20-a159-47a3-8cdd-942ac7de0350"},"aps_shivers":{"label":"Schüttelfrost","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e662ad30-9e80-4ea8-97a0-39f2c59e38dd"},"aps_bluelips":{"label":"blaue Lippen","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f41ebbb2-a641-40b2-848b-ac423df3b31b"}},"ap_diagnosis":{"label":"Diagnose","prefix":"apd_","id":"c60d04db-4d54-4002-911d-7bb66a8f9574","apd_heartattack":{"label":"Herzinfakt","type":"selection","options":["Ausgeschlossen","Unwahrscheinlich","Möglich","Wahrscheinlich","Sicher"],"size":80,"value":null,"id":"365c86e3-a6ad-4b39-896b-6889c763132c"}},"ap_condition":{"label":"Zustand","prefix":"apc_","id":"078d1a42-021c-49a4-8902-197ebaa2a6cf","apc_vitalcondition":{"label":"Vitalwerte","prefix":"apcvc_","id":"393b20b1-a899-4b3a-906b-a3adcd466803","apcvc_breath":{"label":"Atmung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":100,"value":null,"id":"42ca185c-880e-4943-bdc7-e2c0678aa112"},"apcvc_breathmovement":{"label":"Atembewegung","type":"selection","options":["Ja","Nein!","unbekannt"],"size":40,"value":null,"id":"eb2abcd4-639e-490d-b334-60dd241bbd8f"},"apcvc_breathproblem":{"label":"Atemstörung","type":"selection","options":["Ja","Nein","unbekannt","Bolus"],"size":40,"value":null,"id":"7f4b4072-4d5c-4c80-9e9e-22567010ccbe"},"apcvc_consciousness":{"label":"bei Bewusstsein","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"83ea948f-9de9-4373-b5a2-4e882fd9d807"},"apcvc_unconscioussince":{"label":"bewusstlos seit","type":"selection","options":["gerade","Stunden","unbekannt"],"size":40,"value":null,"id":"30661e1a-736f-4994-9ef2-17bc46c6327d"},"apcvc_pulse":{"label":"Puls","type":"selection","options":["Ja","Nein","unbekannt"],"size":100,"value":null,"id":"82c599bc-fd2c-4771-b56c-d044bb6b6127"}},"apc_physicalcondition":{"label":"Physisch","prefix":"apcpc_","id":"6d3b0d0f-36f4-4c07-abaf-c763d005c0d8","apcpc_diabetes":{"label":"Diabetes","type":"selection","options":["Ja","Nein"],"size":60,"value":null,"id":"09fbafd7-89ae-4324-a862-ebb3bc52f681"},"apcpc_bloodstream":{"label":"Kreislaufprobleme","type":"selection","options":["Stark","Leicht","Nein","Unbekannt"],"size":60,"value":null,"id":"5fd8e4e7-cd7e-4598-bd4d-5f545686a870"},"apcpc_dizziness":{"label":"Schwindel","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"343ab389-1f72-4be4-acb1-6c0567589a80"},"apcpc_pregnant":{"label":"Schwanger","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e12add31-59a0-47a7-a1c5-5a94857af3e3"},"apcpc_wheelchair":{"label":"Rollstuhl","type":"selection","options":["Ja","Nein"],"size":30,"value":null,"id":"09eb5d47-359e-47f7-8c4f-d179c877f4b6"},"apcpc_visuallyimpared":{"label":"Blind/Sehbehindert","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"0e1a61c2-cf1e-4c14-a247-585eed0103de"},"apcpc_oftenhypertension":{"label":"oft Bluthochdruck","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"82dc3099-0c85-43aa-b7d9-1a373e3c99af"},"apcpc_oftencholesterol":{"label":"oft hohe Cholesterinwerte","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"14b24d46-06f9-49f6-9758-e07185c6ff20"},"apcpc_hearthsuffering":{"label":"Herzleiden","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"96ac365e-39fa-4418-9148-a922d95a3a10"},"apcpc_infection":{"label":"Infektion","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6b403dd2-9436-4163-9199-1deafbf4fca2"},"apcpc_infectionsince":{"label":"Infektion seid","type":"selection","options":["Stunden","Tage","unbekannt"],"size":40,"value":null,"id":"4a6a3945-6a10-4631-a041-3605aba165e1"},"apcpc_infectioncovid":{"label":"Covid","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"2571c83c-9bd9-4672-9349-5e896120dbd7"}},"apc_mentalcondition":{"label":"Mental","prefix":"apcmc_","id":"6da1f18a-9b6b-4992-af9b-6dc63ec3b9a9","apcmc_fear":{"label":"Angst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"78d6a060-0333-46e0-9586-00afaf6186e6"},"apcmc_threaten":{"label":"Bedrohung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9d59d726-3e27-4e96-a3a9-2eb113037626"},"apcmc_weakness":{"label":"Schwächegefühl","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"131c4ef8-1443-4749-92ab-ae6ff1b28e0e"},"apcmc_stress":{"label":"Stress","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"cd9e435a-3ac8-4168-aecb-b59e142b600c"}},"apc_measurements":{"label":"Messwerte","prefix":"apmeas_","apmeas_bloodpressure":{"label":"RR","prefix":"apmeasbp_","apmeasbp_systolic":{"label":"Systolisch","type":"number","options":["60","80","100","120","140","180","220","260"],"size":30,"value":null,"id":"c682bd0f-e752-4cc9-9b8b-8781155075be"},"apmeasbp_diastolic":{"label":"Diastolisch","type":"number","options":["40","60","80","100","120","140","160"],"size":30,"value":null,"id":"ee2fdcc3-8f05-46b9-9330-a0a9985f1648"}},"apmeas_heartfailure":{"label":"HF","type":"number","options":["30","40","60","70","80","90","100","120","140","160","200"],"size":30,"value":null,"id":"1001b478-a206-4e0f-a86f-1cb9c75f9ff5"},"apmeas_bloodglucosevalue":{"label":"BZ","type":"number","options":["30","60","80","120","140","200"],"size":30,"value":null,"id":"c4d00704-c8b8-467d-8164-2390965d86c0"},"apmeas_breathingrate":{"label":"AF","type":"number","options":["0","5","8","10","12","15","20","30"],"size":30,"value":null,"id":"2882e553-2869-4ff8-8a87-9c63cecbe7f3"},"apmeas_oxygensaturation":{"label":"SpO2","type":"number","options":["60%","80%","90%","95%","99%"],"size":30,"value":null,"id":"7950da6e-d949-496e-b6af-00a14453791c"},"apmeas_bodytemperature":{"label":"Temp","type":"number","options":["36°C","37°C","38°C","39°C","40°C","41°C"],"size":30,"value":null,"id":"bb5555be-7504-441f-96df-dbaaa6ff00ac"},"apmeas_ecg":{"label":"EKG","type":"selection","options":["STEMI","Sinusrhythmus","Kammerflimmern","Asystolie","Absolute Arrythmie","AV-Block","Tachykardie"],"size":30,"value":null,"id":"1e919469-3cca-456e-8168-2b8b6db19b5f"},"apmeas_breathing":{"label":"Atmung","type":"selection","options":["unauffällig","Stridor","Dyspnoe","Zyanose","Apnoe","Beatmung"],"size":30,"value":null,"id":"83eef62a-ef35-4694-a6b3-2bfde95b3023"}},"apc_initialneurologicalfindings":{"label":"Erstbefund Neurologie","prefix":"apneuro_","apneuro_glasgowcomascale":{"label":"GCS","prefix":"apneurogcs_","apneurogcs_eyes":{"label":"Augen öffnen","type":"selection","options":["keine Reaktion (1)","auf Schmerzreiz (2)","auf Aufforderung (3)","spontan (4)"],"size":30,"value":null,"id":"78132323-2fd2-4dc0-b421-323c02942c84"},"apneurogcs_verbal":{"label":"Verbal","type":"selection","options":["keine Reaktion (1)","unverständliche Laute (2)","einzelne Wörter (3)","verwirrt (4)","orientiert (5)"],"size":30,"value":null,"id":"0f729052-ba2b-4e15-af29-ad229ca420c6"},"apneurogcs_motor":{"label":"Motor","type":"selection","options":["keine Reaktion (1)","Strecksynergismen (2)","Beugesynergismen (3)","auf Schmerzreiz ungezielt (4)","auf Schmerzreiz gezielt (5)","auf Aufforderung (6)"],"size":30,"value":null,"id":"7a727b87-1a52-485e-994d-be35a4c08b80"}},"apneuro_glasgowcomascalevalue":{"label":"GCS Wert","type":"number","options":["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],"size":30,"value":null,"id":"d2b5ce69-7e21-4407-a188-4f8345e09614"}}},"ap_accessibility":{"label":"Zugänglichkeit","prefix":"apa_","id":"02308145-e014-4118-a58d-b01b99cc8190","apa_free":{"label":"Frei Zugänglich","type":"selection","options":["Ja","Nein"],"size":100,"value":null,"id":"fb537b8e-50a7-455f-852b-8d11fe24743e"},"apa_confined":{"label":"Eingeschlossen","type":"selection","options":["Nein","in Wohnung","in PKW"],"size":40,"value":null,"id":"9f0819bf-dc2c-4a88-92a8-59f11ae2115d"},"apa_clamped":{"label":"Eingeklemmt","type":"selection","options":["Nein","in PKW","in Maschine"],"size":40,"value":null,"id":"4b71f2dc-234c-4daa-ab1d-7a4c04092d83"},"apa_exposed":{"label":"Exponierte Lage","type":"selection","options":["Nein","Höhe","Tiefe"],"size":40,"value":null,"id":"1f13a2d1-1be1-461f-90e3-674ebb8c5b07"},"apa_water":{"label":"im Wasser","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6f4adb64-22f1-480c-8b10-6e57586e6639"},"apa_offroad":{"label":"im Gelände","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"df19e450-5663-43d5-a96d-2b7bdac75268"},"apa_missed":{"label":"Vermisst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"ec9cfd74-f0cf-4f76-a28b-bd9d957fd5e2"},"apa_danger":{"label":"Gefahrenbereich","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"61fc7112-4794-44c5-9dff-75aacf07c71d"}},"ap_guesseddiagnosis":{"label":"Verdachtsdiagnose","prefix":"apgd_","id":"7362fa48-e4cf-48f9-b855-6dac7a62f658","apgd_injury":{"label":"Verletzung","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"0e164381-e93a-4e6a-8550-fc2b0af79253"},"apgd_presickness":{"label":"Vorerkrankung","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"d87e04b3-ccd1-43e4-8a97-9a3d3f36570f"},"apgd_medication":{"label":"Medikation","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"c3336550-a986-447e-8c3b-307965329a2b"},"apgd_allergy":{"label":"Allergien","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"b01d8be0-b72d-4f5b-8486-50c5b03536cb"},"apgd_age":{"label":"Alter","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"30e7d62e-ef88-44be-ab7f-00c390c54181"},"apgd_f":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"86625d5a-7cf0-4d65-8639-930e288498c7"},"apgd_g":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"19809104-8cff-41bd-a0fa-9a742094dd6f"},"apgd_h":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"cd25932b-f143-47dc-9a4e-f4d2d451603c"},"apgd_i":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"344e25ae-a33e-4501-a1a2-4747092ddaaa"},"apgd_j":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"9973bcb5-b7ab-474b-9580-2835546c0e16"},"apgd_k":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"808b30ae-b27d-4170-8e30-a0ba9b7e409b"},"apgd_l":{"label":"Diagnose","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"b817f26f-7f3d-41c8-b74b-20d41ccd1c21"},"apgd_centralnervoussystem":{"label":"ZNS","prefix":"apcns_","apcns_stroke":{"label":"Schlaganfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"9514403c-5833-461f-a76b-881fa4e37ce5"},"apcns_seizure":{"label":"Krampfanfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"8d99e604-e3cc-4c72-a585-caf471a4db49"},"apcns_meningitis":{"label":"Meningitis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"98244d9a-2fe7-4279-8e03-17d1af76755f"},"apcns_syncope":{"label":"Synkope","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"f130237a-610e-4d73-9fbb-61c8bc013305"}},"apgd_cardiovascular":{"label":"Herz-Kreislauf","prefix":"apcardi_","apcardi_heartattack":{"label":"Herzinfakt","type":"selection","options":["Ausgeschlossen","Unwahrscheinlich","Möglich","Wahrscheinlich","Sicher"],"size":80,"value":null,"id":"a1ecc5c0-2a89-4059-877a-9ec3a78333a1"},"apcardi_stemi":{"label":"STEMI","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"522c8c2a-b16e-4cbb-977e-bddcd2c0d337"},"apcardi_arrhythmia":{"label":"Rhythmusstörung","type":"selection","options":["tachykard","bradykard"],"size":40,"value":null,"id":"804e86a4-94cc-4ee9-8216-d03863009678"},"apcardi_pulmonaryembolism":{"label":"Lungenembolie","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"90e26f75-0b08-464e-9eb1-ebffd76bc82f"},"apcardi_hyperthensiveemergency":{"label":"Hyperthensiver Notfall","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"68da86c0-4fb9-42eb-a2bd-810ff86a2636"},"apcardi_pacemaker":{"label":"Schrittmacher","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"90488ae3-9d5a-40b4-8446-d80447f33e8d"}},"apgd_breathing":{"label":"Atmung","prefix":"apbreat_","apbreat_asthma":{"label":"Asthma","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"d55e518e-c06f-4fe1-89d4-f658144ec214"},"apbreat_copd":{"label":"COPD","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"152baf73-0ea6-4d8c-983c-e01a07b85e1f"},"apbreat_pneumonie":{"label":"Pneumonie/ Bronchitis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"69e4c175-1ade-4dc2-986f-44aa0786b4f6"},"apbreat_aspiration":{"label":"Aspiration","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"58aeceb5-5df5-44f1-980b-8e46b34a0a0d"}}}},"x":23.39280241838559,"y":662.2034813119742,"index":3,"vy":0.00012480592537679434,"vx":-0.000013438851876402846,"fx":null,"fy":null,"isDragged":false,"anchor":{"type":"soft","x":20.534184842425013,"y":657.025929629423}},{"id":"82567b42-bec6-4eb7-afdd-e38fbee9af03","shape":{"type":"affected-object","scale":1},"spawn":{"source":"n0","angle":180,"distance":1200},"payload":{"status":"delayed","label":"VW Golf","accessibility":"","tags":["PKW"]},"taxonomy":{"label":"Betroffenes Objekt","prefix":"ao_","id":"d66f460c-f9cd-409d-811d-deecd48c0caf","ao_name":{"label":"Name","type":"text","size":50,"value":"VW Golf","id":"e6230855-66f6-4fee-8518-41801d2517b8","options":["Zug","VW Golf","Mercedes","BMW","Audi"]},"ao_status":{"label":"Status","type":"selection","options":["Grün","Gelb","Rot"],"size":50,"value":"Gelb","id":"ae9b0688-a4b7-4a0e-973b-4f141a5e41c6"},"ao_mobile":{"label":"Fahrzeug","prefix":"aom_","id":"ae6fb72d-fd3a-4ca5-9042-2fb888aafbc9","aom_rescuecard":{"label":"Rettungskarte","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"b07b9ef2-601d-43a7-9189-c49142d8bc1b"},"aom_car":{"label":"PKW","type":"selection","options":["Ja","Nein"],"size":40,"value":"Ja","id":"51b87ce5-8c0a-47ff-ab67-a49587e053b7"},"aom_truck":{"label":"LKW","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6f936912-4293-4372-adf3-7ed836ef5e9f"},"aom_train":{"label":"Zug","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"3ff7e769-ea74-422c-9ba9-b111e1ba6201"},"aom_plane":{"label":"Flugzeug","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"68d599b7-8425-467a-9079-22c9e1b78b31"}},"ao_residentialtype":{"label":"Wohngebäude","prefix":"aor_","id":"a08eb7d1-1288-481e-9bdd-910d84b75001","aor_runcard":{"label":"Laufkarte","type":"selection","options":["Ja","Nein"],"size":20,"value":null,"id":"6d257e93-4029-419b-a199-a805f2f5528f"},"aor_single":{"label":"Einfamilienhaus","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a431b880-1468-4b8c-90fb-0b9d0084e3b3"},"aor_several":{"label":"Mehrfamilienhaus","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"687b6853-1b91-4286-9322-6c62c7d04231"},"aor_multi":{"label":"Hochhaus","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"aaab2e71-71f7-47c2-bb8a-bf4a7791953b"}},"ao_medicaltype":{"label":"Med. Einrichtung","prefix":"aom_","id":"17e4fd7c-4a07-47b8-94d6-5c2a997e5c53","aom_hospital":{"label":"Krankenhaus","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6df2c9c6-8b50-41a3-a21d-5035662f6e6f"},"aom_senior":{"label":"Altenheim","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"acb6f7d3-21e9-49d4-92a0-047e1a0471f9"},"aom_practice":{"label":"Praxis","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"6924451f-c89f-40ff-a4ef-4cbd8556df71"}},"ao_infrastructure":{"label":"Infrastruktur","prefix":"aoi_","id":"835a055d-8eb3-418e-bd11-effbc7e940d2","aoi_street":{"label":"Straße","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"a50e862e-c64c-427d-b02e-34c57457140c"},"aoi_bridge":{"label":"Brücke","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"1f6e7274-3d74-4938-9c48-96649549481c"},"aoi_railway":{"label":"Bahn","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"7ec1e043-ea12-4edc-afdf-37b1a00c72c1"},"aoi_supply":{"label":"Versorgung","prefix":"aos_","id":"17966a94-8c24-4c0a-8ffe-c78ef7e907df","aos_overground":{"label":"Oberirdisch","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"c7ba1e9c-c84b-47bf-9409-0590fd912669"},"aos_underground":{"label":"Unterirdisch","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"09fd776f-bf96-44fb-9dd0-7c2fd8bfcd99"},"aos_care":{"label":"Versorgung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e5813cf4-7f3d-4118-b667-7dc1e1e279e7"},"aos_disposal":{"label":"Entsorgung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"cdbaa480-bab3-4c92-83a3-d9426fed1f33"},"aos_water":{"label":"Wasser","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"4f242057-f0fa-48a9-b19d-9a4eb88ad387"},"aos_electricity":{"label":"Strom","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"62ce60b8-0f24-40e8-8bb4-47d8fec6d50f"},"aos_gas":{"label":"Gas","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"4a08f34a-bb9a-4535-8ea4-f65f104fc795"},"aos_gasoline":{"label":"Kraftstoff","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"85ffa89f-7a11-48b0-9647-6cce4e898567"}}},"ao_specialtype":{"label":"Sonderobjekt","prefix":"aoso_","id":"87664dc1-0ef9-4d3d-8f08-d81216e1181d","aoso_store":{"label":"Kaufhaus","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"5e14c302-9b6a-4a37-826d-b03b3f64b717"},"aoso_event":{"label":"Veranstaltung","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"91cdf03d-15d7-4a17-b4e1-8c75a87f7227"},"aoso_publicbuilding":{"label":"Öffentl. Gebäude","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"e4826d60-d8f0-4fac-8da3-20a7e683caa2"},"aoso_sport":{"label":"Sportstätte","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"7851eb50-0282-47ae-a0da-df29db779e21"},"aoso_trainstation":{"label":"Bahnhof","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"4ede8cf7-e637-4d88-bf76-521e3fa1a9e9"},"aoso_airport":{"label":"Flughafen","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"86284ec0-e4c7-4a42-a73f-81f7eae29ff8"},"aoso_forest":{"label":"Forst","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"5e2d55f0-49b2-4f57-a1b6-32f7b821bc63"},"aoso_kindergarden":{"label":"Kindergarten","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"49f20960-c0b0-4624-b494-b2293e87fff7"},"aoso_hotel":{"label":"Hotel","type":"selection","options":["Ja","Nein"],"size":40,"value":null,"id":"dc71e983-4eb2-4768-9dbf-19ab072193ad"}}},"x":25.02424227876351,"y":1021.2980483648321,"index":4,"vy":0.0019135607207109622,"vx":0.0001630066755693371,"fx":null,"fy":null,"anchor":{"type":"soft","x":23.88913627396944,"y":1007.1597187649616},"isDragged":false}],"links":[{"source":"14dbbedf-ff44-4908-a2e9-c901f933f57a","target":"78b2908b-bf41-4b1f-ab75-e0d24b49f97c","type":"solid","directed":true,"strength":"weak"},{"source":"78b2908b-bf41-4b1f-ab75-e0d24b49f97c","target":"00b94b4a-9415-421d-968b-6044a48eb531","type":"solid","directed":false,"label":"","strength":"loose"},{"source":"78b2908b-bf41-4b1f-ab75-e0d24b49f97c","target":"a36fb7e1-3218-4279-8f20-d40bafd492f6","type":"solid","directed":false,"label":"","strength":"loose"},{"source":"78b2908b-bf41-4b1f-ab75-e0d24b49f97c","target":"82567b42-bec6-4eb7-afdd-e38fbee9af03","type":"solid","directed":false,"label":"","strength":"loose"}],"hasUpdate":false}
+{
+	"nodes": [
+		{
+			"id": "78b2908b-bf41-4b1f-ab75-e0d24b49f97c",
+			"shape": { "type": "operation", "scale": 1 },
+			"anchor": { "type": "soft", "x": 13.867059489715771, "y": -27.84604535135334 },
+			"payload": {
+				"status": "delayed",
+				"label": "Operation",
+				"location": "49.475000, 8.335056",
+				"affected_persons": 2,
+				"affected_objects": 1,
+				"tags": ["Unfall"]
+			},
+			"taxonomy": {
+				"label": "Lage",
+				"prefix": "op_",
+				"id": "6031155e-2af0-4536-aa28-5ad8c3459ead",
+				"op_emergencyType": {
+					"label": "Art des Notfalls",
+					"prefix": "emtyp_",
+					"id": "6814f420-d3bc-474c-ac71-b16d3aab28f9",
+					"emtyp_medical": {
+						"label": "Medizinisch",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "e3e14f35-58cd-43de-b65d-312a4ef29848"
+					},
+					"emtyp_psychological": {
+						"label": "Psychosozial",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "238f5cb9-0cd8-48de-8bf6-6d3b9885860c"
+					},
+					"emtyp_accident": {
+						"label": "Unfall",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "a02ef84b-1d8c-4691-9d34-9f8a4b472bb0"
+					},
+					"emtyp_damageevent": {
+						"label": "Schadensereignis",
+						"type": "selection",
+						"options": [
+							"Brand",
+							"Explosion",
+							"Gefahrgut",
+							"Emmisionen",
+							"Stromausfall",
+							"Technische Störung",
+							"Nuklearer Unfall",
+							"Ausfall: IT"
+						],
+						"size": 20,
+						"value": null,
+						"id": "8373ef2a-df05-4f80-a501-e93a6c9c6529"
+					},
+					"emtyp_searchandrescue": {
+						"label": "Suche und Rettung",
+						"type": "selection",
+						"options": [
+							"Höhlenunfall",
+							"Bergunfall",
+							"Flugunfall",
+							"vermisste Person",
+							"Gewässer",
+							"Wasserstraße",
+							"Forst",
+							"Gelände"
+						],
+						"size": 20,
+						"value": null,
+						"id": "a72847cf-ad57-48b7-a7b6-291f2cc5b2a7"
+					},
+					"emtyp_environmentevent": {
+						"label": "Umwelt-/Klima-Ereignis",
+						"type": "selection",
+						"options": [
+							"Sturm",
+							"Hagel",
+							"Starkregen",
+							"Flut / Hochwasser",
+							"Schnee / Eisglätte",
+							"Smock",
+							"Erdrutsch",
+							"Erdbeben",
+							"Tsunami",
+							"Vulkanausbruch"
+						],
+						"size": 20,
+						"value": null,
+						"id": "f275705e-6181-4b46-bc23-007efa9827c5"
+					},
+					"emtyp_violence": {
+						"label": "Gewalttat",
+						"type": "selection",
+						"options": [
+							"Häusliche Gewalt",
+							"Kindermisshandlung",
+							"Stumpfe Waffen",
+							"Stichwaffen",
+							"Schusswaffen",
+							"Massenauseinandersetzung"
+						],
+						"size": 20,
+						"value": null,
+						"id": "ad3bd21d-f4af-4e0a-9fbb-ba1b5d5f6cec"
+					},
+					"emtyp_threat": {
+						"label": "Bedrohung, Gefährdung",
+						"type": "selection",
+						"options": [
+							"Terrorismus",
+							"Amokläufer",
+							"LebEL",
+							"Bombenentschärfung",
+							"Person in Zwangslage",
+							"Drohender Suizid",
+							"Polizeizugriff",
+							"Krieg"
+						],
+						"size": 20,
+						"value": null,
+						"id": "bdc7c9e0-fa71-4914-9834-125b45939526"
+					},
+					"emtyp_other": {
+						"label": "Sonstiges",
+						"type": "selection",
+						"options": [
+							"Tierrettung",
+							"Tierseuche",
+							"Großveranstaltung",
+							"Notfallseelsorge",
+							"Fachanforderung"
+						],
+						"size": 20,
+						"value": null,
+						"id": "be738d3f-50d3-445a-9d55-edef5088f104"
+					},
+					"emtyp_info": {
+						"label": "Auskunftsersuche",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "c99caa1d-fec5-45a4-8757-5ab26ab7d7a5"
+					},
+					"emtyp_transport": {
+						"label": "Transport",
+						"type": "selection",
+						"options": ["Krankenfahrt", "Krankentransport", "Evakuierung", "Intensivtransport"],
+						"size": 60,
+						"value": null,
+						"id": "0813d85d-b4b1-4a11-98c0-2710d063c867"
+					},
+					"emtyp_technicalsupport": {
+						"label": "Technische Hilfeleistung",
+						"type": "selection",
+						"options": ["Verkehrsunfall", "Gefahrstoffaustritt", "Unwetter", "Gebäude"],
+						"size": 60,
+						"value": null,
+						"id": "d2f7a9fd-9348-48bc-b7ae-4ff7027a0b39"
+					}
+				},
+				"op_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "7be02eef-fce4-461a-b16f-fe3efc89826f",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "cb3c5d0b-7c11-4be0-9e0c-ca3074ea7dfe"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "c36614af-89ef-4fc9-8884-1324bd426942"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "21ab4c1b-af7e-4765-85ea-c5a5168f7939"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "85f3887b-b589-4811-bc65-ce8a255056bb"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "4accbcc0-ec6e-432a-bbd1-60a620d6bde2"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "dbbc2520-e835-4c03-8215-f4205fcdeb17"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.475000, 8.335056",
+						"id": "8734b585-5b85-471c-8082-b75ac3e8e423"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "ba62c7e1-7687-4307-9dda-8e2499d46769"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "997faa77-f7e0-4666-9565-756c63d0c056"
+					}
+				},
+				"op_affected": {
+					"label": "Betroffene ...",
+					"prefix": "opaff_",
+					"id": "051b04b4-fec6-467e-a0b9-b655bb31f4b0",
+					"opaff_persons": {
+						"label": "Personen",
+						"type": "number",
+						"size": 60,
+						"value": 2,
+						"id": "57cf704c-0ee5-46ce-bc4f-9e43f5615936",
+						"options": [
+							0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+							25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+							48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+							71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
+							94, 95, 96, 97, 98, 99, 100
+						]
+					},
+					"opaff_objects": {
+						"label": "Objekte",
+						"type": "number",
+						"size": 40,
+						"value": 1,
+						"id": "865357df-737e-4d9b-93eb-6dd391586921",
+						"options": [
+							0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+							25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+							48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+							71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93,
+							94, 95, 96, 97, 98, 99, 100
+						]
+					}
+				},
+				"op_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": "Gelb",
+					"id": "97a17854-f160-4255-808f-48f3a7e1a18f"
+				}
+			},
+			"index": 0,
+			"x": 16.81712054748012,
+			"y": -40.57782795489966,
+			"vy": 0.000018729603699851187,
+			"vx": 5.758856615367081e-7,
+			"fx": null,
+			"fy": null,
+			"isDragged": false
+		},
+		{
+			"id": "14dbbedf-ff44-4908-a2e9-c901f933f57a",
+			"shape": { "type": "emergency-reporter", "scale": 1 },
+			"payload": {
+				"name": { "first": "VW", "last": "Golf" },
+				"pending": false,
+				"intervalID": "",
+				"location": "49.475000, 8.335056",
+				"category": "automatic-system",
+				"label": "eCall",
+				"callback_number": "06229 73 06 31 "
+			},
+			"taxonomy": {
+				"label": "Meldend",
+				"prefix": "erep_",
+				"id": "db8a6da4-f500-4cd3-95f9-a47f3f951315",
+				"erep_name": {
+					"label": "Name",
+					"prefix": "erepn_",
+					"id": "6de7a7aa-c1e4-4944-ac39-19cca8eb4efc",
+					"erepn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "VW",
+						"id": "13cd5249-4a7e-4f9e-8007-f4ecd0d4499e",
+						"options": [
+							"Hilda",
+							"Marc",
+							"Fred",
+							"Georgia",
+							"Terry",
+							"Nellie",
+							"Caroline",
+							"Milton",
+							"Fred",
+							"Katie",
+							"Franklin",
+							"Christopher",
+							"Ricardo",
+							"Nettie",
+							"Anthony",
+							"Corey",
+							"Aiden",
+							"Madge",
+							"Myrtle",
+							"Winifred"
+						]
+					},
+					"erepn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Golf",
+						"id": "19145b77-fca0-47cd-a73c-a3a6fe1b73e2",
+						"options": [
+							"Morrison",
+							"Austin",
+							"Rice",
+							"Allison",
+							"Wallace",
+							"Delgado",
+							"Howard",
+							"Cook",
+							"Ortega",
+							"Castillo",
+							"Newton",
+							"Day",
+							"Robinson",
+							"Lloyd",
+							"Sutton",
+							"Morrison",
+							"Lopez",
+							"Mason",
+							"Holt",
+							"Floyd"
+						]
+					}
+				},
+				"erep_phonenumber": {
+					"label": "Telefonnummer",
+					"type": "text",
+					"options": [],
+					"size": 60,
+					"value": "06229 73 06 31 ",
+					"id": "c53286a9-9528-4965-96fc-244d1d2abe7b"
+				},
+				"erep_separatedrecallnumber": {
+					"label": "gesonderte Rückrufnummer",
+					"type": "text",
+					"options": [],
+					"size": 20,
+					"value": null,
+					"id": "17a59fc3-3cd2-415c-8758-54218a866d99"
+				},
+				"erep_emergencyrelation": {
+					"label": "Notfallbezug",
+					"type": "selection",
+					"options": ["selbst betroffen", "ist dabei", "sieht es", "kein Kontakt"],
+					"size": 40,
+					"value": "ist dabei",
+					"id": "314de328-f31b-4645-8c16-df43843a03eb"
+				},
+				"erep_location": {
+					"label": "Standort",
+					"prefix": "loc_",
+					"id": "1c6bd91d-2c4a-47d3-a92c-77db64a5b416",
+					"loc_street": {
+						"label": "Straße",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "3d6f9dae-3b4f-4be9-a47b-992f93d92405"
+					},
+					"loc_buildingno": {
+						"label": "Hausnummer",
+						"type": "text",
+						"options": [],
+						"size": 30,
+						"value": null,
+						"id": "1ab3e9b6-1357-4fb7-bc04-a894083b8366"
+					},
+					"loc_zipcode": {
+						"label": "PLZ",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "6119ed8b-ec15-4445-9bae-c6fe1cc59e14"
+					},
+					"loc_city": {
+						"label": "Ort",
+						"type": "text",
+						"options": [],
+						"size": 40,
+						"value": null,
+						"id": "c7a3d7d0-3328-4b6f-9ef2-024d359ba6af"
+					},
+					"loc_country": {
+						"label": "Land",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "19c5a42f-6b8e-4f52-ba02-1516f43577ad"
+					},
+					"loc_note": {
+						"label": "Anmerkung",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "4dec1b4e-6355-44a0-9609-2c658f892db4"
+					},
+					"loc_gps": {
+						"label": "GPS",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": "49.475000, 8.335056",
+						"id": "ee78ff80-2614-48e5-9a24-a14294ba239a"
+					},
+					"loc_threewords": {
+						"label": "3Words",
+						"type": "text",
+						"options": [],
+						"size": 20,
+						"value": null,
+						"id": "279609ee-6221-4455-b6f1-da9bf97697fb"
+					},
+					"loc_located": {
+						"label": "geortet",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": "Ja",
+						"id": "e2a7ddba-55f8-4fc4-8010-a4b141c54d48"
+					}
+				},
+				"erep_reportertype": {
+					"label": "Art",
+					"prefix": "ereprt_",
+					"id": "ec63a212-d8f8-43c5-9a02-48a426f82a37",
+					"ereprt_eCall": {
+						"label": "eCall",
+						"prefix": "eCall_",
+						"id": "d8e2236d-477b-40b4-90f8-aa3d95c75664",
+						"eCall_eCall": {
+							"label": "eCall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": "Ja",
+							"id": "b706926d-b89a-42c6-99af-c354c0b3dc77"
+						},
+						"eCall_persons": {
+							"label": "Anzahl Personen",
+							"type": "selection",
+							"options": ["1", "2", "3", "4", "5", "6", "viele"],
+							"size": 20,
+							"value": "2",
+							"id": "8f062388-a686-43e0-8df9-5f7112a9553e"
+						},
+						"eCall_direction": {
+							"label": "Richtung",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": "Westen",
+							"id": "8203a6c4-8edc-49b1-9098-b814963f9bd5"
+						},
+						"eCall_position": {
+							"label": "GPS-Position",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": "49.475000, 8.335056",
+							"id": "84c5c113-ef3e-4bc9-baed-92ee39f7bc23"
+						},
+						"eCall_energytype": {
+							"label": "Antriebsart",
+							"type": "selection",
+							"options": ["Benzin", "Diesel", "Gas", "Elektro"],
+							"size": 20,
+							"value": "Diesel",
+							"id": "72f8ba62-073f-42f6-94fe-1f2c5fa6eab9"
+						},
+						"eCall_releasedby": {
+							"label": "Ausgelöst durch",
+							"type": "selection",
+							"options": ["Manuell", "Automatisch"],
+							"size": 20,
+							"value": "Automatisch",
+							"id": "9ddf50ea-c80d-41f3-9ce4-e1e16c7955ad"
+						},
+						"eCall_fin": {
+							"label": "FIN",
+							"type": "text",
+							"options": [],
+							"size": 20,
+							"value": "2FMDK4KC4CBA27842",
+							"id": "a48fcf13-526c-484b-bd4c-ea8029e630df"
+						},
+						"eCall_airbagsreleased": {
+							"label": "AirBags ausgelöst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": "Ja",
+							"id": "0b41bb17-ca17-4bbc-a7a0-214d3001434f"
+						},
+						"eCall_rescuecard": {
+							"label": "Rettungskarte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": "Ja",
+							"id": "1334f7b7-e501-4cc1-a2dc-34db9372b6bc"
+						}
+					},
+					"ereprt_wearable": {
+						"label": "Wearable",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "aeac8444-e6c2-4939-afaa-d8d9f468555d"
+					},
+					"ereprt_person": {
+						"label": "Person",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 60,
+						"value": null,
+						"id": "a19914d7-1d63-424a-b606-541c4691adc6"
+					},
+					"ereprt_bma": {
+						"label": "BMA",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "9b6a18c8-3c09-4b26-b1a9-55d05f6f5f9f"
+					}
+				},
+				"erep_organisation": {
+					"label": "Organisation",
+					"prefix": "ereporg_",
+					"id": "e776f523-4202-430f-aa4b-cc702bb5940d",
+					"ereporg_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 30,
+						"value": null,
+						"id": "be7be100-2f97-46eb-836f-175819c4d24c"
+					},
+					"ereporg_practice": {
+						"label": "Arztpraxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "48616235-4397-4590-8f68-a3401554fafa"
+					},
+					"ereporg_firedepartment": {
+						"label": "Feuerwehr",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "83a73be2-a5cd-4e78-9dab-51337eb180dc"
+					},
+					"ereporg_externemergencycallcenter": {
+						"label": "Externe Leitstelle",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "cb111a73-af06-45a8-aa9a-b21b0407a492"
+					},
+					"ereporg_homeemergencycall": {
+						"label": "Hausnotruf",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "6a06458d-dc37-4516-8f51-dd0f8c6fe4b9"
+					}
+				},
+				"erep_competence": {
+					"label": "Kompetenz",
+					"prefix": "comp_",
+					"id": "58837caf-1324-4284-85c8-cb74993957cd",
+					"comp_medcompetence": {
+						"label": "Med. Kompetenz",
+						"prefix": "medcomp_",
+						"id": "9aabcad2-b2bd-44f1-b8c4-e49b97191e45",
+						"medcomp_doctor": {
+							"label": "Arzt",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "167dbac9-546c-4982-992b-c90c98d9ead6"
+						},
+						"medcomp_supporter": {
+							"label": "Hilfspersonal",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "e453aaf0-2778-40b6-ab85-5200f15f18b5"
+						}
+					},
+					"comp_firecompetence": {
+						"label": "Feuerw. Kompetenz",
+						"prefix": "firecomp_",
+						"id": "7d94a4a5-ef62-489a-8937-18f4341aa115",
+						"firecomp_professional": {
+							"label": "Professional",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "4bae2657-fa56-438d-92a0-72a984f276c0"
+						},
+						"firecomp_firstresponder": {
+							"label": "Ersthelfer",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "54750f4b-0d93-47b5-9c4b-ad7485455d23"
+						}
+					},
+					"comp_police": {
+						"label": "Polizei",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "479d8ae9-8814-4085-98ae-a5ea500ed2a5"
+					}
+				}
+			},
+			"x": -385.47523771203726,
+			"y": -45.887467721496655,
+			"index": 1,
+			"vy": -0.000028439536239060687,
+			"vx": 0.000010737938096952448,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": -385.86036784052976, "y": -38.25424689519246 }
+		},
+		{
+			"id": "00b94b4a-9415-421d-968b-6044a48eb531",
+			"shape": { "type": "affected-person", "scale": 1 },
+			"spawn": { "source": "n0", "angle": 180, "distance": 400 },
+			"payload": {
+				"status": "delayed",
+				"name": { "first": "Person", "last": "Fahrer" },
+				"sex": "",
+				"age": "",
+				"accessibility": "",
+				"tags": []
+			},
+			"taxonomy": {
+				"label": "Betroffene Person",
+				"prefix": "ap_",
+				"id": "0badca64-2b38-4d32-891f-a402e7a62607",
+				"ap_name": {
+					"label": "Name",
+					"prefix": "apn_",
+					"id": "c7297faf-29d7-4843-ae6a-60454cdf60aa",
+					"apn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "Person",
+						"id": "6722490e-4d1b-40c3-8102-28a0b15430b5",
+						"options": [
+							"Hilda",
+							"Marc",
+							"Fred",
+							"Georgia",
+							"Terry",
+							"Nellie",
+							"Caroline",
+							"Milton",
+							"Fred",
+							"Katie",
+							"Franklin",
+							"Christopher",
+							"Ricardo",
+							"Nettie",
+							"Anthony",
+							"Corey",
+							"Aiden",
+							"Madge",
+							"Myrtle",
+							"Winifred"
+						]
+					},
+					"apn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Fahrer",
+						"id": "8b86b565-7d38-45fc-abba-a22450c51eb4",
+						"options": [
+							"Morrison",
+							"Austin",
+							"Rice",
+							"Allison",
+							"Wallace",
+							"Delgado",
+							"Howard",
+							"Cook",
+							"Ortega",
+							"Castillo",
+							"Newton",
+							"Day",
+							"Robinson",
+							"Lloyd",
+							"Sutton",
+							"Morrison",
+							"Lopez",
+							"Mason",
+							"Holt",
+							"Floyd"
+						]
+					}
+				},
+				"ap_age": {
+					"label": "Alter",
+					"type": "number",
+					"size": 50,
+					"value": null,
+					"id": "6c127368-fe46-4423-9a1d-93b91aa0e187",
+					"options": [
+						0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+						26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+						50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73,
+						74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+						98, 99, 100
+					]
+				},
+				"ap_sex": {
+					"label": "Geschlecht",
+					"type": "selection",
+					"options": ["Männlich", "Weiblich", "Divers"],
+					"size": 50,
+					"value": null,
+					"id": "1ba4d21a-87c4-4e1c-a00f-804608311279"
+				},
+				"ap_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": null,
+					"id": "09186438-c365-452a-9ccf-fc7860de94a0"
+				},
+				"ap_symptoms": {
+					"label": "Symptome",
+					"prefix": "aps_",
+					"id": "823c5837-f66a-492c-81be-917308df3e3f",
+					"aps_pain": {
+						"label": "Schmerzen",
+						"type": "selection",
+						"options": ["Stark", "Mittel", "Schwach", "Nein"],
+						"size": 80,
+						"value": null,
+						"id": "78dc2b02-ad2f-4ed8-a9d5-d187111c58a5"
+					},
+					"aps_painlocation": {
+						"label": "Schmerzbereich",
+						"type": "selection",
+						"options": [
+							"Brust",
+							"Kopf",
+							"Nacken",
+							"Schulter",
+							"Rücken",
+							"Arm",
+							"Hand",
+							"Becken",
+							"Wehen",
+							"Oberbauch",
+							"Hüfte",
+							"Nieren",
+							"Genital",
+							"Oberschenke",
+							"Knie",
+							"Unterschenkel",
+							"Fuß"
+						],
+						"size": 40,
+						"value": null,
+						"id": "76ccfe4d-1417-496a-a43a-d2dbbf621579"
+					},
+					"aps_painmovementrelated": {
+						"label": "Schmerzen bewegungsabhängig",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "73eb66f3-e050-4a6d-9fdf-b026c69a62b3"
+					},
+					"aps_fiever": {
+						"label": "Fieber",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e528dad2-eec1-4867-910b-63bacfaaf976"
+					},
+					"aps_heatfeeling": {
+						"label": "Hitzeempfinden",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "a462424c-834a-406d-b258-8a3760c9298c"
+					},
+					"aps_coldfadeskin": {
+						"label": "kalte fahle Haut",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "0a771b6e-6769-41b5-8da5-4e61676e843e"
+					},
+					"aps_coldsweat": {
+						"label": "kalter Schweiß",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "a1753d69-29d0-4f50-8bc6-b90b50911a8d"
+					},
+					"aps_shivers": {
+						"label": "Schüttelfrost",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "1b311a61-ecdd-4189-9117-d6a67fe75805"
+					},
+					"aps_bluelips": {
+						"label": "blaue Lippen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "451dcd70-66d2-430c-bb89-2089ce3afae6"
+					}
+				},
+				"ap_diagnosis": {
+					"label": "Diagnose",
+					"prefix": "apd_",
+					"id": "28bfed50-47a8-4614-a7c9-6c8f909ad690",
+					"apd_heartattack": {
+						"label": "Herzinfarkt",
+						"type": "selection",
+						"options": ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"],
+						"size": 80,
+						"value": null,
+						"id": "a558c82a-f6dd-41eb-891b-ea9f734dbbc2"
+					}
+				},
+				"ap_condition": {
+					"label": "Zustand",
+					"prefix": "apc_",
+					"id": "5613aa7d-8ad6-4c86-b6b8-4cd3212f7e90",
+					"apc_vitalcondition": {
+						"label": "Vitalwerte",
+						"prefix": "apcvc_",
+						"id": "89319a21-2175-4eb9-9482-f56066187fc1",
+						"apcvc_breath": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 100,
+							"value": null,
+							"id": "8815997c-aa1c-4041-8f97-70f4c0a0df69"
+						},
+						"apcvc_breathmovement": {
+							"label": "Atembewegung",
+							"type": "selection",
+							"options": ["Ja", "Nein!", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "a6ac1a9d-0ec9-4286-9036-ac1a01a1c15b"
+						},
+						"apcvc_breathproblem": {
+							"label": "Atemstörung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 40,
+							"value": null,
+							"id": "3d48bacc-5ffb-43d5-bb96-650df7acee73"
+						},
+						"apcvc_consciousness": {
+							"label": "bei Bewusstsein",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "d23dbfdf-a89a-4050-be45-95a89325439d"
+						},
+						"apcvc_unconscioussince": {
+							"label": "bewusstlos seit",
+							"type": "selection",
+							"options": ["gerade", "Stunden", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "d131ce67-d79e-4afd-af86-ca8b5fd522bf"
+						},
+						"apcvc_pulse": {
+							"label": "Puls",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt"],
+							"size": 100,
+							"value": null,
+							"id": "aeef9f36-3998-452f-a09c-58b59c26e0ee"
+						}
+					},
+					"apc_physicalcondition": {
+						"label": "Physisch",
+						"prefix": "apcpc_",
+						"id": "3781b249-b294-4778-9ea6-193d0d89b08a",
+						"apcpc_diabetes": {
+							"label": "Diabetes",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "3309fb4f-92a2-4685-b0a7-257ba946088e"
+						},
+						"apcpc_bloodstream": {
+							"label": "Kreislaufprobleme",
+							"type": "selection",
+							"options": ["Stark", "Leicht", "Nein", "Unbekannt"],
+							"size": 60,
+							"value": null,
+							"id": "b9a127ee-d590-4072-af70-258a70b01349"
+						},
+						"apcpc_dizziness": {
+							"label": "Schwindel",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "1d7d48b5-7cfd-4f39-ae7f-176e79347174"
+						},
+						"apcpc_pregnant": {
+							"label": "Schwanger",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "1ec6e345-c21d-4810-b423-88d2d9f88405"
+						},
+						"apcpc_wheelchair": {
+							"label": "Rollstuhl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "ccade147-ac0b-443b-a92b-44adebc33665"
+						},
+						"apcpc_visuallyimpared": {
+							"label": "Blind/Sehbehindert",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "de38713f-4ab6-4b19-a82c-dfde925023d6"
+						},
+						"apcpc_oftenhypertension": {
+							"label": "oft Bluthochdruck",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "74b06fd5-d9f1-4790-bd37-ec852f106565"
+						},
+						"apcpc_oftencholesterol": {
+							"label": "oft hohe Cholesterinwerte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "9677858c-340f-4c97-ae7e-bd32175b5810"
+						},
+						"apcpc_hearthsuffering": {
+							"label": "Herzleiden",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "29f38036-d596-4246-a4e0-35d0c363760d"
+						},
+						"apcpc_infection": {
+							"label": "Infektion",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "fcf355c6-008e-451c-9f10-6cd0ce4bbeca"
+						},
+						"apcpc_infectionsince": {
+							"label": "Infektion seid",
+							"type": "selection",
+							"options": ["Stunden", "Tage", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "8843665a-b4f7-4dcd-9034-d5a1955537c2"
+						},
+						"apcpc_infectioncovid": {
+							"label": "Covid",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "699915d6-50b6-47fb-ab22-7e8714e91128"
+						}
+					},
+					"apc_mentalcondition": {
+						"label": "Mental",
+						"prefix": "apcmc_",
+						"id": "ddae9c36-e707-429e-b4ea-d46e837e47c9",
+						"apcmc_fear": {
+							"label": "Angst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "9a393f50-7cdc-4484-9d9f-f76daee84a67"
+						},
+						"apcmc_threaten": {
+							"label": "Bedrohung",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "3d4506dc-f9ec-478c-abd2-37a4f0dda759"
+						},
+						"apcmc_weakness": {
+							"label": "Schwächegefühl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "9bee6bc6-f6b0-4fea-8051-1f6413f913bb"
+						},
+						"apcmc_stress": {
+							"label": "Stress",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "fca60f83-210c-43bc-8ab9-b4d6c8cd0d38"
+						}
+					},
+					"apc_measurements": {
+						"label": "Messwerte",
+						"prefix": "apmeas_",
+						"apmeas_bloodpressure": {
+							"label": "RR",
+							"prefix": "apmeasbp_",
+							"apmeasbp_systolic": {
+								"label": "Systolisch",
+								"type": "number",
+								"options": ["60", "80", "100", "120", "140", "180", "220", "260"],
+								"size": 30,
+								"value": null,
+								"id": "82f4b40d-cb0f-403e-8d31-eb02b64bac4a"
+							},
+							"apmeasbp_diastolic": {
+								"label": "Diastolisch",
+								"type": "number",
+								"options": ["40", "60", "80", "100", "120", "140", "160"],
+								"size": 30,
+								"value": null,
+								"id": "63337ff4-e291-40ae-872b-70456c40d16c"
+							}
+						},
+						"apmeas_heartfailure": {
+							"label": "HF",
+							"type": "number",
+							"options": ["30", "40", "60", "70", "80", "90", "100", "120", "140", "160", "200"],
+							"size": 30,
+							"value": null,
+							"id": "705d941f-ae87-4f46-8808-a02d15054ccf"
+						},
+						"apmeas_bloodglucosevalue": {
+							"label": "BZ",
+							"type": "number",
+							"options": ["30", "60", "80", "120", "140", "200"],
+							"size": 30,
+							"value": null,
+							"id": "231eb45a-028c-4be2-aebf-153cb7d6a02c"
+						},
+						"apmeas_breathingrate": {
+							"label": "AF",
+							"type": "number",
+							"options": ["0", "5", "8", "10", "12", "15", "20", "30"],
+							"size": 30,
+							"value": null,
+							"id": "52392b23-3673-463d-a082-728bbaa006ec"
+						},
+						"apmeas_oxygensaturation": {
+							"label": "SpO2",
+							"type": "number",
+							"options": ["60%", "80%", "90%", "95%", "99%"],
+							"size": 30,
+							"value": null,
+							"id": "e3b5b0f5-ea72-46eb-bb65-91b3aa8fd68a"
+						},
+						"apmeas_bodytemperature": {
+							"label": "Temp",
+							"type": "number",
+							"options": ["36°C", "37°C", "38°C", "39°C", "40°C", "41°C"],
+							"size": 30,
+							"value": null,
+							"id": "ed31079a-0e97-4f9b-9c57-04047d98e087"
+						},
+						"apmeas_ecg": {
+							"label": "EKG",
+							"type": "selection",
+							"options": [
+								"STEMI",
+								"Sinusrhythmus",
+								"Kammerflimmern",
+								"Asystolie",
+								"Absolute Arrythmie",
+								"AV-Block",
+								"Tachykardie"
+							],
+							"size": 30,
+							"value": null,
+							"id": "1ca7b746-5469-4912-81e0-15fb5cf979c1"
+						},
+						"apmeas_breathing": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["unauffällig", "Stridor", "Dyspnoe", "Zyanose", "Apnoe", "Beatmung"],
+							"size": 30,
+							"value": null,
+							"id": "70e697d4-8cb0-4513-863f-791dbb1627cf"
+						}
+					},
+					"apc_initialneurologicalfindings": {
+						"label": "Erstbefund Neurologie",
+						"prefix": "apneuro_",
+						"apneuro_glasgowcomascale": {
+							"label": "GCS",
+							"prefix": "apneurogcs_",
+							"apneurogcs_eyes": {
+								"label": "Augen öffnen",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"auf Schmerzreiz (2)",
+									"auf Aufforderung (3)",
+									"spontan (4)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "7d5f2a6f-98e2-41f1-b07f-1c153748016b"
+							},
+							"apneurogcs_verbal": {
+								"label": "Verbal",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"unverständliche Laute (2)",
+									"einzelne Wörter (3)",
+									"verwirrt (4)",
+									"orientiert (5)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "9dcd43b5-01d0-4a8e-8a6f-f07b2c277ff2"
+							},
+							"apneurogcs_motor": {
+								"label": "Motor",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"Strecksynergismen (2)",
+									"Beugesynergismen (3)",
+									"auf Schmerzreiz ungezielt (4)",
+									"auf Schmerzreiz gezielt (5)",
+									"auf Aufforderung (6)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "79b32ff3-1761-4636-b5e8-55569b85beb7"
+							}
+						},
+						"apneuro_glasgowcomascalevalue": {
+							"label": "GCS Wert",
+							"type": "number",
+							"options": [
+								"0",
+								"1",
+								"2",
+								"3",
+								"4",
+								"5",
+								"6",
+								"7",
+								"8",
+								"9",
+								"10",
+								"11",
+								"12",
+								"13",
+								"14",
+								"15"
+							],
+							"size": 30,
+							"value": null,
+							"id": "097dbb73-2702-4f15-ad17-2dcfca9593b3"
+						}
+					}
+				},
+				"ap_accessibility": {
+					"label": "Zugänglichkeit",
+					"prefix": "apa_",
+					"id": "6a888d3e-e44c-4ecf-9613-e931724cf150",
+					"apa_free": {
+						"label": "Frei Zugänglich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 100,
+						"value": null,
+						"id": "8ec2da33-1ad6-4469-ae02-f41ea3a2efb2"
+					},
+					"apa_confined": {
+						"label": "Eingeschlossen",
+						"type": "selection",
+						"options": ["Nein", "in Wohnung", "in PKW"],
+						"size": 40,
+						"value": null,
+						"id": "37df3aec-37df-472c-bcfb-b1c5172af829"
+					},
+					"apa_clamped": {
+						"label": "Eingeklemmt",
+						"type": "selection",
+						"options": ["Nein", "in PKW", "in Maschine"],
+						"size": 40,
+						"value": null,
+						"id": "a25de8a6-773b-40ca-8d6f-26b429aa61ed"
+					},
+					"apa_exposed": {
+						"label": "Exponierte Lage",
+						"type": "selection",
+						"options": ["Nein", "Höhe", "Tiefe"],
+						"size": 40,
+						"value": null,
+						"id": "1888aab9-2a81-4052-badc-bdd09b756027"
+					},
+					"apa_water": {
+						"label": "im Wasser",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "54c24e76-ca2a-4bd1-b4e4-2e0cbf32e122"
+					},
+					"apa_offroad": {
+						"label": "im Gelände",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "edb59577-91b9-4519-bbb6-16806f8e8d38"
+					},
+					"apa_missed": {
+						"label": "Vermisst",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "6eaef402-323f-4603-ae3d-38769d90473e"
+					},
+					"apa_danger": {
+						"label": "Gefahrenbereich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "3f86d205-568c-4848-bbc0-e8ddf96e382a"
+					}
+				},
+				"ap_guesseddiagnosis": {
+					"label": "Verdachtsdiagnose",
+					"prefix": "apgd_",
+					"id": "8ff73394-db35-4f6e-831f-ab3a64d486e3",
+					"apgd_injury": {
+						"label": "Verletzung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "89a3a1d7-11a4-4538-aa36-64dc4fc96637"
+					},
+					"apgd_presickness": {
+						"label": "Vorerkrankung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "22b3744e-3485-4868-bd37-7703e9790f27"
+					},
+					"apgd_medication": {
+						"label": "Medikation",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "1ed8ede1-3f91-4e61-bc95-8d99815cbb3b"
+					},
+					"apgd_allergy": {
+						"label": "Allergien",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "2007a2e6-39c2-47c2-8650-5bb042aa893c"
+					},
+					"apgd_age": {
+						"label": "Alter",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "020b0e1e-82b0-4dfa-a22c-14011c96b14d"
+					},
+					"apgd_f": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "cec5b7f4-abe6-489a-b230-81231a4ee778"
+					},
+					"apgd_g": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "4ae89450-5b57-4789-97b6-1322d956b558"
+					},
+					"apgd_h": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "91a1ae53-6167-49d3-bf4b-82cbc99ad3c4"
+					},
+					"apgd_i": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "eb3f2c29-6be2-4e48-a280-aef51831604d"
+					},
+					"apgd_j": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "90780dbc-5037-4cf9-9b80-71824f25ae41"
+					},
+					"apgd_k": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "479a9f2a-f0b6-4724-a015-d750f9a6a36f"
+					},
+					"apgd_l": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "4f763b09-c8e0-4198-a03a-bd93b96ee8a9"
+					},
+					"apgd_centralnervoussystem": {
+						"label": "ZNS",
+						"prefix": "apcns_",
+						"apcns_stroke": {
+							"label": "Schlaganfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "cadf3be7-0302-453d-9fc0-6d13838e0b73"
+						},
+						"apcns_seizure": {
+							"label": "Krampfanfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "570ccd0c-03f2-42e6-b4f0-4718ad65b622"
+						},
+						"apcns_meningitis": {
+							"label": "Meningitis",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "c193300b-e5d8-4402-b827-ab8e8d7cd0a5"
+						},
+						"apcns_syncope": {
+							"label": "Synkope",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "b6186027-76f4-491a-9ee9-46681763e540"
+						}
+					},
+					"apgd_cardiovascular": {
+						"label": "Herz-Kreislauf",
+						"prefix": "apcardi_",
+						"apcardi_heartattack": {
+							"label": "Herzinfarkt",
+							"type": "selection",
+							"options": ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"],
+							"size": 80,
+							"value": null,
+							"id": "ce30cea4-cf44-4c50-b104-05e90460adac"
+						},
+						"apcardi_stemi": {
+							"label": "STEMI",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "427b1c04-c6fe-4a16-95a7-0fb85c931de0"
+						},
+						"apcardi_arrhythmia": {
+							"label": "Rhythmusstörung",
+							"type": "selection",
+							"options": ["tachykard", "bradykard"],
+							"size": 40,
+							"value": null,
+							"id": "349f53e1-5bbf-47aa-aa27-9ead93fbbe56"
+						},
+						"apcardi_pulmonaryembolism": {
+							"label": "Lungenembolie",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "55138a4c-0fb0-49d1-8f89-3bf32c721d5f"
+						},
+						"apcardi_hyperthensiveemergency": {
+							"label": "Hyperthensiver Notfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "3ebeaa57-af3b-4d22-91f0-ee07f70bd685"
+						},
+						"apcardi_pacemaker": {
+							"label": "Schrittmacher",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "732c9024-f1c4-4b32-a4d6-7e45a3cb5ae0"
+						}
+					},
+					"apgd_breathing": {
+						"label": "Atmung",
+						"prefix": "apbreat_",
+						"apbreat_asthma": {
+							"label": "Asthma",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "0c3adffa-7c29-4799-b52f-0082e05511df"
+						},
+						"apbreat_copd": {
+							"label": "COPD",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "803b3cdd-dd45-4194-a0c9-afb07d644a93"
+						},
+						"apbreat_pneumonie": {
+							"label": "Pneumonie/ Bronchitis",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "376c82ad-1406-4509-a6d4-efdec1d657f4"
+						},
+						"apbreat_aspiration": {
+							"label": "Aspiration",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "749763fd-c1a4-44e9-a2c9-3d3ded0568d2"
+						}
+					}
+				}
+			},
+			"x": 24.367499264586307,
+			"y": 323.9047145383767,
+			"index": 2,
+			"vy": 0.00003801818595468246,
+			"vx": -0.0000055868230852743805,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": 20.843281882172302, "y": 325.0015559733432 }
+		},
+		{
+			"id": "a36fb7e1-3218-4279-8f20-d40bafd492f6",
+			"shape": { "type": "affected-person", "scale": 1 },
+			"spawn": { "source": "n0", "angle": 180, "distance": 800 },
+			"payload": {
+				"status": "delayed",
+				"name": { "first": "Person", "last": "Beifahrer" },
+				"sex": "",
+				"age": "",
+				"accessibility": "",
+				"tags": []
+			},
+			"taxonomy": {
+				"label": "Betroffene Person",
+				"prefix": "ap_",
+				"id": "45c02b4d-e168-4f80-b9cf-8def21976258",
+				"ap_name": {
+					"label": "Name",
+					"prefix": "apn_",
+					"id": "903d983e-5a2b-4aba-bd36-8323492487f0",
+					"apn_first": {
+						"label": "Vorname",
+						"type": "text",
+						"size": 40,
+						"value": "Person",
+						"id": "f2bb5a76-2d38-43b1-9071-351a940666a2",
+						"options": [
+							"Hilda",
+							"Marc",
+							"Fred",
+							"Georgia",
+							"Terry",
+							"Nellie",
+							"Caroline",
+							"Milton",
+							"Fred",
+							"Katie",
+							"Franklin",
+							"Christopher",
+							"Ricardo",
+							"Nettie",
+							"Anthony",
+							"Corey",
+							"Aiden",
+							"Madge",
+							"Myrtle",
+							"Winifred"
+						]
+					},
+					"apn_last": {
+						"label": "Nachname",
+						"type": "text",
+						"size": 40,
+						"value": "Beifahrer",
+						"id": "24cd689f-d529-445a-b6b0-cff77e8cfb37",
+						"options": [
+							"Morrison",
+							"Austin",
+							"Rice",
+							"Allison",
+							"Wallace",
+							"Delgado",
+							"Howard",
+							"Cook",
+							"Ortega",
+							"Castillo",
+							"Newton",
+							"Day",
+							"Robinson",
+							"Lloyd",
+							"Sutton",
+							"Morrison",
+							"Lopez",
+							"Mason",
+							"Holt",
+							"Floyd"
+						]
+					}
+				},
+				"ap_age": {
+					"label": "Alter",
+					"type": "number",
+					"size": 50,
+					"value": null,
+					"id": "2dd2ba6d-8a4f-4707-bffd-aadc488d6c11",
+					"options": [
+						0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+						26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+						50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73,
+						74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97,
+						98, 99, 100
+					]
+				},
+				"ap_sex": {
+					"label": "Geschlecht",
+					"type": "selection",
+					"options": ["Männlich", "Weiblich", "Divers"],
+					"size": 50,
+					"value": null,
+					"id": "3ac499a1-4f17-41f3-9560-ec12fa459c77"
+				},
+				"ap_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": null,
+					"id": "7e2c2dff-df5a-4a21-b11c-4068141933a1"
+				},
+				"ap_symptoms": {
+					"label": "Symptome",
+					"prefix": "aps_",
+					"id": "f6b362f9-e762-41a7-8d19-3ea87935ecb9",
+					"aps_pain": {
+						"label": "Schmerzen",
+						"type": "selection",
+						"options": ["Stark", "Mittel", "Schwach", "Nein"],
+						"size": 80,
+						"value": null,
+						"id": "3abe588b-9ec2-43a6-84b9-c93a3c205ede"
+					},
+					"aps_painlocation": {
+						"label": "Schmerzbereich",
+						"type": "selection",
+						"options": [
+							"Brust",
+							"Kopf",
+							"Nacken",
+							"Schulter",
+							"Rücken",
+							"Arm",
+							"Hand",
+							"Becken",
+							"Wehen",
+							"Oberbauch",
+							"Hüfte",
+							"Nieren",
+							"Genital",
+							"Oberschenke",
+							"Knie",
+							"Unterschenkel",
+							"Fuß"
+						],
+						"size": 40,
+						"value": null,
+						"id": "966e75a2-0252-4790-9513-86d65235f152"
+					},
+					"aps_painmovementrelated": {
+						"label": "Schmerzen bewegungsabhängig",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "9a45f677-fc7f-45d0-8937-257a457b2ea2"
+					},
+					"aps_fiever": {
+						"label": "Fieber",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "d7c6d8b9-2d15-458c-b286-a7e5d606cfa8"
+					},
+					"aps_heatfeeling": {
+						"label": "Hitzeempfinden",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "6440b502-2365-4d41-912f-a0dc41c6453c"
+					},
+					"aps_coldfadeskin": {
+						"label": "kalte fahle Haut",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "a2737992-8c39-442d-b870-e45c9aadef84"
+					},
+					"aps_coldsweat": {
+						"label": "kalter Schweiß",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "ad026f20-a159-47a3-8cdd-942ac7de0350"
+					},
+					"aps_shivers": {
+						"label": "Schüttelfrost",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e662ad30-9e80-4ea8-97a0-39f2c59e38dd"
+					},
+					"aps_bluelips": {
+						"label": "blaue Lippen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "f41ebbb2-a641-40b2-848b-ac423df3b31b"
+					}
+				},
+				"ap_diagnosis": {
+					"label": "Diagnose",
+					"prefix": "apd_",
+					"id": "c60d04db-4d54-4002-911d-7bb66a8f9574",
+					"apd_heartattack": {
+						"label": "Herzinfarkt",
+						"type": "selection",
+						"options": ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"],
+						"size": 80,
+						"value": null,
+						"id": "365c86e3-a6ad-4b39-896b-6889c763132c"
+					}
+				},
+				"ap_condition": {
+					"label": "Zustand",
+					"prefix": "apc_",
+					"id": "078d1a42-021c-49a4-8902-197ebaa2a6cf",
+					"apc_vitalcondition": {
+						"label": "Vitalwerte",
+						"prefix": "apcvc_",
+						"id": "393b20b1-a899-4b3a-906b-a3adcd466803",
+						"apcvc_breath": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 100,
+							"value": null,
+							"id": "42ca185c-880e-4943-bdc7-e2c0678aa112"
+						},
+						"apcvc_breathmovement": {
+							"label": "Atembewegung",
+							"type": "selection",
+							"options": ["Ja", "Nein!", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "eb2abcd4-639e-490d-b334-60dd241bbd8f"
+						},
+						"apcvc_breathproblem": {
+							"label": "Atemstörung",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt", "Bolus"],
+							"size": 40,
+							"value": null,
+							"id": "7f4b4072-4d5c-4c80-9e9e-22567010ccbe"
+						},
+						"apcvc_consciousness": {
+							"label": "bei Bewusstsein",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "83ea948f-9de9-4373-b5a2-4e882fd9d807"
+						},
+						"apcvc_unconscioussince": {
+							"label": "bewusstlos seit",
+							"type": "selection",
+							"options": ["gerade", "Stunden", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "30661e1a-736f-4994-9ef2-17bc46c6327d"
+						},
+						"apcvc_pulse": {
+							"label": "Puls",
+							"type": "selection",
+							"options": ["Ja", "Nein", "unbekannt"],
+							"size": 100,
+							"value": null,
+							"id": "82c599bc-fd2c-4771-b56c-d044bb6b6127"
+						}
+					},
+					"apc_physicalcondition": {
+						"label": "Physisch",
+						"prefix": "apcpc_",
+						"id": "6d3b0d0f-36f4-4c07-abaf-c763d005c0d8",
+						"apcpc_diabetes": {
+							"label": "Diabetes",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 60,
+							"value": null,
+							"id": "09fbafd7-89ae-4324-a862-ebb3bc52f681"
+						},
+						"apcpc_bloodstream": {
+							"label": "Kreislaufprobleme",
+							"type": "selection",
+							"options": ["Stark", "Leicht", "Nein", "Unbekannt"],
+							"size": 60,
+							"value": null,
+							"id": "5fd8e4e7-cd7e-4598-bd4d-5f545686a870"
+						},
+						"apcpc_dizziness": {
+							"label": "Schwindel",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "343ab389-1f72-4be4-acb1-6c0567589a80"
+						},
+						"apcpc_pregnant": {
+							"label": "Schwanger",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "e12add31-59a0-47a7-a1c5-5a94857af3e3"
+						},
+						"apcpc_wheelchair": {
+							"label": "Rollstuhl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 30,
+							"value": null,
+							"id": "09eb5d47-359e-47f7-8c4f-d179c877f4b6"
+						},
+						"apcpc_visuallyimpared": {
+							"label": "Blind/Sehbehindert",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 20,
+							"value": null,
+							"id": "0e1a61c2-cf1e-4c14-a247-585eed0103de"
+						},
+						"apcpc_oftenhypertension": {
+							"label": "oft Bluthochdruck",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "82dc3099-0c85-43aa-b7d9-1a373e3c99af"
+						},
+						"apcpc_oftencholesterol": {
+							"label": "oft hohe Cholesterinwerte",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "14b24d46-06f9-49f6-9758-e07185c6ff20"
+						},
+						"apcpc_hearthsuffering": {
+							"label": "Herzleiden",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "96ac365e-39fa-4418-9148-a922d95a3a10"
+						},
+						"apcpc_infection": {
+							"label": "Infektion",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "6b403dd2-9436-4163-9199-1deafbf4fca2"
+						},
+						"apcpc_infectionsince": {
+							"label": "Infektion seid",
+							"type": "selection",
+							"options": ["Stunden", "Tage", "unbekannt"],
+							"size": 40,
+							"value": null,
+							"id": "4a6a3945-6a10-4631-a041-3605aba165e1"
+						},
+						"apcpc_infectioncovid": {
+							"label": "Covid",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "2571c83c-9bd9-4672-9349-5e896120dbd7"
+						}
+					},
+					"apc_mentalcondition": {
+						"label": "Mental",
+						"prefix": "apcmc_",
+						"id": "6da1f18a-9b6b-4992-af9b-6dc63ec3b9a9",
+						"apcmc_fear": {
+							"label": "Angst",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "78d6a060-0333-46e0-9586-00afaf6186e6"
+						},
+						"apcmc_threaten": {
+							"label": "Bedrohung",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "9d59d726-3e27-4e96-a3a9-2eb113037626"
+						},
+						"apcmc_weakness": {
+							"label": "Schwächegefühl",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "131c4ef8-1443-4749-92ab-ae6ff1b28e0e"
+						},
+						"apcmc_stress": {
+							"label": "Stress",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "cd9e435a-3ac8-4168-aecb-b59e142b600c"
+						}
+					},
+					"apc_measurements": {
+						"label": "Messwerte",
+						"prefix": "apmeas_",
+						"apmeas_bloodpressure": {
+							"label": "RR",
+							"prefix": "apmeasbp_",
+							"apmeasbp_systolic": {
+								"label": "Systolisch",
+								"type": "number",
+								"options": ["60", "80", "100", "120", "140", "180", "220", "260"],
+								"size": 30,
+								"value": null,
+								"id": "c682bd0f-e752-4cc9-9b8b-8781155075be"
+							},
+							"apmeasbp_diastolic": {
+								"label": "Diastolisch",
+								"type": "number",
+								"options": ["40", "60", "80", "100", "120", "140", "160"],
+								"size": 30,
+								"value": null,
+								"id": "ee2fdcc3-8f05-46b9-9330-a0a9985f1648"
+							}
+						},
+						"apmeas_heartfailure": {
+							"label": "HF",
+							"type": "number",
+							"options": ["30", "40", "60", "70", "80", "90", "100", "120", "140", "160", "200"],
+							"size": 30,
+							"value": null,
+							"id": "1001b478-a206-4e0f-a86f-1cb9c75f9ff5"
+						},
+						"apmeas_bloodglucosevalue": {
+							"label": "BZ",
+							"type": "number",
+							"options": ["30", "60", "80", "120", "140", "200"],
+							"size": 30,
+							"value": null,
+							"id": "c4d00704-c8b8-467d-8164-2390965d86c0"
+						},
+						"apmeas_breathingrate": {
+							"label": "AF",
+							"type": "number",
+							"options": ["0", "5", "8", "10", "12", "15", "20", "30"],
+							"size": 30,
+							"value": null,
+							"id": "2882e553-2869-4ff8-8a87-9c63cecbe7f3"
+						},
+						"apmeas_oxygensaturation": {
+							"label": "SpO2",
+							"type": "number",
+							"options": ["60%", "80%", "90%", "95%", "99%"],
+							"size": 30,
+							"value": null,
+							"id": "7950da6e-d949-496e-b6af-00a14453791c"
+						},
+						"apmeas_bodytemperature": {
+							"label": "Temp",
+							"type": "number",
+							"options": ["36°C", "37°C", "38°C", "39°C", "40°C", "41°C"],
+							"size": 30,
+							"value": null,
+							"id": "bb5555be-7504-441f-96df-dbaaa6ff00ac"
+						},
+						"apmeas_ecg": {
+							"label": "EKG",
+							"type": "selection",
+							"options": [
+								"STEMI",
+								"Sinusrhythmus",
+								"Kammerflimmern",
+								"Asystolie",
+								"Absolute Arrythmie",
+								"AV-Block",
+								"Tachykardie"
+							],
+							"size": 30,
+							"value": null,
+							"id": "1e919469-3cca-456e-8168-2b8b6db19b5f"
+						},
+						"apmeas_breathing": {
+							"label": "Atmung",
+							"type": "selection",
+							"options": ["unauffällig", "Stridor", "Dyspnoe", "Zyanose", "Apnoe", "Beatmung"],
+							"size": 30,
+							"value": null,
+							"id": "83eef62a-ef35-4694-a6b3-2bfde95b3023"
+						}
+					},
+					"apc_initialneurologicalfindings": {
+						"label": "Erstbefund Neurologie",
+						"prefix": "apneuro_",
+						"apneuro_glasgowcomascale": {
+							"label": "GCS",
+							"prefix": "apneurogcs_",
+							"apneurogcs_eyes": {
+								"label": "Augen öffnen",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"auf Schmerzreiz (2)",
+									"auf Aufforderung (3)",
+									"spontan (4)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "78132323-2fd2-4dc0-b421-323c02942c84"
+							},
+							"apneurogcs_verbal": {
+								"label": "Verbal",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"unverständliche Laute (2)",
+									"einzelne Wörter (3)",
+									"verwirrt (4)",
+									"orientiert (5)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "0f729052-ba2b-4e15-af29-ad229ca420c6"
+							},
+							"apneurogcs_motor": {
+								"label": "Motor",
+								"type": "selection",
+								"options": [
+									"keine Reaktion (1)",
+									"Strecksynergismen (2)",
+									"Beugesynergismen (3)",
+									"auf Schmerzreiz ungezielt (4)",
+									"auf Schmerzreiz gezielt (5)",
+									"auf Aufforderung (6)"
+								],
+								"size": 30,
+								"value": null,
+								"id": "7a727b87-1a52-485e-994d-be35a4c08b80"
+							}
+						},
+						"apneuro_glasgowcomascalevalue": {
+							"label": "GCS Wert",
+							"type": "number",
+							"options": [
+								"0",
+								"1",
+								"2",
+								"3",
+								"4",
+								"5",
+								"6",
+								"7",
+								"8",
+								"9",
+								"10",
+								"11",
+								"12",
+								"13",
+								"14",
+								"15"
+							],
+							"size": 30,
+							"value": null,
+							"id": "d2b5ce69-7e21-4407-a188-4f8345e09614"
+						}
+					}
+				},
+				"ap_accessibility": {
+					"label": "Zugänglichkeit",
+					"prefix": "apa_",
+					"id": "02308145-e014-4118-a58d-b01b99cc8190",
+					"apa_free": {
+						"label": "Frei Zugänglich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 100,
+						"value": null,
+						"id": "fb537b8e-50a7-455f-852b-8d11fe24743e"
+					},
+					"apa_confined": {
+						"label": "Eingeschlossen",
+						"type": "selection",
+						"options": ["Nein", "in Wohnung", "in PKW"],
+						"size": 40,
+						"value": null,
+						"id": "9f0819bf-dc2c-4a88-92a8-59f11ae2115d"
+					},
+					"apa_clamped": {
+						"label": "Eingeklemmt",
+						"type": "selection",
+						"options": ["Nein", "in PKW", "in Maschine"],
+						"size": 40,
+						"value": null,
+						"id": "4b71f2dc-234c-4daa-ab1d-7a4c04092d83"
+					},
+					"apa_exposed": {
+						"label": "Exponierte Lage",
+						"type": "selection",
+						"options": ["Nein", "Höhe", "Tiefe"],
+						"size": 40,
+						"value": null,
+						"id": "1f13a2d1-1be1-461f-90e3-674ebb8c5b07"
+					},
+					"apa_water": {
+						"label": "im Wasser",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "6f4adb64-22f1-480c-8b10-6e57586e6639"
+					},
+					"apa_offroad": {
+						"label": "im Gelände",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "df19e450-5663-43d5-a96d-2b7bdac75268"
+					},
+					"apa_missed": {
+						"label": "Vermisst",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "ec9cfd74-f0cf-4f76-a28b-bd9d957fd5e2"
+					},
+					"apa_danger": {
+						"label": "Gefahrenbereich",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "61fc7112-4794-44c5-9dff-75aacf07c71d"
+					}
+				},
+				"ap_guesseddiagnosis": {
+					"label": "Verdachtsdiagnose",
+					"prefix": "apgd_",
+					"id": "7362fa48-e4cf-48f9-b855-6dac7a62f658",
+					"apgd_injury": {
+						"label": "Verletzung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "0e164381-e93a-4e6a-8550-fc2b0af79253"
+					},
+					"apgd_presickness": {
+						"label": "Vorerkrankung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "d87e04b3-ccd1-43e4-8a97-9a3d3f36570f"
+					},
+					"apgd_medication": {
+						"label": "Medikation",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "c3336550-a986-447e-8c3b-307965329a2b"
+					},
+					"apgd_allergy": {
+						"label": "Allergien",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "b01d8be0-b72d-4f5b-8486-50c5b03536cb"
+					},
+					"apgd_age": {
+						"label": "Alter",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "30e7d62e-ef88-44be-ab7f-00c390c54181"
+					},
+					"apgd_f": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "86625d5a-7cf0-4d65-8639-930e288498c7"
+					},
+					"apgd_g": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "19809104-8cff-41bd-a0fa-9a742094dd6f"
+					},
+					"apgd_h": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "cd25932b-f143-47dc-9a4e-f4d2d451603c"
+					},
+					"apgd_i": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "344e25ae-a33e-4501-a1a2-4747092ddaaa"
+					},
+					"apgd_j": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "9973bcb5-b7ab-474b-9580-2835546c0e16"
+					},
+					"apgd_k": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "808b30ae-b27d-4170-8e30-a0ba9b7e409b"
+					},
+					"apgd_l": {
+						"label": "Diagnose",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "b817f26f-7f3d-41c8-b74b-20d41ccd1c21"
+					},
+					"apgd_centralnervoussystem": {
+						"label": "ZNS",
+						"prefix": "apcns_",
+						"apcns_stroke": {
+							"label": "Schlaganfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "9514403c-5833-461f-a76b-881fa4e37ce5"
+						},
+						"apcns_seizure": {
+							"label": "Krampfanfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "8d99e604-e3cc-4c72-a585-caf471a4db49"
+						},
+						"apcns_meningitis": {
+							"label": "Meningitis",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "98244d9a-2fe7-4279-8e03-17d1af76755f"
+						},
+						"apcns_syncope": {
+							"label": "Synkope",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "f130237a-610e-4d73-9fbb-61c8bc013305"
+						}
+					},
+					"apgd_cardiovascular": {
+						"label": "Herz-Kreislauf",
+						"prefix": "apcardi_",
+						"apcardi_heartattack": {
+							"label": "Herzinfarkt",
+							"type": "selection",
+							"options": ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"],
+							"size": 80,
+							"value": null,
+							"id": "a1ecc5c0-2a89-4059-877a-9ec3a78333a1"
+						},
+						"apcardi_stemi": {
+							"label": "STEMI",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "522c8c2a-b16e-4cbb-977e-bddcd2c0d337"
+						},
+						"apcardi_arrhythmia": {
+							"label": "Rhythmusstörung",
+							"type": "selection",
+							"options": ["tachykard", "bradykard"],
+							"size": 40,
+							"value": null,
+							"id": "804e86a4-94cc-4ee9-8216-d03863009678"
+						},
+						"apcardi_pulmonaryembolism": {
+							"label": "Lungenembolie",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "90e26f75-0b08-464e-9eb1-ebffd76bc82f"
+						},
+						"apcardi_hyperthensiveemergency": {
+							"label": "Hyperthensiver Notfall",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "68da86c0-4fb9-42eb-a2bd-810ff86a2636"
+						},
+						"apcardi_pacemaker": {
+							"label": "Schrittmacher",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "90488ae3-9d5a-40b4-8446-d80447f33e8d"
+						}
+					},
+					"apgd_breathing": {
+						"label": "Atmung",
+						"prefix": "apbreat_",
+						"apbreat_asthma": {
+							"label": "Asthma",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "d55e518e-c06f-4fe1-89d4-f658144ec214"
+						},
+						"apbreat_copd": {
+							"label": "COPD",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "152baf73-0ea6-4d8c-983c-e01a07b85e1f"
+						},
+						"apbreat_pneumonie": {
+							"label": "Pneumonie/ Bronchitis",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "69e4c175-1ade-4dc2-986f-44aa0786b4f6"
+						},
+						"apbreat_aspiration": {
+							"label": "Aspiration",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "58aeceb5-5df5-44f1-980b-8e46b34a0a0d"
+						}
+					}
+				}
+			},
+			"x": 23.39280241838559,
+			"y": 662.2034813119742,
+			"index": 3,
+			"vy": 0.00012480592537679434,
+			"vx": -0.000013438851876402846,
+			"fx": null,
+			"fy": null,
+			"isDragged": false,
+			"anchor": { "type": "soft", "x": 20.534184842425013, "y": 657.025929629423 }
+		},
+		{
+			"id": "82567b42-bec6-4eb7-afdd-e38fbee9af03",
+			"shape": { "type": "affected-object", "scale": 1 },
+			"spawn": { "source": "n0", "angle": 180, "distance": 1200 },
+			"payload": { "status": "delayed", "label": "VW Golf", "accessibility": "", "tags": ["PKW"] },
+			"taxonomy": {
+				"label": "Betroffenes Objekt",
+				"prefix": "ao_",
+				"id": "d66f460c-f9cd-409d-811d-deecd48c0caf",
+				"ao_name": {
+					"label": "Name",
+					"type": "text",
+					"size": 50,
+					"value": "VW Golf",
+					"id": "e6230855-66f6-4fee-8518-41801d2517b8",
+					"options": ["Zug", "VW Golf", "Mercedes", "BMW", "Audi"]
+				},
+				"ao_status": {
+					"label": "Status",
+					"type": "selection",
+					"options": ["Grün", "Gelb", "Rot"],
+					"size": 50,
+					"value": "Gelb",
+					"id": "ae9b0688-a4b7-4a0e-973b-4f141a5e41c6"
+				},
+				"ao_mobile": {
+					"label": "Fahrzeug",
+					"prefix": "aom_",
+					"id": "ae6fb72d-fd3a-4ca5-9042-2fb888aafbc9",
+					"aom_rescuecard": {
+						"label": "Rettungskarte",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "b07b9ef2-601d-43a7-9189-c49142d8bc1b"
+					},
+					"aom_car": {
+						"label": "PKW",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": "Ja",
+						"id": "51b87ce5-8c0a-47ff-ab67-a49587e053b7"
+					},
+					"aom_truck": {
+						"label": "LKW",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "6f936912-4293-4372-adf3-7ed836ef5e9f"
+					},
+					"aom_train": {
+						"label": "Zug",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "3ff7e769-ea74-422c-9ba9-b111e1ba6201"
+					},
+					"aom_plane": {
+						"label": "Flugzeug",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "68d599b7-8425-467a-9079-22c9e1b78b31"
+					}
+				},
+				"ao_residentialtype": {
+					"label": "Wohngebäude",
+					"prefix": "aor_",
+					"id": "a08eb7d1-1288-481e-9bdd-910d84b75001",
+					"aor_runcard": {
+						"label": "Laufkarte",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 20,
+						"value": null,
+						"id": "6d257e93-4029-419b-a199-a805f2f5528f"
+					},
+					"aor_single": {
+						"label": "Einfamilienhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "a431b880-1468-4b8c-90fb-0b9d0084e3b3"
+					},
+					"aor_several": {
+						"label": "Mehrfamilienhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "687b6853-1b91-4286-9322-6c62c7d04231"
+					},
+					"aor_multi": {
+						"label": "Hochhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "aaab2e71-71f7-47c2-bb8a-bf4a7791953b"
+					}
+				},
+				"ao_medicaltype": {
+					"label": "Med. Einrichtung",
+					"prefix": "aom_",
+					"id": "17e4fd7c-4a07-47b8-94d6-5c2a997e5c53",
+					"aom_hospital": {
+						"label": "Krankenhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "6df2c9c6-8b50-41a3-a21d-5035662f6e6f"
+					},
+					"aom_senior": {
+						"label": "Altenheim",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "acb6f7d3-21e9-49d4-92a0-047e1a0471f9"
+					},
+					"aom_practice": {
+						"label": "Praxis",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "6924451f-c89f-40ff-a4ef-4cbd8556df71"
+					}
+				},
+				"ao_infrastructure": {
+					"label": "Infrastruktur",
+					"prefix": "aoi_",
+					"id": "835a055d-8eb3-418e-bd11-effbc7e940d2",
+					"aoi_street": {
+						"label": "Straße",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "a50e862e-c64c-427d-b02e-34c57457140c"
+					},
+					"aoi_bridge": {
+						"label": "Brücke",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "1f6e7274-3d74-4938-9c48-96649549481c"
+					},
+					"aoi_railway": {
+						"label": "Bahn",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "7ec1e043-ea12-4edc-afdf-37b1a00c72c1"
+					},
+					"aoi_supply": {
+						"label": "Versorgung",
+						"prefix": "aos_",
+						"id": "17966a94-8c24-4c0a-8ffe-c78ef7e907df",
+						"aos_overground": {
+							"label": "Oberirdisch",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "c7ba1e9c-c84b-47bf-9409-0590fd912669"
+						},
+						"aos_underground": {
+							"label": "Unterirdisch",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "09fd776f-bf96-44fb-9dd0-7c2fd8bfcd99"
+						},
+						"aos_care": {
+							"label": "Versorgung",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "e5813cf4-7f3d-4118-b667-7dc1e1e279e7"
+						},
+						"aos_disposal": {
+							"label": "Entsorgung",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "cdbaa480-bab3-4c92-83a3-d9426fed1f33"
+						},
+						"aos_water": {
+							"label": "Wasser",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "4f242057-f0fa-48a9-b19d-9a4eb88ad387"
+						},
+						"aos_electricity": {
+							"label": "Strom",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "62ce60b8-0f24-40e8-8bb4-47d8fec6d50f"
+						},
+						"aos_gas": {
+							"label": "Gas",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "4a08f34a-bb9a-4535-8ea4-f65f104fc795"
+						},
+						"aos_gasoline": {
+							"label": "Kraftstoff",
+							"type": "selection",
+							"options": ["Ja", "Nein"],
+							"size": 40,
+							"value": null,
+							"id": "85ffa89f-7a11-48b0-9647-6cce4e898567"
+						}
+					}
+				},
+				"ao_specialtype": {
+					"label": "Sonderobjekt",
+					"prefix": "aoso_",
+					"id": "87664dc1-0ef9-4d3d-8f08-d81216e1181d",
+					"aoso_store": {
+						"label": "Kaufhaus",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "5e14c302-9b6a-4a37-826d-b03b3f64b717"
+					},
+					"aoso_event": {
+						"label": "Veranstaltung",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "91cdf03d-15d7-4a17-b4e1-8c75a87f7227"
+					},
+					"aoso_publicbuilding": {
+						"label": "Öffentl. Gebäude",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "e4826d60-d8f0-4fac-8da3-20a7e683caa2"
+					},
+					"aoso_sport": {
+						"label": "Sportstätte",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "7851eb50-0282-47ae-a0da-df29db779e21"
+					},
+					"aoso_trainstation": {
+						"label": "Bahnhof",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "4ede8cf7-e637-4d88-bf76-521e3fa1a9e9"
+					},
+					"aoso_airport": {
+						"label": "Flughafen",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "86284ec0-e4c7-4a42-a73f-81f7eae29ff8"
+					},
+					"aoso_forest": {
+						"label": "Forst",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "5e2d55f0-49b2-4f57-a1b6-32f7b821bc63"
+					},
+					"aoso_kindergarden": {
+						"label": "Kindergarten",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "49f20960-c0b0-4624-b494-b2293e87fff7"
+					},
+					"aoso_hotel": {
+						"label": "Hotel",
+						"type": "selection",
+						"options": ["Ja", "Nein"],
+						"size": 40,
+						"value": null,
+						"id": "dc71e983-4eb2-4768-9dbf-19ab072193ad"
+					}
+				}
+			},
+			"x": 25.02424227876351,
+			"y": 1021.2980483648321,
+			"index": 4,
+			"vy": 0.0019135607207109622,
+			"vx": 0.0001630066755693371,
+			"fx": null,
+			"fy": null,
+			"anchor": { "type": "soft", "x": 23.88913627396944, "y": 1007.1597187649616 },
+			"isDragged": false
+		}
+	],
+	"links": [
+		{
+			"source": "14dbbedf-ff44-4908-a2e9-c901f933f57a",
+			"target": "78b2908b-bf41-4b1f-ab75-e0d24b49f97c",
+			"type": "solid",
+			"directed": true,
+			"strength": "weak"
+		},
+		{
+			"source": "78b2908b-bf41-4b1f-ab75-e0d24b49f97c",
+			"target": "00b94b4a-9415-421d-968b-6044a48eb531",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "loose"
+		},
+		{
+			"source": "78b2908b-bf41-4b1f-ab75-e0d24b49f97c",
+			"target": "a36fb7e1-3218-4279-8f20-d40bafd492f6",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "loose"
+		},
+		{
+			"source": "78b2908b-bf41-4b1f-ab75-e0d24b49f97c",
+			"target": "82567b42-bec6-4eb7-afdd-e38fbee9af03",
+			"type": "solid",
+			"directed": false,
+			"label": "",
+			"strength": "loose"
+		}
+	],
+	"hasUpdate": false
+}
