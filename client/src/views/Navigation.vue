@@ -30,6 +30,11 @@
 						class="ml-2"
 						:label="`TouchScreen: ${touchScreen ? 'On' : 'Off'}`"
 					></v-switch>
+					<v-switch
+						v-model="showBanner"
+						class="ml-2"
+						:label="`Banner: ${showBanner ? 'On' : 'Off'}`"
+					></v-switch>
 				</v-list>
 			</v-container>
 		</v-navigation-drawer>
@@ -59,6 +64,7 @@ export { touchScreen };
 
 <script setup>
 import { ref, watch, onMounted, defineProps } from "vue";
+import { showBanner } from "../App.vue";
 import router from "../routers/index";
 
 let extendedDrawer = ref(false);
