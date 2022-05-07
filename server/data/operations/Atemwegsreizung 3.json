@@ -5,7 +5,7 @@
 			"shape": { "type": "operation", "scale": 1 },
 			"payload": {
 				"status": "delayed",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "Ludwigshafen, Kantstr. 2",
 				"affected_persons": 4,
 				"affected_objects": 0,

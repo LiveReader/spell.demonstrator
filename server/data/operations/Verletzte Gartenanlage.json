@@ -5,7 +5,7 @@
 			"shape": { "type": "operation", "scale": 1 },
 			"payload": {
 				"status": "immediate",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "49.52856896924809, 8.402623263051227",
 				"affected_persons": 12,
 				"affected_objects": 0,

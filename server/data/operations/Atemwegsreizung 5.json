@@ -5,7 +5,7 @@
 			"shape": { "type": "operation", "scale": 1 },
 			"payload": {
 				"status": "immediate",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "Ludwigshafen, Bürgermeister-Zorn-Platz",
 				"affected_persons": 3,
 				"affected_objects": 0,

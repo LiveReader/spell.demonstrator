@@ -5,7 +5,7 @@
 			"shape": { "type": "operation", "scale": 1 },
 			"payload": {
 				"status": "delayed",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "Frankenthal, Europaring",
 				"affected_persons": 3,
 				"affected_objects": 0,

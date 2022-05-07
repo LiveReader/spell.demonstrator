@@ -5,7 +5,7 @@
 			"shape": { "type": "operation", "scale": 1 },
 			"payload": {
 				"status": "delayed",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "Ludwigshafen, Tullastr.",
 				"affected_persons": 1,
 				"affected_objects": 0,

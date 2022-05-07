@@ -5,7 +5,7 @@
 			"shape": { "type": "operation", "scale": 1 },
 			"payload": {
 				"status": "delayed",
-				"label": "Operation",
+				"label": "Einsatz",
 				"location": "Ludwigshafen, Breitscheidstr. ",
 				"affected_persons": 2,
 				"affected_objects": 0,
