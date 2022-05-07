@@ -61,6 +61,7 @@ const questionTemplates = [
 			}
 		},
 	},
+	// Wo ist der Anrufer
 	{
 		node_type: NodeType.EmergencyReporter,
 		priority: 999,
@@ -175,6 +176,49 @@ const questionTemplates = [
 				operationNode.taxonomy.location = d.taxonomy.location;
 				taxonomy2payload["operation"](operationNode, g.value);
 			}
+		},
+	},
+	// Wo ist der Einsatz
+	{
+		node_type: NodeType.Operation,
+		priority: 997,
+		question_type: QuestionType.Text,
+		question: "Notfall-Ort",
+		description: "Ort, Straße, Hausnummer",
+		options: [],
+		label: ["Straße", "Ort"],
+		value: (d) => [d?.taxonomy?.location?.street?.value, d?.taxonomy?.location?.city?.value],
+		condition: (d) =>
+			!touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		action: (v, d, g) => {
+			d.taxonomy.location.street.value = v[0] ?? "";
+			d.taxonomy.location.city.value = v[1] ?? "";
+		},
+	},
+	{
+		node_type: NodeType.Operation,
+		priority: 997,
+		question_type: QuestionType.Text,
+		question: "Notfall-Ort",
+		description: "Ort, Straße, Hausnummer",
+		options: locationsSelection,
+		label: "Notfall-Ort",
+		value: (d) =>
+			`${d?.taxonomy?.location?.street?.value ?? ""} ${d?.taxonomy?.location?.buildingno?.value ?? ""}, ${
+				d?.taxonomy?.location?.zipcode?.value ?? ""
+			} ${d?.taxonomy?.location?.city?.value ?? ""}`,
+		condition: (d) => touchScreen.value && !d?.taxonomy?.location?.gps.value && !d?.taxonomy?.location?.city?.value,
+		action: (v, d, g) => {
+			const index = locationsSelection.indexOf(v);
+			const data = locations[index];
+			d.taxonomy.location.street.value = data.street ?? "";
+			d.taxonomy.location.buildingno.value = data.buildingno ?? "";
+			d.taxonomy.location.zipcode.value = data.zipcode ?? "";
+			d.taxonomy.location.city.value = data.city ?? "";
+			d.taxonomy.location.country.value = data.country ?? "";
+			d.taxonomy.location.note.value = data.note ?? "";
+			d.taxonomy.location.gps.value = data.gps ?? "";
+			d.taxonomy.location.threewords.value = data.threewords ?? "";
 		},
 	},
 	// Wie viele sind verletzt?
