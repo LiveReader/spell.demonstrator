@@ -900,6 +900,7 @@ onMounted(() => {
 watch(
 	() => selectedNodes.value,
 	() => {
+		if (newEdgeMode.value) return;
 		const node = graph.value.nodes.filter((n) => n.id == selectedNodes.value[0])[0];
 		if (node?.shape?.type == "emergency-action") {
 			if (
