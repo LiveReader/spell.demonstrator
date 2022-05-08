@@ -58,31 +58,27 @@ router.get("/:id", (req, res) => {
 	if (reqID < id) {
 		return res.send(JSON.stringify({ id: id }));
 	}
-	for (let i = 0; i < reqID; i++) {
+	for (let i = id; i <= reqID; i++) {
 		switch (i) {
 			case 1:
 				burnGardenScenario.forEach((item) => {
 					addOperation(item);
 				});
-				setEditDates();
 				break;
 			case 2:
 				hurtGardenScenario.forEach((item) => {
 					addOperation(item);
 				});
-				setEditDates();
 				break;
 			case 3:
 				breathScenario.forEach((item) => {
 					addOperation(item);
 				});
-				setEditDates();
 				break;
 			default:
 				startScenario.forEach((item) => {
 					addOperation(item);
 				});
-				setEditDates();
 				break;
 		}
 	}

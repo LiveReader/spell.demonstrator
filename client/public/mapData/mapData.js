@@ -49,9 +49,9 @@ const scenarios = [
             "Atemwegsreizung 4.json",
             "Atemwegsreizung 5.json",
         ],
-        meetingPointFiles: [
-            "meeting_point.json",
-        ],
+        // meetingPointFiles: [
+        //     "meeting_point.json",
+        // ],
         cloudFiles: [
             "cloud3.json",
         ],

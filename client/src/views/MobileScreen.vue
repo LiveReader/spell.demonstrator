@@ -31,6 +31,7 @@ import { ref, onMounted } from "vue";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { taxonomyTemplate, parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { loadOperation, putOperation } from "../api/index";
+import { onReset } from "./Navigation.vue";
 
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
@@ -357,6 +358,9 @@ onMounted(() => {
 		controlItems.value.forEach((item) => {
 			item.enabled = item.checkEnabled();
 		});
+	});
+	onReset.push(() => {
+		window.location.reload();
 	});
 });
 </script>
