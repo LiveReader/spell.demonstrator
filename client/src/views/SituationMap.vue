@@ -51,18 +51,15 @@ import { parsePrefixedTaxonomy } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
 import { LMap, LTileLayer} from "@vue-leaflet/vue-leaflet";
 import { latLngBounds, latLng } from "leaflet";
+import { onReset } from "./Navigation.vue";
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
 import * as L from "leaflet" ;
 import "leaflet/dist/leaflet.css";
 
-// TODO
-// - remember scenario after page reload
-// - partial update of the graph instead of full reload on any change (optimization, not necessary)
-
 // debug flags
 let restrictPanning = false;
-let restrictZoom = true;
+let restrictZoom = false;
 let showDebugRect = false;
 let logClicks = false;
 
@@ -102,23 +99,8 @@ function loadOperations(callback = () => {}) {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				let hasUpdate = false;
-				if (operations.value.length != data.length) hasUpdate = true;
-				if (!hasUpdate) {
-					for (let i in data) {
-						const op = data[i];
-						const currentOp = operations.value.find((o) => o.id == op.id);
-						if (!currentOp) {
-							hasUpdate = true
-							continue;
-						}
-						if (op.editDate > currentOp.editDate) hasUpdate = true
-					}
-				}
-				if (hasUpdate) {
-					operations.value = data;
-					callback();
-				}
+				operations.value = data;
+				callback();
 			});
 	}
 	load();
@@ -134,10 +116,11 @@ let scenarioList = ref([
 ])
 function selectScenario(index = scenarioSelection.value) {
 	scenarioSelection.value = index;
-	localStorage.setItem('initialScenario', index);
-	uiScenarios.value = scenarios[index];
-	fetch(`/api/scenario/${index}`)
-	initScenario(index);
+	fetch(`/api/scenario/${index}`).then((res) => res.json()).then((data) => {
+		uiScenarios.value = data.id;
+		initScenario(data.id);
+		scenarioSelection.value = data.id;
+	});
 }
 
 // leaflet/graphly refs/options
@@ -261,17 +244,14 @@ function addNodeListeners() {
 					let nodes = graph.value.nodes;
 					let nodeIdx = nodes.indexOf(nodes.find(node => node.id == nodeRef.id));
 					if (nodeIdx=== -1) return;
-					let newNode = {
-						...nodes[nodeIdx],
-					};
-					newNode.id = nodes[nodeIdx].id.slice(-1) + nodes[nodeIdx].id.slice(0, -1);
-					newNode.shape.type = newNode.shape.type == 'map-operation' ? 'operation' : 'map-operation';
-					nodes.splice(nodeIdx, 1);
-
-					graph.value.nodes.push(newNode);
+					const node = nodes[nodeIdx];
+					node.shape.type = node.shape.type == 'map-operation' ? 'operation' : 'map-operation';
+					graph.value.nodes = graph.value.nodes.filter((n) => n.id !== node.id);
 					graph.value.hasUpdate = true;
-
-					selectedNodes.value = [nodeRef.id];
+					setTimeout(() => {
+						graph.value.nodes.push(node);
+						graph.value.hasUpdate = true;
+					}, 30)
 				});
 				addNodeListener(nodeRef, 'dragstart');
 				addNodeListener(nodeRef, 'drag');
@@ -380,10 +360,16 @@ function initScenario(scenarioIndex) {
 
 function convertOperations() {
 	worldElementRef = document.querySelector('#world');
-	graph.value.nodes = [];
-	graph.value.links = [];
 	for (let i in operations.value) {
 		const operation = operations.value[i];
+
+		const prevNode = graph.value.nodes.find((n) => n.id == operation.nodes[0].id);
+		if (prevNode?.editDate >= operation.editDate) continue;
+		graph.value.nodes = graph.value.nodes.filter((n) => n.id != operation.nodes[0].id);
+		graph.value.nodes = graph.value.nodes.filter((n) => n.id != operation.nodes[0].id + "_anchor");
+		graph.value.links = graph.value.links.filter((l) => l.source.id != operation.nodes[0].id && l.target.id != operation.nodes[0].id);
+		graph.value.links = graph.value.links.filter((l) => l.source.id != operation.nodes[0].id + "_anchor" && l.target.id != operation.nodes[0].id + "_anchor");
+
 		const operationNode = operation.nodes.find((n) => n.shape.type == "operation");
 		operationNode.taxonomy = parsePrefixedTaxonomy(operationNode.taxonomy);
 		if (!operationNode?.taxonomy?.location?.gps?.value) continue;
@@ -406,18 +392,19 @@ function convertOperations() {
 		}
 		graph.value.nodes.push(anchorNode);
 
+		operationNode.editDate = operation.editDate;
 		operationNode.ignoreLODs = true;
 		operationNode.shape.scale = scaleFromZoom(currentZoom)
-		operationNode.shape.type = "map-operation";
+		operationNode.shape.type = prevNode?.shape?.type ?? "map-operation";
 		operationNode.satellite = {
 			source: operationNode.id + '_anchor',
 			angle: 0,
 			distance: 10,
 		}
-		operationNode.x = coordinates.x;
-		operationNode.y = coordinates.y;
-		operationNode.vx = 0;
-		operationNode.vy = 0;
+		operationNode.x = prevNode?.x ?? coordinates.x;
+		operationNode.y = prevNode?.y ?? coordinates.y;
+		operationNode.vx = prevNode?.vx ?? 0;
+		operationNode.vy = prevNode?.vy ?? 0;
 		graph.value.nodes.push(operationNode);
 		graph.value.links.push({
 			source: operationNode.id,
@@ -505,10 +492,14 @@ export default {
 				y: svgClientRect.height,
 			};
 
-			let initialScenario = localStorage.getItem('initialScenario');
-			initialScenario = initialScenario ? parseInt(initialScenario) : 0;
-			selectScenario(initialScenario);
+			fetch("/api/scenario/id").then(res => res.json()).then(data => {
+				scenarioSelection.value = data.id ?? 0;
+				selectScenario(data.id ?? 0);
+			});
 			loadOperations(() => convertOperations());
+			onReset.push(() => {
+				window.location.reload();
+			})
 		});
 	},
 	data: () => ({

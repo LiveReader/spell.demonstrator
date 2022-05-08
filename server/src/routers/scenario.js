@@ -5,6 +5,7 @@ import fs from "fs";
 import { operations, addOperation, clearOperations } from "../data/index.js";
 
 const router = express.Router();
+let id = 0;
 
 function openFile(p) {
 	return JSON.parse(fs.readFileSync(path.resolve(p), "utf8"));
@@ -44,37 +45,45 @@ router.get("/reset", (req, res) => {
 		addOperation(item);
 	});
 	setEditDates();
-	res.send(JSON.stringify(operations));
+	id = 0;
+	res.send(JSON.stringify({ id: id }));
+});
+
+router.get("/id", (req, res) => {
+	res.send(JSON.stringify({ id: id }));
 });
 
 router.get("/:id", (req, res) => {
-	const id = req.params.id;
-	switch (id) {
-		case "1":
-			burnGardenScenario.forEach((item) => {
-				addOperation(item);
-			});
-			setEditDates();
-			return res.send(JSON.stringify(operations));
-		case "2":
-			hurtGardenScenario.forEach((item) => {
-				addOperation(item);
-			});
-			setEditDates();
-			return res.send(JSON.stringify(operations));
-		case "3":
-			breathScenario.forEach((item) => {
-				addOperation(item);
-			});
-			setEditDates();
-			return res.send(JSON.stringify(operations));
-		default:
-			startScenario.forEach((item) => {
-				addOperation(item);
-			});
-			setEditDates();
-			return res.send(JSON.stringify(operations));
+	const reqID = req.params.id;
+	if (reqID < id) {
+		return res.send(JSON.stringify({ id: id }));
 	}
+	for (let i = id; i <= reqID; i++) {
+		switch (i) {
+			case 1:
+				burnGardenScenario.forEach((item) => {
+					addOperation(item);
+				});
+				break;
+			case 2:
+				hurtGardenScenario.forEach((item) => {
+					addOperation(item);
+				});
+				break;
+			case 3:
+				breathScenario.forEach((item) => {
+					addOperation(item);
+				});
+				break;
+			default:
+				startScenario.forEach((item) => {
+					addOperation(item);
+				});
+				break;
+		}
+	}
+	id = reqID;
+	res.send(JSON.stringify({ id: id }));
 });
 
 export default router;

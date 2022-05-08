@@ -11,10 +11,11 @@ function addOperation(data) {
 	}
 }
 
-function updateOperation(data) {
+function updateOperation(data, editDate = Date.now()) {
+	if (!data?.nodes?.length) return;
 	const index = operations.findIndex((o) => o.nodes[0].id === data.nodes[0].id);
 	if (index > -1) {
-		data.editDate = Date.now();
+		data.editDate = editDate;
 		operations[index] = data;
 	}
 }

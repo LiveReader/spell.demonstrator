@@ -26,7 +26,7 @@ function operation(node, graph) {
 
 	node.payload = {
 		status: status[tax.status.value] ?? "",
-		label: "Operation",
+		label: "Einsatz",
 		location: location,
 		affected_persons: tax.affected.persons.value ?? 0,
 		affected_objects: tax.affected.objects.value ?? 0,

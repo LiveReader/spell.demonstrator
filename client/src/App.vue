@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<!-- <Banner app /> -->
+		<Banner v-if="showBanner" />
 		<v-main>
 			<router-view></router-view>
 		</v-main>
@@ -8,15 +8,24 @@
 </template>
 
 <script>
+const showBanner = ref(false);
+export { showBanner };
+</script>
+
+<script setup>
+import { ref, onMounted, watch } from "vue";
 import Banner from "./views/Banner.vue";
-export default {
-	name: "App",
-	// components: {
-	// 	Banner,
-	// },
-	data: () => ({}),
-	methods: {},
-};
+
+onMounted(() => {
+	showBanner.value = localStorage.getItem("showBanner") === "true";
+});
+
+watch(
+	() => showBanner.value,
+	(newVal, oldVal) => {
+		localStorage.setItem("showBanner", newVal);
+	}
+);
 </script>
 
 <style lang="scss">

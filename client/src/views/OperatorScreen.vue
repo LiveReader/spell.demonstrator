@@ -73,6 +73,7 @@ import converter from "../../converter.js";
 import { generateRessources } from "../../generator";
 import { ressourceIdentifier } from "../data/operator/random";
 import { loadOperation, putOperation } from "../api/index";
+import { onReset } from "./Navigation.vue";
 
 import Navigation, { touchScreen } from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
@@ -895,11 +896,15 @@ onMounted(() => {
 	loadOperation(operationID, graph, () => {
 		generateOpenQuestions();
 	});
+	onReset.push(() => {
+		window.location.reload();
+	});
 });
 
 watch(
 	() => selectedNodes.value,
 	() => {
+		if (newEdgeMode.value) return;
 		const node = graph.value.nodes.filter((n) => n.id == selectedNodes.value[0])[0];
 		if (node?.shape?.type == "emergency-action") {
 			if (

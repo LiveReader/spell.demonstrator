@@ -30,6 +30,11 @@
 						class="ml-2"
 						:label="`TouchScreen: ${touchScreen ? 'On' : 'Off'}`"
 					></v-switch>
+					<v-switch
+						v-model="showBanner"
+						class="ml-2"
+						:label="`Banner: ${showBanner ? 'On' : 'Off'}`"
+					></v-switch>
 				</v-list>
 			</v-container>
 		</v-navigation-drawer>
@@ -54,11 +59,13 @@
 
 <script>
 const touchScreen = ref(false);
-export { touchScreen };
+const onReset = [];
+export { touchScreen, onReset };
 </script>
 
 <script setup>
 import { ref, watch, onMounted, defineProps } from "vue";
+import { showBanner } from "../App.vue";
 import router from "../routers/index";
 
 let extendedDrawer = ref(false);
@@ -126,6 +133,19 @@ onMounted(() => {
 		i.active = router.currentRoute.value.path === i.to;
 	});
 	touchScreen.value = localStorage.getItem("touchScreen") === "true";
+	let prevID = 0;
+	setInterval(() => {
+		fetch("/api/scenario/id")
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.id != prevID && data.id == 0) {
+					onReset.forEach((cb) => {
+						cb(data.id);
+					});
+				}
+				prevID = data.id;
+			});
+	}, 3000);
 });
 
 watch(

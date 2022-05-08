@@ -178,7 +178,7 @@ const centralnervoussystem = {
 const cardiovascular = {
 	label: "Herz-Kreislauf",
 	prefix: "apcardi_",
-	heartattack: { label: "Herzinfakt", type: Type.Selection, options: ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"], size: 80, value: null, id: "018d751d-b779-55dd-a2d7-49dfd581255e" },
+	heartattack: { label: "Herzinfarkt", type: Type.Selection, options: ["Ausgeschlossen", "Unwahrscheinlich", "Möglich", "Wahrscheinlich", "Sicher"], size: 80, value: null, id: "018d751d-b779-55dd-a2d7-49dfd581255e" },
 	stemi: { label: "STEMI", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "b06e4000-5fb9-5141-ae6b-7777dffdc7a3" },
 	arrhythmia: { label: "Rhythmusstörung", type: Type.Selection, options: ["tachykard", "bradykard"], size: 40, value: null, id: "75433a36-43de-59c6-9332-6156568eb6ef" },
 	pulmonaryembolism: { label: "Lungenembolie", type: Type.Selection, options: ["Ja", "Nein"], size: 40, value: null, id: "2b7ad6b4-2f7d-540a-9993-dfde2021ec1c" },

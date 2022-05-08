@@ -110,7 +110,9 @@ function buildGraph() {
 		graph.value.nodes.push(operationNode);
 	});
 	graph.value.hasUpdate = true;
-	d3.select(content.value?.$el).select("#world").remove();
+	if (d3.select(content.value?.$el).selectAll("#world")._groups[0].length > 1) {
+		d3.select(content.value?.$el).select("#world").remove();
+	}
 }
 
 function onClick(e, d) {
