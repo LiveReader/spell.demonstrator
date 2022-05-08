@@ -57,6 +57,9 @@ function openOperation(id) {
 }
 function updateOperation() {
 	putOperation(rawGraph);
+	setTimeout(() => {
+		rawGraph.value.editDate = 0;
+	}, 100);
 }
 
 let ressourceID = ref("");
@@ -268,6 +271,7 @@ function createGraph() {
 		for (let i in sourceNodes) {
 			const sn = sourceNodes[i];
 			if (sn.shape.type != "affected-person" && sn.shape.type != "affected-object") continue;
+			if (graph.value.nodes.find((n) => n.id == sn.id)) continue;
 			const sourceNode = {
 				id: sn.id,
 				shape: sn.shape,
