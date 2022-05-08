@@ -18,12 +18,26 @@ function affectedPerson(node, graph) {
 		}
 	}
 
-	let diagnosis_tags = getTags(tax.guesseddiagnosis);
+	let diagnosis_tags = getTags(tax.guesseddiagnosis.centralnervoussystem).concat(
+		getTags(tax.guesseddiagnosis.cardiovascular),
+		getTags(tax.guesseddiagnosis.breathing)
+	);
 	let symptom_tags = getTags(tax.symptoms);
 	let vitalcondition_tags = getTags(tax.condition.vitalcondition);
 	let physicalcondition_tags = getTags(tax.condition.physicalcondition);
 	let mentalcondition_tags = getTags(tax.condition.mentalcondition);
-	let tags = diagnosis_tags.concat(symptom_tags, vitalcondition_tags, physicalcondition_tags, mentalcondition_tags);
+	let initialneurologicalfindings_tags = getTags(tax.condition.initialneurologicalfindings);
+	let measurements_tags = getTags(tax.condition.measurements).concat(
+		getTags(tax.condition.measurements.bloodpressure)
+	);
+	let tags = diagnosis_tags.concat(
+		initialneurologicalfindings_tags,
+		measurements_tags,
+		symptom_tags,
+		vitalcondition_tags,
+		physicalcondition_tags,
+		mentalcondition_tags
+	);
 
 	if (node?.taxonomy?.guesseddiagnosis?.cardiovascular?.heartattack?.value == "Ausgeschlossen") {
 		node.taxonomy.status.value = "Grün";
