@@ -134,10 +134,10 @@ let scenarioList = ref([
 ])
 function selectScenario(index = scenarioSelection.value) {
 	scenarioSelection.value = index;
-	localStorage.setItem('initialScenario', index);
-	uiScenarios.value = scenarios[index];
-	fetch(`/api/scenario/${index}`)
-	initScenario(index);
+	fetch(`/api/scenario/${index}`).then((res) => res.json()).then((data) => {
+		uiScenarios.value = data.id;
+		initScenario(data.id);
+	});
 }
 
 // leaflet/graphly refs/options
@@ -505,10 +505,11 @@ export default {
 				y: svgClientRect.height,
 			};
 
-			let initialScenario = localStorage.getItem('initialScenario');
-			initialScenario = initialScenario ? parseInt(initialScenario) : 0;
-			selectScenario(initialScenario);
-			loadOperations(() => convertOperations());
+			fetch("/api/scenario/id").then(res => res.json()).then(data => {
+				scenarioSelection.value = data.id ?? 0;
+				selectScenario(data.id ?? 0);
+				loadOperations(() => convertOperations());
+			});
 		});
 	},
 	data: () => ({
