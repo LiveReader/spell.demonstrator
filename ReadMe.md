@@ -1,13 +1,23 @@
 # Spell Demonstrator
 
-## Server
+## Docker
+
+```
+docker-compose up -d --build
+```
+Visit the page on `localhost:8000`
+
+
+## Development
+
+### Server
 
 ```shell
 cd server
 npm start
 ```
 
-## Client
+### Client
 
 ```shell
 cd client
