@@ -75,85 +75,34 @@ export default {
             d3links: null,
             svgLayer: null,
             anchorElement: null,
+            graphData: null,
         }
     },
     watch: {
         operations(newOperations, oldOperations) {
             let { nodes } = newOperations[2];
-            nodes = nodes
-                .filter(node => node.payload.label === 'Operation')
-            //     .map(node => this.latLngToSvgCoordinates(this.parseLocation(node.payload.location)))
-            console.log(JSON.parse(JSON.stringify(nodes)));
+            let operations = nodes.filter(node => node.payload.label === 'Operation')
 
-            let anchors = nodes.map(node => {
+            let anchors = operations.map(node => {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
                 return { id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y };
             })
-            let ops = nodes.map(node => {
+            let ops = operations.map(node => {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
                 return { id: node.id, type: 'anchor', x: x + 50, y: y + 50 };
             })
             let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
 
+            let graphData = {
+                anchors: anchors,
+                operations: ops,
+                links: links
+            }
 
-            if (this.d3operations == null) {
-
-                let template = {
-                    Shape: MockShape,
-                    SVGShape: SVGShape,
-                    ShapeStyle: null,
-                    OnZoom: null,
-                    LODStyle: null,
-                    Alignment: "center",
-                    CollectionStyle: null,
-                    TextCollection: null,
-                    TagCollection: null,
-                    TagShape: null,
-                    TagStyle: null,
-                }
-                let shape = operation(nodes[0], null, { ...nodes[0], payload: null }, template)
-                console.log(shape);
-
-                this.d3operations = this.d3svg.selectAll('circle.operation')
-                    .data(ops)
-                    .enter()
-                    // .append(() => shape.node())
-                    .append('svg:circle')
-                    .attr('class', 'operation')
-                    .attr('r', 14.5)
-
-                this.d3anchors = this.d3svg.selectAll('circle.anchor')
-                    .data(anchors)
-                    .enter()
-                    // .append(() => shape.node())
-                    .append('svg:circle')
-                    .attr('class', 'anchor')
-                    .attr('r', 2.5)
-
-                this.d3links = this.d3svg.selectAll('line.link')
-                    .data(links)
-                    .enter()
-                    .insert('svg:line')
-                    .attr('class', 'link');
-
-                nodes = [
-                    ...anchors,
-                    ...ops,
-                ]
-                let graph = {
-                    nodes: nodes,
-                    links: links,
-                }
-
-                console.log(nodes, links);
-
-                d3.forceSimulation(nodes)
-                    .force('charge', d3.forceManyBody())
-                    .force('center', d3.forceCenter(500, 500))
-                    .force('link', d3.forceLink().links(links).id(d => d.id))
-                    .on('tick', this.tick);
+            if (this.graphData == null) {
+                this.initGraph(graphData);
             } else {
-                this.d3nodes.data(nodes);
+                this.updateGraph(graphData);
             }
         }
     },
@@ -181,7 +130,6 @@ export default {
         svgElement.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
         svgElement.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
         svgElement.style.background = 'rgba(255, 0, 0, .1)';
-
         this.svgLayer = L.svgOverlay(svgElement, bounds, {
             opacity: 1,
             interactive: true
@@ -203,16 +151,12 @@ export default {
             .attr('width', svgDimensions.x)
             .attr('height', svgDimensions.y).node();
 
-        let nodes = []
-        let links = [
-
-        ]
-
     },
     methods: {
         onClick(e) {
             let svgCoordinates = this.latLngToSvgCoordinates(e.latlng);
 
+            /** Debug circle */
             this.d3svg.append('circle')
                 .attr('cx', svgCoordinates.x)
                 .attr('cy', svgCoordinates.y)
@@ -252,7 +196,65 @@ export default {
                 .attr('cx', function (d) { return d.x; })
                 .attr('cy', function (d) { return d.y; });
         },
-    }
+        initGraph(graphData) {
+
+            const { anchors, operations, links } = graphData;
+
+            // let template = {
+            //     Shape: MockShape,
+            //     SVGShape: SVGShape,
+            //     ShapeStyle: null,
+            //     OnZoom: null,
+            //     LODStyle: null,
+            //     Alignment: "center",
+            //     CollectionStyle: null,
+            //     TextCollection: null,
+            //     TagCollection: null,
+            //     TagShape: null,
+            //     TagStyle: null,
+            // }
+            // let shape = operation(nodes[0], null, { ...nodes[0], payload: null }, template)
+            // console.log(shape);
+
+            this.d3operations = this.d3svg.selectAll('circle.operation')
+                .data(operations)
+                .enter()
+                // .append(() => shape.node())
+                .append('svg:circle')
+                .attr('class', 'operation')
+                .attr('r', 14.5)
+
+            this.d3anchors = this.d3svg.selectAll('circle.anchor')
+                .data(anchors)
+                .enter()
+                // .append(() => shape.node())
+                .append('svg:circle')
+                .attr('class', 'anchor')
+                .attr('r', 2.5)
+
+            this.d3links = this.d3svg.selectAll('line.link')
+                .data(links)
+                .enter()
+                .insert('svg:line')
+                .attr('class', 'link');
+
+            let graph = {
+                nodes: [
+                    ...anchors,
+                    ...operations,
+                ],
+                links: links,
+            }
+
+            console.log(graph);
+
+            d3.forceSimulation(graph.nodes)
+                .force('charge', d3.forceManyBody())
+                .force('center', d3.forceCenter(500, 500))
+                .force('link', d3.forceLink().links(graph.links).id(d => d.id))
+                .on('tick', this.tick);
+        }
+    },
 }
 </script>
 
