@@ -1,40 +1,15 @@
 <template>
 	<!-- eslint-disable vue/v-on-event-hyphenation -->
 	<div id="situation-map-screen">
-		<Navigation
-			:color="'#9575cd'"
-			:icon="'./spell.demonstrator.situationmanagement.svg'"
-			:title="'Lagemanagement'"
-		></Navigation>
+		<Navigation :color="'#9575cd'" :icon="'./spell.demonstrator.situationmanagement.svg'" :title="'Lagemanagement'"></Navigation>
 
-		<div id="map" style="height: 100vh; width: inherit"></div>
-		<Graphly
-			v-if="svgElementRef"
-			:graph="graph"
-			:zoom-boundaries="[1, 1]"
-			:svg="svgElementRef"
-			:selected="selectedNodes"
-			:gravity="0"
-		/>
+		<Maply :operations="operations" />
 
 		<div id="sliderNav">
 			<v-card class="mt-2" style="margin-left: 10%" width="80%" rounded="xl" flat color="#9575cd">
-				<v-slider
-					v-model="scenarioSelection"
-					min="0"
-					max="3"
-					step="1"
-					show-ticks="always"
-					@update:modelValue="selectScenario()"
-				></v-slider>
+				<v-slider v-model="scenarioSelection" min="0" max="3" step="1" show-ticks="always" @update:modelValue="selectScenario()"></v-slider>
 				<div id="buttons" class="mb-2">
-					<v-btn
-						v-for="(item, index) in scenarioList"
-						:key="item"
-						flat
-						color="#00000000"
-						@click="selectScenario(index)"
-					>
+					<v-btn v-for="(item, index) in scenarioList" :key="item" flat color="#00000000" @click="selectScenario(index)">
 						<span>{{ item }}</span>
 						<v-icon>mdi-history</v-icon>
 					</v-btn>
@@ -49,11 +24,12 @@ import { onMounted, ref } from "vue";
 import { questionTemplates } from "../data/operator/questions";
 import { taxonomyTemplate } from "../data/operator/taxonomy/index";
 import { taxonomy2payload } from "../data/operator/converter/index";
-import { LMap, LTileLayer} from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer } from "@vue-leaflet/vue-leaflet";
 import { latLngBounds, latLng } from "leaflet";
 import Navigation from "./Navigation.vue";
 import Graphly from "../components/Graphly.vue";
-import * as L from "leaflet" ;
+import * as L from "leaflet";
+import * as d3 from "d3";
 import "leaflet/dist/leaflet.css";
 
 // TODO
@@ -62,11 +38,12 @@ import "leaflet/dist/leaflet.css";
 
 // debug flags
 let restrictPanning = false;
-let restrictZoom = true;
+let restrictZoom = false;
 let showDebugRect = false;
-let logClicks = false;
+let logClicks = true;
 
 import { scenarios, operationalAreas, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
+import Maply from "./Maply.vue";
 let uiScenarios = ref(scenarios);
 
 // sample points;
@@ -84,15 +61,18 @@ const {
 
 // geojson styles
 const {
-    defaultGJStyle,
-    invertedMapStyle,
-    closureGJStyle,
-    trafficJamGJStyle,
-    cloudGJStyle,
+	defaultGJStyle,
+	invertedMapStyle,
+	closureGJStyle,
+	trafficJamGJStyle,
+	cloudGJStyle,
 } = GJStyles;
 
+let d3_svg;
+let point;
+
 const operations = ref([]);
-function loadOperations(callback = () => {}) {
+function loadOperations(callback = () => { }) {
 	function load() {
 		fetch("http://localhost:8080/operation/all", {
 			method: "GET",
@@ -155,22 +135,24 @@ let bounds;
 let maxBounds;
 let minZoom;
 let maxZoom;
-let initialZoom = 14;;
+let initialZoom = 14;
 let currentZoom = initialZoom;
 let layers = [];
 
-let svgDimensions;
-let svgElementBounds;
+
+let exp = 3 //7
+let svgDimensions = {
+	x: Math.pow(10, exp),
+	y: Math.pow(10, exp),
+};
+let svgElementBounds = [[-90, -180], [90, 180]];
 let graphlyDimensions;
 
 // actual settings
 let nodeScale = 0.8;
 if (restrictPanning) maxBounds = L.latLngBounds(ludwigshafenBounds);
-svgElementBounds = ludwigshafenBounds;
-svgDimensions = {
-	x: 2000,
-	y: 2000,
-}
+// svgElementBounds = ludwigshafenBounds;
+
 minZoom = 12;
 maxZoom = 18;
 
@@ -213,6 +195,7 @@ function latLngToSvgCoordinates(latLng) {
 		x: containerElementBoundingRect.left - svgBoundingRect.left + containerPoint.x,
 		y: containerElementBoundingRect.top - svgBoundingRect.top + containerPoint.y,
 	};
+	console.log(svgPixelPosition)
 	let svgCoordinate = {
 		x: (svgPixelPosition.x / svgBoundingRect.width) * svgDimensions.x,
 		y: (svgPixelPosition.y / svgBoundingRect.height) * svgDimensions.y,
@@ -261,10 +244,10 @@ function addNodeListeners() {
 		linkElementRefs.push(...lersToAdd);
 		nodeElementRefs
 			.forEach(nodeRef => {
-				addNodeListener(nodeRef, 'click',  e => {
+				addNodeListener(nodeRef, 'click', e => {
 					let nodes = graph.value.nodes;
 					let nodeIdx = nodes.indexOf(nodes.find(node => node.id == nodeRef.id));
-					if (nodeIdx=== -1) return;
+					if (nodeIdx === -1) return;
 					let newNode = {
 						...nodes[nodeIdx],
 					};
@@ -300,6 +283,7 @@ function addNodeListeners() {
 function scaleNodes(scale) {
 	graph.value.nodes.forEach(node => {
 		node.shape.scale = scale;
+		console.log({ ...node.shape });
 	});
 	worldElementRef.style.strokeWidth = scale * 10;
 	graph.value.hasUpdate = true;
@@ -332,54 +316,6 @@ function initScenario(scenarioIndex) {
 	};
 
 	layers.forEach(layer => layer.remove());
-
-	if(allClosureFiles) {
-		fetchAll(allClosureFiles.map(file => `mapData/${file}`))
-		.then((closures) => {
-			for (const closure of closures) {
-				const closureLayer = L.geoJSON(closure, {
-					style:  (feature) => closureGJStyle,
-					interactive: true,
-				}).addTo(map);
-				layers.push(closureLayer);
-			}
-		});
-	}
-	if(allTrafficJamFiles) {
-		fetchAll(allTrafficJamFiles.map(file => `mapData/${file}`))
-			.then((trafficJams) => {
-				for (const trafficJam of trafficJams) {
-					const trafficJamLayer = L.geoJSON(trafficJam, {
-						style:  (feature) => trafficJamGJStyle,
-						interactive: true,
-					}).addTo(map);
-					layers.push(trafficJamLayer);
-				}
-			});
-	}
-	if(allCloudFiles) {
-		fetchAll(allCloudFiles.map(file => `mapData/${file}`))
-			.then((clouds) => {
-				for (const cloud of clouds) {
-					const cloudLayer = L.geoJSON(cloud, {
-						style: (feature) => cloudGJStyle,
-						interactive: true,
-					}).addTo(map);
-					layers.push(cloudLayer);
-				}
-			});
-	}
-	if(allMeetingPointFiles) {
-		fetchAll(allMeetingPointFiles.map(file => `mapData/${file}`))
-			.then((meetingPoints) => {
-				for (const meetingPoint of meetingPoints) {
-					const meetingPointLayer = L.geoJSON(meetingPoint, {
-						interactive: true,
-					}).addTo(map);
-					layers.push(meetingPointLayer);
-				}
-			});
-	}
 }
 
 function convertOperations() {
@@ -428,6 +364,7 @@ function convertOperations() {
 			type: "solid",
 			directed: false,
 			strength: "strong",
+			bias: 0,
 		});
 	}
 	graph.value.hasUpdate = true;
@@ -438,80 +375,100 @@ export default {
 	name: "SituationMap",
 	components: {
 		Navigation,
-		Graphly,
+		Maply
 	},
 	setup(props, context) {
 		onMounted(() => {
-			/* Init leaflet */
-			map = L.map('map').setView(ludwigshafen, initialZoom);
-			bounds = map.getBounds();
+			// /* Init leaflet */
+			// map = L.map('map').setView(ludwigshafen, initialZoom);
+			// bounds = map.getBounds();
 
-			/* Load OSM data and setup map */
-			tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-				maxZoom: 18,
-				id: 'mapbox/streets-v11',
-				// tileSize: 512,
-				zoomSnap: 0,
-				zoomAnimation: false,
-				updateWhenZooming: false,
-				zoomDelta: 0,
-				duration: 0,
-			}).addTo(map);
-			if (maxBounds) { map.setMaxBounds(maxBounds) };
-			if (restrictZoom) {
-				map.setMinZoom(minZoom);
-				map.setMaxZoom(maxZoom);
-			}
+			// /* Load OSM data and setup map */
+			// tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			// 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+			// 	maxZoom: 18,
+			// 	id: 'mapbox/streets-v11',
+			// 	// tileSize: 512,
+			// 	zoomSnap: 0,
+			// 	zoomAnimation: false,
+			// 	updateWhenZooming: false,
+			// 	zoomDelta: 0,
+			// 	duration: 0,
+			// }).addTo(map);
+			// if (maxBounds) { map.setMaxBounds(maxBounds) };
+			// if (restrictZoom) {
+			// 	map.setMinZoom(minZoom);
+			// 	map.setMaxZoom(maxZoom);
+			// }
+			// let initialScenario = localStorage.getItem('initialScenario');
+			// initialScenario = initialScenario ? parseInt(initialScenario) : 0;
 
+			// var svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+			// svgElement.setAttribute('xmlns', "http://www.w3.org/2000/svg");
+			// svgElement.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
 
-			/* Add Ludwigshafen border as geojson */
-			fetchAll(operationalAreas.map(file => `mapData/${file}`))
-				.then((data) => {
-					data[0].geometry.coordinates.unshift([[180, -90], [180, 90], [-180, 90], [-180, -90]]);
-					geojsonLayer = L.geoJSON(data, {
-						style:  (feature) => invertedMapStyle,
-						interactive: false,
-					}).addTo(map);
-				});
+			// var svgLayer = L.svgOverlay(svgElement, bounds, {
+			// 	opacity: 0.7,
+			// 	interactive: true
+			// }).addTo(map);
+			// svgLayer.addTo(map);
+			// d3_svg = d3.select(svgElement);
+			// d3_svg.on('.zoom', null);
 
-			/* Add a debug circle */
-			// Necessary fix to prevent scenario elements beeing drawn on top of graphly..
-			let circle = L.circle(bridge, {
-					color: 'red',
-					fillColor: '#f03',
-					fillOpacity: 0,
-					opacity: 0,
-					radius: 50,
-					interactive: true,
-			}).addTo(map);
+			// rectElementRef = d3_svg.append("rect")
+			// 	.attr("x", 0)
+			// 	.attr("y", 0)
+			// 	.attr("width", svgDimensions.x)
+			// 	.attr("height", svgDimensions.y).node();
 
-			/* Add root svg (overlay) element to inject Graphly */
-			svgElementRef = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-			svgElementRef.setAttribute('xmlns', "http://www.w3.org/2000/svg");
-			svgElementRef.setAttribute('viewBox', `0 0 ${svgDimensions.x} ${svgDimensions.y}`);
-			svgElementRef.innerHTML = `<rect width="${svgDimensions.x}" height="${svgDimensions.y}" fill-opacity="${showDebugRect ? '0.4' : '0'}"/>`;
-			svgElementRef.style.pointerEvents='none';
-			rectElementRef = svgElementRef.children[0];
-			svgLayer = L.svgOverlay(svgElementRef, svgElementBounds, {
-				interactive: true,
-				bubblingMouseEvents: false,
-			}).addTo(map);
+			// var width = 300, height = 300
+			// var nodes = [{}, {}, {}, {}, {}, {}, {}, {}]
+			// var links = [
+			// 	{ source: 0, target: 1 },
+			// 	{ source: 0, target: 2 },
+			// 	{ source: 0, target: 3 },
+			// 	{ source: 1, target: 6 },
+			// 	{ source: 3, target: 4 },
+			// 	{ source: 3, target: 7 },
+			// 	{ source: 4, target: 5 },
+			// 	{ source: 4, target: 7 }
+			// ]
 
-			/* Graphly Dimensions will be determined by initial pixel size of svg container, so save them: */
-			let svgClientRect = svgElementRef.getBoundingClientRect();
-			graphlyDimensions = {
-				x: svgClientRect.width,
-				y: svgClientRect.height,
-			};
+			// var link = d3_svg.selectAll("line")
+			// 	.data(links)
+			// 	.enter()
+			// 	.insert("svg:line")
+			// 	.attr("class", "link");
 
-			let initialScenario = localStorage.getItem('initialScenario');
-			initialScenario = initialScenario ? parseInt(initialScenario) : 0;
-			selectScenario(initialScenario);
-			loadOperations(() => convertOperations());
+			// var node = d3_svg.selectAll("circle.node")
+			// 	.data(nodes)
+			// 	.enter()
+			// 	.append("svg:circle")
+			// 	.attr("class", "node")
+			// 	.attr("r", 4.5)
+
+			// function ticked() {
+			// 	link.attr("x1", function (d) { return d.source.x; })
+			// 		.attr("y1", function (d) { return d.source.y; })
+			// 		.attr("x2", function (d) { return d.target.x; })
+			// 		.attr("y2", function (d) { return d.target.y; });
+
+			// 	node.attr("cx", function (d) { return d.x; })
+			// 		.attr("cy", function (d) { return d.y; });
+			// }
+
+			// d3.forceSimulation(nodes)
+			// 	.force('charge', d3.forceManyBody())
+			// 	.force('center', d3.forceCenter(width / 2, height / 2))
+			// 	.force('link', d3.forceLink().links(links))
+			// 	.on('tick', ticked);
+
+			// selectScenario(initialScenario);
+			// loadOperations(() => convertOperations());
 		});
 	},
 	data: () => ({
+		operations: [],
 		scenarioSelection,
 		scenarioList,
 		graph,
@@ -520,45 +477,52 @@ export default {
 		buttons,
 		uiScenarios,
 		value: 1,
-    }),
+	}),
 	mounted() {
-		map.on('click', this.innerClick);
-		map.on('zoomanim', this.onZoomAnim);
-		map.on('zoomend', this.onZoomAnim);
+		// map.on('click', this.innerClick);
 		graphlyElementRef = document.querySelector('#graphly');
 		mapElementRef = document.querySelector('#map');
 		worldElementRef = document.querySelector('#world');
 		this.svgElementRef = svgElementRef;
+		this.load();
 	},
 	methods: {
-		onZoomAnim   ({ target, center, zoom })  {
-			const oldZoom = map.getZoom()
-			let scale = scaleFromZoom(zoom);
-			if (zoom !== oldZoom) {
-				if (zoom == undefined) {
-					scale = scaleFromZoom(oldZoom);
-				}
-				scaleNodes(scale);
-				currentZoom = zoom ? zoom : oldZoom;
-			}
-			this.mousePos = null
- 		},
+
 		innerClick(e) {
 			let svgCoordinates = latLngToSvgCoordinates(e.latlng);
 			let layerPoint = map.latLngToLayerPoint(e.latlng);
 			let containerPoint = map.latLngToContainerPoint(e.latlng);
-			let graphlyCoordinates = latLngToGraphlyCoordinates(e.latlng);
+			// let graphlyCoordinates = latLngToGraphlyCoordinates(e.latlng);
 			selectedNodes.value = [];
 
+			const { width, height } = rectElementRef.getBoundingClientRect();
 			if (logClicks) {
 				console.log("latlng: ", e.latlng);
 				console.log("container point: ", containerPoint);
 				console.log("layer point: ", layerPoint);
 				console.log("svg coordinate: ", svgCoordinates);
-				console.log("graphly coordinate: ", graphlyCoordinates);
+				console.log(width, height, (width / height) * (svgCoordinates.x));
+				// console.log("graphly coordinate: ", graphlyCoordinates);
 			}
+			d3_svg.append("circle")
+				.attr("cx", svgCoordinates.x)
+				.attr("cy", svgCoordinates.y)
+				.attr("r", 50)
+			// .attr("class", "leaflet-zoom-hide")
 		},
 		selectScenario,
+		load() {
+			fetch("http://localhost:8080/operation/all", {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+					this.operations = data});
+		}
 	}
 };
 </script>
@@ -573,6 +537,7 @@ export default {
 	overflow: hidden;
 	background-color: #fafafc;
 }
+
 header {
 	box-shadow: none !important;
 	background: rgba(0, 0, 0, 0) !important;
@@ -587,6 +552,7 @@ header {
 	align-items: center;
 	justify-content: center;
 }
+
 #sliderNav {
 	position: absolute;
 	top: 0;
@@ -595,32 +561,40 @@ header {
 	background-color: #00000000;
 	z-index: 400;
 }
+
 #buttons {
 	color: #fff;
 	display: flex;
 	justify-content: center;
 }
+
 button {
 	flex-basis: 225px;
 }
+
 .v-slider {
 	margin: 10px 170px 0px !important;
 }
+
 .v-bottom-navigation__content {
 	flex-direction: column;
 	width: auto !important;
 }
+
 .v-input {
 	flex: 0 1 auto !important;
 }
+
 .v-input__details {
 	position: absolute;
 }
+
 .link,
 .edge {
 	stroke: black !important;
 	stroke-width: inherit !important;
 }
+
 .v-slider-thumb__surface {
 	background-color: #fff !important;
 }
