@@ -137,7 +137,7 @@ export default {
             .attr('height', svgDimensions.y).node();
 
         console.log(JSON.stringify(this.operations[1]));
-        if (this.operations != null) {
+        if (this.operations != null && this.operations.length > 1) {
             let graphData = this.toGraphData(this.operations);
             this.initGraph(graphData);
         }
@@ -189,7 +189,8 @@ export default {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
                 return { id: node.id, type: 'anchor', x: x, y: y };
             })
-            let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
+            let links = ops.map(op => ({ source: op.id + '_anchor', target: op.id }))
+            // let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
 
             let graphData = {
                 anchors: anchors,
@@ -269,7 +270,7 @@ export default {
                 .strength(0)
 
             this.d3simulation = d3.forceSimulation(graph.nodes)
-                .force('charge', d3.forceManyBody())
+                .force('charge', d3.forceManyBody().strength(200))
                 .force('center', d3.forceCenter(500, 500))
                 .force('link', inks)
                 .on('tick', this.tick);
@@ -289,18 +290,18 @@ export default {
                 .distance(0)
                 .strength(0)
                 .id(d => d.id);
-            this.d3simulation.alpha(1).restart();
+            this.d3simulation.alpha(0.001).restart();
 
 
-            this.d3svg.selectAll('circle.operation')
+            this.d3operations = this.d3svg.selectAll('circle.operation')
                 .data(operations)
                 .attr('cx', function (d) { return d.x; })
                 .attr('cy', function (d) { return d.y; });
-            this.d3svg.selectAll('circle.anchor')
+            this.d3anchors = this.d3svg.selectAll('circle.anchor')
                 .data(anchors)
                 .attr('cx', function (d) { return d.x; })
                 .attr('cy', function (d) { return d.y; });
-            this.d3svg.selectAll('line.link')
+            this.d3links = this.d3svg.selectAll('line.link')
                 .data(links)
                 .attr('x1', function (d) { return d.source.x; })
                 .attr('y1', function (d) { return d.source.y; })
