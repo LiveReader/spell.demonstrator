@@ -187,7 +187,7 @@ export default {
             })
             let ops = operations.map(node => {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { id: node.id, type: 'anchor', x: x, y: y };
+                return { id: node.id, type: 'anchor', x: x + 50, y: y - 50 };
             })
             let links = ops.map(op => ({ source: op.id + '_anchor', target: op.id }))
             // let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
@@ -270,8 +270,8 @@ export default {
                 .strength(0)
 
             this.d3simulation = d3.forceSimulation(graph.nodes)
-                .force('charge', d3.forceManyBody().strength(200))
-                .force('center', d3.forceCenter(500, 500))
+                .force('charge', d3.forceManyBody().strength(2))
+                // .force('center', d3.forceCenter(500, 500))
                 .force('link', inks)
                 .on('tick', this.tick);
         },
@@ -287,10 +287,10 @@ export default {
             this.d3simulation.nodes(nodes);
             this.d3simulation.force("link")
                 .links(links)
-                .distance(0)
-                .strength(0)
+                .distance(function (d) {return Math.sqrt(50*50 + 50*50)})
+                .strength(1)
                 .id(d => d.id);
-            this.d3simulation.alpha(0.001).restart();
+            this.d3simulation.alpha(0.1).restart();//0.001
 
 
             this.d3operations = this.d3svg.selectAll('circle.operation')
