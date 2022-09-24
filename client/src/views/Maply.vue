@@ -73,6 +73,7 @@ export default {
             d3operations: null,
             d3anchors: null,
             d3links: null,
+            d3simulation: null,
             svgLayer: null,
             anchorElement: null,
             graphData: null,
@@ -94,6 +95,7 @@ export default {
         map = L.map('map').setView(ludwigshafen, initialZoom);
         map.on('click', this.onClick);
         map.on('zoom', this.onZoom);
+        map.on('move', this.onZoom);
         bounds = map.getBounds();
 
         /* Load OSM data and setup map */
@@ -134,13 +136,10 @@ export default {
             .attr('width', svgDimensions.x)
             .attr('height', svgDimensions.y).node();
 
-        if (this.operations) {
+        console.log(JSON.stringify(this.operations[1]));
+        if (this.operations != null) {
             let graphData = this.toGraphData(this.operations);
-            if (this.graphData == null) {
-                this.initGraph(graphData);
-            } else {
-                this.updateGraph(graphData);
-            }
+            this.initGraph(graphData);
         }
     },
     methods: {
@@ -156,6 +155,8 @@ export default {
         },
         onZoom(e) {
             this.svgLayer.setBounds(map.getBounds());
+            let graphData = this.toGraphData(this.operations);
+            this.updateGraph(graphData);
         },
         parseLocation(location) {
             return location.split(', ').map(n => parseFloat(n));
@@ -186,7 +187,7 @@ export default {
             })
             let ops = operations.map(node => {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { id: node.id, type: 'anchor', x: x + 50, y: y + 50 };
+                return { id: node.id, type: 'anchor', x: x, y: y };
             })
             let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
 
@@ -261,13 +262,50 @@ export default {
                 links: links,
             }
 
-            console.log(graph);
+            let inks = d3.forceLink()
+                .links(graph.links)
+                .id(d => d.id)
+                .distance(0)
+                .strength(0)
 
-            d3.forceSimulation(graph.nodes)
+            this.d3simulation = d3.forceSimulation(graph.nodes)
                 .force('charge', d3.forceManyBody())
                 .force('center', d3.forceCenter(500, 500))
-                .force('link', d3.forceLink().links(graph.links).id(d => d.id))
+                .force('link', inks)
                 .on('tick', this.tick);
+        },
+        updateGraph(graphData) {
+            const { anchors, operations, links } = graphData;
+            const nodes = [
+                ...anchors,
+                ...operations,
+            ];
+            console.log(anchors[0]);
+
+            // Update and restart the simulation.
+            this.d3simulation.nodes(nodes);
+            this.d3simulation.force("link")
+                .links(links)
+                .distance(0)
+                .strength(0)
+                .id(d => d.id);
+            this.d3simulation.alpha(1).restart();
+
+
+            this.d3svg.selectAll('circle.operation')
+                .data(operations)
+                .attr('cx', function (d) { return d.x; })
+                .attr('cy', function (d) { return d.y; });
+            this.d3svg.selectAll('circle.anchor')
+                .data(anchors)
+                .attr('cx', function (d) { return d.x; })
+                .attr('cy', function (d) { return d.y; });
+            this.d3svg.selectAll('line.link')
+                .data(links)
+                .attr('x1', function (d) { return d.source.x; })
+                .attr('y1', function (d) { return d.source.y; })
+                .attr('x2', function (d) { return d.target.x; })
+                .attr('y2', function (d) { return d.target.y; });
         }
     },
 }
