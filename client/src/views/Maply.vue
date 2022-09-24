@@ -80,25 +80,7 @@ export default {
     },
     watch: {
         operations(newOperations, oldOperations) {
-            let { nodes } = newOperations[2];
-            let operations = nodes.filter(node => node.payload.label === 'Operation')
-
-            let anchors = operations.map(node => {
-                const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y };
-            })
-            let ops = operations.map(node => {
-                const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { id: node.id, type: 'anchor', x: x + 50, y: y + 50 };
-            })
-            let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
-
-            let graphData = {
-                anchors: anchors,
-                operations: ops,
-                links: links
-            }
-
+            let graphData = this.toGraphData(newOperations);
             if (this.graphData == null) {
                 this.initGraph(graphData);
             } else {
@@ -111,6 +93,7 @@ export default {
         /* Init leaflet */
         map = L.map('map').setView(ludwigshafen, initialZoom);
         map.on('click', this.onClick);
+        map.on('zoom', this.onZoom);
         bounds = map.getBounds();
 
         /* Load OSM data and setup map */
@@ -151,6 +134,14 @@ export default {
             .attr('width', svgDimensions.x)
             .attr('height', svgDimensions.y).node();
 
+        if (this.operations) {
+            let graphData = this.toGraphData(this.operations);
+            if (this.graphData == null) {
+                this.initGraph(graphData);
+            } else {
+                this.updateGraph(graphData);
+            }
+        }
     },
     methods: {
         onClick(e) {
@@ -162,6 +153,9 @@ export default {
                 .attr('cy', svgCoordinates.y)
                 .attr('r', 50)
             // .attr('class', 'leaflet-zoom-hide')
+        },
+        onZoom(e) {
+            this.svgLayer.setBounds(map.getBounds());
         },
         parseLocation(location) {
             return location.split(', ').map(n => parseFloat(n));
@@ -181,6 +175,27 @@ export default {
                 y: (svgPixelPosition.y / svgBoundingRect.height) * svgDimensions.y,
             }
             return svgCoordinate;
+        },
+        toGraphData(data) {
+            let { nodes } = data[2];
+            let operations = nodes.filter(node => node.payload.label === 'Operation')
+
+            let anchors = operations.map(node => {
+                const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
+                return { id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y };
+            })
+            let ops = operations.map(node => {
+                const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
+                return { id: node.id, type: 'anchor', x: x + 50, y: y + 50 };
+            })
+            let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
+
+            let graphData = {
+                anchors: anchors,
+                operations: ops,
+                links: links
+            }
+            return graphData;
         },
         tick() {
             this.d3links
@@ -259,4 +274,5 @@ export default {
 </script>
 
 <style>
+
 </style>
