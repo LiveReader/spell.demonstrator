@@ -9,30 +9,39 @@ import 'leaflet/dist/leaflet.css';
 import * as L from 'leaflet';
 import * as d3 from 'd3';
 import { scenarios, operationalAreas, samplePoints, GJStyles } from '../../public/mapData/mapData.js';
-import operation from '../../public/templates/map-operation-anchor';
-// import { TemplateAPI } from "@livereader/graphly-d3";
+import { default as AnchorTemplate } from '../../public/templates/map-operation-anchor';
+import { default as OperationTemplate } from '../../public/templates/map-operation';
 
 /* Extracted from Graphly, TODO: remove... */
-function SVGShape(code) {
-    console.log("before creation");
-    const shape = d3.create('svg:g');
-    console.log("after creation");
-    shape.html(code);
-    return shape;
+function ShapeCreator() {
+    const MockShape = {
+        ...d3,
+        getBBox(shape) {
+            console.log(shape);
+            let bbox = {
+                x: 0,
+                y: 0,
+                width: 100,
+                height: 100,
+            };
+            return bbox;
+        },
+        transform(_shape, _size) { }
+    }
+    const TemplateCore = {
+        Shape: MockShape,
+        SVGShape: (html) => d3.create('svg:g').html(html),
+        Alignment: "center",
+    }
+    return {
+        shape: (template) => ({
+            instance: (data) => template(data, null, { ...data, payload: null }, TemplateCore).node().children[0]
+        })
+    }
 }
-let MockShape = {
-    ...d3,
-    getBBox(shape) {
-        let bbox = {
-            x: 0,
-            y: 0,
-            width: 0,
-            height: 0,
-        };
-        return bbox;
-    },
-    transform(shape, size) { }
-}
+const shapeCreator = ShapeCreator()
+const anchorShape = shapeCreator.shape(AnchorTemplate);
+const operationShape = shapeCreator.shape(OperationTemplate);
 
 /* sample points; */
 const {
@@ -136,7 +145,6 @@ export default {
             .attr('width', svgDimensions.x)
             .attr('height', svgDimensions.y).node();
 
-        console.log(JSON.stringify(this.operations[1]));
         if (this.operations != null && this.operations.length > 1) {
             let graphData = this.toGraphData(this.operations);
             this.initGraph(graphData);
@@ -178,16 +186,17 @@ export default {
             return svgCoordinate;
         },
         toGraphData(data) {
-            let { nodes } = data[2];
+            console.log(data.map(datum => datum.nodes.filter(node => node.payload.label === 'Operation')[0]));
+            let nodes = data.map(datum => datum.nodes.filter(node => node.payload.label === 'Operation')[0]);
             let operations = nodes.filter(node => node.payload.label === 'Operation')
 
             let anchors = operations.map(node => {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y };
+                return { ...node, id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y, scale: 0.005 };
             })
             let ops = operations.map(node => {
                 const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { id: node.id, type: 'anchor', x: x + 50, y: y - 50 };
+                return { ...node, id: node.id, type: 'anchor', x: x + 50, y: y - 50, scale: 0.03 };
             })
             let links = ops.map(op => ({ source: op.id + '_anchor', target: op.id }))
             // let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
@@ -207,53 +216,33 @@ export default {
                 .attr('y2', function (d) { return d.target.y; });
 
             this.d3operations
-                .attr('cx', function (d) { return d.x; })
-                .attr('cy', function (d) { return d.y; });
+                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
             this.d3anchors
-                .attr('cx', function (d) { return d.x; })
-                .attr('cy', function (d) { return d.y; });
+                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
         },
         initGraph(graphData) {
 
             const { anchors, operations, links } = graphData;
-
-            // let template = {
-            //     Shape: MockShape,
-            //     SVGShape: SVGShape,
-            //     ShapeStyle: null,
-            //     OnZoom: null,
-            //     LODStyle: null,
-            //     Alignment: "center",
-            //     CollectionStyle: null,
-            //     TextCollection: null,
-            //     TagCollection: null,
-            //     TagShape: null,
-            //     TagStyle: null,
-            // }
-            // let shape = operation(nodes[0], null, { ...nodes[0], payload: null }, template)
-            // console.log(shape);
-
-            this.d3operations = this.d3svg.selectAll('circle.operation')
-                .data(operations)
-                .enter()
-                // .append(() => shape.node())
-                .append('svg:circle')
-                .attr('class', 'operation')
-                .attr('r', 14.5)
-
-            this.d3anchors = this.d3svg.selectAll('circle.anchor')
-                .data(anchors)
-                .enter()
-                // .append(() => shape.node())
-                .append('svg:circle')
-                .attr('class', 'anchor')
-                .attr('r', 2.5)
 
             this.d3links = this.d3svg.selectAll('line.link')
                 .data(links)
                 .enter()
                 .insert('svg:line')
                 .attr('class', 'link');
+
+            this.d3operations = this.d3svg.selectAll('g.operation')
+                .data(operations)
+                .enter()
+                .append(operationShape.instance)
+                .attr('class', 'operation')
+                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
+
+            this.d3anchors = this.d3svg.selectAll('g.anchor')
+                .data(anchors)
+                .enter()
+                .append(anchorShape.instance)
+                .attr('class', 'anchor')
+                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
 
             let graph = {
                 nodes: [
@@ -266,12 +255,11 @@ export default {
             let inks = d3.forceLink()
                 .links(graph.links)
                 .id(d => d.id)
-                .distance(0)
-                .strength(0)
+                .distance(100)
+                .strength(3)
 
             this.d3simulation = d3.forceSimulation(graph.nodes)
-                .force('charge', d3.forceManyBody().strength(2))
-                // .force('center', d3.forceCenter(500, 500))
+                .force('charge', d3.forceManyBody().strength(-50))
                 .force('link', inks)
                 .on('tick', this.tick);
         },
@@ -281,26 +269,23 @@ export default {
                 ...anchors,
                 ...operations,
             ];
-            console.log(anchors[0]);
 
             // Update and restart the simulation.
             this.d3simulation.nodes(nodes);
             this.d3simulation.force("link")
                 .links(links)
-                .distance(function (d) {return Math.sqrt(50*50 + 50*50)})
+                .distance(function (d) { return Math.sqrt(50 * 50 + 50 * 50) })
                 .strength(1)
                 .id(d => d.id);
-            this.d3simulation.alpha(0.1).restart();//0.001
+            this.d3simulation.alpha(1).restart();//0.001
 
 
-            this.d3operations = this.d3svg.selectAll('circle.operation')
+            this.d3operations = this.d3svg.selectAll('g.operation')
                 .data(operations)
-                .attr('cx', function (d) { return d.x; })
-                .attr('cy', function (d) { return d.y; });
-            this.d3anchors = this.d3svg.selectAll('circle.anchor')
+                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`);
+            this.d3anchors = this.d3svg.selectAll('g.anchor')
                 .data(anchors)
-                .attr('cx', function (d) { return d.x; })
-                .attr('cy', function (d) { return d.y; });
+                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`);
             this.d3links = this.d3svg.selectAll('line.link')
                 .data(links)
                 .attr('x1', function (d) { return d.source.x; })

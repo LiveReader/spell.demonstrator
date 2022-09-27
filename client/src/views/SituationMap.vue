@@ -74,7 +74,7 @@ let point;
 const operations = ref([]);
 function loadOperations(callback = () => { }) {
 	function load() {
-		fetch("http://localhost:8080/operation/all", {
+		fetch("http://localhost:8080/scenario/4", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -512,7 +512,7 @@ export default {
 		},
 		selectScenario,
 		load() {
-			fetch("http://localhost:8080/operation/all", {
+			fetch("http://localhost:8080/scenario/4", {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
