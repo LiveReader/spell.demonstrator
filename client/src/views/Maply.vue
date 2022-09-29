@@ -71,7 +71,7 @@ let svgDimensions = {
 
 export default {
     props: {
-        operations: {
+        graphs: {
             type: Array,
             default: () => [],
         },
@@ -83,18 +83,20 @@ export default {
             d3anchors: null,
             d3links: null,
             d3simulation: null,
+            operations: null,
+            maplyGraph: null,
+            simState: null,
             svgLayer: null,
             anchorElement: null,
-            graphData: null,
         }
     },
     watch: {
-        operations(newOperations, oldOperations) {
-            let graphData = this.toGraphData(newOperations);
-            if (this.graphData == null) {
-                this.initGraph(graphData);
-            } else {
-                this.updateGraph(graphData);
+        graphs(newGraphs, oldGraphs) {
+            console.log(JSON.parse(JSON.stringify(newGraphs)));
+            if (this.maplyGraph == null) {
+                this.operations = this.getOperations(newGraphs);
+                this.maplyGraph = this.toMaplyGraph(this.operations);
+                this.initMaply(this.maplyGraph);
             }
         }
     },
@@ -104,6 +106,7 @@ export default {
         map = L.map('map').setView(ludwigshafen, initialZoom);
         map.on('click', this.onClick);
         map.on('zoom', this.onZoom);
+        map.on('zoomstart', () => this.captureLocations());
         map.on('move', this.onZoom);
         bounds = map.getBounds();
 
@@ -145,9 +148,11 @@ export default {
             .attr('width', svgDimensions.x)
             .attr('height', svgDimensions.y).node();
 
-        if (this.operations != null && this.operations.length > 1) {
-            let graphData = this.toGraphData(this.operations);
-            this.initGraph(graphData);
+        if (this.graphs != null && this.graphs.length > 1) {
+            this.operations = this.getOperations(this.graphs);
+            this.maplyGraph = this.toMaplyGraph(this.operations);
+            this.initMaply(this.maplyGraph);
+            console.log(this.maplyGraph);
         }
     },
     methods: {
@@ -163,8 +168,8 @@ export default {
         },
         onZoom(e) {
             this.svgLayer.setBounds(map.getBounds());
-            let graphData = this.toGraphData(this.operations);
-            this.updateGraph(graphData);
+            this.maplyGraph = this.toMaplyGraph(this.operations);
+            this.updateMaplyGraph();
         },
         parseLocation(location) {
             return location.split(', ').map(n => parseFloat(n));
@@ -185,28 +190,60 @@ export default {
             }
             return svgCoordinate;
         },
-        toGraphData(data) {
-            console.log(data.map(datum => datum.nodes.filter(node => node.payload.label === 'Operation')[0]));
-            let nodes = data.map(datum => datum.nodes.filter(node => node.payload.label === 'Operation')[0]);
-            let operations = nodes.filter(node => node.payload.label === 'Operation')
+        svgCoordinatesToLatLng(coords) {
+            let mapElementRef = this.$refs.map
+            let svgBoundingRect = this.anchorElement.getBoundingClientRect();
+            let containerElementBoundingRect = mapElementRef.getBoundingClientRect();
 
+            let svgPixelPosition = {
+                x: (coords.x / svgDimensions.x) * svgBoundingRect.width,
+                y: (coords.y / svgDimensions.y) * svgBoundingRect.height,
+            };
+            let containerPixelPosition = {
+                x: svgPixelPosition.x + svgBoundingRect.left - containerElementBoundingRect.left,
+                y: svgPixelPosition.y + svgBoundingRect.top - containerElementBoundingRect.top,
+            }
+            return map.containerPointToLatLng(containerPixelPosition);
+        },
+        getOperations(graphs) {
+            return graphs
+                .map(graph => graph.nodes.filter(node => node.payload.label === 'Operation')[0])
+                .filter(node => node.payload.label === 'Operation');
+        },
+        toMaplyGraph(operations) {
             let anchors = operations.map(node => {
-                const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { ...node, id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y, scale: 0.005 };
-            })
-            let ops = operations.map(node => {
-                const { x, y } = this.latLngToSvgCoordinates(this.parseLocation(node.payload.location));
-                return { ...node, id: node.id, type: 'anchor', x: x + 50, y: y - 50, scale: 0.03 };
-            })
-            let links = ops.map(op => ({ source: op.id + '_anchor', target: op.id }))
-            // let links = ops.map(op => ({ source: op.id, target: op.id + '_anchor' }))
+                const latLng = this.parseLocation(node.payload.location);
+                const { x, y } = this.latLngToSvgCoordinates(latLng);
+                // let test = this.svgCoordinatesToLatLng({ x: x, y: y });
+                // console.log(latLng[0] - test.lat, latLng[1] - test.lng);
 
-            let graphData = {
+                return { ...node, id: node.id + '_anchor', type: 'anchor', x: x, y: y, fx: x, fy: y, scale: 0.005, location: latLng };
+            });
+            let ops = operations.map(node => {
+                const latLng = this.parseLocation(node.payload.location);
+                let { x, y } = this.latLngToSvgCoordinates(latLng);
+                x = x + 50;
+                y = y + 50;
+                return { ...node, id: node.id, type: 'anchor', x: x, y: y, scale: 0.03, location: latLng };
+            });
+            let links = ops.map(op => ({ source: op.id + '_anchor', target: op.id }))
+
+            return {
                 anchors: anchors,
                 operations: ops,
                 links: links
-            }
-            return graphData;
+            };
+        },
+        captureLocations() {
+            this.operations.forEach(operation => {
+                let svgCoords = {
+                    x: operation.x,
+                    y: operation.y,
+                };
+                let location = this.svgCoordinatesToLatLng(svgCoords);
+                // console.log(location);
+                operation.location = location;
+            });
         },
         tick() {
             this.d3links
@@ -220,57 +257,55 @@ export default {
             this.d3anchors
                 .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
         },
-        initGraph(graphData) {
+        initMaply(maplyGraph) {
+            const { anchors, operations, links } = maplyGraph;
 
-            const { anchors, operations, links } = graphData;
-
+            /* Init D3 databinding and shape instancing */
             this.d3links = this.d3svg.selectAll('line.link')
                 .data(links)
                 .enter()
                 .insert('svg:line')
-                .attr('class', 'link');
+                .attr('class', 'link')
+                .attr('style', 'stroke-width: 2px !important; stroke: #2e2e2e !important;')
 
             this.d3operations = this.d3svg.selectAll('g.operation')
                 .data(operations)
                 .enter()
                 .append(operationShape.instance)
                 .attr('class', 'operation')
-                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
 
             this.d3anchors = this.d3svg.selectAll('g.anchor')
                 .data(anchors)
                 .enter()
                 .append(anchorShape.instance)
                 .attr('class', 'anchor')
-                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
 
-            let graph = {
-                nodes: [
-                    ...anchors,
-                    ...operations,
-                ],
-                links: links,
-            }
+            /* Init simulation */
+            let simLinks = links;
+            let simNodes = [
+                ...anchors,
+                ...operations,
+            ];
 
             let inks = d3.forceLink()
-                .links(graph.links)
+                .links(simLinks)
                 .id(d => d.id)
                 .distance(100)
                 .strength(3)
 
-            this.d3simulation = d3.forceSimulation(graph.nodes)
+            this.d3simulation = d3.forceSimulation(simNodes)
                 .force('charge', d3.forceManyBody().strength(-150))
                 .force('link', inks)
                 .on('tick', this.tick);
         },
-        updateGraph(graphData, restart=false) {
-            const { anchors, operations, links } = graphData;
+        updateMaplyGraph() {
+            const { anchors, operations, links } = this.maplyGraph;
             const nodes = [
                 ...anchors,
                 ...operations,
             ];
 
-            // Update and restart the simulation.
+            /* Update and restart the simulation */
             this.d3simulation.nodes(nodes);
             this.d3simulation.force("link")
                 .links(links)
@@ -279,19 +314,14 @@ export default {
                 .id(d => d.id);
             this.d3simulation.alpha(1).restart();//0.001
 
-
+            /* Update data */
             this.d3operations = this.d3svg.selectAll('g.operation')
                 .data(operations)
-                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`);
             this.d3anchors = this.d3svg.selectAll('g.anchor')
                 .data(anchors)
-                .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`);
             this.d3links = this.d3svg.selectAll('line.link')
                 .data(links)
-                .attr('x1', function (d) { return d.source.x; })
-                .attr('y1', function (d) { return d.source.y; })
-                .attr('x2', function (d) { return d.target.x; })
-                .attr('y2', function (d) { return d.target.y; });
+            this.tick();
         }
     },
 }

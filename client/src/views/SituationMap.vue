@@ -3,7 +3,7 @@
 	<div id="situation-map-screen">
 		<Navigation :color="'#9575cd'" :icon="'./spell.demonstrator.situationmanagement.svg'" :title="'Lagemanagement'"></Navigation>
 
-		<Maply :operations="operations" />
+		<Maply :graphs="operations" />
 
 		<div id="sliderNav">
 			<v-card class="mt-2" style="margin-left: 10%" width="80%" rounded="xl" flat color="#9575cd">
