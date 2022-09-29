@@ -259,11 +259,11 @@ export default {
                 .strength(3)
 
             this.d3simulation = d3.forceSimulation(graph.nodes)
-                .force('charge', d3.forceManyBody().strength(-50))
+                .force('charge', d3.forceManyBody().strength(-150))
                 .force('link', inks)
                 .on('tick', this.tick);
         },
-        updateGraph(graphData) {
+        updateGraph(graphData, restart=false) {
             const { anchors, operations, links } = graphData;
             const nodes = [
                 ...anchors,
@@ -275,7 +275,7 @@ export default {
             this.d3simulation.force("link")
                 .links(links)
                 .distance(function (d) { return Math.sqrt(50 * 50 + 50 * 50) })
-                .strength(1)
+                .strength(3)
                 .id(d => d.id);
             this.d3simulation.alpha(1).restart();//0.001
 
