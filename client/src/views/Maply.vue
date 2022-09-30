@@ -105,8 +105,9 @@ export default {
         /* Init leaflet */
         map = L.map('map').setView(ludwigshafen, initialZoom);
         map.on('click', this.onClick);
+        map.on('zoomstart', () => this.captureLocations(this.maplyGraph));
+        map.on('movestart', () => this.captureLocations(this.maplyGraph));
         map.on('zoom', this.onZoom);
-        map.on('zoomstart', () => this.captureLocations());
         map.on('move', this.onZoom);
         bounds = map.getBounds();
 
@@ -168,8 +169,8 @@ export default {
         },
         onZoom(e) {
             this.svgLayer.setBounds(map.getBounds());
-            this.maplyGraph = this.toMaplyGraph(this.operations);
-            this.updateMaplyGraph();
+            this.maplyGraph = this.updateMaplyGraph(this.maplyGraph);
+            this.updateMaply();
         },
         parseLocation(location) {
             return location.split(', ').map(n => parseFloat(n));
@@ -211,6 +212,7 @@ export default {
                 .filter(node => node.payload.label === 'Operation');
         },
         toMaplyGraph(operations) {
+            console.log("inig");
             let anchors = operations.map(node => {
                 const latLng = this.parseLocation(node.payload.location);
                 const { x, y } = this.latLngToSvgCoordinates(latLng);
@@ -234,14 +236,34 @@ export default {
                 links: links
             };
         },
-        captureLocations() {
-            this.operations.forEach(operation => {
+        updateMaplyGraph(oldMaplyGraph) {
+            const { anchors, operations, links } = oldMaplyGraph;
+            anchors.forEach(anchor => {
+                const { x, y } = this.latLngToSvgCoordinates(anchor.location);
+                anchor.x = x;
+                anchor.y = y;
+                anchor.fx = x;
+                anchor.fy = y;
+            });
+            operations.forEach(operation => {
+                const { x, y } = this.latLngToSvgCoordinates(operation.location);
+                operation.x = x;
+                operation.y = y;
+            });
+            return {
+                anchors: anchors,
+                operations: operations,
+                links: links
+            };
+        },
+        captureLocations(maplyGraph) {
+            const { anchors, operations, links } = maplyGraph;
+            operations.forEach(operation => {
                 let svgCoords = {
                     x: operation.x,
                     y: operation.y,
                 };
                 let location = this.svgCoordinatesToLatLng(svgCoords);
-                // console.log(location);
                 operation.location = location;
             });
         },
@@ -291,17 +313,17 @@ export default {
                 .links(simLinks)
                 .id(d => d.id)
                 .distance(100)
-                .strength(3)
+                .strength(1)
 
             const forceManyBody = d3.forceManyBody()
-                .strength(-150);
+                .strength(-50);
 
             this.d3simulation = d3.forceSimulation(simNodes)
                 .force('charge', forceManyBody)
                 .force('link', forceLink)
                 .on('tick', this.tick);
         },
-        updateMaplyGraph() {
+        updateMaply() {
             const { anchors, operations, links } = this.maplyGraph;
             const nodes = [
                 ...anchors,
