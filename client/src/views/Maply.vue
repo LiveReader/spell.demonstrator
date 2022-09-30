@@ -62,7 +62,7 @@ let bounds;
 let initialZoom = 14;
 let maxZoom = 18;
 
-/** SVG overlay */
+/* SVG overlay */
 let exp = 3
 let svgDimensions = {
     x: Math.pow(10, exp),
@@ -246,12 +246,12 @@ export default {
             });
         },
         tick() {
+            /* Set positions */
             this.d3links
                 .attr('x1', function (d) { return d.source.x; })
                 .attr('y1', function (d) { return d.source.y; })
                 .attr('x2', function (d) { return d.target.x; })
                 .attr('y2', function (d) { return d.target.y; });
-
             this.d3operations
                 .attr('style', (d) => `transform: translate(${d.x}px, ${d.y}px) scale(${d.scale}) translate(-100%, -100%);`)
             this.d3anchors
@@ -287,15 +287,18 @@ export default {
                 ...operations,
             ];
 
-            let inks = d3.forceLink()
+            const forceLink = d3.forceLink()
                 .links(simLinks)
                 .id(d => d.id)
                 .distance(100)
                 .strength(3)
 
+            const forceManyBody = d3.forceManyBody()
+                .strength(-150);
+
             this.d3simulation = d3.forceSimulation(simNodes)
-                .force('charge', d3.forceManyBody().strength(-150))
-                .force('link', inks)
+                .force('charge', forceManyBody)
+                .force('link', forceLink)
                 .on('tick', this.tick);
         },
         updateMaplyGraph() {
@@ -314,13 +317,15 @@ export default {
                 .id(d => d.id);
             this.d3simulation.alpha(1).restart();//0.001
 
-            /* Update data */
+            /* Update D3 databinding */
             this.d3operations = this.d3svg.selectAll('g.operation')
                 .data(operations)
             this.d3anchors = this.d3svg.selectAll('g.anchor')
                 .data(anchors)
             this.d3links = this.d3svg.selectAll('line.link')
                 .data(links)
+
+            /* Trigger positioning */
             this.tick();
         }
     },
