@@ -9,13 +9,13 @@ import * as d3 from "d3";
 import { scenarios, operationalAreas, samplePoints, GJStyles } from "../../public/mapData/mapData.js";
 import { default as AnchorTemplate } from "../../public/templates/map-operation-anchor";
 import { default as OperationTemplate } from "../../public/templates/map-operation";
+import { default as OperationDetailsTemplate } from "../../public/templates/operation";
 
 /* Extracted from Graphly, TODO: remove... */
 function ShapeCreator() {
 	const MockShape = {
 		...d3,
-		getBBox(shape) {
-			console.log(shape);
+		getBBox(_shape) {
 			let bbox = {
 				x: 0,
 				y: 0,
@@ -26,20 +26,95 @@ function ShapeCreator() {
 		},
 		transform(_shape, _size) {},
 	};
+	// TODO: Please replace with graphly's TemplateAPI
 	const TemplateCore = {
 		Shape: MockShape,
 		SVGShape: (html) => d3.create("svg:g").html(html),
 		Alignment: "center",
+		CollectionStyle: (height, width, x, y, dx, dy, rowCount, align = "center", rowMargins = []) => {
+			return {
+				height: height,
+				width: width,
+				x: x,
+				y: y,
+				dx: dx,
+				dy: dy,
+				rowCount: rowCount,
+				align: align,
+				rowMargins: rowMargins,
+			};
+		},
+		ShapeStyle: (key, value, condition) => {
+			return {
+				key: key,
+				value: value,
+				condition: condition ?? true,
+			};
+		},
+		TagStyle: (padding, textStyles, backgroundStyles, cornerRadius) => {
+			let p = {
+				top: 0,
+				right: 0,
+				bottom: 0,
+				left: 0,
+			};
+			if (typeof padding === "number") {
+				p = { top: padding, right: padding, bottom: padding, left: padding };
+			} else if (Array.isArray(padding) && padding.length === 2) {
+				p = { top: padding[0], right: padding[1], bottom: padding[0], left: padding[1] };
+			} else if (Array.isArray(padding) && padding.length === 4) {
+				p = { top: padding[0], right: padding[1], bottom: padding[2], left: padding[3] };
+			}
+			return {
+				padding: p,
+				textStyles: textStyles,
+				backgroundStyles: backgroundStyles,
+				cornerRadius: cornerRadius,
+			};
+		},
+		TagShape: (text, style) => {
+			return d3
+				.create("g")
+				.classed("tag", true)
+				.append("text")
+				.text(text)
+				.attr("dy", "0.35em")
+				.attr("text-anchor", "middle");
+		},
+		ShapeCollection: d3.create("g"),
+		TextCollection: () => d3.create("g"),
+		TagCollection: () => d3.create("g"),
+		LODStyle: (shape, key, value, condition) => {
+			return {
+				shape: shape,
+				key: key,
+				value: value,
+				condition: condition ?? true,
+			};
+		},
+		OnZoom: () => {},
 	};
 	return {
 		shape: (template) => ({
-			instance: (data) => template(data, null, { ...data, payload: null }, TemplateCore).node().children[0],
+			instance: (data) => template(data, null, { ...data }, TemplateCore).node().children[0],
 		}),
 	};
 }
 const shapeCreator = ShapeCreator();
 const anchorShape = shapeCreator.shape(AnchorTemplate);
 const operationShape = shapeCreator.shape(OperationTemplate);
+
+const shapeTypeMapping = {
+	anchor: AnchorTemplate,
+	operation: OperationTemplate,
+	operationDetails: OperationDetailsTemplate,
+};
+
+const maplyShape = {
+	instance: (data) => {
+		return shapeCreator.shape(shapeTypeMapping[data.type]).instance(data);
+	},
+};
 
 /* sample points; */
 const {
@@ -95,6 +170,7 @@ export default {
 				this.operations = this.getOperations(newGraphs);
 				this.maplyGraph = this.toMaplyGraph(this.operations);
 				this.initMaply(this.maplyGraph);
+				console.log("init");
 			}
 		},
 	},
@@ -233,7 +309,7 @@ export default {
 				let { x, y } = this.latLngToSvgCoordinates(latLng);
 				x = x + 50;
 				y = y + 50;
-				return { ...node, id: node.id, type: "anchor", x: x, y: y, scale: 0.03, location: latLng };
+				return { ...node, id: node.id, type: "operation", x: x, y: y, scale: 0.03, location: latLng };
 			});
 			let links = ops.map((op) => ({ source: op.id + "_anchor", target: op.id }));
 
@@ -324,7 +400,18 @@ export default {
 		},
 		onD3Click(event, d3Element) {
 			event.stopPropagation();
-			console.log(`[CAPTURE:${event.type}] `, event, d3Element);
+			console.log(`[D3: ${event.type}] `, event, d3Element, d3Element.type, d3Element.id);
+			if (d3Element.type === "operationDetails") {
+				d3Element.type = "operation";
+				d3Element.scale = 0.03;
+			} else if (d3Element.type === "operation") {
+				d3Element.type = "operationDetails";
+				d3Element.scale = 0.05;
+				d3Element.d = 1005;
+			}
+			this.d3operations.remove();
+			this.initMaply(this.maplyGraph);
+			this.updateMaply();
 		},
 		initMaply(maplyGraph) {
 			const { anchors, operations, links } = maplyGraph;
@@ -339,11 +426,11 @@ export default {
 				.attr("style", "stroke-width: 2px !important; stroke: #2e2e2e !important;");
 
 			this.d3operations = this.d3svg
-				.selectAll("g.operation")
+				.selectAll("g.mapOperation")
 				.data(operations)
 				.enter()
-				.append(operationShape.instance)
-				.attr("class", "operation")
+				.append(maplyShape.instance)
+				.attr("class", "mapOperation")
 				.on("click", this.onD3Click)
 				/* Hack to prevent leaflet from capturing mouse events: */
 				.on("mouseover", () => map.dragging.disable())
@@ -368,18 +455,16 @@ export default {
 				.distance(100)
 				.strength(1);
 
-			const forceManyBody = d3
-                .forceManyBody()
-                .strength(-50);
+			const forceManyBody = d3.forceManyBody().strength(-50);
 
 			this.d3simulation = d3
 				.forceSimulation(simNodes)
 				.force("charge", forceManyBody)
 				.force("link", forceLink)
 				.on("tick", this.tick);
-			
-            /* Add drag callbacks */
-            this.d3operations.call(this.drag());
+
+			/* Add drag callbacks */
+			this.d3operations.call(this.drag());
 		},
 		updateMaply() {
 			const { anchors, operations, links } = this.maplyGraph;
@@ -391,6 +476,7 @@ export default {
 				.force("link")
 				.links(links)
 				.distance(function (d) {
+					if (d.target.type === "operationDetails") return Math.sqrt(20000);
 					return Math.sqrt(50 * 50 + 50 * 50);
 				})
 				.strength(3)
@@ -398,7 +484,7 @@ export default {
 			this.d3simulation.alpha(1).restart(); //0.001
 
 			/* Update D3 databinding */
-			this.d3operations = this.d3svg.selectAll("g.operation").data(operations);
+			this.d3operations = this.d3svg.selectAll("g.mapOperation").data(operations);
 			this.d3anchors = this.d3svg.selectAll("g.anchor").data(anchors);
 			this.d3links = this.d3svg.selectAll("line.link").data(links);
 
