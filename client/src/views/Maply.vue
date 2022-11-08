@@ -3,6 +3,34 @@
 </template>
 
 <script>
+
+/* About this Component:
+
+	This component serves as a proof-of-concept for rendering nodes handled by a D3 ForceSimulation on top of leaflet map.
+	It displays fixed nodes positioned by their latlng-coordinates as well as dynamically positioned nodes connected to them.
+	Since Graphly is also based on a ForceSimulation, the migration should be feasible.
+	
+	About the used data and resulting graph:
+	- 	For display purposes the provided Graphs are merged into a single one which contains only 'operation'-nodes. However, these are
+		furthermore mapped to one fixed point (anchor) and one additional node attatched to it (operation) which is ought to be positioned by
+		the ForceSimulation realtively to the anchor.
+	-	The position of the dynamic nodes are being initialized with a small latlng-offset from the original node location.
+
+	About leaflet and overlaying svg elements
+	- 	Leaflet provides a way to attach a svg-element 'onto' the map given some latlng-boundaries. 
+		This svg-element is used to attach the ForceSimulation nodes and links. 
+	- 	Zooming and Panning would cause this svg-element to move out of screen, so the svg-boundaries are beeing reset
+		in the 'zoom' and 'move' callbacks.
+	- 	The resulting moving and scaling of the svg-element requires the nodes to be repositioned. In the cases of fixedly positioned nodes,
+		this is no problem but the dynamic nodes need to know where the ForceSimulation has positioned them onto the map. Therefore their position
+		will be preserved in the 'zoomstart' and 'movestart' callbacks.
+
+	About using a fixed overlay instead of leaflet's svg overlay attached to the map:
+	- 	Leaflet doesn't seem to provide a callback for 'during the zoom', so the node positions will be off during zoom transition. 
+		To the author's opinion this will look as if something was broken therefore this option was discarded.
+
+*/
+
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import * as d3 from "d3";
@@ -11,7 +39,7 @@ import { default as AnchorTemplate } from "../../public/templates/map-operation-
 import { default as OperationTemplate } from "../../public/templates/map-operation";
 import { default as OperationDetailsTemplate } from "../../public/templates/operation";
 
-/* Extracted from Graphly, TODO: remove... */
+/* (Extracted from Graphly) TODO: Remove, Graphly will take care of rendering nodes */
 function ShapeCreator() {
 	const MockShape = {
 		...d3,
@@ -24,9 +52,8 @@ function ShapeCreator() {
 			};
 			return bbox;
 		},
-		transform(_shape, _size) {},
+		transform(_shape, _size) { },
 	};
-	// TODO: Please replace with graphly's TemplateAPI
 	const TemplateCore = {
 		Shape: MockShape,
 		SVGShape: (html) => d3.create("svg:g").html(html),
@@ -92,7 +119,7 @@ function ShapeCreator() {
 				condition: condition ?? true,
 			};
 		},
-		OnZoom: () => {},
+		OnZoom: () => { },
 	};
 	return {
 		shape: (template) => ({
@@ -116,17 +143,9 @@ const maplyShape = {
 	},
 };
 
-/* sample points; */
+/* sample point used as start position */
 const {
 	ludwigshafen,
-	bridge,
-	station,
-	rheingoenheim,
-	kaefertal,
-	lindenhof,
-	ruchheim,
-	ludwigshafenBounds,
-	worldBounds,
 } = samplePoints;
 
 /* Leaflet */
@@ -208,6 +227,7 @@ export default {
 		}).addTo(map);
 
 		/* Init D3 */
+		// TODO: Init graphly
 		this.d3svg = d3.select(svgElement);
 		this.d3svg.on(".zoom", null);
 
@@ -252,6 +272,7 @@ export default {
 			return location.split(", ").map((n) => parseFloat(n));
 		},
 		latLngToSvgCoordinates(latLng) {
+			/* TODO: Map from LatLng to Graphly coordinates */
 			let mapElementRef = this.$refs.map;
 			let containerPoint = map.latLngToContainerPoint(latLng);
 			let svgBoundingRect = this.anchorElement.getBoundingClientRect();
@@ -268,6 +289,7 @@ export default {
 			return svgCoordinate;
 		},
 		svgCoordinatesToLatLng(coords) {
+			/* TODO: Map from Graphly coordinates to LatLng */
 			let mapElementRef = this.$refs.map;
 			let svgBoundingRect = this.anchorElement.getBoundingClientRect();
 			let containerElementBoundingRect = mapElementRef.getBoundingClientRect();
@@ -288,7 +310,7 @@ export default {
 				.filter((node) => node.payload.label === "Operation");
 		},
 		toMaplyGraph(operations) {
-			console.log("inig");
+			/* Create a graph from given operations by providing two nodes per operation (anchor + operation) */
 			let anchors = operations.map((node) => {
 				const latLng = this.parseLocation(node.payload.location);
 				const { x, y } = this.latLngToSvgCoordinates(latLng);
@@ -298,13 +320,14 @@ export default {
 					type: "anchor",
 					x: x,
 					y: y,
-					fx: x,
-					fy: y,
+					fx: x, // ensures that this node is fixed
+					fy: y, // ensures that this node is fixed
 					scale: 0.005,
 					location: latLng,
 				};
 			});
 			let ops = operations.map((node) => {
+				/* Apply offset to dynamic nodes */
 				const latLng = this.parseLocation(node.payload.location);
 				let { x, y } = this.latLngToSvgCoordinates(latLng);
 				x = x + 50;
@@ -320,6 +343,7 @@ export default {
 			};
 		},
 		updateMaplyGraph(oldMaplyGraph) {
+			/* Position nodes according to their location attribute */
 			const { anchors, operations, links } = oldMaplyGraph;
 			anchors.forEach((anchor) => {
 				const { x, y } = this.latLngToSvgCoordinates(anchor.location);
@@ -351,6 +375,7 @@ export default {
 			});
 		},
 		tick() {
+			// TODO: Remove, graphly will handle positioning effectively
 			/* Set positions */
 			this.d3links
 				.attr("x1", function (d) {
@@ -375,6 +400,7 @@ export default {
 			);
 		},
 		drag() {
+			// TODO: Remove, graphly will handle node interaction
 			function dragstarted(event) {
 				if (!event.active) this.d3simulation.alphaTarget(0.3).restart();
 				event.subject.fx = event.subject.x;
@@ -414,6 +440,9 @@ export default {
 			this.updateMaply();
 		},
 		initMaply(maplyGraph) {
+			// TODO: 
+			// Init Graphly whilst making sure that pointer events will be correctly handled by both leaflet and graphly
+
 			const { anchors, operations, links } = maplyGraph;
 
 			/* Init D3 databinding and shape instancing */
@@ -467,6 +496,7 @@ export default {
 			this.d3operations.call(this.drag());
 		},
 		updateMaply() {
+			// TODO: replace with graphly's update method
 			const { anchors, operations, links } = this.maplyGraph;
 			const nodes = [...anchors, ...operations];
 
@@ -495,4 +525,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
